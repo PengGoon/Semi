@@ -145,6 +145,11 @@
 		</div>
 	</body>
 	<script>
+	
+	$("#flip").click(function(){
+    	$("#category").slideToggle("fast");
+	});
+	
 		$(document).ready(function() {
 			var jbOffset = $('.menu').offset();
 			$(window).scroll(function() {
@@ -156,8 +161,5 @@
 			});
 		});
 		
-		$("#flip").hover(function(){
-        	$("#category").slideToggle("fast");
-    	});
 	</script>
 </html>

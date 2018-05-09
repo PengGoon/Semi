@@ -61,14 +61,14 @@ table, tr, th {
 					<th>구매수량</th>
 					<th>
 						<button id="dec">-</button> 
-						<span id="msg">1</span>
+						<span id="msg"></span>
 						<button id="inc">+</button>
 					</th>
 				</tr>
 				<tr>
 					<th colspan="2">
 						<button id="purchase">바로결제</button> 
-						<button id="cart_add">장바구니 추가</button> 
+						<button id="cart">장바구니 추가</button> 
 						<button id="restock">재입고 알림</button>
 					</th>
 				</tr>
@@ -79,19 +79,24 @@ table, tr, th {
 	</div>
 </body>
 <script>
-	var cnt;
+	var cnt=0;
 	$("#inc").click(function() {
-		cnt = $("input[type='range']").val();
-		cnt++;
-		$("input[type='range']").val(cnt);
+		cnt=cnt+1;
 		$("#msg").text(cnt);
 	});
 
 	$("#dec").click(function() {
-		cnt = $("input[type='range']").val();
-		cnt--;
-		$("input[type='range']").val(cnt);
+		cnt=cnt-1;
+		if(cnt<0){
+			alert("수량을 다시 입력해주세요.");
+			cnt=0;
+		};
+		
 		$("#msg").text(cnt);
+	});
+	
+	$("#cart").click(function(){
+		alert("선택하신 상품을 장바구니에 담았습니다.")
 	});
 </script>
 </html>
