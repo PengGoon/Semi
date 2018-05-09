@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mvc.service.ProductService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/list", "/detail", "/update", "prd_write",
+@WebServlet({ "/login", "/logout", "/join", "/list", "/detail", "/update", 
 	"/updateView", "/delete", "/findId", "/findPw","/payList","/restock" })
 public class MainController extends HttpServlet {
 	
@@ -95,7 +95,7 @@ public class MainController extends HttpServlet {
 						break;
 					
 					// 상품 등록
-					case "/prd_write":
+					case "/write":
 						System.out.println("상품 등록 요청");
 						product = new ProductService();
 						product.write(request, response);
