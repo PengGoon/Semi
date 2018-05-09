@@ -65,15 +65,15 @@
             width: 250px;
             border: 1px solid black;
         }
-        input{
+        .searchBar input{
             font-size: 18;
             border: 0;
             float: left;
-            padding: 12px;
+            padding: 10px;
             width: 200px;
         }
-        img{
-            margin: 5px 2px;
+        .searchBar img{
+            margin: 3px 2px;
             width: 30px;
             height: 30px;
         }
