@@ -31,7 +31,7 @@ table, tr, th {
 }
 </style>
 <body>
-	<jsp:include page="navi.jsp"></jsp:include>
+	<jsp:include page="../navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="detailTable">
 			<table>
