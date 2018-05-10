@@ -88,6 +88,9 @@
 		#write-form textarea {
 		    width: 99%;
 		}
+				h5{
+			float : right;
+		}
 
 	
 
@@ -95,20 +98,21 @@
 	</style>
 	<body>
 		<div class="title">
-			<h1><img src="아이콘.gif"/>Mar-KH-et</h1>		
+			<h1><a href="a_main_user.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
 			<ul class ="menu">
 			
-				<li id="mem"><a href="2-1.jsp">회원관리</a></li>
-				<li id="sell"><a href="2-2.jsp">판매자관리</a></li>
-				<li id="review"><a href="2-3.jsp">후기 관리</a></li>
-				<li id="notice"><a href="2-4.jsp">공지사항</a></li>
-				<li id="regist"><a href="2-5.jsp">판매자 등록</a></li>
+				<li id="mem"><a href="a_main_user.jsp">회원관리</a></li>
+				<li id="sell"><a href="a_seller.jsp">판매자관리</a></li>
+				<li id="review"><a href="a_review.jsp">후기 관리</a></li>
+				<li id="notice"><a href="a_notice.jsp">공지사항</a></li>
+				<li id="regist"><a href="a_seller_re.jsp">판매자 등록</a></li>
 				
 			</ul>
 		</div>
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
+		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<jsp:include page ="NoticeWrite.jsp"/>
 			</body>

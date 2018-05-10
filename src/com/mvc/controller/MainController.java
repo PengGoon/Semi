@@ -214,6 +214,8 @@ public class MainController extends HttpServlet {
 						
 					case "/admin_logout":
 						System.out.println("관리자 로그아웃");
+						admin = new AdminService();
+						admin.logout(request, response);
 						break;
 						
 					case "/admin_main":
