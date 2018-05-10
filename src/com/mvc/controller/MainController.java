@@ -209,7 +209,7 @@ public class MainController extends HttpServlet {
 					case "/admin_login":
 						System.out.println("관리자 로그인");
 						admin = new AdminService();
-						admin.login(request, response);
+						//admin.login(request, response);
 						break;
 						
 					case "/admin_logout":
@@ -221,7 +221,7 @@ public class MainController extends HttpServlet {
 					case "/admin_main":
 						System.out.println("관리자 메인 페이지");
 						admin = new AdminService();
-						admin.main(request, response);
+						//admin.main(request, response);
 						break;
 						
 					case "/review_view":
