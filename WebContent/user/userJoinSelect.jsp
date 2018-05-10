@@ -23,7 +23,7 @@
             } 
             
             .joinTitle{
-            	margin : 150px 0px 75px 0px;
+            	margin : 50px 0px 45px 0px;
             	text-align: center;
             	color: limegreen;
             	font-size: 20;
@@ -53,12 +53,14 @@
             	border-color: limegreen;
             	background-color : limegreen;
             	color: white;
+            	cursor: pointer;
             }
             
             
         </style>
     </head>
     <body>
+    	<jsp:include page="../main/navi.jsp"></jsp:include>
     	<!-- 구매자: userJoinForm.jsp ,  판매자: join.jsp -->
     	<div class = joinTitle>
     	<h1>회원 가입</h1>
@@ -78,7 +80,7 @@
                 <td colspan="3">
                 	<br/>
                 	<hr/>
-                    <input class=button onclick="join()" type="button" value="회원 정보 입력"/>
+                    <input class=button onclick="toJoin()" type="button" value="회원 정보 입력"/>
                 </td>
             </tr>
         </table>
@@ -94,11 +96,13 @@
     		alert(msg);
     	}    
 
-        function join(){
+        function toJoin(){
         	if($('input[name="sel"]:checked').val() == "seller"){
         		location.href="join.jsp"
-        	} else {
+        	} else if ($('input[name="sel"]:checked').val() == "user"){
         		location.href="userJoin.jsp"
+        	} else{
+        		alert("가입할 회원 종류를 선택해 주세요");
         	}
         } 
     </script>
