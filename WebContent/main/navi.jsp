@@ -95,8 +95,8 @@
 	<div class="menuCenter">
 		<div class="rightMenu">
 			<ul>
-				<a href="#"><li id=flip">로그인</li></a>
-				<a href="#"><li>회원가입</li></a>
+				<a href="user/userLogin.jsp"><li id=flip">로그인</li></a>
+				<a href="user/userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="#"><li>공지사항</li></a>
 			</ul>
 		</div>
@@ -114,7 +114,7 @@
 			    <div class="searchBar">
 			    	<input type="text" name="search"/>
 	            	<button class="btn" id="btn" onclick="go">
-	                	<img class="btn-img" src="search.png">
+	                	<img class="btn-img" src="../image/search.png">
 	            	</button>
 			    </div>
 		    </div>
@@ -123,23 +123,31 @@
 			<div id="category">
 				<table>
 					<tr>
-						<th><h3>육류</h3></th>
+						<th><h3>정육/달걀</h3></th>
 						<th><h3>생선</h3></th>
 						<th><h3>채소</h3></th>
 						<th><h3>과일</h3></th>
 					</tr>
 				</table>
 				<ul>
-					<li><a href="cate1.jsp">돼지고기</a></li><br/> <li><a href="#">소고기</a></li><br/> <li> <a href="#">닭고기</a></li>
+					<li><a href="cate1.jsp">돼지고기</a></li><br/>
+					<li><a href="#">소고기</a></li><br/>
+					<li><a href="#">닭고기</a></li><br/>
+					<li><a href="#">달걀</a></li>
 				</ul>
 				<ul>
-					<li><a href="#">고등어/갈치</a></li><br/> <li><a href="#">오징어/낙지</a></li><br/> <li> <a href="#">조개류</a></li>
+					<li><a href="#">고등어/갈치</a></li><br/>
+					<li><a href="#">오징어/낙지</a></li><br/>
+					<li><a href="#">조개류</a></li>
 				</ul>
 				<ul>
-					<li><a href="#">뿌리채소</a></li><br/> <li><a href="#">열매채소</a></li><br/> <li> <a href="#">나물류</a></li>
+					<li><a href="#">뿌리채소</a></li><br/>
+					<li><a href="#">열매채소</a></li><br/>
+					<li> <a href="#">나물류</a></li>
 				</ul>
 				<ul>
-					<li><a href="#">제철과일</a></li><br/> <li><a href="#">수입과일</a></li>
+					<li><a href="#">제철과일</a></li><br/>
+					<li><a href="#">수입과일</a></li>
 				</ul>
 			</div>
 		</div>
