@@ -30,7 +30,7 @@
            	}
             
             .userJoinTitle{
-            	margin : 150px 0px 75px 0px;
+            	margin : 60px 0px 55px 0px;
             	text-align: center;
             	color: limegreen;
             	font-size: 20;
@@ -39,7 +39,7 @@
             .userJoinTable{
             	position:absolute;
             	left: 20%;
-				margin:  0 0 150px 0;
+				margin:  0 0 120px 0;
             }
             
             select{
@@ -61,6 +61,7 @@
             	border-color: limegreen;
             	background-color : limegreen;
             	color: white;
+            	cursor: pointer;
             }
             
             #join{
@@ -73,9 +74,10 @@
             	border-color: limegreen;
             	background-color : limegreen;
             	color: white;
+            	cursor: pointer;
             }
             
-             a{
+             .exit{
             	position:absolute;
             	left:1%;
             	height : 30px;
@@ -87,13 +89,13 @@
             	border:2.5px solid limegreen;
             	background-color : white;
             	color: limegreen;
-            	
+            	cursor: pointer;
             }
             
         </style>
     </head>
     <body>
-    
+    	<jsp:include page="../main/navi.jsp"></jsp:include>
     	<div class = userJoinTitle>
     	<br/><br/>
     	<h1>회원 가입</h1>
@@ -160,7 +162,7 @@
     			<tr>
     				<td colspan="3">
     				<button class=button id="join">회원가입</button>
-    				<a onclick="location.href = 'userLogin.jsp'">나가기</a>
+    				<a class=exit onclick="location.href = 'userLogin.jsp'">나가기</a>
     				</td>
     			</tr>
     		</table>

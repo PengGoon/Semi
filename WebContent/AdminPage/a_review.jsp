@@ -91,23 +91,27 @@
 		#review{
 			background-color: gray;
 		}
+				h5{
+			float : right;
+		}
 	</style>
 	<body>
 		<div class="title">
-			<h1><a href="2-1.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
+			<h1><a href="a_main_user.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
 			<ul class ="menu">
 			
-				<li id="mem"><a href="2-1.jsp">회원관리</a></li>
-				<li id="sell"><a href="2-2.jsp">판매자관리</a></li>
-				<li id="review"><a href="2-3.jsp">후기 관리</a></li>
-				<li id="notice"><a href="2-4.jsp">공지사항</a></li>
-				<li id="regist"><a href="2-5.jsp">판매자 등록</a></li>
+				<li id="mem"><a href="a_main_user.jsp">회원관리</a></li>
+				<li id="sell"><a href="a_seller.jsp">판매자관리</a></li>
+				<li id="review"><a href="a_review.jsp">후기 관리</a></li>
+				<li id="notice"><a href="a_notice.jsp">공지사항</a></li>
+				<li id="regist"><a href="a_seller_re.jsp">판매자 등록</a></li>
 				
 			</ul>
 		</div>
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
+		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>Review</h2>
 		<h4>회원들이 남긴 후기들을 볼 수 있습니다. 삭제하시려면 선택 후 삭제 버튼을 눌러 주세요.</h4>
