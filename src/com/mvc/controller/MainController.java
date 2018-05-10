@@ -208,12 +208,19 @@ public class MainController extends HttpServlet {
 					// ㅡㅡㅡㅡㅡ관리자 	
 					case "/admin_login":
 						System.out.println("관리자 로그인");
-						admin = new AdminService();
+						admin = new AdminService(request, response);
+						admin.login();
 						break;
 						
 					case "/admin_logout":
 						System.out.println("관리자 로그아웃");
-						admin = new AdminService();
+						admin = new AdminService(request, response);
+						break;
+						
+					case "/admin_main":
+						System.out.println("관리자 메인 페이지");
+						admin = new AdminService(request, response);
+						admin.main();
 						break;
 						
 					case "/review_view":
