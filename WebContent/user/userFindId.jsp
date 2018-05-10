@@ -11,20 +11,23 @@
             	border-collapse: collapse;
             	padding: 5px 10px;
             	text-align: left;
-            	
             	width:350px;
             }   
             
             .findIdTitle{
-            	margin : 150px 0px 75px 0px;
+            	margin : 30px 0px 20px 0px;
             	text-align: center;
             	color: limegreen;
             	font-size: 20;
             }
             
+            h4{
+            	color:black;
+            }
+            
             .findIdTable{
             	position : fixed;
-            	top: 290px;
+            	top: 300px;
             	left: 39%;
             }
             
@@ -57,13 +60,20 @@
             	border-color: limegreen;
             	background-color : limegreen;
             	color: white;
+            	cursor: pointer;
             }
             
         </style>
     </head>
     <body>
+    	<jsp:include page="../main/navi.jsp"></jsp:include>
     	<div class = findIdTitle>
     	<h1>아이디 찾기</h1>
+    	<h4>
+    	개인 <input type="radio"  name="sel" value="user"/> <!-- userJoin.jsp(개인)로 이동  -->
+    	&nbsp;&nbsp;&nbsp;
+    	판매자 <input type="radio" name="sel" value="seller"/> <!--join.jsp(판매자) 로 이동 -->
+    	</h4> 
     	</div>
     	<div class = background >
     	</div>

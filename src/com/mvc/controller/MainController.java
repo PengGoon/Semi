@@ -13,9 +13,9 @@ import com.mvc.service.ProductService;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/list", "/detail", "/update", 
+@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_detailView",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
-	"/updateView", "/delete", "/findId", "/findPw","/payList","/restock","/overlay",
+	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/notice_list", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView" })
 public class MainController extends HttpServlet {
@@ -82,26 +82,61 @@ public class MainController extends HttpServlet {
 						break;
 					
 					// 상품 리스트	
-					case "/list":
+					case "/prd_list":
 						System.out.println("상품 리스트 호출 요청");
 						product = new ProductService();
 						product.list(request, response);
 						break;
-						
-					// 후기 리스트
-					case "/review_list":
-						System.out.println("후기 리스트 호출 요청");
-						review = new ReviewService();
-						review.list(request, response);
-						break;
-						
-					// 상품 상세보기 화면 
-					case "/detail":
+					
+						// 상품 상세보기 화면 
+					case "/prd_detail":
 						System.out.println("상품 상세보기 화면 요청");
 						//받아온 파라메터를 세션에 저장
 						request.getSession().setAttribute("idx", request.getParameter("idx"));
 						//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
 						response.sendRedirect("detail.html");
+						break;
+						
+					// 상품 상세보기
+					case "/prd_detailView":
+						System.out.println("상품 상세보기 요청");
+						product = new ProductService();
+						product.detailView(request, response);
+						break;
+						
+					// 상품 수정 
+					case "/prd_update":
+						System.out.println("상품 수정 요청");
+						product = new ProductService();
+						product.update(request, response);
+						break;
+						
+					// 상품 수정 상세
+					case "/prd_updateView":
+						System.out.println("상품 수정 상세 요청");
+						product = new ProductService();
+						product.updateView(request,response);
+						break;
+						
+					// 상품 등록
+					case "/prd_write":
+						System.out.println("상품 등록 요청");
+						product = new ProductService();
+						product.write(request, response);
+						break;
+					
+					// 상품 삭제
+					case "/prd_delete":
+						System.out.println("상품 삭제 요청");
+						product = new  ProductService();
+						product.delete(request, response);
+						break;
+					
+					// 후기 리스트
+					case "/review_list":
+						System.out.println("후기 리스트 호출 요청");
+						review = new ReviewService();
+						review.list(request, response);
 						break;
 					
 					// 후기 상세보기
@@ -113,25 +148,11 @@ public class MainController extends HttpServlet {
 						response.sendRedirect("reviewDetail.jsp");
 						break;	
 						
-					// 상품 수정 
-					case "/update":
-						System.out.println("상품 수정 요청");
-						product = new ProductService();
-						product.update(request, response);
-						break;
-						
 					// 후기 수정
 					case "/review_update":
 						System.out.println("후기 수정 요청");
 						review = new ReviewService();
 						review.update(request, response);
-						break;
-						
-					// 상품 수정 상세
-					case "/updateView":
-						System.out.println("상품 수정 상세 요청");
-						product = new ProductService();
-						product.updateView(request,response);
 						break;
 						
 					// 후기 수정 상세
@@ -141,13 +162,6 @@ public class MainController extends HttpServlet {
 						review.updateView(request,response);
 						break;
 					
-					// 상품 등록
-					case "/write":
-						System.out.println("상품 등록 요청");
-						product = new ProductService();
-						product.write(request, response);
-						break;
-					
 					// 후기 등록
 					case "/review_write":
 						System.out.println("후기 등록 요청");
@@ -155,25 +169,11 @@ public class MainController extends HttpServlet {
 						review.write(request, response);
 						break;
 						
-					// 상품 삭제
-					case "/delete":
-						System.out.println("상품 삭제 요청");
-						product = new  ProductService();
-						product.delete(request, response);
-						break;
-						
 					// 후기 삭제
 					case "/review_delete":
 						System.out.println("후기 삭제 요청");
 						review = new ReviewService();
 						review.del(request, response);
-						break;
-						
-					// 상품 상세보기
-					case "/detailView":
-						System.out.println("상품 상세보기 요청");
-						product = new ProductService();
-						product.detailView(request, response);
 						break;
 						
 					// 후기 상세보기
@@ -203,19 +203,25 @@ public class MainController extends HttpServlet {
 						user = new UserService();
 						user.overlay(request, response);
 						break;
-
-					
 						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
 					case "/admin_login":
 						System.out.println("관리자 로그인");
 						admin = new AdminService();
+						//admin.login(request, response);
 						break;
 						
 					case "/admin_logout":
 						System.out.println("관리자 로그아웃");
 						admin = new AdminService();
+						admin.logout(request, response);
+						break;
+						
+					case "/admin_main":
+						System.out.println("관리자 메인 페이지");
+						admin = new AdminService();
+						//admin.main(request, response);
 						break;
 						
 					case "/review_view":

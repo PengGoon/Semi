@@ -41,7 +41,7 @@
     	li{
     	   	list-style-type: none;
     	}
-    	a:visited{
+    	 a:visited{
       		color:black;
       		text-decoration : none;
       	}
@@ -82,7 +82,7 @@
 		td{
 			background-color: #e3f2fd;
 		}
-		#regist{
+		#sell{
 			background-color: gray;
 		}
 		h2{
@@ -91,6 +91,9 @@
 		h4{
 			margin-left : 22px;
 		}
+				h5{
+			float : right;
+		}
 
 	
 
@@ -98,46 +101,47 @@
 	</style>
 	<body>
 		<div class="title">
-			<h1><a href="2-1.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
+			<h1><a href="a_main_user.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
 			<ul class ="menu">
-			
-				<li id="mem"><a href="2-1.jsp">회원관리</a></li>
-				<li id="sell"><a href="2-2.jsp">판매자관리</a></li>
-				<li id="review"><a href="2-3.jsp">후기 관리</a></li>
-				<li id="notice"><a href="2-4.jsp">공지사항</a></li>
-				<li id="regist"><a href="2-5.jsp">판매자 등록</a></li>
-				
+				<li id="mem"><a href="a_main_user.jsp">회원관리</a></li>
+				<li id="sell"><a href="a_seller.jsp">판매자관리</a></li>
+				<li id="review"><a href="a_review.jsp">후기 관리</a></li>
+				<li id="notice"><a href="a_notice.jsp">공지사항</a></li>
+				<li id="regist"><a href="a_seller_re.jsp">판매자 등록</a></li>
 			</ul>
 		</div>
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
+		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
 		<br/><br/>
-		<h2>판매자 등록</h2>
-		<h4>판매자 등록을 승인 또는 거부할 수 있습니다. </h4>
+		
+		<h2>판매자 관리</h2>
+		<h4>승인이 완료된 판매자들을 확인 할 수 있습니다. </h4>
 		
 		<div class ="member">
 			<table>
 				<tr>
 					<th>체크</th>
 					<th>번호</th>
-					<th>판매자(아이디)</th>
-					<th>요청일</th>
-					<th>사업자 등록증 이미지</th>
-					<th>승인/거부</th>
+					<th>판매자아이디</th>
+					<th>판매자주소</th>
+					<th>핸드폰 번호</th>
+					<th>가입일</th>
 				</tr>
 				<tr>
 					<td class="che">
 						<input type="checkbox"/>
 					</td>
 					<td class="idx"></td>
-					<td class="sell_Id"></td>
-					<td class="date"></td>
-					<td class="sell_Img"></td>
-					<td class="reg_Date"><button>승인</button><button>거부</button></td>
+					<td class="user_Id"></td>
+					<td class="user_Addr"></td>
+					<td class="user_Phone"></td>
+					<td class="reg_Date"></td>
 				</tr>
 			</table>
 			<br/>
+			<input id="mem_del" type="button" value="삭제" onclick="selldel()"/>
 		</div>
 	</body>
 	<script>
@@ -149,7 +153,14 @@
 		});
 	});
 	
-	
+	function selldel(){
+        var con = confirm("정말로 삭제 하시겠습니까?");
+        //"확인" 버튼을 눌렀을 경우
+        if(con ==true){
+            //삭제 처리(요청)
+            alert("삭제가 완료 되었습니다.");
+        }
+	}
 	
 	</script>
 </html>
