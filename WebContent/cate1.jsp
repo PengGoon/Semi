@@ -23,8 +23,8 @@
         }
         
         th{
-            border: 1px solid;
-            padding: 50px 100px;
+            border: 1px solid; 
+            padding: 50px 100px; 
         }
         
         td{
@@ -46,11 +46,6 @@
       	
 	</style>
 	<body>
-		<div class="jbTitle">
-			<h1>Site Title</h1>
-		</div>
-		<div id="flip"><h3>카테고리</h3></div>
-		<br/>
 		<h3>육류</h3>
 		<table>
 			<tr>
