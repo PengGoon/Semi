@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mvc.service.AdminService;
 import com.mvc.service.NoticeService;
+import com.mvc.service.PhotoService;
 import com.mvc.service.ProductService;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
@@ -46,6 +47,7 @@ public class MainController extends HttpServlet {
 				ReviewService review = null;
 				AdminService admin = null;
 				NoticeService notice = null;
+				PhotoService photo = null;
 				
 				// "/login", "/logout", "/join", 
 				// "/list","/detail", "/update", "/updateView", 
@@ -84,8 +86,8 @@ public class MainController extends HttpServlet {
 					// 상품 리스트	
 					case "/prd_list":
 						System.out.println("상품 리스트 호출 요청");
-						product = new ProductService();
-						product.list(request, response);
+						PhotoService service = new PhotoService(request, response);
+						service.list();
 						break;
 					
 						// 상품 상세보기 화면 
@@ -209,7 +211,7 @@ public class MainController extends HttpServlet {
 					case "/admin_login":
 						System.out.println("관리자 로그인");
 						admin = new AdminService();
-						admin.login(request, response);
+						//admin.login(request, response);
 						break;
 						
 					case "/admin_logout":
@@ -219,7 +221,7 @@ public class MainController extends HttpServlet {
 					case "/admin_main":
 						System.out.println("관리자 메인 페이지");
 						admin = new AdminService();
-						admin.main(request, response);
+						//admin.main(request, response);
 						break;
 						
 					case "/review_view":

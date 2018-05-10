@@ -130,7 +130,7 @@
 					</tr>
 				</table>
 				<ul>
-					<li><a href="cate1.jsp">돼지고기</a></li><br/>
+					<li><a href="list.jsp">돼지고기</a></li><br/>
 					<li><a href="#">소고기</a></li><br/>
 					<li><a href="#">닭고기</a></li><br/>
 					<li><a href="#">달걀</a></li>
