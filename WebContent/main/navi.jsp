@@ -105,15 +105,9 @@
 	<div class="menuCenter">
 		<div class="rightMenu">
 			<ul>
-<<<<<<< HEAD:WebContent/navi.jsp
-				<li style="border-left: none"><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-				<li><a href="#">공지사항</a></li>
-=======
 				<a href="../user/userLogin.jsp"><li id=flip">로그인</li></a>
 				<a href="../user/userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="#"><li>공지사항</li></a>
->>>>>>> 96e959b4ea3cd326fbc803526defdbe8a9a0553b:WebContent/main/navi.jsp
 			</ul>
 		</div>
 		
