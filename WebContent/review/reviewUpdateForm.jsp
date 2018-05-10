@@ -32,9 +32,7 @@
       <tr>
          <th>작성자</th>
          <td><input type="text" name="userId" value="${dto.user_id }"/>
-         		
          </td>
-         
       </tr>
       <tr>
          <th>제목</th>

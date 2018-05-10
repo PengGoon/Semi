@@ -11,8 +11,16 @@
          border-collapse: collapse;
          padding: 5px 10px;
       }
+      
+      th{
+      	width:70px;
+      }
+      
       table{
-         width: 500px;
+      	position: absolute;
+      	left:25%;
+        width: 800px;
+        margin: 300px 0 100px 0;
       }
       input[type='text']{
          width:100%;
@@ -20,10 +28,48 @@
       textarea{
          width:100%;
          resize:none;
+         height:300px;
       }
       td{
-         text-align: center;
+         text-align: left;
       }
+      .photoAdd{
+      			position:absolute;
+            	left:4%;
+      }
+      
+      .write{
+            	position:absolute;
+            	left:83%;
+            	height : 42px;
+            	width: 130px;
+            	font-weight: 800;
+            	border-style : solid;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+      }
+      
+      .exit{
+      			text-decoration:none;
+            	position:absolute;
+            	left:65%;
+            	height : 29px;
+            	width: 130px;
+            	font-weight: 800;
+            	font-size:14;
+            	text-align:center;
+        		padding: 10px 0 0 0;
+            	border:2.5px solid limegreen;
+            	background-color : white;
+            	color: limegreen;
+      }
+            
+     .btnRow{
+     	height:80px;
+     	padding: 0;
+     }
    </style>
    </head>
    <body>
@@ -31,28 +77,23 @@
       <table>
       <tr>
          <th>작성자</th>
-         <td><input type="text" name="userId" /></td>
+         <td>${info.user_id}</td>
       </tr>
       <tr>
          <th>제목</th>
-         <td><input type="text" name="reviewTitle"/></td>
+         <td><input type="text" name="reviewTitle" /></td>
       </tr>
       <tr>
          <th>내용</th>
          <td><textarea rows="15" name="reviewContent" /></textarea></td>
       </tr>
+      
       <tr>
-         <th>사진</th>
-         <td>
-         
-         <input type="file" name="reviewPhoto"/>
-         </td>
-      </tr>
-      <tr>
-         <td colspan="2">
-            <a href="reviewList.jsp">리스트 가기</a>
+         <td class=btnRow  colspan="2">
+         	<input class=photoAdd type="file" name="reviewPhoto"/>
+            <a class=exit href="reviewList.jsp">취소</a>
             &nbsp;&nbsp;
-            <button>저장</button>
+            <button class=write>작성 완료</button>
          </td>
       </tr>
       </table>
