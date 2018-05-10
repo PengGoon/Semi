@@ -49,7 +49,7 @@
 	    }
 	    .rightMenu{
             float: right;
-            width: 250px;
+            width: 280px;
             margin-top: 20px;
 	    }
 	    .rightMenu ul {
@@ -62,18 +62,17 @@
 		}
         .searchBar{
             float: right;
-            width: 250px;
             border: 1px solid black;
         }
-        .searchBar input{
+        input{
             font-size: 18;
             border: 0;
             float: left;
-            padding: 10px;
+            padding: 12px;
             width: 200px;
         }
-        .searchBar img{
-            margin: 3px 2px;
+        img{
+            margin: 5px 2px;
             width: 30px;
             height: 30px;
         }
@@ -90,6 +89,17 @@
 			padding: 0px 35px;
 			text-align: center;
 		}
+		.rightMenu ul li{padding:0 10px;}
+		.search{width: 176px; height: 28px;}
+		.btn{width: 50px; height: 28px;}
+		.content{margin:0 auto;position:relative;margin-top:50px;display:inline-blcok;}
+			.fly{display:block; right:-90px; top:100px;  position:absolute; z-index:9999; width:80px; background-color:#ffffff;height: 200px;border:1px #ccc solid;
+					text-align: center;
+			}
+			.fly li{list-style: none;}
+			.fly img{border:none;list-style:none;height: 70px; display:block    
+                float:left;width:75px;border:1px #ccc solid;text-align:center}
+		
 	</style>
 	<body>
 	<div class="menuCenter">
@@ -112,7 +122,7 @@
 			        <a href="#"><li>인기상품</li></a>
 			    </ul>
 			    <div class="searchBar">
-			    	<input type="text" name="search"/>
+			    	<input type="text" name="search" />
 	            	<button class="btn" id="btn" onclick="go">
 	                	<img class="btn-img" src="../image/search.png">
 	            	</button>
@@ -130,7 +140,7 @@
 					</tr>
 				</table>
 				<ul>
-					<li><a href="cate1.jsp">돼지고기</a></li><br/>
+					<li><a href="list.jsp">돼지고기</a></li><br/>
 					<li><a href="#">소고기</a></li><br/>
 					<li><a href="#">닭고기</a></li><br/>
 					<li><a href="#">달걀</a></li>
@@ -151,23 +161,42 @@
 				</ul>
 			</div>
 		</div>
+		<div class="content">
+    		<div class="fly">
+    		<ul style="padding-left: 0px;">
+    		<span style="font-size: 10px">최근본상품</span>
+    		<li><a href="#"><img src="#"></a></li>
+    		<li><a href="#"><img src="#"></a></li>
+    		</ul>
+    		</div>
+		</div>	
 	</body>
 	<script>
-	
-	$("#flip").click(function(){
-    	$("#category").slideToggle("fast");
+	$(document).ready(function() {
+		var jbOffset = $('.menu').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jbOffset.top) {
+				$('.menu').addClass('jbFixed');
+			} else {
+				$('.menu').removeClass('jbFixed');
+			}
+		});
 	});
 	
-		$(document).ready(function() {
-			var jbOffset = $('.menu').offset();
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > jbOffset.top) {
-					$('.menu').addClass('jbFixed');
-				} else {
-					$('.menu').removeClass('jbFixed');
-				}
-			});
-		});
+	$("#flip").hover(function(){
+    	$("#category").slideToggle("fast");
+	});
+	 $(window).scroll(function(){
+           
+           
+            var sct = $(this).scrollTop();
+            
+            $('.fly').stop().animate({
+             'top':sct
+             
+            },500)
+           
+           }); 
 		
 	</script>
 </html>
