@@ -20,14 +20,9 @@ public class AdminDAO {
 		//DB 연결 
 		try {
 			Context ctx = new InitialContext();
-			DataSource ds =(DataSource) ctx.lookup("java:comp/env/jdbc/Oracle");
-			try {
-				conn = ds.getConnection();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (NamingException e) {
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Oracle");
+			conn = ds.getConnection();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -36,7 +31,6 @@ public class AdminDAO {
 
 	//로그인 
 	public boolean login(String id, String pw) {
-		
 		// 쿼리 준비 
 		String sql = "SELECT admin_id FROM Admin WHERE admin_id=? AND admin_pw=?";
 		boolean success = false;

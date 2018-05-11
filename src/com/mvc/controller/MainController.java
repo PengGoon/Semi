@@ -17,7 +17,7 @@ import com.mvc.service.UserService;
 @WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_detailView",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
-	"/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
+	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/notice_list", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView" })
 public class MainController extends HttpServlet {
 	
@@ -223,7 +223,7 @@ public class MainController extends HttpServlet {
 					case "/admin_main":
 						System.out.println("관리자 메인 페이지");
 						admin = new AdminService();
-						//admin.main(request, response);
+						admin.main(request, response);
 						break;
 						
 					case "/review_view":
