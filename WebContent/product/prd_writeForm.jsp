@@ -17,14 +17,14 @@ body {
 	margin: 0 auto;
 }
 
-table, tr, th {
+#writeTable table, tr, th {
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
 
 #pic {
-	width: 450px;
+	width: 500px;
 	height: 450px;
 }
 
@@ -32,16 +32,17 @@ table, tr, th {
 	width: 80%;
 }
 
-.mainImg {
-	background-color: aqua;
-	width: 1000px;
+#detailTable textarea{
+	width: 100%;
 	height: 300px;
+	resize: none;
 }
+
 </style>
 <body>
-	<jsp:include page="../main/navi.jsp"></jsp:include>
+	<jsp:include page="../main/seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
-		<div id="detailTable">
+		<div id="writeTable">
 			<form action="../prd_write" method="post" enctype="multipart/form-data">
 				<select id="cateF" name="cateFirst" onchange="showCateS(this.value)">
 					<option value="정육/달걀" selected="selected">정육/달걀</option>
@@ -72,17 +73,17 @@ table, tr, th {
 				<h2>육류 > 돼지고기</h2>
 				<table>
 					<tr>
-						<th id="pic" rowspan="7">
-							사진<br/>
-							<input type="file" name="photo"/>
+						<th id="pic" colspan="2" rowspan="6">
+							메인 상품 사진(썸네일)<br/>
+							<input type="file" name="photo1"/>
 						</th>
-						<th colspan="2" style="width: 350px">
-							<h2>상품명</h2> <input type="text" name="prd_name" placeholder="상품명을 입력하세요." />
+						<th colspan="2" style="width: 500px">
+							<h2>상품명</h2><input type="text" name="prd_name" placeholder="상품명을 입력하세요." />
 						</th>
 					</tr>
 					<tr>
 						<th style="width: 100px">판매자</th>
-						<th><input type="text" name="sell_id" /></th>
+						<th style="width: 400px"><input type="text" name="sell_id" /></th>
 					</tr>
 					<tr>
 						<th>판매가(100g)</th>
@@ -104,7 +105,18 @@ table, tr, th {
 							placeholder="수량을 입력하세요." /></th>
 					</tr>
 					<tr>
-						<th colspan="2">
+						<th width="140px"><h3>사진 등록 부분 (2장 제한)</h3></th>
+						<th colspan="3" width="1000px" height="300px">
+							<input type="file" name="photo2"/>
+							<input type="file" name="photo3"/>
+						</th>
+					</tr>
+					<tr>
+						<th width="140px"><h3>글 내용</h3></th>
+						<th colspan="3"><textarea name="prd_content"></textarea></th>
+					</tr>
+					<tr>
+						<th colspan="4" height="100px">
 							<button>물품등록</button>
 							<input type="button" value="취소" onclick="location.href='index.jsp'"/>
 						</th>
@@ -112,8 +124,6 @@ table, tr, th {
 				</table>
 			</form>
 		</div>
-		<br />
-		<div class="mainImg"></div>
 	</div>
 </body>
 <script>

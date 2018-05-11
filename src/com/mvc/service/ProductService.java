@@ -2,6 +2,8 @@ package com.mvc.service;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,9 +11,6 @@ import com.mvc.dao.ProductDAO;
 import com.mvc.dto.ProductDTO;
 
 public class ProductService {
-
-	public ProductService() {
-	}
 
 	public void list(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
@@ -38,12 +37,12 @@ public class ProductService {
 		ProductDAO dao = new ProductDAO();
 		int pk = dao.write(dto);
 		//실패(글쓰기 폼)
-		String page = "writeForm.jsp";
+		String page = "product/prd_writeForm.jsp";
 		//결과에 따라 페이지 이동
 		if(pk > 0) {
 			//성공(상세보기) = 글쓰기 한 후 idx 반환
 			//page = "detail?id="+pk;
-			page = "index.jsp";
+			page = "main/index.jsp";
 		}
 		response.sendRedirect(page);
 	}
