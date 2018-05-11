@@ -18,6 +18,7 @@ public class ProductDTO {
 	private String newFileName1;
 	private String newFileName2;
 	private String newFileName3;
+	private String prd_content;
 	
 	public int getPrd_Id() {
 		return prd_Id;
@@ -102,5 +103,11 @@ public class ProductDTO {
 	}
 	public void setNewFileName3(String newFileName3) {
 		this.newFileName3 = newFileName3;
+	}
+	public String getPrd_content() {
+		return prd_content;
+	}
+	public void setPrd_content(String prd_content) {
+		this.prd_content = prd_content;
 	}
 }
