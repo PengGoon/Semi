@@ -208,6 +208,7 @@ public class MainController extends HttpServlet {
 						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
+	
 					case "/admin_login":
 						System.out.println("관리자 로그인");
 						admin = new AdminService();

@@ -95,9 +95,6 @@
 			float : right;
 		}
 
-	
-
-	
 	</style>
 	<body>
 		<div class="title">
@@ -113,7 +110,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %>, 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		
 		<h2>판매자 관리</h2>
@@ -145,6 +142,9 @@
 		</div>
 	</body>
 	<script>
+	
+	var loginId = "${sessionScope.loginId}";
+	console.log(loginId);
 	
 	$(function(){
 		$('a').click(function(){

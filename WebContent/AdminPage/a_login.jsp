@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,7 +34,7 @@
 	</style>
 	<body>
 		<div class="title">
-			<h1><a href="a_main_user.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>
+			<h1><a href="a_login.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>
 			<hr/>
 			<form action="../admin_login" method="post">
 			<div class="menu">
@@ -51,6 +52,9 @@
 		</div>
 	</body>
 	<script>
+	
+
+	
     var msg = "${msg}";
     
     if(msg != ""){

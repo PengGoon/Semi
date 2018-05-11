@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 
 <html>
 	<head>
@@ -118,7 +119,8 @@
 		<br/>
 		<br/><br/>
 		<hr/>
-		<h5> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
+
+		<h5> <%=request.getSession().getAttribute("loginId") %>, 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>회원 관리</h2>
 
@@ -150,7 +152,8 @@
 	</body>
 	<script>
 	
-	
+	var loginId = "${sessionScope.loginId}";
+	console.log(loginId);
 	
 	$(function(){
 		$('a').click(function(){

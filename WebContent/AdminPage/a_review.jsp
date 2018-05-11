@@ -111,7 +111,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>Review</h2>
 		<h4>회원들이 남긴 후기들을 볼 수 있습니다. 삭제하시려면 선택 후 삭제 버튼을 눌러 주세요.</h4>

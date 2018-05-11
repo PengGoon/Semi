@@ -112,7 +112,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%= session.getAttribute("adminId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<jsp:include page ="NoticeWrite.jsp"/>
 			</body>

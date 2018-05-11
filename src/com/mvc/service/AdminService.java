@@ -22,11 +22,12 @@ public class AdminService {
 		String id = request.getParameter("admin_id");
 		String pw = request.getParameter("admin_pw");
 		System.out.println(id+"/"+pw);
+		
 		//---여기까지 성공
-		if(dao.login(id,pw)==true) { //로그인 성공시 
+		if(dao.login(id,pw)) { //로그인 성공시 
 			//controller에 요청을 보내는 방식
-			request.getSession().setAttribute("admin_id", id);
-			//response.sendRedirect("/AdminPage/a_main_user.jsp"); //controller의 /main 으로 요청 보냄 
+			request.getSession().setAttribute("loginId", id);
+			//컨트롤러의 메인페이지로 보냄 admin_main
 			response.sendRedirect("/SemiProject/admin_main");
 
 		}else { //로그인 실패시 
@@ -41,9 +42,8 @@ public class AdminService {
 	//메인페이지 이동 메서드 
 	public void main(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
-		RequestDispatcher dis = request.getRequestDispatcher("AdminPage/a_main_user.jsp");
-		dis.forward(request, response);
+		//메인페이지 이동 , 
+		response.sendRedirect("AdminPage/a_main_user.jsp");
 		
 	}
 	//로그아웃 메서드
@@ -51,10 +51,11 @@ public class AdminService {
 		//세션 추출
 		HttpSession session = request.getSession();
 		//loninId 속성값 삭제
-		session.removeAttribute("admin_id");
-		//main 페이지 요청 (index 인데 세션 검사 작동 확인을 위해...)
+		session.removeAttribute("loginId");
+		//로그인 페이지 요청 , 
 		response.sendRedirect("a_login.jsp");
 		
 	}
+
 
 }
