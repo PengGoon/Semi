@@ -5,12 +5,19 @@ import java.sql.Date;
 public class NoticeDTO {
 	
 	private int notice_id;
+	private String admin_id;
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
 	
 	
 	
+	public String getAdmin_id() {
+		return admin_id;
+	}
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
+	}
 	public int getNotice_id() {
 		return notice_id;
 	}
