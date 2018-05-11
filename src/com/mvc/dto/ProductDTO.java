@@ -6,8 +6,8 @@ public class ProductDTO {
 	
 	private int prd_Id;
 	private String sell_Id;
-	private int cateFirst_Id;
-	private int cateSecond_Id;
+	private String cateFirst_Id;
+	private String cateSecond_Id;
 	private String prd_Name;
 	private int prd_Price;
 	private int prd_Count;
@@ -15,7 +15,9 @@ public class ProductDTO {
 	private int prd_Soldout;
 	private Date prd_Date;
 	private int prd_bHit;
-	private String newFileName;
+	private String newFileName1;
+	private String newFileName2;
+	private String newFileName3;
 	
 	public int getPrd_Id() {
 		return prd_Id;
@@ -29,16 +31,16 @@ public class ProductDTO {
 	public void setSell_Id(String sell_Id) {
 		this.sell_Id = sell_Id;
 	}
-	public int getCateFirst_Id() {
+	public String getCateFirst_Id() {
 		return cateFirst_Id;
 	}
-	public void setCateFirst_Id(int cateFirst_Id) {
+	public void setCateFirst_Id(String cateFirst_Id) {
 		this.cateFirst_Id = cateFirst_Id;
 	}
-	public int getCateSecond_Id() {
+	public String getCateSecond_Id() {
 		return cateSecond_Id;
 	}
-	public void setCateSecond_Id(int cateSecond_Id) {
+	public void setCateSecond_Id(String cateSecond_Id) {
 		this.cateSecond_Id = cateSecond_Id;
 	}
 	public String getPrd_Name() {
@@ -83,10 +85,22 @@ public class ProductDTO {
 	public void setPrd_bHit(int prd_bHit) {
 		this.prd_bHit = prd_bHit;
 	}
-	public String getNewFileName() {
-		return newFileName;
+	public String getNewFileName1() {
+		return newFileName1;
 	}
-	public void setNewFileName(String newFileName) {
-		this.newFileName = newFileName;
+	public void setNewFileName1(String newFileName1) {
+		this.newFileName1 = newFileName1;
+	}
+	public String getNewFileName2() {
+		return newFileName2;
+	}
+	public void setNewFileName2(String newFileName2) {
+		this.newFileName2 = newFileName2;
+	}
+	public String getNewFileName3() {
+		return newFileName3;
+	}
+	public void setNewFileName3(String newFileName3) {
+		this.newFileName3 = newFileName3;
 	}
 }
