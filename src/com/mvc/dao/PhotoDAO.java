@@ -28,16 +28,17 @@ public class PhotoDAO {
 	}
 	
 	//리스트 불러오기
-		public ArrayList<PhotoDTO> list() {		
-			ArrayList<PhotoDTO> list = new ArrayList<PhotoDTO>();		
+		public ArrayList<PhotoDTO> list(int prd_id) {		
+			ArrayList<PhotoDTO> list = new ArrayList<PhotoDTO>();
 			try {
 				//쿼리 와 ps 준비
-				String sql = "SELECT NEWFILENAME FROM ProductImage WHERE prd_id = ?";
-				ps = conn.prepareStatement(sql);//쿼리 실행			
+				String sql = "SELECT NEWFILENAME FROM ProductImage WHERE prd_id=?";
+				ps = conn.prepareStatement(sql);//쿼리 실행
+				ps.setInt(1, prd_id);
 				rs = ps.executeQuery();
 				while(rs.next()) {//rs 에서 값 가져와 dto 담기
-					PhotoDTO dto = new PhotoDTO();				
-					dto.setprd_id(rs.getInt("prd_id"));
+					PhotoDTO dto = new PhotoDTO();	
+					dto.setNewFileName(rs.getString("newfilename"));
 					list.add(dto);//dto 를 list 에 담기
 				}			
 			} catch (SQLException e) {
@@ -59,4 +60,43 @@ public class PhotoDAO {
 				e.printStackTrace();
 			}		
 		}
+
+		/*public PhotoDTO detail(String prd_id) {
+			PhotoDTO dto = null;
+			String sql="SELECT * FROM ProductImage WHERE prd_id = ?";
+			try {
+				ps  = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(prd_id));
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					dto = new PhotoDTO();
+					dto.setPrd_id(rs.getInt("prd_id"));
+				}
+				//파일명 추출
+				String newFileName = fileNameCall(dto.getPrd_id());
+				if(newFileName != null) {
+					dto.setNewFileName(newFileName);
+				}			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			return dto;
+		}*/
+		
+		/*private String fileNameCall(int prd_id) {		
+			String sql="SELECT newFileName From ProductImage WHERE prd_id = ?";
+			String fileName = null;
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, prd_id);
+				rs = ps.executeQuery();
+				fileName = rs.next() ? rs.getString("newFileName") : null;			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+			return fileName;
+		}*/
+
 }
