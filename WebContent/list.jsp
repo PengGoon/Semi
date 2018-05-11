@@ -22,7 +22,7 @@
 		<table>
 			<c:forEach items="${list}" var="bbs">
 				<tr>
-					<td>사진명</td>
+					<td>${bbs.prd_name}</td>
 					<td>${bbs.newFileName}</td>
 				</tr>
 			</c:forEach>

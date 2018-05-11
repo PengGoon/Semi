@@ -28,17 +28,18 @@ public class PhotoDAO {
 	}
 	
 	//리스트 불러오기
-		public ArrayList<PhotoDTO> list(int prd_id) {		
+		public ArrayList<PhotoDTO> list(String cateS_id) {		
 			ArrayList<PhotoDTO> list = new ArrayList<PhotoDTO>();
 			try {
 				//쿼리 와 ps 준비
-				String sql = "SELECT NEWFILENAME FROM ProductImage WHERE prd_id=?";
+				String sql = "SELECT prd.prd_name, img.newFileName FROM ProductImage img,Product prd WHERE prd.prd_id=img.prd_id AND cateS_id=?";
 				ps = conn.prepareStatement(sql);//쿼리 실행
-				ps.setInt(1, prd_id);
+				ps.setString(1, cateS_id);
 				rs = ps.executeQuery();
 				while(rs.next()) {//rs 에서 값 가져와 dto 담기
 					PhotoDTO dto = new PhotoDTO();	
 					dto.setNewFileName(rs.getString("newfilename"));
+					dto.setPrd_name(rs.getString("prd_name"));
 					list.add(dto);//dto 를 list 에 담기
 				}			
 			} catch (SQLException e) {

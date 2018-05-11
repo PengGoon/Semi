@@ -27,8 +27,8 @@ public class PhotoService {
 		//DB 이용 해서 데이터 가져오기
 		PhotoDAO dao = new PhotoDAO();
 		PhotoDTO dto = new PhotoDTO();
-		dto.setPrd_id(Integer.parseInt(request.getParameter("id")));
-		ArrayList<PhotoDTO> list = dao.list(Integer.parseInt(request.getParameter("id")));
+		dto.setCateS_id(request.getParameter("cateS_id"));
+		ArrayList<PhotoDTO> list = dao.list(request.getParameter("cateS_id"));
 		//가져온 데이터를 request에 담기
 		request.setAttribute("list", list);
 		//특정한 페이지로 이동		

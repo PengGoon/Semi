@@ -142,7 +142,7 @@
 					</tr>
 					<c:forEach items="${list}" var="bbs">
 					<tr>
-						<th><a href="/SemiProject/prd_list?id=1">돼지고기</a></th>
+						<th><a href="/SemiProject/prd_list?cateS_id=돼지고기">돼지고기</a></th>
 						<th><a href="#">고등어/갈치</a></th>
 						<th><a href="#">뿌리채소</a></th>
 						<th><a href="#">제철과일</a></th>
