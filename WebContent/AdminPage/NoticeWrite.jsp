@@ -36,8 +36,8 @@
 	<body>
 	<div id="notice_form"><h2>공지사항</h2></div>
 		<h3>공지사항 글쓰기 </h3>
-		<form id="writeForm" action="" method="post" >
-		<table id="write-form" class="">
+		<form action="notice_write" method="post" >
+		<table id="write-form" >
 			<tr>
 			    <td>제목</td>
 			    <td><input type="text" name="title" style="width: 90%;" placeholder="제목을 입력하세요" /></td>

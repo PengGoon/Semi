@@ -50,11 +50,15 @@
 			</div>
 			</form>
 		</div>
+
+		
+		
 	</body>
 	<script>
 	
-
 	
+	
+
     var msg = "${msg}";
     
     if(msg != ""){

@@ -31,7 +31,7 @@ public class AdminService {
 			response.sendRedirect("/SemiProject/admin_main");
 
 		}else { //로그인 실패시 
-			System.out.println("실패");
+			request.setAttribute("msg", "아이디 또는 비밀번호를 확인 하세요");
 			RequestDispatcher dis =request.getRequestDispatcher("/AdminPage/a_login.jsp");
 			//특정 페이지를 선택하여 보내는 방법 
 			dis.forward(request, response);
