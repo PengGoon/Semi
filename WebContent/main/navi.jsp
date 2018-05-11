@@ -64,14 +64,14 @@
             float: right;
             border: 1px solid black;
         }
-        input{
+        .searchBar input{
             font-size: 18;
             border: 0;
             float: left;
             padding: 12px;
             width: 200px;
         }
-        img{
+        .searchBar img{
             margin: 5px 2px;
             width: 30px;
             height: 30px;
@@ -183,7 +183,7 @@
 		});
 	});
 	
-	$("#flip").hover(function(){
+	$("#flip").click(function(){
     	$("#category").slideToggle("fast");
 	});
 	 $(window).scroll(function(){
