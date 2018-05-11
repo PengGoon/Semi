@@ -99,7 +99,9 @@
 			.fly li{list-style: none;}
 			.fly img{border:none;list-style:none;height: 70px; display:block    
                 float:left;width:75px;border:1px #ccc solid;text-align:center}
-		
+		#cateS{
+			position: 
+		}
 	</style>
 	<body>
 	<div class="menuCenter">
@@ -138,27 +140,24 @@
 						<th><h3>채소</h3></th>
 						<th><h3>과일</h3></th>
 					</tr>
+					<tr>
+						<th><a href="#">돼지고기</a></th>
+						<th><a href="#">고등어/갈치</a></th>
+						<th><a href="#">뿌리채소</a></th>
+						<th><a href="#">제철과일</a></th>
+					</tr>
+					<tr>
+						<th><a href="#">소고기</a></th>
+						<th><a href="#">오징어/낙지</a></th>
+						<th><a href="#">열매채소</a></th>
+						<th><a href="#">수입과일</a></th>
+					</tr>
+					<tr>
+						<th><a href="#">닭고기</a></th>
+						<th><a href="#">조개류</a></th>
+						<th> <a href="#">나물류</a></th>
+					</tr>
 				</table>
-				<ul>
-					<li><a href="list.jsp">돼지고기</a></li><br/>
-					<li><a href="#">소고기</a></li><br/>
-					<li><a href="#">닭고기</a></li><br/>
-					<li><a href="#">달걀</a></li>
-				</ul>
-				<ul>
-					<li><a href="#">고등어/갈치</a></li><br/>
-					<li><a href="#">오징어/낙지</a></li><br/>
-					<li><a href="#">조개류</a></li>
-				</ul>
-				<ul>
-					<li><a href="#">뿌리채소</a></li><br/>
-					<li><a href="#">열매채소</a></li><br/>
-					<li> <a href="#">나물류</a></li>
-				</ul>
-				<ul>
-					<li><a href="#">제철과일</a></li><br/>
-					<li><a href="#">수입과일</a></li>
-				</ul>
 			</div>
 		</div>
 		<div class="content">
