@@ -28,11 +28,11 @@ body {
 	height: 450px;
 }
 
-#detailTable input[type='text'] {
+#writeTable input[type='text'] {
 	width: 80%;
 }
 
-#detailTable textarea{
+#writeTable textarea{
 	width: 100%;
 	height: 300px;
 	resize: none;
@@ -40,7 +40,7 @@ body {
 
 </style>
 <body>
-	<jsp:include page="../main/seller_navi.jsp"></jsp:include>
+	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="writeTable">
 			<form action="../prd_write" method="post" enctype="multipart/form-data">
@@ -50,27 +50,13 @@ body {
 					<option value="채소">채소</option>
 					<option value="과일">과일</option>
 				</select>
-				<select id="cateS1" name="cateSecond">
+				<select id="cateS" name="cateSecond">
 					<option value="돼지고기" selected="selected">돼지고기</option>
 					<option value="소고기">소고기</option>
 					<option value="닭고기">닭고기</option>
 					<option value="달걀">달걀</option>
 				</select>
-				<select id="cateS2" name="cateSecond"  style="display:none">
-					<option value="고등어/갈치">고등어/갈치</option>
-					<option value="오징어/낙지">오징어/낙지</option>
-					<option value="조개류">조개류</option>
-				</select>
-				<select id="cateS3" name="cateSecond"  style="display:none">
-					<option value="뿌리채소">뿌리채소</option>
-					<option value="열매채소">열매채소</option>
-					<option value="나물류">나물류</option>
-				</select>
-				<select id="cateS4" name="cateSecond"  style="display:none">
-					<option value="제철과일">제철과일</option>
-					<option value="수입과일">수입과일</option>
-				</select>
-				<h2>육류 > 돼지고기</h2>
+				<input type="button" value="보기" onclick="showVal()"/>
 				<table>
 					<tr>
 						<th id="pic" colspan="2" rowspan="6">
@@ -130,44 +116,16 @@ body {
 function showCateS(val){
 	console.log(val);
 	if(val == "정육/달걀") {
-		document.getElementById("cateS1").style.display = "";
-		document.getElementById("cateS2").style.display = "none";
-		document.getElementById("cateS3").style.display = "none";
-		document.getElementById("cateS4").style.display = "none";
-		document.getElementById("cateS1").disabled = false;
-		document.getElementById("cateS2").disabled = true;
-		document.getElementById("cateS3").disabled = true;
-		document.getElementById("cateS4").disabled = true;
+		$("#cateS").html("<option value='돼지고기' selected='selected'>돼지고기</option><option value='소고기'>소고기</option><option value='닭고기'>닭고기</option><option value='달걀'>달걀</option>");
 	}
 	if(val == "생선") {
-		document.getElementById("cateS1").style.display = "none";
-		document.getElementById("cateS2").style.display = "";
-		document.getElementById("cateS3").style.display = "none";
-		document.getElementById("cateS4").style.display = "none";
-		document.getElementById("cateS1").disabled = true;
-		document.getElementById("cateS2").disabled = false;
-		document.getElementById("cateS3").disabled = true;
-		document.getElementById("cateS4").disabled = true;
+		$("#cateS").html("<option value='고등어/갈치' selected='selected'>고등어/갈치</option><option value='오징어/낙지'>오징어/낙지</option><option value='조개류'>조개류</option>");
 	}
 	if(val == "채소") {
-		document.getElementById("cateS1").style.display = "none";
-		document.getElementById("cateS2").style.display = "none";
-		document.getElementById("cateS3").style.display = "";
-		document.getElementById("cateS4").style.display = "none";
-		document.getElementById("cateS1").disabled = true;
-		document.getElementById("cateS2").disabled = true;
-		document.getElementById("cateS3").disabled = false;
-		document.getElementById("cateS4").disabled = true;
+		$("#cateS").html("<option value='뿌리채소' selected='selected'>뿌리채소</option><option value='열매채소'>열매채소</option><option value='나물류'>나물류</option>");
 	}
 	if(val == "과일") {
-		document.getElementById("cateS1").style.display = "none";
-		document.getElementById("cateS2").style.display = "none";
-		document.getElementById("cateS3").style.display = "none";
-		document.getElementById("cateS4").style.display = "";
-		document.getElementById("cateS1").disabled = true;
-		document.getElementById("cateS2").disabled = true;
-		document.getElementById("cateS3").disabled = true;
-		document.getElementById("cateS4").disabled = false;
+		$("#cateS").html("<option value='제철과일' selected='selected'>제철과일</option><option value='수입과일'>수입과일</option>");
 	}
 }
 </script>

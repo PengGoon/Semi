@@ -60,7 +60,7 @@
         </style>
     </head>
     <body>
-    	<jsp:include page="../main/navi.jsp"></jsp:include>
+    	<jsp:include page="navi.jsp"></jsp:include>
     	<!-- 구매자: userJoinForm.jsp ,  판매자: join.jsp -->
     	<div class = joinTitle>
     	<h1>회원 가입</h1>

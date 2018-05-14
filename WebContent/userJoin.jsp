@@ -95,7 +95,7 @@
         </style>
     </head>
     <body>
-    	<jsp:include page="../main/navi.jsp"></jsp:include>
+    	<jsp:include page="navi.jsp"></jsp:include>
     	<div class = userJoinTitle>
     	<br/><br/>
     	<h1>회원 가입</h1>

@@ -15,7 +15,7 @@ body {
 	width: 1000px;
 	margin: 0 auto;
 }
-table, tr, th {
+#detailTable table, tr, th {
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
@@ -31,7 +31,7 @@ table, tr, th {
 }
 </style>
 <body>
-	<jsp:include page="../main/navi.jsp"></jsp:include>
+	<jsp:include page="navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="detailTable">
 			<table>
@@ -42,7 +42,7 @@ table, tr, th {
 					</th>
 				</tr>
 				<tr>
-					<th style="width: 100px">판매자</th>
+					<th style="width: 200px">판매자</th>
 					<th>홍길동</th>
 				</tr>
 				<tr>
@@ -72,10 +72,17 @@ table, tr, th {
 						<button id="restock">재입고 알림</button>
 					</th>
 				</tr>
+				<tr>
+					<th colspan="3" width="1000px" height="300px">
+					
+					</th>
+				</tr>
+				<tr>
+					<th colspan="3">
+					</th>
+				</tr>
 			</table>
 		</div>
-		<br/>
-		<div class="mainImg"></div>
 	</div>
 </body>
 <script>

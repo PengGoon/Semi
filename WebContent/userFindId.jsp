@@ -66,7 +66,7 @@
         </style>
     </head>
     <body>
-    	<jsp:include page="../main/navi.jsp"></jsp:include>
+    	<jsp:include page="navi.jsp"></jsp:include>
     	<div class = findIdTitle>
     	<h1>아이디 찾기</h1>
     	<h4>
