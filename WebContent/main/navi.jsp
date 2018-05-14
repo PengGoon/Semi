@@ -107,8 +107,8 @@
 	<div class="menuCenter">
 		<div class="rightMenu">
 			<ul>
-				<a href="../user/userLogin.jsp"><li id=flip">로그인</li></a>
-				<a href="../user/userJoinSelect.jsp"><li>회원가입</li></a>
+				<a href="./user/userLogin.jsp"><li id=flip">로그인</li></a>
+				<a href="./user/userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="#"><li>공지사항</li></a>
 			</ul>
 		</div>
