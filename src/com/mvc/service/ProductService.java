@@ -17,7 +17,7 @@ public class ProductService {
 		
 	}
 
-	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -92,18 +92,19 @@ public class MainController extends HttpServlet {
 					
 						// 상품 상세보기 화면 
 					case "/prd_detail":
+						System.out.println("상품 상세보기 요청");
+						product = new ProductService();
+						product.detail(request, response);
+						break;
+						
+						
+					// 상품 상세보기
+					case "/prd_detailView":
 						System.out.println("상품 상세보기 화면 요청");
 						//받아온 파라메터를 세션에 저장
 						request.getSession().setAttribute("idx", request.getParameter("idx"));
 						//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
 						response.sendRedirect("detail.html");
-						break;
-						
-					// 상품 상세보기
-					case "/prd_detailView":
-						System.out.println("상품 상세보기 요청");
-						product = new ProductService();
-						product.detailView(request, response);
 						break;
 						
 					// 상품 수정 
