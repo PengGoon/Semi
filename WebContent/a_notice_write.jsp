@@ -110,7 +110,7 @@
 		</div>
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<div id="notice_form"><h2>공지사항</h2></div>
 		<h3>공지사항 글쓰기 </h3>

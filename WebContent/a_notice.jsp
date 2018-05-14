@@ -134,7 +134,7 @@
 			<tr>
 				<td><input id="checkBox" type="checkbox"></td>
 				<td>${Notice.notice_id}</td>
-				<td><a href="notice_detail?id=${Notice.notice_id}">${Notice.notice_title} </a></td>
+				<td><a href="notice_detail?admin_id=${Notice.notice_id}">${Notice.notice_title} </a></td>
 				<td>${Notice.admin_id}</td>
 				<td>${Notice.notice_date}</td>
 				<td>${Notice.bHit}</td>
@@ -145,7 +145,7 @@
 			<!-- <button id="no_write">글쓰기</button><button id="no_del">삭제</button> -->
 			<center>
 			<input id="no_write" type="button" value="글쓰기" onclick="location.href='a_notice_write.jsp'" />
-			<input type="button" value="삭제" onclick="nodel()"/> 
+			<input id="del" type="button" value="삭제" onclick="nodel()"/> 
 			</center>
 			</div>
 			
@@ -165,9 +165,14 @@
         //"확인" 버튼을 눌렀을 경우
         if(con ==true){
             //삭제 처리(요청)
+            for(var i)
             alert("삭제가 완료 되었습니다.");
         }
 	}
+	
+	$("#del").click(function(){
+		obj.url="./notice_delete"
+	})
 	
 	</script>
 </html>

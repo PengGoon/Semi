@@ -115,7 +115,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>판매자 등록</h2>
 		<h4>판매자 등록을 승인 또는 거부할 수 있습니다. </h4>
@@ -134,11 +134,11 @@
 					<td class="che">
 						<input type="checkbox"/>
 					</td>
-					<td class="idx"></td>
-					<td class="sell_Id"></td>
-					<td class="date"></td>
-					<td class="sell_Img"></td>
-					<td class="reg_Date"><button>승인</button><button>거부</button></td>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+					<td ><button>승인</button><button>거부</button></td>
 				</tr>
 			</table>
 			<br/>

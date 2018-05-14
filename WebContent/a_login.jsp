@@ -36,7 +36,7 @@
 		<div class="title">
 			<h1><a href="a_login.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>
 			<hr/>
-			<form action="../admin_login" method="post">
+			<form action="admin_login" method="post">
 			<div class="menu">
 				<h1>Mar-KH-et 관리자 페이지</h1>
 				
@@ -50,8 +50,6 @@
 			</div>
 			</form>
 		</div>
-
-		
 		
 	</body>
 	<script>

@@ -136,14 +136,14 @@
 					<th>가입일</th>
 				</tr>
 				<tr>
-					<td class="che">
+					<td>
 						<input type="checkbox"/>
 					</td>
-					<td class="idx"></td>
-					<td class="user_Id"></td>
-					<td class="user_Addr"></td>
-					<td class="user_Phone"></td>
-					<td class="reg_Date"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</table>
 			<br/>
