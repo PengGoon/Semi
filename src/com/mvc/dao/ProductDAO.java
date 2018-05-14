@@ -66,9 +66,13 @@ public class ProductDAO {
 			System.out.println("fileName : "+fileName3);
 			if(rs.next()) {
 				fk = rs.getLong(1);//넣은 값의 idx 받아오기
-				prd_imageAdd(fileName1,fk);
-				prd_imageAdd(fileName2,fk);
-				prd_imageAdd(fileName3,fk);
+				sql = "INSERT INTO ProductImage (prd_id,newFileName1,newFileName2,newFileName3) VALUES(?,?,?,?)";
+				ps = conn.prepareStatement(sql);
+				ps.setLong(1, fk);
+				ps.setString(2, fileName1);
+				ps.setString(3, fileName2);
+				ps.setString(4, fileName3);
+				ps.executeUpdate();
 			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,17 +81,6 @@ public class ProductDAO {
 			resClose();
 		}
 		return (int) fk;//idx 값 반환
-	}
-
-	private void prd_imageAdd(String fileName, long fk) throws SQLException {
-		if(fileName!=null) {
-			//idx 를 이용해서 photo 테이블에 데이터 넣기
-			String sql = "INSERT INTO ProductImage (prd_id,newFileName) VALUES(?,?)";
-			ps = conn.prepareStatement(sql);
-			ps.setLong(1, fk);
-			ps.setString(2, fileName);
-			ps.executeUpdate();
-		}
 	}
 
 }

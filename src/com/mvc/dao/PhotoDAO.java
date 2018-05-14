@@ -32,22 +32,42 @@ public class PhotoDAO {
 			ArrayList<PhotoDTO> list = new ArrayList<PhotoDTO>();
 			try {
 				//쿼리 와 ps 준비
-				String sql = "SELECT prd.prd_name, img.newFileName FROM ProductImage img,Product prd WHERE prd.prd_id=img.prd_id AND cateS_id=?";
+				String sql = "SELECT prd_id, prd_name FROM Product WHERE cateS_id=?";
 				ps = conn.prepareStatement(sql);//쿼리 실행
 				ps.setString(1, cateS_id);
 				rs = ps.executeQuery();
 				while(rs.next()) {//rs 에서 값 가져와 dto 담기
 					PhotoDTO dto = new PhotoDTO();	
-					dto.setNewFileName(rs.getString("newfilename"));
 					dto.setPrd_name(rs.getString("prd_name"));
+					String newFileName = fileNameCall(rs.getInt("prd_id"));
+					if(newFileName != null) {
+						dto.setNewFileName(newFileName);
+					}
+					System.out.println(dto.getPrd_name());
+					System.out.println(dto.getNewFileName());
 					list.add(dto);//dto 를 list 에 담기
-				}			
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
 				resClose();//자원 반납
 			}	
 			return list;
+		}
+		
+		//게시글에 해당하는 파일명 추출
+		public String fileNameCall(int prd_id) {		
+			String sql="SELECT newFileName1 From productimage WHERE prd_id = ?";
+			String fileName = null;
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, prd_id);
+				ResultSet rs = ps.executeQuery();
+				fileName = rs.next() ? rs.getString("newFileName1") : null;			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+			return fileName;
 		}
 
 		private void resClose() {
