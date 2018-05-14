@@ -85,17 +85,8 @@
             </tr>
         </table>
         </form>
-      
-        <h3>${msg}</h3>    
     </body>
     <script>
-    	//만약 받아오는 메시지가 있다면 얼럿 생성
-    	var msg = "${msg}";
-    	
-    	if(msg != ""){
-    		alert(msg);
-    	}    
-
         function toJoin(){
         	if($('input[name="sel"]:checked').val() == "seller"){
         		location.href="join.jsp"

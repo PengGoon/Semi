@@ -21,13 +21,9 @@
             	font-size: 20;
             }
             
-            h4{
-            	color:black;
-            }
-            
             .findIdTable{
             	position : fixed;
-            	top: 300px;
+            	top: 310px;
             	left: 39%;
             }
             
@@ -69,7 +65,7 @@
     	<jsp:include page="navi.jsp"></jsp:include>
     	<div class = findIdTitle>
     	<h1>아이디 찾기</h1>
-    	<h4>
+    	<h4 style="color:black">
     	개인 <input type="radio"  name="sel" value="user"/> <!-- userJoin.jsp(개인)로 이동  -->
     	&nbsp;&nbsp;&nbsp;
     	판매자 <input type="radio" name="sel" value="seller"/> <!--join.jsp(판매자) 로 이동 -->
@@ -77,8 +73,6 @@
     	</div>
     	<div class = background >
     	</div>
-        <form action="findId" method="post">
-       
         <table class = findIdTable>
             <tr>
                 <th>이름</th>
@@ -92,13 +86,11 @@
                 	<input id="inp" type="text" name="email"/>
                 </td>
             </tr>
-            
             <tr>
                 <td colspan="3">
                 	<hr/>
                 </td>
             </tr>
-            
             <tr>
             	<th></th>
                 <td colspan="3">
@@ -106,21 +98,18 @@
                 </td>
             </tr>
         </table>
-        
-        </form>
-      
-        <h3>${msg}</h3>    
     </body>
     <script>
-    	//만약 받아오는 메시지가 있다면 얼럿 생성
-    	var msg = "${msg}";
-    	
-    	if(msg != ""){
-    		alert(msg);
-    	}    
-    
+
         function findId(){
-        	location.href="#"; // 아이디찾기 화면(또는 alert)으로 이동
+        	 if ($("input[name='userName']").val() == "") {//이름 입력 확인
+                 alert("이름을 입력하세요");
+                 $("input[name='userName']").focus();//포커스 이동
+        	 } else if ($("input[name='email']").val() == ""){
+        		 alert("메일을 입력하세요");
+        	 } else { // 제대로 입력시
+        		 location.href = "#"; // 미구현
+        	 } 
         }
     </script>
 </html>
