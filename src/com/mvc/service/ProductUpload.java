@@ -77,7 +77,7 @@ public class ProductUpload {
 			String ext = oriFileName.substring(oriFileName.indexOf("."));
 			//새파일명 만들기(새파일명+확장자)
 			try {
-				Thread.sleep(10);
+				Thread.sleep(100);
 				newFileName = System.currentTimeMillis()+ext;	
 				//파일명 변경
 				File oldFile = new File(savePath+"/"+oriFileName);
