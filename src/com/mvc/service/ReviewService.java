@@ -74,7 +74,7 @@ public class ReviewService {
 			}
 		}		
 		//페이지 이동(리스트)
-		response.sendRedirect("/reviewList.jsp");
+		response.sendRedirect("reviewList.jsp");
 	}
 
 	//수정 보기
