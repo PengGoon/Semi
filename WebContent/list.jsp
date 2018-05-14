@@ -11,7 +11,7 @@
 			table,th,td,tr{
 			border: 1px solid black;
 			border-collapse: collapse;
-			padding: 5px 10px;
+			text-align: center;
 			}
 			table{
 			float: left;
@@ -22,20 +22,12 @@
 		<table>
 			<c:forEach items="${list}" var="bbs">
 				<tr>
-					<td>${bbs.prd_name}</td>
-					<td>${bbs.newFileName}</td>
-					<td><img width="500" src="./upload/${bbs.newFileName}"/></td>
+					<td><a href="prd_detail?prd_id=${bbs.prd_id}"><img width="500" src="./upload/${bbs.newFileName}"/></a></td>
 				</tr>
-			</c:forEach>
-			
-			<!-- 
-			<c:forEach items="${list}" var="ProductImage">
 				<tr>
-				<td>${ProductImage.newFileName}</td>
+					<td><h3>${bbs.prd_name}</h3></td>
 				</tr>
 			</c:forEach>
-			상품 이름을 먼저 뽑기
-			-->
 		</table>
 	</body>
 </html>
