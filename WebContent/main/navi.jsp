@@ -140,7 +140,6 @@
 						<th><h3>채소</h3></th>
 						<th><h3>과일</h3></th>
 					</tr>
-					<c:forEach items="${list}" var="bbs">
 					<tr>
 						<th><a href="/SemiProject/prd_list?cateS_id=돼지고기">돼지고기</a></th>
 						<th><a href="#">고등어/갈치</a></th>
@@ -158,7 +157,6 @@
 						<th><a href="#">조개류</a></th>
 						<th> <a href="#">나물류</a></th>
 					</tr>
-					</c:forEach>
 				</table>
 			</div>
 		</div>
