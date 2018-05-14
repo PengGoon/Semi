@@ -43,7 +43,7 @@ body {
 	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="writeTable">
-			<form action="../prd_write" method="post" enctype="multipart/form-data">
+			<form action="prd_write" method="post" enctype="multipart/form-data">
 				<select id="cateF" name="cateFirst" onchange="showCateS(this.value)">
 					<option value="정육/달걀" selected="selected">정육/달걀</option>
 					<option value="생선">생선</option>

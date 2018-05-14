@@ -68,11 +68,12 @@ public class ProductUpload {
 	}
 
 	private String productImageAdd(String oriFileName, ProductDTO dto) {
+		String newFileName = null;
 		if(oriFileName != null) {
 			//확장자 추출
 			String ext = oriFileName.substring(oriFileName.indexOf("."));
 			//새파일명 만들기(새파일명+확장자)
-			String newFileName = System.currentTimeMillis()+ext;		
+			newFileName = System.currentTimeMillis()+ext;		
 			//파일명 변경
 			File oldFile = new File(savePath+"/"+oriFileName);
 			File newFile = new File(savePath+"/"+newFileName);
@@ -80,7 +81,7 @@ public class ProductUpload {
 			//변경된 파일명 DTO에 추가	
 			//dto.setNewFileName(newFileName);
 		}
-		return oriFileName;			
+		return newFileName;			
 	}
 
 }

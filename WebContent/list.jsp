@@ -24,6 +24,7 @@
 				<tr>
 					<td>${bbs.prd_name}</td>
 					<td>${bbs.newFileName}</td>
+					<td><img width="500" src="./upload/${bbs.newFileName}"/></td>
 				</tr>
 			</c:forEach>
 			
