@@ -38,6 +38,7 @@ public class PhotoDAO {
 				rs = ps.executeQuery();
 				while(rs.next()) {//rs 에서 값 가져와 dto 담기
 					PhotoDTO dto = new PhotoDTO();	
+					dto.setPrd_id(rs.getInt("prd_id"));
 					dto.setPrd_name(rs.getString("prd_name"));
 					String newFileName = fileNameCall(rs.getInt("prd_id"));
 					if(newFileName != null) {
