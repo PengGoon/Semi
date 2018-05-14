@@ -21,9 +21,10 @@ body {
 	text-align: center;
 }
 #pic {
-	width: 450px;
+	width: 500px;
 	height: 450px;
 }
+
 .mainImg {
 	background-color: aqua;
 	width: 1000px;
@@ -34,28 +35,29 @@ body {
 	<jsp:include page="navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="detailTable">
+			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
-					<th><img width="500" src="./upload/${list.newFileName1}"/></th>
-					<th colspan="2" style="width: 350px">
-						<h2>${info.prd_name }</h2>
+					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
+					<th colspan="2" style="width: 500px">
+						<h2>${info.prd_Name }</h2>
 					</th>
 				</tr>
 				<tr>
-					<th style="width: 200px">판매자</th>
-					<th>홍길동</th>
+					<th style="width: 100px">판매자</th>
+					<th style="width: 400px">${info.sell_Id }</th>
 				</tr>
 				<tr>
 					<th>판매가(100g)</th>
-					<th></th>
+					<th>${info.prd_Price }</th>
 				</tr>
 				<tr>
 					<th>원산지</th>
-					<th>국내산</th>
+					<th>${info.prd_From }</th>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<th>0</th>
+					<th>${info.prd_bHit }</th>
 				</tr>
 				<tr>
 					<th>구매수량</th>
@@ -73,13 +75,14 @@ body {
 					</th>
 				</tr>
 				<tr>
-					<th colspan="3" width="1000px" height="300px">
-					
+					<th colspan="4" width="1000px" height="300px">
+						<img width="500" src="./upload/${list.newFileName2}"/>
+						<img width="500" src="./upload/${list.newFileName3}"/>
 					</th>
 				</tr>
 				<tr>
-					<th colspan="3">
-					</th>
+					<th width="140px"><h3>글 내용</h3></th>
+					<th height="300px" colspan="3">${info.prd_Content }</th>
 				</tr>
 			</table>
 		</div>

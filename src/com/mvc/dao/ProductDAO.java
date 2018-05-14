@@ -56,7 +56,7 @@ public class ProductDAO {
 			ps.setInt(5, dto.getPrd_Price());
 			ps.setInt(6, dto.getPrd_Count());
 			ps.setString(7, dto.getPrd_From());
-			ps.setString(8, dto.getPrd_content());
+			ps.setString(8, dto.getPrd_Content());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();//이 과정으로 원하는 컬럼을 받아 올 수 있다.
 			String fileName1 = dto.getNewFileName1();
@@ -86,7 +86,6 @@ public class ProductDAO {
 
 	public ProductDTO detail(String prd_id) {
 		ProductDTO dto = null;
-		PhotoDAO dao = new PhotoDAO();
 		String sql="SELECT * FROM product WHERE prd_id = ?";
 		try {
 			ps  = conn.prepareStatement(sql);
@@ -100,12 +99,13 @@ public class ProductDAO {
 				dto.setSell_Id(rs.getString("sell_id"));
 				dto.setPrd_Price(rs.getInt("prd_price"));
 				dto.setPrd_From(rs.getString("prd_from"));
-				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit")+1);
+				dto.setPrd_Content(rs.getString("prd_content"));
+				dto.setCateFirst_Id(rs.getString("cateF_id"));
+				dto.setCateSecond_Id(rs.getString("cateS_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			resClose();
 		}
 		return dto;
 	}
@@ -122,28 +122,25 @@ public class ProductDAO {
 		}		
 	}
 
-	public ArrayList<ProductDTO> list(int prd_id) {
-		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+	public ProductDTO list(String prd_id) {
+		ProductDTO dto = null;
 		String sql="SELECT * From productimage WHERE prd_id = ?";
-		String fileName = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, prd_id);
-			ResultSet rs = ps.executeQuery();
-			fileName = rs.next() ? rs.getString("newFileName") : null;		
-			while(rs.next()) {//rs 에서 값 가져와 dto 담기
-				ProductDTO dto = new ProductDTO();	
+			ps.setInt(1, Integer.parseInt(prd_id));
+			rs = ps.executeQuery();	
+			if(rs.next()) {
+				dto = new ProductDTO();	
 				dto.setNewFileName1(rs.getString("newFileName1"));
 				dto.setNewFileName2(rs.getString("newFileName2"));
 				dto.setNewFileName3(rs.getString("newFileName3"));
-				list.add(dto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			resClose();//자원 반납
 		}	
-		return list;		
+		return dto;		
 	}
 	
 }

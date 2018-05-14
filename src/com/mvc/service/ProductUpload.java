@@ -57,7 +57,7 @@ public class ProductUpload {
 			dto.setNewFileName2(newFileName2);
 			dto.setNewFileName3(newFileName3);
 			
-			dto.setPrd_content(multi.getParameter("prd_content"));
+			dto.setPrd_Content(multi.getParameter("prd_content"));
 			
 			//수정할 때 필요(idx 값이 넘어올 경우만 작동)
 			/*String idx = multi.getParameter("idx");
