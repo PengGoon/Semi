@@ -50,6 +50,9 @@ public class ProductUpload {
 			String newFileName1 = productImageAdd(oriFileName1,dto);
 			String newFileName2 = productImageAdd(oriFileName2,dto);
 			String newFileName3 = productImageAdd(oriFileName3,dto);
+			System.out.println(newFileName1);
+			System.out.println(newFileName2);
+			System.out.println(newFileName3);
 			dto.setNewFileName1(newFileName1);
 			dto.setNewFileName2(newFileName2);
 			dto.setNewFileName3(newFileName3);
@@ -73,13 +76,18 @@ public class ProductUpload {
 			//확장자 추출
 			String ext = oriFileName.substring(oriFileName.indexOf("."));
 			//새파일명 만들기(새파일명+확장자)
-			newFileName = System.currentTimeMillis()+ext;		
-			//파일명 변경
-			File oldFile = new File(savePath+"/"+oriFileName);
-			File newFile = new File(savePath+"/"+newFileName);
-			oldFile.renameTo(newFile);
-			//변경된 파일명 DTO에 추가	
-			//dto.setNewFileName(newFileName);
+			try {
+				Thread.sleep(10);
+				newFileName = System.currentTimeMillis()+ext;	
+				//파일명 변경
+				File oldFile = new File(savePath+"/"+oriFileName);
+				File newFile = new File(savePath+"/"+newFileName);
+				oldFile.renameTo(newFile);
+				//변경된 파일명 DTO에 추가	
+				//dto.setNewFileName(newFileName);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		return newFileName;			
 	}
