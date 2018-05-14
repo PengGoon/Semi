@@ -32,15 +32,17 @@ public class NoticeDAO {
 	//공지사항 작성 
 	public int write(NoticeDTO dto) {
 		int success =0;
-		//글번호 , 제목, 작성자, 작성일, 조회수
-		String sql = "INSERT INTO Notice VALUES(notice_seq.NEXTVAL,?,?,SYSDATE,?)";
+		//글번호 ,작성자, 제목, 내용, 작성일, 조회
+		String sql = "INSERT INTO Notice(notice_id,notice_title, notice_content, notice_date,bHit) "
+				+ "VALUES(notice_seq.NEXTVAL,?,?,SYSDATE,?)";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getNotice_title()); //제목
-			ps.setString(2, dto.getAdmin_id()); //작성자
-			ps.setDate(3, dto.getNotice_date()); //작성일
-			ps.setInt(4, 0); //조회수 
-			success = ps.executeUpdate();
+			ps.setString(1, dto.getNotice_title()); 
+			ps.setString(2, dto.getNotice_content());
+			ps.setDate(3, dto.getNotice_date());
+			ps.setInt(4, 0);
+			/*ps.setInt(4,0); //조회수 
+*/			success = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
@@ -92,6 +94,24 @@ public class NoticeDAO {
 			}
 			return list;
 	}
+		
+		
+		//공지사항 삭제 
+		public int del(String id) {
+			int success = 0;
+			String sql = "DELETE FROM Notice notice_id=?";
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}finally {
+			resClose();
+			}
+			return success;
+		}
 
 }
 

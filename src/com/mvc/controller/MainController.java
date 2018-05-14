@@ -257,7 +257,7 @@ public class MainController extends HttpServlet {
 					case "/notice_delete":
 						System.out.println("공지사항 삭제");
 						notice = new NoticeService();
-						
+						notice.del(request,response);
 						break;
 						
 					case "/notice_detail":
