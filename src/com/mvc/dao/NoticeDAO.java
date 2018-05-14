@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.naming.Context;
-import javax.sql.DataSource;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import com.mvc.dto.NoticeDTO;
 
@@ -32,14 +31,19 @@ public class NoticeDAO {
 	//공지사항 작성 
 	public int write(NoticeDTO dto) {
 		int success =0;
-		//글번호 ,작성자, 제목, 내용, 작성일, 조회
-		String sql = "INSERT INTO Notice(notice_id,notice_title, notice_content, notice_date,bHit) "
-				+ "VALUES(notice_seq.NEXTVAL,?,?,SYSDATE,?)";
+/*	    notice_id NUMBER primary key,
+	    admin_id VARCHAR2(50),
+	    notice_title VARCHAR2(100) not null,
+	    notice_content NVARCHAR2(200) not null,
+	    notice_date DATE DEFAULT SYSDATE,
+	    bHit NUMBER(4) DEFAULT 0,*/
+		String sql = "INSERT INTO Notice "
+				+ "VALUES(notice_seq.NEXTVAL,?,?,?,SYSDATE,?)";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getNotice_title()); 
-			ps.setString(2, dto.getNotice_content());
-			ps.setDate(3, dto.getNotice_date());
+			ps.setString(1, dto.getAdmin_id()); 
+			ps.setString(2, dto.getNotice_title());
+			ps.setString(3, dto.getNotice_content());
 			ps.setInt(4, 0);
 			/*ps.setInt(4,0); //조회수 
 */			success = ps.executeUpdate();
@@ -97,12 +101,17 @@ public class NoticeDAO {
 		
 		
 		//공지사항 삭제 
-		public int del(String id) {
-			int success = 0;
+		public int del(String[] delList) {
+			int delCnt = 0;
 			String sql = "DELETE FROM Notice notice_id=?";
 			try {
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, id);
+				for(int i=0; i<delList.length;i++) {
+					ps = conn.prepareStatement(sql);
+					ps.setInt(1, Integer.parseInt(delList[i]));
+					delCnt += ps.executeUpdate();
+					ps.close();
+				}
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,7 +119,7 @@ public class NoticeDAO {
 			}finally {
 			resClose();
 			}
-			return success;
+			return delCnt;
 		}
 
 }
