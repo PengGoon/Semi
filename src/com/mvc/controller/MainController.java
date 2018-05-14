@@ -194,7 +194,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					// Pw찾기
-					case "/finPw":
+					case "/findPw":
 						System.out.println("PW찾기 요청");
 						user = new UserService();
 						user.findPw(request,response);
