@@ -29,7 +29,7 @@ public class NoticeService {
 		System.out.println(no_subject + "/" +no_content );
 		
 		String msg = "공지사항 등록 실패 !";
-		String page = "a_notice_write.jsp";
+		String page = "AdminPage/a_notice_write.jsp";
 		
 		if(dao.write(dto)>0) {
 			msg = "게시판 등록 성공";
@@ -42,8 +42,9 @@ public class NoticeService {
 		
 		
 	}
-	//공지사항 리스트 부분, 
-	public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	//공지사항 메인화면에 리스트를 보여주는 메서드 
+	public void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//db에서 가져와야 하기 때문에 db필요 
 		NoticeDAO dao = new NoticeDAO();
 		ArrayList<NoticeDTO> list = dao.list();
@@ -52,12 +53,6 @@ public class NoticeService {
 		// 리스트를  특정 페이지로 이동 
 		RequestDispatcher dis = request.getRequestDispatcher("a_notice.jsp");
 		dis.forward(request, response);
-		
-		
-	}
-	//공지사항 메인화면을 보여주는 메서드
-	public void main(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
 		
 	}
 

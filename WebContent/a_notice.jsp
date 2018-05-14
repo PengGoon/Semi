@@ -134,9 +134,9 @@
 			<tr>
 				<td><input id="checkBox" type="checkbox"></td>
 				<td>${Notice.notice_id}</td>
-				<td><a href="notice_detail?id=${Notice.notice_id}">${Notice.subject}</a></td>
+				<td><a href="notice_detail?id=${Notice.notice_id}">${Notice.notice_title} </a></td>
 				<td>${Notice.admin_id}</td>
-				<td>${Notice.reg_date}</td>
+				<td>${Notice.notice_date}</td>
 				<td>${Notice.bHit}</td>
 			</tr>
 		</c:forEach>

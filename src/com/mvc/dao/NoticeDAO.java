@@ -64,32 +64,34 @@ public class NoticeDAO {
 		
 	}
 	//공지사항 리스트 불러오기 
-	public ArrayList<NoticeDTO> list() {
-		ArrayList<NoticeDTO> list = new ArrayList<>();
-		
-		//실행할 쿼리문
-		String sql = "SELECT * FROM Notice ORDER BY notice_id DESC";
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				NoticeDTO dto = new NoticeDTO();
-				//번호 , 제목, 작성자, 작성일, 조회수 
-				dto.setNotice_id(rs.getInt("notice_id"));
-				dto.setNotice_title(rs.getString("notice_title"));
-				dto.setAdmin_id(rs.getString("admin_id"));
-				dto.setNotice_date(rs.getDate("notice_date"));
-				dto.setbHit(rs.getInt("bHit"));
-				list.add(dto);
+		public ArrayList<NoticeDTO> list() {
+			ArrayList<NoticeDTO> list = new ArrayList<>();
+			
+			//실행할 쿼리문
+			String sql = "SELECT * FROM Notice ORDER BY notice_id DESC";
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					NoticeDTO dto = new NoticeDTO();
+					//번호 , 제목, 작성자, 작성일, 조회수 
+					dto.setNotice_id(rs.getInt("notice_id"));
+					dto.setNotice_title(rs.getString("notice_title"));
+					dto.setAdmin_id(rs.getString("admin_id"));
+					dto.setNotice_date(rs.getDate("notice_date"));
+					dto.setbHit(rs.getInt("bHit"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}finally {
+				resClose();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			resClose();
-		}
-		return list;
+			return list;
 	}
 
 }
+

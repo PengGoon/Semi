@@ -18,7 +18,7 @@ import com.mvc.service.UserService;
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
-	"/notice_list", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView" })
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView" })
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -247,14 +247,7 @@ public class MainController extends HttpServlet {
 						notice = new NoticeService();
 						notice.main(request,response);
 						break;
-						
-					
-					case "/notice_list":
-						System.out.println("공지사항 리스트");
-						notice = new NoticeService();
-						notice.list(request,response);
-						break;
-						
+	
 					case "/notice_write":
 						System.out.println("공지사항 작성");
 						notice = new NoticeService();

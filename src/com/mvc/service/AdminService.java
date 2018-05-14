@@ -32,7 +32,7 @@ public class AdminService {
 
 		}else { //로그인 실패시 
 			request.setAttribute("msg", "아이디 또는 비밀번호를 확인 하세요");
-			RequestDispatcher dis =request.getRequestDispatcher("/AdminPage/a_login.jsp");
+			RequestDispatcher dis =request.getRequestDispatcher("a_login.jsp");
 			//특정 페이지를 선택하여 보내는 방법 
 			dis.forward(request, response);
 		}
@@ -43,7 +43,7 @@ public class AdminService {
 	public void main(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//메인페이지 이동 , 
-		response.sendRedirect("AdminPage/a_main_user.jsp");
+		response.sendRedirect("a_main_user.jsp");
 		
 	}
 	//로그아웃 메서드
