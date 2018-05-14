@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,6 +13,10 @@
         	padding: 0px;
       	}
       	a{
+      		text-decoration : none;
+      	}
+      	a:visited{
+      		color:black;
       		text-decoration : none;
       	}
 		.title {
@@ -47,10 +52,7 @@
     	li{
     	   	list-style-type: none;
     	}
-    	a:visited{
-      		color:black;
-      		text-decoration : none;
-      	}
+
    		li:hover{
         	background-color: gray;
    		}
@@ -87,11 +89,7 @@
 		#notice{
 			background-color: gray;
 		}
-		input[type='button']{
-	
-		
-		}
-				h5{
+		h5{
 			float : right;
 		}
 
@@ -115,7 +113,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		
         <h2>Notice</h2>
@@ -132,16 +130,16 @@
 					<th>작성일</th>
 					<th>조회</th>
 				</tr>
-				<tr>
-					<td class="che">
-						<input type="checkbox"/>
-					</td>
-					<td class="idx"></td>
-					<td class="subject"></td>
-					<td class="adminId"></td>
-					<td class="reg_Date"></td>
-					<td class="viewNum"></td>
-				</tr>
+		<c:forEach items ="${list}" var="Notice">
+			<tr>
+				<td><input id="checkBox" type="checkbox"></td>
+				<td>${Notice.notice_id}</td>
+				<td><a href="notice_detail?id=${Notice.notice_id}">${Notice.subject}</a></td>
+				<td>${Notice.admin_id}</td>
+				<td>${Notice.reg_date}</td>
+				<td>${Notice.bHit}</td>
+			</tr>
+		</c:forEach>
 			</table>
 			<br/>
 			<!-- <button id="no_write">글쓰기</button><button id="no_del">삭제</button> -->

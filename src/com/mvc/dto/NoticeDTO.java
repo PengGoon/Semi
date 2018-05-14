@@ -9,9 +9,15 @@ public class NoticeDTO {
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
+	private int bHit;
 	
 	
-	
+	public int getbHit() {
+		return bHit;
+	}
+	public void setbHit(int bHit) {
+		this.bHit = bHit;
+	}
 	public String getAdmin_id() {
 		return admin_id;
 	}

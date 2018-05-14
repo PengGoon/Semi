@@ -242,20 +242,29 @@ public class MainController extends HttpServlet {
 					
 						break;
 						
+					case "/notice_main":
+						System.out.println("공지사항 메뉴화면");
+						notice = new NoticeService();
+						notice.main(request,response);
+						break;
+						
+					
 					case "/notice_list":
 						System.out.println("공지사항 리스트");
 						notice = new NoticeService();
+						notice.list(request,response);
 						break;
 						
 					case "/notice_write":
 						System.out.println("공지사항 작성");
 						notice = new NoticeService();
+						notice.write(request,response);
 						break;
 						
 					case "/notice_delete":
 						System.out.println("공지사항 삭제");
 						notice = new NoticeService();
-						notice.write(request,response);
+						
 						break;
 						
 					case "/notice_detail":

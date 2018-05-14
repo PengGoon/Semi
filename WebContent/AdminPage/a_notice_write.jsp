@@ -56,32 +56,10 @@
     	.member{
     		min-width : 800px;
     	}
-		table,th,td{
-			border: 1px solid black;
-			border-collapse: collapse;
-			padding: 5px 10px;
-		}
-		table{
-			width : 80%;
-			align: center;
-		}
-		input[type='text']{
-			width : 100%;
-		}
-		textarea{
-			width : 100%
-			resize : none;
-		}
-		td{
-		 	text-align: center;
-		}
 		#notice{
 			background-color: gray;
 		}
-		input[type='button']{
-	
-		
-		}
+
 		#write-form td {
 		    border: none;
 		}
@@ -91,30 +69,75 @@
 				h5{
 			float : right;
 		}
-
-	
-
+				#notice_form{
+			margin:0 auto;
+		}
+		#write-form td {
+		    border: none;
+		}
+		#write-form textarea {
+		    width: 90%;
+		}
+		table{
+    		border-top : 1px solid black;
+    		border-collapse: collapse;
+    		text-align: center;
+			min-width : 700px;
+			margin : 0 auto;
+            height:300px; 
+		}
+		h3{
+			text-align: center;
+		}
+		h2{
+			margin-left : 15px;
+		}
+		 a{
+      		text-decoration : none;
+      	}
 	
 	</style>
 	<body>
 		<div class="title">
 			<h1><a href="a_main_user.jsp"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
-			<ul class ="menu">
-			
+			<ul class ="menu">		
 				<li id="mem"><a href="a_main_user.jsp">회원관리</a></li>
 				<li id="sell"><a href="a_seller.jsp">판매자관리</a></li>
 				<li id="review"><a href="a_review.jsp">후기 관리</a></li>
 				<li id="notice"><a href="a_notice.jsp">공지사항</a></li>
 				<li id="regist"><a href="a_seller_re.jsp">판매자 등록</a></li>
-				
 			</ul>
 		</div>
-		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
 		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_main_user.jsp'">로그아웃</button></h5>
 		<br/><br/>
-		<jsp:include page ="NoticeWrite.jsp"/>
+		<div id="notice_form"><h2>공지사항</h2></div>
+		<h3>공지사항 글쓰기 </h3>
+		
+		<form action="notice_write" method="post" >
+		<table id="write-form" >
+			<tr>
+				<td>작성자</td>
+				<td><%=request.getSession().getAttribute("loginId") %></td>
+			</tr>
+			<tr>
+			    <td>제목</td>
+			    <td><input type="text" name="title" style="width: 90%;" placeholder="제목을 입력하세요" /></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+			    <td>
+			        <textarea name="content" rows="15" cols="120" placeholder="내용을 입력하세요"></textarea>
+			    </td>
+			</tr>
+		</table>
+		<div style="text-align: center;padding-bottom: 15px;">
+			<br/><br/>
+		    <button type="submit">저장</button>
+		</div>
+		</form>
+		
 			</body>
 	<script>
 	
