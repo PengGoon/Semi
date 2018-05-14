@@ -36,9 +36,9 @@ body {
 		<div id="detailTable">
 			<table>
 				<tr>
-					<th style="width: 450px; height: 450px;" rowspan="7">사진</th>
+					<th><img width="500" src="./upload/${list.newFileName1}"/></th>
 					<th colspan="2" style="width: 350px">
-						<h2>상품명</h2>
+						<h2>${info.prd_name }</h2>
 					</th>
 				</tr>
 				<tr>
@@ -47,7 +47,7 @@ body {
 				</tr>
 				<tr>
 					<th>판매가(100g)</th>
-					<th>10000</th>
+					<th></th>
 				</tr>
 				<tr>
 					<th>원산지</th>

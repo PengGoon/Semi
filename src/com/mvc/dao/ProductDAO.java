@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -83,4 +84,66 @@ public class ProductDAO {
 		return (int) fk;//idx 값 반환
 	}
 
+	public ProductDTO detail(String prd_id) {
+		ProductDTO dto = null;
+		PhotoDAO dao = new PhotoDAO();
+		String sql="SELECT * FROM product WHERE prd_id = ?";
+		try {
+			ps  = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(prd_id));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				upHit(prd_id);
+				dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setSell_Id(rs.getString("sell_id"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_From(rs.getString("prd_from"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return dto;
+	}
+	
+	//조회수 올리기
+	private void upHit(String prd_id) {
+		String sql="UPDATE product SET prd_bHit = prd_bHit+1 WHERE prd_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(prd_id));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	public ArrayList<ProductDTO> list(int prd_id) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql="SELECT * From productimage WHERE prd_id = ?";
+		String fileName = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, prd_id);
+			ResultSet rs = ps.executeQuery();
+			fileName = rs.next() ? rs.getString("newFileName") : null;		
+			while(rs.next()) {//rs 에서 값 가져와 dto 담기
+				ProductDTO dto = new ProductDTO();	
+				dto.setNewFileName1(rs.getString("newFileName1"));
+				dto.setNewFileName2(rs.getString("newFileName2"));
+				dto.setNewFileName3(rs.getString("newFileName3"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();//자원 반납
+		}	
+		return list;		
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.mvc.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mvc.dao.ProductDAO;
+import com.mvc.dto.PhotoDTO;
 import com.mvc.dto.ProductDTO;
 
 public class ProductService {
@@ -17,9 +19,16 @@ public class ProductService {
 		
 	}
 
-	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//DB 에 개별 데이터 요청
+		ProductDAO dao = new ProductDAO();
+		ProductDTO dto = dao.detail(request.getParameter("prd_id"));
+		ArrayList<ProductDTO> list = dao.list(Integer.parseInt(request.getParameter("prd_id")));
+		request.setAttribute("info", dto);
+		request.setAttribute("list", list);
+		//특정한 페이지로 이동		
+		RequestDispatcher dis = request.getRequestDispatcher("prd_detailForm.jsp");
+		dis.forward(request, response);
 	}
 
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
