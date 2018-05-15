@@ -47,18 +47,28 @@ body {
 	text-align: center;
 	border-width: 0;
 }
+
+#detailTable textarea{
+	font-size: 20;
+	width: 100%;
+	height: 300px;
+	resize: none;
+	border-width: 0;
+}
 </style>
 <body>
 	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<button id="updateForm">수정</button>
 		<button id="save" style="display:none">저장</button>
+		<button id="del">삭제</button>
 		<div id="detailTable">
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
 					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
 					<th colspan="2" style="width: 500px">
+						<input type="hidden" id="prd_Id" value="${info.prd_Id }" />
 						<input type="text" class="edit" id="prd_Name" value="${info.prd_Name }" readonly/>
 					</th>
 				</tr>
@@ -79,12 +89,8 @@ body {
 					<th><input type="text" id="prd_bHit" value="${info.prd_bHit }" readonly/></th>
 				</tr>
 				<tr>
-					<th>구매수량</th>
-					<th>
-						<button id="dec">-</button> 
-						<span id="msg">1</span>
-						<button id="inc">+</button>
-					</th>
+					<th>물품수량</th>
+					<th><input type="text" class="edit" id="prd_Count" value="${info.prd_Count }" readonly/></th>
 				</tr>
 				<tr>
 					<th colspan="2">
@@ -101,7 +107,7 @@ body {
 				</tr>
 				<tr>
 					<th width="140px"><h3>글 내용</h3></th>
-					<th height="300px" colspan="3">${info.prd_Content }</th>
+					<th height="300px" colspan="3"><textarea class="edit" id="prd_Content" readonly>${info.prd_Content }</textarea></th>
 				</tr>
 			</table>
 		</div>
@@ -128,11 +134,62 @@ body {
 		alert("선택하신 상품을 장바구니에 담았습니다.")
 	});
 	
+	//html 문서를 로드하자 마자 상세 정보를 가져 온다.
+	var obj = {};
+	var idx;
+	obj.type="POST";
+	obj.dataType="JSON";
+	obj.error=function(e){console.log(e)};
+	/*
+	$(document).ready(function(){
+		obj.url="./detailView";
+		obj.success = function(data){
+			console.log(data);
+			if(data.login){
+				printInfo(data.dto);
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="index.html";
+			}
+		};
+		ajaxCall(obj);
+	});
+	*/
+	
 	$("#updateForm").click(function(){
 		$("#save").css("display","inline");
 		$(".edit").css("border-width","2px");
 		$(".edit").attr("readonly",false);
 		$("#updateForm").css("display","none");
 	});
+	
+	//수정 요청
+	$("#save").click(function(){
+		obj.url="./prd_update";
+		obj.data={
+			"prd_Id":$("#prd_Id").val(),
+			"prd_Name":$("#prd_Name").val(),
+			"prd_Price":$("#prd_Price").val(),
+			"prd_From":$("#prd_From").val(),
+			"prd_Count":$("#prd_Count").val(),
+			"prd_Content":$("#prd_Content").val()
+		};
+		obj.success=function(data){
+			console.log(data);
+			//성공,실패: 상세보기 페이지
+			if(data.success == 1){
+				alert("수정이 성공 했습니다.");
+				location.href="prd_sellerdetail?prd_id="+$("#prd_Id").val();
+			}else{
+				alert("수정이 실패 했습니다.");
+			}
+		};
+		ajaxCall(obj);
+	});
+	
+	function ajaxCall(param){
+		console.log(param);
+		$.ajax(param);
+	}
 </script>
 </html>

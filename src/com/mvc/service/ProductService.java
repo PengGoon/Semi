@@ -2,12 +2,14 @@ package com.mvc.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
 import com.mvc.dto.PhotoDTO;
 import com.mvc.dto.ProductDTO;
@@ -57,8 +59,19 @@ public class ProductService {
 	}
 
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		
+		request.setCharacterEncoding("UTF-8");
+		String prd_Id = request.getParameter("prd_Id");
+		String prd_Name = request.getParameter("prd_Name");
+		String prd_Price = request.getParameter("prd_Price");
+		String prd_From = request.getParameter("prd_From");
+		String prd_Count = request.getParameter("prd_Count");
+		String prd_Content = request.getParameter("prd_Content");
+		ProductDAO dao = new ProductDAO();
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("success", dao.update(prd_Id,prd_Name,prd_Price,prd_From,prd_Count,prd_Content));
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
 	}
 
 	public void updateView(HttpServletRequest request, HttpServletResponse response) throws IOException {

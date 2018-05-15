@@ -143,5 +143,25 @@ public class ProductDAO {
 		}	
 		return dto;		
 	}
+
+	public Integer update(String prd_Id, String prd_Name, String prd_Price, String prd_From, String prd_Count, String prd_Content) {
+		int success = 0;
+		String sql="UPDATE product SET prd_Name=?,prd_Price=?,prd_From=?,prd_Count=?,prd_Content=? WHERE prd_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, prd_Name);
+			ps.setString(2, prd_Price);
+			ps.setString(3, prd_From);
+			ps.setString(4, prd_Count);
+			ps.setString(5, prd_Content);
+			ps.setInt(6, Integer.parseInt(prd_Id));
+			success = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return success;
+	}
 	
 }
