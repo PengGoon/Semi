@@ -284,6 +284,7 @@ public class MainController extends HttpServlet {
 					case "/notice_update":
 						System.out.println("공지사항 수정하기");
 						notice = new NoticeService();
+						notice.update(request,response);
 						break;
 						
 					case "/notice_updateView":

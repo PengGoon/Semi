@@ -95,6 +95,9 @@
 		 a{
       		text-decoration : none;
       	}
+      	#save{
+			display:none;
+		}
 	
 	</style>
 	<body>
@@ -135,6 +138,7 @@
 			<br/><br/>
 			<a href="./a_notice.jsp">리스트 가기</a>
 			<button id="updateForm">수정</button>
+			<button id="save">저장</button>
 		</div>
 		
 			</body>
@@ -179,12 +183,37 @@
 		$("#content").val(info.notice_content);
 		
 	}
+	
 	//수정 
 	$("#updateForm").click(function(){
 		$("#save").css("display","inline");
 		$(".edit").css("border-width","1px");
 		$(".edit").attr("readonly",false);
 		$("#updateForm").css("display","none");
+	});
+	//수정 후 저장 버튼 클릭시 
+	$("#save").click(function(){
+		obj.url="./notice_update";
+		obj.data={
+				"admin_id":idx,
+				"notice_title":	$("#title").val(),
+				"notice_content": $("#content").val()
+				
+		};
+		console.log(idx + "/" + $("#title").val());
+		obj.success = function(data){
+			console.log(data);
+			//성공: 실패: 상세보기 페이지
+			//메시지
+			if(data.success==1){
+				alert("수정이 성공 했습니다.");
+				location.href="detail.html";
+			}else{
+				alert("수정이 실패 했습니다.");
+			}
+			
+		};
+		ajaxCall(obj);
 	});
 	
 

@@ -1,6 +1,7 @@
 package com.mvc.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
@@ -118,6 +120,24 @@ public class NoticeService {
 		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
 		//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
 		response.sendRedirect("a_notice_detail.jsp");
+		
+	}
+
+	//공지사항 수정하기 
+	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		//수정할 부분 불러오기 
+		String idx = request.getParameter("notice_id");
+		String title = request.getParameter("notice_title");
+		String content = request.getParameter("notice_content");
+		NoticeDAO dao = new NoticeDAO();
+		//gson 객체 사용
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("success", dao.update(title,content,idx));
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
 		
 	}
 	
