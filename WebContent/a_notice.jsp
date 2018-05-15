@@ -163,8 +163,6 @@
 		}
 		ajaxCall(obj);
 	});
-	
-	
 	function listPrint(list){
 		console.log(list);
 		var content ="";

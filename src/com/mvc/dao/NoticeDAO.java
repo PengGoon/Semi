@@ -125,9 +125,10 @@ public class NoticeDAO {
 			// TODO Auto-generated method stub
 			NoticeDTO dto = null;
 			String sql = "SELECT * FROM Notice WHERE notice_id=?"; 
+		
 			try {
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, Integer.parseInt(idx));
+				ps = conn.prepareStatement(sql);	
+				ps.setInt(1,Integer.parseInt(idx));
 				rs = ps.executeQuery();
 				if(rs.next()) {
 					upHit(idx);

@@ -134,7 +134,7 @@
 		</table>
 		<div style="text-align: center;padding-bottom: 15px;">
 			<br/><br/>
-			<a href="./notice_main">리스트 가기</a>
+			<a href="./a_notice.jsp">리스트 가기</a>
 		    <button id="save">저장</button>
 		</div>
 		

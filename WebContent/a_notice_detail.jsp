@@ -118,22 +118,22 @@
 		<table id="write-form" >
 			<tr>
 				<td>작성자</td>
-				<td><%=request.getSession().getAttribute("loginId") %></td>
+				<td><input type="text" id="admin_id" readonly/></td>
 			</tr>
 			<tr>
 			    <td>제목</td>
-			    <td><input class="edit"type="text" name="title" id="title"style="width: 90%;" placeholder="제목을 입력하세요" /></td>
+			    <td><input class="edit"type="text" name="title" id="title"style="width: 90%;"  readonly/></td>
 			</tr>
 			<tr>
 				<td>내용</td>
 			    <td>
-			        <textarea class="edit"  name="content" id="content" rows="15" cols="120" placeholder="내용을 입력하세요"></textarea>
+			        <textarea class="edit"  name="content" id="content" rows="15" cols="120" readonly></textarea>
 			    </td>
 			</tr>
 		</table>
 		<div style="text-align: center;padding-bottom: 15px;">
 			<br/><br/>
-			<a href="./notice_main">리스트 가기</a>
+			<a href="./a_notice.jsp">리스트 가기</a>
 			<button id="updateForm">수정</button>
 		</div>
 		
@@ -155,10 +155,13 @@
 	obj.error=function(e){console.log(e)};
 	
 	$(document).ready(function(){
+		console.log("상세보기");
 		obj.url="./notice_detailView";
+		console.log("url 넘어감 ");
 		obj.success = function(data){
 			console.log(data);
 			if(data.login){
+				console.log(data.login);
 				printInfo(data.dto);
 			}else{
 				alert("로그인이 필요한 서비스 입니다.");
@@ -169,9 +172,12 @@
 	});
 	
 	function printInfo(info){
+		console.log(info);
 		idx = info.idx;
-		$("#title").val(info.title);
-		$("#content").val(info.content);
+		$("#admin_id").val(info.admin_id);
+		$("#title").val(info.notice_title);
+		$("#content").val(info.notice_content);
+		
 	}
 	//수정 
 	$("#updateForm").click(function(){

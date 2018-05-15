@@ -56,6 +56,7 @@ public class NoticeService {
 		//response 반환
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
+		
 		if(loginId !=null) {
 			map.put("login", true);
 		}else {
@@ -87,14 +88,18 @@ public class NoticeService {
 		response.getWriter().println(obj);
 	}
 
+	//제목을 클릭했을 때 보여주는 공지사항 상세보기
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String idx = (String)request.getSession().getAttribute("notice_id");
-		String loginId = (String)request.getSession().getAttribute("loginId");
 		
+		//인덱스 번호와 로그인 아이디를 세션으로 가져와서 확인하는 방법
+
+		String idx =(String) request.getSession().getAttribute("notice_id");
+		String loginId = (String)request.getSession().getAttribute("loginId");
+		System.out.println(idx);
+		System.out.println(idx+"/"+loginId);
 		//로그인 유무를 확인 
 		boolean login = false;
 		
-	
 		Gson json = new Gson();
 		HashMap< String, Object> map = new HashMap<>();
 		if(loginId != null) {
@@ -107,6 +112,13 @@ public class NoticeService {
 		String obj  = json.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
+	}
+
+	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
+		//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
+		response.sendRedirect("a_notice_detail.jsp");
+		
 	}
 	
 }
