@@ -29,7 +29,7 @@ public class NoticeDAO {
 	}
 
 	//공지사항 작성 
-	public int write(NoticeDTO dto) {
+	public Integer write(String title,String content) {
 		int success =0;
 /*	    notice_id NUMBER primary key,
 	    admin_id VARCHAR2(50),
@@ -37,21 +37,20 @@ public class NoticeDAO {
 	    notice_content NVARCHAR2(200) not null,
 	    notice_date DATE DEFAULT SYSDATE,
 	    bHit NUMBER(4) DEFAULT 0,*/
-		String sql = "INSERT INTO Notice "
-				+ "VALUES(notice_seq.NEXTVAL,?,?,?,SYSDATE,?)";
+		String sql = "INSERT INTO Notice (notice_id,notice_title,notice_content)"
+				+ "VALUES(notice_seq.NEXTVAL,?,?)";
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getAdmin_id()); 
-			ps.setString(2, dto.getNotice_title());
-			ps.setString(3, dto.getNotice_content());
-			ps.setInt(4, 0);
-			/*ps.setInt(4,0); //조회수 
-*/			success = ps.executeUpdate();
+			ps = conn.prepareStatement(sql, new String[] {"notice_id"});
+			ps.setString(1, title);
+			ps.setString(2, content);
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			if(rs.next()) {
+				success = (int)rs.getLong(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
-		}finally {
-			resClose();
 		}
 		return success;
 	}
@@ -72,7 +71,6 @@ public class NoticeDAO {
 	//공지사항 리스트 불러오기 
 		public ArrayList<NoticeDTO> list() {
 			ArrayList<NoticeDTO> list = new ArrayList<>();
-			
 			//실행할 쿼리문
 			String sql = "SELECT * FROM Notice ORDER BY notice_id DESC";
 			
@@ -121,6 +119,48 @@ public class NoticeDAO {
 			}
 			return delCnt;
 		}
+
+		public NoticeDTO detailView(String idx) {
+			// TODO Auto-generated method stub
+			NoticeDTO dto = null;
+			String sql = "SELECT * FROM Notice WHERE notice_id=?"; 
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(idx));
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					upHit(idx);
+					dto = new NoticeDTO();
+					dto.setNotice_id(rs.getInt("notice_id"));
+					dto.setNotice_title(rs.getString("notice_title"));
+					dto.setNotice_content(rs.getString("notice_content"));
+					dto.setAdmin_id(rs.getString("admin_id"));
+					dto.setbHit(rs.getInt("bHit"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			
+			
+			return dto;
+		}
+		
+		//조회수 올리기
+		private void upHit(String idx) {
+			String sql = "UPDATE Notice SET bHit = bHit+1 WHERE notice_id =?";
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(idx));
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
 
 }
 

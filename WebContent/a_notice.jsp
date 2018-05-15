@@ -121,7 +121,7 @@
 		
 		<div class ="member">
 
-			<table>
+			<table id="listTable">
 				<tr>
 					<th>체크</th>
 					<th>번호</th>
@@ -130,27 +130,81 @@
 					<th>작성일</th>
 					<th>조회</th>
 				</tr>
-		<c:forEach items ="${list}" var="Notice">
-			<tr>
-				<td><input id="checkBox" type="checkbox"></td>
-				<td>${Notice.notice_id}</td>
-				<td><a href="notice_detail?admin_id=${Notice.notice_id}">${Notice.notice_title} </a></td>
-				<td>${Notice.admin_id}</td>
-				<td>${Notice.notice_date}</td>
-				<td>${Notice.bHit}</td>
-			</tr>
-		</c:forEach>
 			</table>
 			<br/>
 			<!-- <button id="no_write">글쓰기</button><button id="no_del">삭제</button> -->
 			<center>
 			<input id="no_write" type="button" value="글쓰기" onclick="location.href='a_notice_write.jsp'" />
-			<input id="del" type="button" value="삭제" onclick="nodel()"/> 
+			<input id="del" type="button" value="삭제" /> 
 			</center>
 			</div>
 			
 			</body>
 	<script>
+	//리스트 호출(ajax)
+	var obj = {};
+	obj.error = function(e){console.log(e)};
+	obj.type="post";
+	obj.dataType="json";
+	
+	$(document).ready(function(){
+		obj.url="./notice_list";
+		obj.success = function(data){
+			console.log(data);
+			if(data.login){
+				//리스트 보여주기
+				listPrint(data.list);
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="a_login.jsp";
+			}
+		}
+		ajaxCall(obj);
+	});
+	function listPrint(list){
+		console.log(list);
+		var content ="";
+		list.forEach(function(item,idx){
+			content += "<tr>";
+			content += "<td><input type='checkbox' value='"+item.notice_id+"'/></td>"; 
+			content += "<td>" +item.notice_id+"</td>"; 
+			content += "<td><a href='./notice_detail?notice_id=" +item.notice_id+"'>"+item.notice_title+"</a></td>"; 
+			content += "<td>" +item.admin_id+"</td>"; 
+			content += "<td>" +item.notice_date+"</td>"; 
+			content += "<td>" +item.bHit+"</td>"; 
+			content += "</tr>";
+			console.log(item);
+		});
+		$("#listTable").append(content);
+	}
+	$("#del").click(function(){
+		obj.url="./delete";
+		var checked = [];
+		//$(elem).each() == elem.forEach()
+		$("input[type='checkbox']:checked").each(function(){
+			checked.push($(this).val());
+		});
+		console.log(checked);
+		obj.data={delList:checked};
+		obj.success = function(data){
+			if(data.success){
+				alert("삭제에 성공 했습니다.");
+			}else{
+				alert("삭제에 실패 했습니다.");
+			}
+			location.href = "a_notice.jsp";
+			
+		}
+		console.log(obj);
+	    ajaxCall(obj);
+	});
+	
+	
+	
+	function ajaxCall(param){
+		console.log(param);
+		$.ajax(param);
+	}
 	
 	$(function(){
 		$('a').click(function(){
@@ -159,20 +213,6 @@
 		});
 	});
 	
-	
-	function nodel(){
-        var con = confirm("정말로 삭제 하시겠습니까?");
-        //"확인" 버튼을 눌렀을 경우
-        if(con ==true){
-            //삭제 처리(요청)
-            for(var i)
-            alert("삭제가 완료 되었습니다.");
-        }
-	}
-	
-	$("#del").click(function(){
-		obj.url="./notice_delete"
-	})
 	
 	</script>
 </html>

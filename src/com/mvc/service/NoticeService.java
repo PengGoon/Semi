@@ -18,30 +18,24 @@ import com.mvc.dto.NoticeDTO;
 public class NoticeService {
 
 	//공지사항 작성 메서드
-	public void write(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		//DB에서 처리해야 함으로 DAO 생성해서 wirte() 요청
-		System.out.println("공지사항 작성");
+	public void write(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		// 1. 파라메터 추출
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		// 2. DAO 요청
 		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = new NoticeDTO();
-	
-		//작성할 부분(제목, 내용) 
-		//a_notice_write.jsp에 저장되어 있는 변수값을 사용해줘야함.
-		dto.setNotice_title(request.getParameter("title"));
-		dto.setNotice_content(request.getParameter("content"));
 		
-		
-		String msg = "공지사항 등록 실패 !";
-		String page = "a_notice_write.jsp";
-		
-		if(dao.write(dto)>0) {
-			msg = "게시판 등록 성공";
-			page = "a_notice.jsp";
-		}
-		request.setAttribute("msg",msg);
-		RequestDispatcher dis = request.getRequestDispatcher(page);
-		dis.forward(request, response);
-		
+		// 3. 결과값 JSON 변환
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		int idx = dao.write(title,content);
+		//세션에서 idx를  string 으로 불러 내기 때문에 넣을 때 문자 열로 형변환 해야 한다. 
+		request.getSession().setAttribute("notice_id",Integer.toString(idx));
+		map.put("success", idx);
+		String obj = json.toJson(map);
+		// 4. response 로 변환
+		response.getWriter().println(obj);
 		
 		
 	}
@@ -51,11 +45,22 @@ public class NoticeService {
 		//db에서 가져와야 하기 때문에 db필요 
 		NoticeDAO dao = new NoticeDAO();
 		ArrayList<NoticeDTO> list = dao.list();
-		//리스트에서 가져온 데이터를 request에 담기
-		request.setAttribute("list", list);
-		// 리스트를  특정 페이지로 이동 
-		RequestDispatcher dis = request.getRequestDispatcher("a_notice.jsp");
-		dis.forward(request, response);
+		
+		//로그인 상태 
+		String loginId =(String)request.getSession().getAttribute("loginId");
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		if(loginId !=null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+		map.put("list", list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset = UTF-8");
+		response.getWriter().println(obj);
 		
 	}
 
@@ -77,4 +82,27 @@ public class NoticeService {
 		response.getWriter().println(obj);
 	}
 
+	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String idx = (String)request.getSession().getAttribute("notice_id");
+		String loginId = (String)request.getSession().getAttribute("loginId");
+		
+		//로그인 유무를 확인 
+		boolean login = false;
+		
+	
+		Gson json = new Gson();
+		HashMap< String, Object> map = new HashMap<>();
+		if(loginId != null) {
+			NoticeDAO dao = new NoticeDAO();
+			NoticeDTO dto = dao.detailView(idx);
+			login = true;
+			map.put("dto", dto);
+		}
+		map.put("login", login);
+		String obj  = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+	
 }
+

@@ -18,7 +18,7 @@ import com.mvc.service.UserService;
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
-	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView" })
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView","/notice_detailView" })
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -264,7 +264,16 @@ public class MainController extends HttpServlet {
 					case "/notice_detail":
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
+						request.getSession().setAttribute("notice_Id", request.getParameter("notice_id"));
+						response.sendRedirect("a_notice_deatil.jsp");
 						break;
+						
+					case "/notice_detailView":
+						System.out.println("공지사항 작성 후 상세보기 화면");
+						notice = new NoticeService();
+						notice.detailView(request,response);
+						break;
+						
 						
 					case "/notice_update":
 						System.out.println("공지사항 수정하기");
