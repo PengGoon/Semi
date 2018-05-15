@@ -11,10 +11,11 @@ import com.mvc.service.AdminService;
 import com.mvc.service.NoticeService;
 import com.mvc.service.PhotoService;
 import com.mvc.service.ProductService;
+import com.mvc.service.ProductService2;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail",
+@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd_buy",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
@@ -48,6 +49,7 @@ public class MainController extends HttpServlet {
 				AdminService admin = null;
 				NoticeService notice = null;
 				PhotoService photo = null;
+				ProductService2 product2 = null;
 				
 				// "/login", "/logout", "/join", 
 				// "/list","/detail", "/update", "/updateView", 
@@ -131,6 +133,13 @@ public class MainController extends HttpServlet {
 						System.out.println("상품 삭제 요청");
 						product = new  ProductService();
 						product.delete(request, response);
+						break;
+						
+					// 상품 구매
+					case "/prd2_buy":
+						System.out.println("상품 구매 요청");
+						product2 = new ProductService2();
+						product2.buy(request, response);
 						break;
 					
 					// 후기 리스트
