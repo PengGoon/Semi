@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<style>
+		table,th,td{
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px 10px;
+		}
+		table{
+			width: 500px;
+		}
+		input[type='text']{
+			width:100%;
+			border-width: 0;
+		}
+		textarea{
+			width:100%;
+			resize:none;
+			border-width: 0;
+		}
+		td{
+			text-align: center;
+		}
+		#save{
+			display:none;
+		}
+		
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" id="userName" readonly/></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td><input class="edit" type="text" id="subject" readonly/></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea class="edit" rows="15" id="content" readonly></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<a href="./main.html">리스트 가기</a><!-- ./ 현재의 루트 -->
+				&nbsp;&nbsp;
+				<button id="updateForm">수정</button>
+				<button id="save">저장</button>
+			</td>
+		</tr>
+	</table>
+</body>
+	<script>
+		//html 문서를 로드하자 마자 상세 정보를 가져 온다.
+		var obj = {};
+		var idx;
+		obj.type="POST";
+		obj.dataType="JSON";
+		obj.error=function(e){console.log(e)};
+		
+		$(document).ready(function(){
+			obj.url="./detailView";
+			obj.success = function(data){
+				console.log(data);
+				if(data.login){
+					printInfo(data.dto);
+				}else{
+					alert("로그인이 필요한 서비스 입니다.");
+					location.href="index.html";
+				}
+			};
+			ajaxCall(obj);
+		});
+		
+		function printInfo(info){
+			idx = info.idx;
+			$("#userName").val(info.user_name);
+			$("#subject").val(info.subject);
+			$("#content").val(info.content);
+		}
+		
+		//수정 뷰
+		$("#updateForm").click(function(){
+			$("#save").css("display","inline");
+			$(".edit").css("border-width","1px");
+			$(".edit").attr("readonly",false);
+			$("#updateForm").css("display","none");
+		});
+		
+		//수정 요청
+		$("#save").click(function(){
+			obj.url="./update";
+			obj.data={
+					"idx":idx,
+					"subject":	$("#subject").val(),
+					"content": $("#content").val()
+			};
+			obj.success = function(data){
+				console.log(data);
+				if(data.success==1){
+					alert("수정이 성공 했습니다.");
+					location.href="detail.html";
+				}else{
+					alert("수정이 실패 했습니다.");
+				}
+			};
+			ajaxCall(obj);
+		});
+				
+		function ajaxCall(param){
+			console.log(param);
+			$.ajax(param);
+		}	
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
