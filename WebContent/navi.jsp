@@ -164,8 +164,8 @@
     		<div class="fly">
     		<ul style="padding-left: 0px;">
     		<span style="font-size: 10px">최근본상품</span>
-    		<li><a href="#"><img src="#"></a></li>
-    		<li><a href="#"><img src="#"></a></li>
+    		<li><a href="#"><img src=""></a></li>
+    		<li><a href="#"><img src=""></a></li>
     		</ul>
     		</div>
 		</div>	
