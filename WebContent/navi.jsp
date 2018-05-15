@@ -107,8 +107,8 @@
 	<div class="menuCenter">
 		<div class="rightMenu">
 			<ul>
-				<a href="./user/userLogin.jsp"><li id=flip">로그인</li></a>
-				<a href="./user/userJoinSelect.jsp"><li>회원가입</li></a>
+				<a href="userLogin.jsp"><li id=flip">로그인</li></a>
+				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="#"><li>공지사항</li></a>
 			</ul>
 		</div>
@@ -141,21 +141,21 @@
 						<th><h3>과일</h3></th>
 					</tr>
 					<tr>
-						<th><a href="/SemiProject/prd_list?cateS_id=돼지고기">돼지고기</a></th>
-						<th><a href="#">고등어/갈치</a></th>
-						<th><a href="#">뿌리채소</a></th>
-						<th><a href="#">제철과일</a></th>
+						<th><a href="prd_list?cateS_id=돼지고기">돼지고기</a></th>
+						<th><a href="prd_list?cateS_id=고등어/갈치">고등어/갈치</a></th>
+						<th><a href="prd_list?cateS_id=뿌리채소">뿌리채소</a></th>
+						<th><a href="prd_list?cateS_id=제철과일">제철과일</a></th>
 					</tr>
 					<tr>
-						<th><a href="#">소고기</a></th>
-						<th><a href="#">오징어/낙지</a></th>
-						<th><a href="#">열매채소</a></th>
-						<th><a href="#">수입과일</a></th>
+						<th><a href="prd_list?cateS_id=소고기">소고기</a></th>
+						<th><a href="prd_list?cateS_id=오징어/낙지">오징어/낙지</a></th>
+						<th><a href="prd_list?cateS_id=열매채소">열매채소</a></th>
+						<th><a href="prd_list?cateS_id=수입과일">수입과일</a></th>
 					</tr>
 					<tr>
-						<th><a href="#">닭고기</a></th>
-						<th><a href="#">조개류</a></th>
-						<th> <a href="#">나물류</a></th>
+						<th><a href="prd_list?cateS_id=닭고기">닭고기</a></th>
+						<th><a href="prd_list?cateS_id=조개류">조개류</a></th>
+						<th> <a href="prd_list?cateS_id=나물류">나물류</a></th>
 					</tr>
 				</table>
 			</div>
