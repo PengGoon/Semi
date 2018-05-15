@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
-import com.mvc.dto.PhotoDTO;
 import com.mvc.dto.ProductDTO;
 
 public class ProductService {
@@ -89,6 +88,48 @@ public class ProductService {
 		//특정한 페이지로 이동		
 		RequestDispatcher dis = request.getRequestDispatcher("prd_sellerDetail.jsp");
 		dis.forward(request, response);
+	}
+
+	public void sellprdlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list = dao.sellprdlist(request.getParameter("sell_id"));
+		//로그인 상태
+		//String loginId = (String) request.getSession().getAttribute("loginId");
+
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		/*
+		if(loginId != null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+		*/
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void prdDel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] delList= request.getParameterValues("delList[]");
+		System.out.println(delList.length);
+		//복수개의 데이터를 지우기
+		//1. 지울 수 만큼 쿼리를 반복
+		//2. DELETE FROM bbs WHERE idx=? OR idx=?
+		ProductDAO dao = new ProductDAO();
+		boolean success = false;
+		if(dao.delete(delList) == delList.length) {
+			//성공 처리
+			success = true;
+		}
+		Gson json = new Gson();
+		HashMap<String, Boolean> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
 	}
 
 }

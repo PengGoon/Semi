@@ -15,7 +15,8 @@ import com.mvc.service.ProductService2;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list",
+@WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
+	"/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
@@ -50,6 +51,7 @@ public class MainController extends HttpServlet {
 				NoticeService notice = null;
 				PhotoService photo = null;
 				ProductService2 product2 = null;
+				PhotoService service = null;
 				
 				// "/login", "/logout", "/join", 
 				// "/list","/detail", "/update", "/updateView", 
@@ -85,10 +87,24 @@ public class MainController extends HttpServlet {
 						user.join(request, response);
 						break;
 					
+					// 판매자별 상품 리스트	
+					case "/sell_prdList":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.sellprdlist(request, response);
+						break;
+					
+					// 상품 삭제	
+					case "/sell_prdDelete":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.prdDel(request, response);
+						break;
+						
 					// 상품 리스트	
 					case "/prd_list":
 						System.out.println("상품 리스트 호출 요청");
-						PhotoService service = new PhotoService(request, response);
+						service = new PhotoService(request, response);
 						service.list();
 						break;
 					
@@ -98,7 +114,6 @@ public class MainController extends HttpServlet {
 						product = new ProductService();
 						product.detail(request, response);
 						break;
-						
 						
 					// 판매자 상품 상세보기
 					case "/prd_sellerdetail":

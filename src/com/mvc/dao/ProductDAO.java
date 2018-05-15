@@ -163,5 +163,48 @@ public class ProductDAO {
 		}
 		return success;
 	}
+
+	public ArrayList<ProductDTO> sellprdlist(String sell_id) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = "SELECT * FROM product WHERE sell_id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sell_id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_Count(rs.getInt("prd_count"));
+				dto.setPrd_Date(rs.getDate("prd_date"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return list;
+	}
+
+	public int delete(String[] delList) {
+		String sql = "DELETE FROM product WHERE prd_id=?";
+		int delCnt=0;
+		try {
+			for(int i=0; i<delList.length; i++) {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(delList[i]));
+				delCnt += ps.executeUpdate();
+				ps.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return delCnt;
+	}
 	
 }
