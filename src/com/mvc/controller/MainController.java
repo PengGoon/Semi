@@ -264,12 +264,12 @@ public class MainController extends HttpServlet {
 					case "/notice_detail":
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
-						request.getSession().setAttribute("notice_Id", request.getParameter("notice_id"));
-						response.sendRedirect("a_notice_deatil.jsp");
+						request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
+						response.sendRedirect("a_notice_detail.jsp");
 						break;
 						
 					case "/notice_detailView":
-						System.out.println("공지사항 작성 후 상세보기 화면");
+						System.out.println("공지사항 상세보기 화면");
 						notice = new NoticeService();
 						notice.detailView(request,response);
 						break;

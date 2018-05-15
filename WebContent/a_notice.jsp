@@ -147,13 +147,15 @@
 	obj.type="post";
 	obj.dataType="json";
 	
+	
 	$(document).ready(function(){
-		obj.url="./notice_list";
+		obj.url="./notice_main";
 		obj.success = function(data){
 			console.log(data);
 			if(data.login){
 				//리스트 보여주기
 				listPrint(data.list);
+				console.log("asd");
 			}else{
 				alert("로그인이 필요한 서비스 입니다.");
 				location.href="a_login.jsp";
@@ -161,6 +163,8 @@
 		}
 		ajaxCall(obj);
 	});
+	
+	
 	function listPrint(list){
 		console.log(list);
 		var content ="";

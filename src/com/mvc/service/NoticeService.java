@@ -23,6 +23,8 @@ public class NoticeService {
 		// 1. 파라메터 추출
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		System.out.println(title+"/"+content);
+		
 		// 2. DAO 요청
 		NoticeDAO dao = new NoticeDAO();
 		
@@ -33,7 +35,9 @@ public class NoticeService {
 		//세션에서 idx를  string 으로 불러 내기 때문에 넣을 때 문자 열로 형변환 해야 한다. 
 		request.getSession().setAttribute("notice_id",Integer.toString(idx));
 		map.put("success", idx);
+		
 		String obj = json.toJson(map);
+		System.out.println(obj);
 		// 4. response 로 변환
 		response.getWriter().println(obj);
 		
@@ -43,6 +47,7 @@ public class NoticeService {
 	//공지사항 메인화면에 리스트를 보여주는 메서드 
 	public void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//db에서 가져와야 하기 때문에 db필요 
+		
 		NoticeDAO dao = new NoticeDAO();
 		ArrayList<NoticeDTO> list = dao.list();
 		
@@ -51,12 +56,12 @@ public class NoticeService {
 		//response 반환
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
-		
 		if(loginId !=null) {
 			map.put("login", true);
 		}else {
 			map.put("login", false);
 		}
+
 		map.put("list", list);
 		String obj = json.toJson(map);
 		response.setContentType("text/html; charset = UTF-8");

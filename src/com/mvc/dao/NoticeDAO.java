@@ -30,6 +30,7 @@ public class NoticeDAO {
 
 	//공지사항 작성 
 	public Integer write(String title,String content) {
+		System.out.println("공지사항 작성");
 		int success =0;
 /*	    notice_id NUMBER primary key,
 	    admin_id VARCHAR2(50),

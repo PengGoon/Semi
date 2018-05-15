@@ -115,7 +115,6 @@
 		<div id="notice_form"><h2>공지사항</h2></div>
 		<h3>공지사항 글쓰기 </h3>
 		
-		
 		<table id="write-form" >
 			<tr>
 				<td>작성자</td>
@@ -123,19 +122,19 @@
 			</tr>
 			<tr>
 			    <td>제목</td>
-			    <td><input type="text" name="title" id="title"style="width: 90%;" placeholder="제목을 입력하세요" /></td>
+			    <td><input class="edit"type="text" name="title" id="title"style="width: 90%;" placeholder="제목을 입력하세요" /></td>
 			</tr>
 			<tr>
 				<td>내용</td>
 			    <td>
-			        <textarea name="content" id="content" rows="15" cols="120" placeholder="내용을 입력하세요"></textarea>
+			        <textarea class="edit"  name="content" id="content" rows="15" cols="120" placeholder="내용을 입력하세요"></textarea>
 			    </td>
 			</tr>
 		</table>
 		<div style="text-align: center;padding-bottom: 15px;">
 			<br/><br/>
 			<a href="./notice_main">리스트 가기</a>
-		    <button id="save">저장</button>
+			<button id="updateForm">수정</button>
 		</div>
 		
 			</body>
@@ -148,32 +147,41 @@
 		});
 	});
 	
-	
+	//상세 정보를 가져온다. 
 	var obj = {};
-	obj.type = "POST";
-	obj.dataType ="JSON";
-	obj.error = function(e){console.log(e)};
+	var idx;
+	obj.type="POST";
+	obj.dataType="JSON";
+	obj.error=function(e){console.log(e)};
 	
-	// 글쓴 후 저장 버튼 클릭시 
-	$("#save").click(function(){
-		obj.url="./notice_write";
-		obj.data ={};
-		//제목, 내용만 작성 
-		obj.data.title = $("#title").val();
-		obj.data.content = $("#content").val();
+	$(document).ready(function(){
+		obj.url="./notice_detailView";
 		obj.success = function(data){
 			console.log(data);
-			if(data.success>0){
-				alert("글쓰기에 성공 했습니다.");
-				//글쓰기 성공시 경로 설정 
-				location.href = "a_notice_detail.jsp";
+			if(data.login){
+				printInfo(data.dto);
 			}else{
-				alert("글쓰기에 실패 했습니다.");
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="a_login.jsp";
 			}
-		}
-		
+		};
 		ajaxCall(obj);
-	})
+	});
+	
+	function printInfo(info){
+		idx = info.idx;
+		$("#title").val(info.title);
+		$("#content").val(info.content);
+	}
+	//수정 
+	$("#updateForm").click(function(){
+		$("#save").css("display","inline");
+		$(".edit").css("border-width","1px");
+		$(".edit").attr("readonly",false);
+		$("#updateForm").css("display","none");
+	});
+	
+
 		function ajaxCall(param){
 		$.ajax(param);
 
