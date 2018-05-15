@@ -15,7 +15,7 @@ body {
 	width: 1000px;
 	margin: 0 auto;
 }
-#detailTable table, tr, th {
+#detailTable table,#detailTable tr,#detailTable th {
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
@@ -86,6 +86,7 @@ body {
 				</tr>
 			</table>
 		</div>
+		<jsp:include page="reviewList.jsp"></jsp:include>
 	</div>
 </body>
 <script>

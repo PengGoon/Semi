@@ -7,11 +7,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>리뷰 목록</title>
 <style>
-	#reviewList table,th,td{
+	#reviewList table{
 		border:none;
 		border-collapse: collapse;
 		padding: 10px 10px;
-		font-size: 10;
+	}
+	
+	#reviewList th{
+		border:none;
+		border-collapse: collapse;
+		padding: 10px 10px;
+	}
+	
+	#reviewList td{
+		border:none;
+		border-collapse: collapse;
+		padding: 10px 10px;
 	}
 	
 	#reviewList hr{
@@ -34,16 +45,16 @@
 	}
 	
 	.writeBtn{
-			position:absolute;
-            left:70%;
-            height : 42px;
-            width: 130px;
-            font-weight: 800;
-           	border-style : solid;
-           	border-color: limegreen;
-           	background-color : limegreen;
-           	color: white;
-           	cursor: pointer;
+		position:absolute;
+		left:70%;
+		height : 42px;
+		width: 130px;
+		font-weight: 800;
+		border-style : solid;
+		border-color: limegreen;
+		background-color : limegreen;
+		color: white;
+		cursor: pointer;
 	}
 	
 	.reviewTitle{
