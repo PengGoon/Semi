@@ -14,7 +14,7 @@ import com.mvc.service.ProductService;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_detailView",
+@WebServlet({ "/login", "/logout", "/join", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
@@ -90,7 +90,7 @@ public class MainController extends HttpServlet {
 						service.list();
 						break;
 					
-						// 상품 상세보기 화면 
+					// 상품 상세보기
 					case "/prd_detail":
 						System.out.println("상품 상세보기 요청");
 						product = new ProductService();
@@ -98,13 +98,11 @@ public class MainController extends HttpServlet {
 						break;
 						
 						
-					// 상품 상세보기
-					case "/prd_detailView":
-						System.out.println("상품 상세보기 화면 요청");
-						//받아온 파라메터를 세션에 저장
-						request.getSession().setAttribute("idx", request.getParameter("idx"));
-						//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
-						response.sendRedirect("detail.html");
+					// 판매자 상품 상세보기
+					case "/prd_sellerdetail":
+						System.out.println("판매자 상품 상세보기 요청");
+						product = new ProductService();
+						product.sellerdetail(request, response);
 						break;
 						
 					// 상품 수정 

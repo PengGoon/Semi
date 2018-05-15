@@ -66,4 +66,16 @@ public class ProductService {
 		
 	}
 
+	public void sellerdetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//DB 에 개별 데이터 요청
+		ProductDAO dao = new ProductDAO();
+		ProductDTO dto = dao.detail(request.getParameter("prd_id"));
+		request.setAttribute("info", dto);
+		dto = dao.list(request.getParameter("prd_id"));
+		request.setAttribute("list", dto);
+		//특정한 페이지로 이동		
+		RequestDispatcher dis = request.getRequestDispatcher("prd_sellerDetail.jsp");
+		dis.forward(request, response);
+	}
+
 }
