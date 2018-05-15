@@ -7,14 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>리뷰 목록</title>
 <style>
-	table,th,td{
+	#reviewList table,th,td{
 		border:none;
 		border-collapse: collapse;
 		padding: 10px 10px;
 		font-size: 10;
 	}
 	
-	hr{
+	#reviewList hr{
             border:none;
             width:1000px;
             border:1px solid limegreen;
@@ -24,14 +24,13 @@
     }
 	
 	.msg{
-		position:absolute;
+		position:relative;
 		left:20%;
 	}
 	
-	.reviewList{
-		position:absolute;
-		left:20%;
-		margin:  40px 0 150px 0;
+	#reviewList{
+		width: 1000px;
+		margin: 0 auto;
 	}
 	
 	.writeBtn{
@@ -47,7 +46,6 @@
            	cursor: pointer;
 	}
 	
-
 	.reviewTitle{
 		width:500px;
 	}
@@ -60,9 +58,13 @@
 </style>
 </head>
 <body>
-	<h5 class=msg>PRODUCT REVIEW</br>
-	상품 사용 후기를 남기는 공간입니다.해당 게시판의 성격과 다른 글은 사전 동의 없이 삭제 될 수 있습니다.</h5><hr/>
-	<table class=reviewList>
+	<div id="reviewList">
+	<table>
+		<tr>
+		<h5 class=msg style="left:0%">PRODUCT REVIEW</br>
+		상품 사용 후기를 남기는 공간입니다.해당 게시판의 성격과 다른 글은 사전 동의 없이 삭제 될 수 있습니다.</h5><hr/>
+		</tr>
+		<tr></tr>
 		<tr>
 			<th class=reviewId>글 번호</th>
 			<th class=reviewTitle>제목</th>
@@ -85,6 +87,6 @@
 	<br/>
 	<hr/>
 	<button class=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button>
-
+	</div>
 </body>
 </html>
