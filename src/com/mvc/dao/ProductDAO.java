@@ -103,6 +103,7 @@ public class ProductDAO {
 				dto.setPrd_Content(rs.getString("prd_content"));
 				dto.setCateFirst_Id(rs.getString("cateF_id"));
 				dto.setCateSecond_Id(rs.getString("cateS_id"));
+				dto.setPrd_Count(rs.getInt("prd_count"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

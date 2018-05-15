@@ -33,7 +33,7 @@
 			.fly{display:block; right:-90px; top:100px; position:absolute; z-index:9999; width:80px; background-color:#ffffff;height: 200px;border:1px #ccc solid;}
 	</style>
 	<body>
-	<jsp:include page="../main/navi.jsp"></jsp:include>
+	<jsp:include page="navi.jsp"></jsp:include>
 		<div id="wrapper">
 			<ul class="myPage">
 	            <li>
