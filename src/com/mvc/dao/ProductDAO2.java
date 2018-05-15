@@ -41,16 +41,17 @@ public class ProductDAO2 {
 
 	public ProductDTO2 buy(String prd_id) {
 		ProductDTO2 dto2 = null;
-		String sql = "";
+		String sql = "SELECT * FROM Product WHERE prd_id = ?";
 		try {
 			ps  = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(prd_id));
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				dto2 = new ProductDTO2();
 				dto2.setPrd_Id(rs.getInt("prd_id"));
-				dto2.setUser_Name(rs.getString("user_name"));
-				dto2.setUser_Phone(rs.getString("user_phone"));
-				dto2.setUser_Addr(rs.getString("user_addr"));
+				//dto2.setUser_Name(rs.getString("user_name"));
+				//dto2.setUser_Phone(rs.getString("user_phone"));
+				//dto2.setUser_Addr(rs.getString("user_addr"));
 				dto2.setPrd_Name(rs.getString("prd_name"));
 				dto2.setPrd_Price(rs.getInt("prd_price"));
 				dto2.setPrd_Count(rs.getInt("prd_count"));

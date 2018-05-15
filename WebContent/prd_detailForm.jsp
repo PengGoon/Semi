@@ -69,7 +69,7 @@ body {
 				</tr>
 				<tr>
 					<th colspan="2">
-						<button id="purchase">바로결제</button> 
+						<button onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}'">바로결제</button>
 						<button id="cart">장바구니 추가</button> 
 						<button id="restock">재입고 알림</button>
 					</th>
