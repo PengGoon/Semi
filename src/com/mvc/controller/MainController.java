@@ -16,11 +16,11 @@ import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
-	"/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
+	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
-	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView" ,"admin_useDel"})
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -106,6 +106,13 @@ public class MainController extends HttpServlet {
 						System.out.println("상품 리스트 호출 요청");
 						service = new PhotoService(request, response);
 						service.list();
+						break;
+						
+					// 상품 검색	
+					case "/prd_search":
+						System.out.println("상품 리스트 호출 요청");
+						product = new ProductService();
+						product.prdSearch(request, response);
 						break;
 					
 					// 상품 상세보기
@@ -271,9 +278,10 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/admin_useDel":
-						System.out.println("관리자페이지-회원삭제");
+						System.out.println("관리자 메인 페이지");
 						admin = new AdminService();
 						admin.delete(request, response);
+						break;
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
