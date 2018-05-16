@@ -296,7 +296,7 @@
 						obj.success = function(data) {
 							if (data.success == 1) {
 								alert("회원 가입이 정상 처리 되었습니다.");
-								location.href = "index.html";
+								location.href = "index.jsp";
 							} else {
 								alert("회원 가입에 실패 했습니다.");
 							}

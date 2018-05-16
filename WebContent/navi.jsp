@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -102,12 +103,23 @@
 		#cateS{
 			position: 
 		}
+		
+		.loginStat{
+			position: absolute;
+			left:55%;
+		}
 	</style>
 	<body>
+	<div class="loginStat">
+		<h4>안녕하세요 <%=request.getSession().getAttribute("loginUserId") %> 님</h4>
+		<button id="logout">로그아웃</button>
+		<button onclick="location.href='userLogin.jsp' ">로그인</button>
+		<a id="reviewWriteForm" href="reviewWriteForm.jsp">후기작성</a>
+	</div>
 	<div class="menuCenter">
 		<div class="rightMenu">
 			<ul>
-				<a href="userLogin.jsp"><li id=flip">로그인</li></a>
+				<li><input type="button" id="loginst" value="로그인" onclick="location.href='userLogin.jsp'"/></li>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="#"><li>공지사항</li></a>
 			</ul>
@@ -172,6 +184,15 @@
 	</body>
 	<script>
 	$(document).ready(function() {
+		var loginUserId = "${sessionScope.loginUserId}";
+		console.log(loginUserId);
+		if(loginUserId == null){
+			$("#loginst").val("로그인");
+			$("#loginst").attr("onclick","location.href='userLogin.jsp'");
+		}else{
+			$("#loginst").val("로그아웃");
+		}
+		
 		var jbOffset = $('.menu').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
@@ -195,7 +216,28 @@
              
             },500)
            
-           }); 
+           });
+	 
+	// 로그아웃 버튼 클릭시
+	$("#logout").click(function logout(){
+		$.ajax({
+			type : "post",
+			url : "./logout", //경로 이동 
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				if(data.success){
+					alert("로그아웃에 성공 했습니다.");
+					location.href = "index.jsp";
+				}else{
+					alert("로그아웃에 실패  했습니다.");
+				}
+			},
+			error:function(err){
+				console.log(err)
+			}
+		});
+	}); 
 		
 	</script>
 </html>

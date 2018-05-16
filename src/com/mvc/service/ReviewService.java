@@ -2,12 +2,15 @@ package com.mvc.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.ReviewDAO;
 import com.mvc.dto.ReviewDTO;
 
@@ -37,25 +40,29 @@ public class ReviewService {
 	}
 
 	//글쓰기 페이지
-	public void write(HttpServletRequest request, HttpServletResponse response) throws IOException {		
-		//1.PhotoUpload 에게 request 를 전달
-		ReviewUpload upload = new ReviewUpload(request);
-		//2. regist 메서드를 사용해서 사진 등록
-		//3. 제목,내용,글쓴이,파일명을 받는다.BoardDTO
-		ReviewDTO dto = upload.regist();
-		System.out.println(dto.getReview_content());
-		System.out.println(dto.getNewFileName());
-		//4. DAO 에 dto 를 전달하여 DB 에 추가해 달라고 요청
+	public void write(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		// 1. 파라메터 추출
+		String user_Id = request.getParameter("user_Id");
+		String review_title = request.getParameter("review_title");
+		String review_content = request.getParameter("review_content");
+		System.out.println(user_Id+"/"+review_title+"/"+review_content);
+		
+		// 2. DAO 요청
 		ReviewDAO dao = new ReviewDAO();
-		int pk = dao.write(dto);		
-		//5. 결과에 따라 페이지 이동	
-		//실패(후기 작성 폼)
-		String page = "reviewWriteForm.jsp";
-		if(pk > 0) {
-			//성공(상세보기) = 글쓰기 한 후 review_id 반환
-			page = "reviewDetail?review_id="+pk;
-		}		
-		response.sendRedirect(page);
+		
+		// 3. 결과값 JSON 변환
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		int review_id = dao.write(user_Id,review_title,review_content);
+		//세션에서 review_id를  string 으로 불러 내기 때문에 넣을 때 문자 열로 형변환 해야 한다. 
+		request.getSession().setAttribute("review_id",Integer.toString(review_id));
+		map.put("success", review_id);
+		
+		String obj = json.toJson(map);
+		System.out.println(obj);
+		// 4. response 로 변환
+		response.getWriter().println(obj);
 	}
 
 	//글 삭제

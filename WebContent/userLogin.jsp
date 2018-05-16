@@ -70,7 +70,7 @@ hr {
 	<div class=loginTitle>
 		<h1>로그인</h1>
 		<h4 style="color: black">
-			개인 <input type="radio" name="sel" value="user" />
+			개인 <input type="radio" name="sel" value="user" checked="checked"/>
 			<!-- userJoin.jsp(개인)로 이동  -->
 			&nbsp;&nbsp;&nbsp; 판매자 <input type="radio" name="sel" value="seller" />
 			<!--join.jsp(판매자) 로 이동 -->

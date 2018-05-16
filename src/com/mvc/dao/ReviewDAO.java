@@ -129,45 +129,32 @@ public class ReviewDAO {
 		}		
 	}
 
-	//글쓰기
-	public int write(ReviewDTO dto) {
-		String sql="INSERT INTO review(review_id,user_id,review_title,review_content) "
-				+"VALUES(seq_review.NEXTVAL,?,?,?)";
-		long fk = 0;
+	// 글쓰기
+	public Integer write(String user_Id, String review_title, String review_content) {
+		System.out.println("공지사항 작성");
+		System.out.println(user_Id);
+		int success =0;
+		// 상품번호 4번에대해서만 들어감
+		String sql = "INSERT INTO review(review_id, prd_id, user_id, review_title, review_content, "
+				+ "review_date,newfilename) "
+				
+				+"VALUES(review_seq.NEXTVAL, 19, ?, ?, ?, "
+				+ "SYSDATE, 12345)";
 		try {
-			//ojdbc 8  버전 이상에서 가능
-			//2번째 인자 값은 값을 넣고 반환 해 줄 컬럼
-			//new String[]{"반환받을 컬럼명"} 또는 new int[]{반환받을 컬럼번호}
-			ps = conn.prepareStatement(sql, new String[] {"idx"});//bbs 테이블에 데이터 추가
-			ps.setString(1, dto.getUser_id());
-			ps.setString(2, dto.getReview_title());
-			ps.setString(3, dto.getReview_content());			
+			ps = conn.prepareStatement(sql, new String[] {"review_id"});
+			ps.setString(1, user_Id);
+			ps.setString(2, review_title);
+			ps.setString(3, review_content);
 			ps.executeUpdate();
-			rs = ps.getGeneratedKeys();//이 과정으로 원하는 컬럼을 받아 올 수 있다.
-			String fileName = dto.getNewFileName();
-			System.out.println("fileName : "+fileName);
+			rs = ps.getGeneratedKeys();
 			if(rs.next()) {
-				fk = rs.getLong(1);//넣은 값의 idx 받아오기
-				if(fileName!=null) {
-					//idx 를 이용해서 photo 테이블에 데이터 넣기
-					/*
-					 *  2018 / 05/ 09 기준 photo 테이블 미존재
-					 */
-					sql = "INSERT INTO photo (fileIdx,idx,newFileName) "
-							+"VALUES(photo_seq.NEXTVAL,?,?)";
-					ps = conn.prepareStatement(sql);
-					ps.setLong(1, fk);
-					ps.setString(2, fileName);
-					ps.executeUpdate();
-				}
-			}			
+				success = (int)rs.getLong(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
-		}finally {
-			resClose();
 		}
-		return (int) fk;//idx 값 반환
+		return success;
 	}
 
 	//글 삭제 메서드
@@ -228,6 +215,9 @@ public class ReviewDAO {
 			resClose();
 		}		
 	}
+
+	
+	
 }
 	
 
