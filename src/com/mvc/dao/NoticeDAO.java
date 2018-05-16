@@ -29,7 +29,7 @@ public class NoticeDAO {
 	}
 
 	//공지사항 작성 
-	public Integer write(String title,String content,String admin_id) {
+	public Integer write(String admin_id,String title,String content) {
 		System.out.println("공지사항 작성");
 		System.out.println(admin_id);
 		int success =0;
