@@ -94,26 +94,24 @@ public class NoticeService {
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		//인덱스 번호와 로그인 아이디를 세션으로 가져와서 확인하는 방법
-
-		String idx =(String) request.getSession().getAttribute("notice_id");
-		String loginId = (String)request.getSession().getAttribute("loginId");
-		System.out.println(idx);
-		System.out.println(idx+"/"+loginId);
-		//로그인 유무를 확인 
-		boolean login = false;
-		
-		Gson json = new Gson();
-		HashMap< String, Object> map = new HashMap<>();
-		if(loginId != null) {
-			NoticeDAO dao = new NoticeDAO();
-			NoticeDTO dto = dao.detailView(idx);
-			login = true;
-			map.put("dto", dto);
-		}
-		map.put("login", login);
-		String obj  = json.toJson(map);
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println(obj);
+				String idx =(String) request.getSession().getAttribute("notice_id");
+				String loginId = (String)request.getSession().getAttribute("loginId");
+				System.out.println(idx+"/"+loginId);
+				//로그인 유무를 확인 
+				boolean login = false;
+				
+				Gson json = new Gson();
+				HashMap< String, Object> map = new HashMap<>();
+				if(loginId != null) {
+					NoticeDAO dao = new NoticeDAO();
+					NoticeDTO dto = dao.detailView(idx);
+					login = true;
+					map.put("dto", dto);
+				}
+				map.put("login", login);
+				String obj  = json.toJson(map);
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().println(obj);
 	}
 
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -128,14 +126,14 @@ public class NoticeService {
 		
 		request.setCharacterEncoding("UTF-8");
 		//수정할 부분 불러오기 
-		String idx = request.getParameter("notice_id");
-		String title = request.getParameter("notice_title");
-		String content = request.getParameter("notice_content");
+		String notice_id = request.getParameter("notice_id");
+		String notice_title = request.getParameter("notice_title");
+		String notice_content = request.getParameter("notice_content");
 		NoticeDAO dao = new NoticeDAO();
 		//gson 객체 사용
 		Gson json = new Gson();
 		HashMap<String, Integer> map = new HashMap<>();
-		map.put("success", dao.update(title,content,idx));
+		map.put("success", dao.update(notice_id,notice_title,notice_content));
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
 		

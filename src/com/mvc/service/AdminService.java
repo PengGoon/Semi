@@ -59,5 +59,22 @@ public class AdminService {
 		
 	}
 
+	public void loginCheck(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String loginId =(String) request.getSession().getAttribute("loginId");
+		boolean login = false;
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		//아이디가 아닐경우 
+		if(loginId != null) {
+			login = true;
+			map.put("loginId", loginId);
+		}
+		map.put("login", login);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		
+	}
+
 
 }

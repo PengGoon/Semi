@@ -163,14 +163,14 @@ public class NoticeDAO {
 			
 		}
 
-		public Integer update(String title, String content, String idx) {
+		public Integer update(String notice_id, String notice_title, String notice_content) {
 			int success = 0;
 			String sql = "UPDATE Notice SET notice_title=?, notice_content=? WHERE notice_id=?";
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, title);
-				ps.setString(2, content);
-				ps.setInt(3, Integer.parseInt(idx));
+				ps.setString(1, notice_title);
+				ps.setString(2, notice_content);
+				ps.setInt(3, Integer.parseInt(notice_id));
 				success = ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

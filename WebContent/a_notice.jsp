@@ -155,7 +155,6 @@
 			if(data.login){
 				//리스트 보여주기
 				listPrint(data.list);
-				console.log("asd");
 			}else{
 				alert("로그인이 필요한 서비스 입니다.");
 				location.href="a_login.jsp";
@@ -180,7 +179,7 @@
 		$("#listTable").append(content);
 	}
 	$("#del").click(function(){
-		obj.url="./delete";
+		obj.url="./notice_delete";
 		var checked = [];
 		//$(elem).each() == elem.forEach()
 		$("input[type='checkbox']:checked").each(function(){

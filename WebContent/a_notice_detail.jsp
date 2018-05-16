@@ -77,6 +77,7 @@
 		}
 		#write-form textarea {
 		    width: 90%;
+		    border-width: 0;
 		}
 		table{
     		border-top : 1px solid black;
@@ -125,12 +126,12 @@
 			</tr>
 			<tr>
 			    <td>제목</td>
-			    <td><input class="edit"type="text" name="title" id="title"style="width: 90%;"  readonly/></td>
+			    <td><input class="edit"type="text" name="notice_title" id="notice_title"style="width: 90%;"  readonly/></td>
 			</tr>
 			<tr>
 				<td>내용</td>
 			    <td>
-			        <textarea class="edit"  name="content" id="content" rows="15" cols="120" readonly></textarea>
+			        <textarea class="edit"  name="notice_content" id="notice_content" rows="15" cols="120" readonly></textarea>
 			    </td>
 			</tr>
 		</table>
@@ -161,11 +162,9 @@
 	$(document).ready(function(){
 		console.log("상세보기");
 		obj.url="./notice_detailView";
-		console.log("url 넘어감 ");
 		obj.success = function(data){
 			console.log(data);
 			if(data.login){
-				console.log(data.login);
 				printInfo(data.dto);
 			}else{
 				alert("로그인이 필요한 서비스 입니다.");
@@ -177,10 +176,10 @@
 	
 	function printInfo(info){
 		console.log(info);
-		idx = info.idx;
+		idx = info.notice_id;
 		$("#admin_id").val(info.admin_id);
-		$("#title").val(info.notice_title);
-		$("#content").val(info.notice_content);
+		$("#notice_title").val(info.notice_title);
+		$("#notice_content").val(info.notice_content);
 		
 	}
 	
@@ -191,23 +190,22 @@
 		$(".edit").attr("readonly",false);
 		$("#updateForm").css("display","none");
 	});
+	
 	//수정 후 저장 버튼 클릭시 
 	$("#save").click(function(){
 		obj.url="./notice_update";
 		obj.data={
-				"admin_id":idx,
-				"notice_title":	$("#title").val(),
-				"notice_content": $("#content").val()
-				
+				"notice_id":idx,
+				"notice_title":	$("#notice_title").val(),
+				"notice_content": $("#notice_content").val()
 		};
-		console.log(idx + "/" + $("#title").val());
 		obj.success = function(data){
 			console.log(data);
 			//성공: 실패: 상세보기 페이지
-			//메시지
 			if(data.success==1){
 				alert("수정이 성공 했습니다.");
-				location.href="detail.html";
+				location.href="a_notice_detail.jsp";
+				//location.href="notice_updateView?notice_id ="+$("#notice_id").val;
 			}else{
 				alert("수정이 실패 했습니다.");
 			}
@@ -223,7 +221,4 @@
 	}
 	
 	</script>
-</html>
-			
-			
-	
+</html>		

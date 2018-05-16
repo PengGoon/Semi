@@ -19,8 +19,8 @@ import com.mvc.service.UserService;
 	"/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
-	"/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
-	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_updateView","/notice_detailView" })
+	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView" })
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -239,6 +239,12 @@ public class MainController extends HttpServlet {
 						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
+						
+					case "/admin_loginCheck":
+						System.out.println("관리자 로그인");
+						admin = new AdminService();
+						admin.loginCheck(request, response);
+						break;
 	
 					case "/admin_login":
 						System.out.println("관리자 로그인");
@@ -310,10 +316,7 @@ public class MainController extends HttpServlet {
 						notice.update(request,response);
 						break;
 						
-					case "/notice_updateView":
-						System.out.println("공지사항 수정 상제 요청");
-						notice = new NoticeService();
-						break;
+
 						
 
 

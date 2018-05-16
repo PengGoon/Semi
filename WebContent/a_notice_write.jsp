@@ -119,7 +119,7 @@
 		<table id="write-form" >
 			<tr>
 				<td>작성자</td>
-				<td><%=request.getSession().getAttribute("loginId") %></td>
+				<td><input type="text" name="admin_id" id="admin_id" readonly/></td>
 			</tr>
 			<tr>
 			    <td>제목</td>
@@ -154,11 +154,26 @@
 	obj.dataType ="JSON";
 	obj.error = function(e){console.log(e)};
 	
+	//로그인체크 메서드
+	$(document).ready(function(){
+		obj.url="./admin_loginCheck";
+		obj.success = function(data){
+			if(data.login){
+				$("#admin_id").val(data.loginId);
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href ="a_login.jsp";	
+			}
+	}
+		ajaxCall(obj);
+	});
+	
 	// 글쓴 후 저장 버튼 클릭시 
 	$("#save").click(function(){
 		obj.url="./notice_write";
 		obj.data ={};
 		//제목, 내용만 작성 
+		obj.data.admin_id = $("#admin_id").val();
 		obj.data.title = $("#title").val();
 		obj.data.content = $("#content").val();
 		obj.success = function(data){
@@ -181,6 +196,3 @@
 	
 	</script>
 </html>
-			
-			
-	
