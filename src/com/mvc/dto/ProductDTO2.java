@@ -2,9 +2,6 @@ package com.mvc.dto;
 
 public class ProductDTO2 {
 	private int prd_Id;
-	private String user_Name;
-	private String user_Phone;
-	private String user_Addr;
 	private String prd_Name;
 	private int prd_Price;
 	private int prd_Count;
@@ -14,24 +11,6 @@ public class ProductDTO2 {
 	}
 	public void setPrd_Id(int prd_Id) {
 		this.prd_Id = prd_Id;
-	}
-	public String getUser_Name() {
-		return user_Name;
-	}
-	public void setUser_Name(String user_Name) {
-		this.user_Name = user_Name;
-	}
-	public String getUser_Phone() {
-		return user_Phone;
-	}
-	public void setUser_Phone(String user_Phone) {
-		this.user_Phone = user_Phone;
-	}
-	public String getUser_Addr() {
-		return user_Addr;
-	}
-	public void setUser_Addr(String user_Addr) {
-		this.user_Addr = user_Addr;
 	}
 	public String getPrd_Name() {
 		return prd_Name;

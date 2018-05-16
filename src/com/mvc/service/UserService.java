@@ -97,7 +97,8 @@ public class UserService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	// 구매 페이지에서 현재 로그인 중인 계정의 정보 뽑기
 	public void buyuser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		UserDAO dao3 = new UserDAO();
 		System.out.println(request.getParameter("id"));
@@ -107,7 +108,7 @@ public class UserService {
 		map.put("dto3", dto3);
 		//map.put("dto2",dto2);
 		String obj = gson.toJson(map);
-		response.setContentType("text/html; UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
 		
 	}

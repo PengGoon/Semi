@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td></td>
+					<td id="addr"></td>
 				</tr>
 			</table><hr/>
 			<table>
@@ -144,8 +144,9 @@
 			},
 			dataType : "json",
 			success : function(data) {//인자 값은 서버에서 주는 메시지
-				console.log(data);
 			$("#name").text(data.dto3.user_Name);
+			$("#phone").text(data.dto3.user_Phone);
+			$("#addr").text(data.dto3.user_Addr);
 			//html,text
 			},
 			error : function(err) {//인자 값은 서버에서 주는 에러 메시지
