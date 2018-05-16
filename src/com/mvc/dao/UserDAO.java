@@ -129,18 +129,16 @@ public class UserDAO {
 	//관리자 페이지 -> 회원 삭제 
 	public int delete(String[] delList) {
 		int delCnt = 0;
-		String sql = "DELETE FROM UserDB user_Id=?";
+		String sql = "DELETE FROM UserDB WHERE user_Id=?";
 		try {
 			for(int i=0; i<delList.length;i++) {
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, Integer.parseInt(delList[i]));
+				ps.setString(1, delList[i]);
 				delCnt += ps.executeUpdate();
 				ps.close();
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0;
 		}finally {
 		resClose();
 		}

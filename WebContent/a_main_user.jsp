@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -136,7 +134,7 @@
 				</tr>
 			</table>
 			<br/>
-			<input id="mem_del" type="button" value="삭제" onclick="memdel()"/>
+			<input id="mem_del" type="button" value="삭제" />
 		</div>
 	</body>
 	<script>
@@ -177,7 +175,7 @@
 		var content ="";
 		list.forEach(function(item,idx){
 			content += "<tr>";
-			content += "<td><input type='checkbox' value='"+item.idx+"'/></td>"; 
+			content += "<td><input type='checkbox' value='"+item.user_Id+"'/></td>"; 
 			content += "<td>"+item.user_Id+"</td>"; 
 			content += "<td>" +item.user_Addr+"</td>"; 
 			content += "<td>" +item.user_Phone+"</td>"; 
@@ -188,6 +186,7 @@
 		$("#listTable").append(content);
 	}
 	
+	//회원삭제 (선택 삭제)
 	 $("#mem_del").click(function(){
 		obj.url="./admin_useDel";
 		var checked = [];
@@ -197,8 +196,10 @@
 		});
 		console.log(checked);
 		obj.data={delList:checked};
+		console.log(obj.data);
 		obj.success = function(data){
 			if(data.success){
+				
 				confirm ("선택한 회원을 삭제 하시겠습니까?");
 				if(confirm ==true){
 					alert("삭제 되었습니다.")

@@ -278,7 +278,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/admin_useDel":
-						System.out.println("관리자 메인 페이지");
+						System.out.println("관리자페이지 : 회원삭제");
 						admin = new AdminService();
 						admin.delete(request, response);
 						break;

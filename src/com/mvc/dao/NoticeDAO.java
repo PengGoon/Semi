@@ -98,7 +98,7 @@ public class NoticeDAO {
 		//공지사항 삭제 
 		public int del(String[] delList) {
 			int delCnt = 0;
-			String sql = "DELETE FROM Notice notice_id=?";
+			String sql = "DELETE FROM Notice WHERE notice_id=?";
 			try {
 				for(int i=0; i<delList.length;i++) {
 					ps = conn.prepareStatement(sql);

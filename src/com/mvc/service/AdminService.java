@@ -97,9 +97,11 @@ public class AdminService {
 		
 	}
 
+	//관리자 페이지 : 회원삭제 메서드 
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String[] delList = request.getParameterValues("delList[]"); 
-			
+		System.out.println(delList.length);
+			//회원삭제를 해야함으로 회원 db 사용
 			UserDAO dao = new UserDAO();
 			boolean success = false;
 			
