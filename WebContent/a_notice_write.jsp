@@ -170,6 +170,7 @@
 	
 	// 글쓴 후 저장 버튼 클릭시 
 	$("#save").click(function(){
+		console.log($("#admin_id").val());
 		obj.url="./notice_write";
 		obj.data ={};
 		//제목, 내용만 작성 
@@ -193,6 +194,6 @@
 		$.ajax(param);
 
 	}
-	
+
 	</script>
 </html>

@@ -25,7 +25,8 @@ public class NoticeService {
 		// 1. 파라메터 추출
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		System.out.println(title+"/"+content);
+		String admin_id = request.getParameter("admin_id");
+		System.out.println(title+"/"+content+"/"+admin_id);
 		
 		// 2. DAO 요청
 		NoticeDAO dao = new NoticeDAO();
@@ -33,7 +34,7 @@ public class NoticeService {
 		// 3. 결과값 JSON 변환
 		Gson json = new Gson();
 		HashMap<String, Integer> map = new HashMap<>();
-		int idx = dao.write(title,content);
+		int idx = dao.write(admin_id,title,content);
 		//세션에서 idx를  string 으로 불러 내기 때문에 넣을 때 문자 열로 형변환 해야 한다. 
 		request.getSession().setAttribute("notice_id",Integer.toString(idx));
 		map.put("success", idx);

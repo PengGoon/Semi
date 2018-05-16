@@ -29,21 +29,17 @@ public class NoticeDAO {
 	}
 
 	//공지사항 작성 
-	public Integer write(String title,String content) {
+	public Integer write(String title,String content,String admin_id) {
 		System.out.println("공지사항 작성");
+		System.out.println(admin_id);
 		int success =0;
-/*	    notice_id NUMBER primary key,
-	    admin_id VARCHAR2(50),
-	    notice_title VARCHAR2(100) not null,
-	    notice_content NVARCHAR2(200) not null,
-	    notice_date DATE DEFAULT SYSDATE,
-	    bHit NUMBER(4) DEFAULT 0,*/
-		String sql = "INSERT INTO Notice (notice_id,notice_title,notice_content)"
-				+ "VALUES(notice_seq.NEXTVAL,?,?)";
+		String sql = "INSERT INTO Notice (notice_id,admin_id,notice_title,notice_content)"
+				+ "VALUES(notice_seq.NEXTVAL,?,?,?)";
 		try {
 			ps = conn.prepareStatement(sql, new String[] {"notice_id"});
-			ps.setString(1, title);
-			ps.setString(2, content);
+			ps.setString(1, admin_id);
+			ps.setString(2, title);
+			ps.setString(3, content);
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			if(rs.next()) {
