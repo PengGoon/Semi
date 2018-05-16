@@ -79,6 +79,7 @@
 		<tr>
 			<th class=reviewId>글 번호</th>
 			<th class=reviewTitle>제목</th>
+			<th class=prdId>상품명</th>
 			<th class=userId>작성자</th>
 			<th class=reviewdate>작성일</th>
 			<th class=bHit>조회수</th>
@@ -89,6 +90,7 @@
 				<td class=reviewId>${review.review_id}</td>
 				<td class=reviewTitle><a href="detail?id=${review.review_id}">${review.review_title}</a></td>
 				<td class=userId>${review.user_id}</td>
+				<td class=prdId>${info.prd_Name}</td>
 				<td class=reviewdate>${review.review_date}</td>
 				<td class=bHit>${review.bHit}</td>
 				<%-- <td><a href="del?id=${review.review_id }">삭제</a></td>  내 후기 보기 에서만 표시--%>
