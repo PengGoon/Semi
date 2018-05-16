@@ -126,24 +126,13 @@
 
 		
 		<div class ="member">
-			<table>
+			<table id="listTable">
 				<tr>
 					<th>체크</th>
-					<th>번호</th>
-					<th>판매자아이디</th>
-					<th>판매자주소</th>
-					<th>핸드폰 번호</th>
+					<th>회원 아이디</th>
+					<th>회원 주소</th>
+					<th>회원 번호</th>
 					<th>가입일</th>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox"/>
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
 				</tr>
 			</table>
 			<br/>
@@ -162,13 +151,70 @@
 		});
 	});
 	
-	function memdel(){
-        var con = confirm("정말로 삭제 하시겠습니까?");
-        //"확인" 버튼을 눌렀을 경우
-        if(con ==true){
-            //삭제 처리(요청)
-            alert("삭제가 완료 되었습니다.");
-        }
+	//리스트 호출(ajax)
+	var obj = {};
+	obj.error = function(e){console.log(e)};
+	obj.type="post";
+	obj.dataType="json";
+	
+	
+	$(document).ready(function(){
+		obj.url="./admin_main";
+		obj.success = function(data){
+			console.log(data);
+			if(data.login){
+				//리스트 보여주기
+				listPrint(data.list);
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="a_login.jsp";
+			}
+		}
+		ajaxCall(obj);
+	});
+	function listPrint(list){
+		console.log(list);
+		var content ="";
+		list.forEach(function(item,idx){
+			content += "<tr>";
+			content += "<td><input type='checkbox' value='"+item.idx+"'/></td>"; 
+			content += "<td>"+item.user_Id+"</td>"; 
+			content += "<td>" +item.user_Addr+"</td>"; 
+			content += "<td>" +item.user_Phone+"</td>"; 
+			content += "<td>" +item.user_Date+"</td>"; 
+			content += "</tr>";
+			console.log(item);
+		});
+		$("#listTable").append(content);
+	}
+	
+	/* $("#mem_del").click(function(){
+		obj.url="./notice_delete";
+		var checked = [];
+		//$(elem).each() == elem.forEach()
+		$("input[type='checkbox']:checked").each(function(){
+			checked.push($(this).val());
+		});
+		console.log(checked);
+		obj.data={delList:checked};
+		obj.success = function(data){
+			if(data.success){
+				alert("삭제에 성공 했습니다.");
+			}else{
+				alert("삭제에 실패 했습니다.");
+			}
+			location.href = "a_main_user.jsp";
+			
+		}
+		console.log(obj);
+	    ajaxCall(obj);
+	}); */
+	
+	
+	
+	function ajaxCall(param){
+		console.log(param);
+		$.ajax(param);
 	}
 	
 	

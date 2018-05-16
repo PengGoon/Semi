@@ -1,18 +1,31 @@
 package com.mvc.dto;
 
+import java.sql.Date;
+
 public class UserDTO {
-	
 	private String user_Id;
 	private String user_Pw;
 	private String user_Name;
 	private String user_Addr;
 	private String user_Email;
 	private String user_Phone;
+	private Date user_Date;
+	
 	// user_Date는 sysdate로 처리하기때문에 getter/ setter 불필요
 	
+
 	public String getUser_Id() {
 		return user_Id;
 	}
+
+	public Date getUser_date() {
+		return user_Date;
+	}
+
+	public void setUser_date(Date user_Date) {
+		this.user_Date = user_Date;
+	}
+
 	public void setUser_Id(String user_Id) {
 		this.user_Id = user_Id;
 	}

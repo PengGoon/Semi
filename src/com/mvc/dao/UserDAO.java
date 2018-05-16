@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -98,6 +99,31 @@ public class UserDAO {
 			resClose();
 		}
 		return success;
+	}
+
+	//회원 리스트 
+	public ArrayList<UserDTO> list() {
+		ArrayList<UserDTO> list = new ArrayList<>();
+		String sql = "SELECT * FROM UserDB ORDER BY user_Date ASC";
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				UserDTO dto = new UserDTO();
+				//리스트에 출력할 값 : 아이디, 주소, 전화번호, 가입날짜 
+				dto.setUser_Id(rs.getString("user_Id"));
+				dto.setUser_Addr(rs.getString("user_Addr"));
+				dto.setUser_Phone(rs.getString("user_Phone"));
+				dto.setUser_date(rs.getDate("user_Date"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			resClose();
+		}
+		return list;
 	}
 	
 	
