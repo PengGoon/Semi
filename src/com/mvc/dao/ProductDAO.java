@@ -144,26 +144,6 @@ public class ProductDAO {
 		return dto;		
 	}
 
-	public Integer update(String prd_Id, String prd_Name, String prd_Price, String prd_From, String prd_Count, String prd_Content) {
-		int success = 0;
-		String sql="UPDATE product SET prd_Name=?,prd_Price=?,prd_From=?,prd_Count=?,prd_Content=? WHERE prd_id = ?";
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, prd_Name);
-			ps.setString(2, prd_Price);
-			ps.setString(3, prd_From);
-			ps.setString(4, prd_Count);
-			ps.setString(5, prd_Content);
-			ps.setInt(6, Integer.parseInt(prd_Id));
-			success = ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			resClose();
-		}
-		return success;
-	}
-
 	public ArrayList<ProductDTO> sellprdlist(String sell_id) {
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		String sql = "SELECT * FROM product WHERE sell_id=?";
@@ -206,5 +186,109 @@ public class ProductDAO {
 		}
 		return delCnt;
 	}
+
+	public ArrayList<ProductDTO> prdSearch(String prdSearch) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String[] fileName = null;
+		try {
+			//쿼리 와 ps 준비
+			String sql = "SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?";
+			ps = conn.prepareStatement(sql);//쿼리 실행
+			ps.setString(1, "%"+prdSearch+"%");
+			ps.setString(2, "%"+prdSearch+"%");
+			ps.setString(3, "%"+prdSearch+"%");
+			rs = ps.executeQuery();
+			while(rs.next()) {//rs 에서 값 가져와 dto 담기
+				ProductDTO dto = new ProductDTO();	
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				fileName = fileNameCall(rs.getInt("prd_id"));
+				if(dto.getNewFileName1() != null) {
+					dto.setNewFileName1(fileName[0]);
+				}
+				System.out.println(dto.getPrd_Name());
+				System.out.println(dto.getNewFileName1());
+				list.add(dto);//dto 를 list 에 담기
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();//자원 반납
+		}	
+		return list;
+	}
 	
+	//게시글에 해당하는 파일명 추출
+	public String[] fileNameCall(int prd_id) {		
+		ProductDTO dto = null;
+		String sql="SELECT * From productimage WHERE prd_id = ?";
+		String[] fileName = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, prd_id);
+			ResultSet rs = ps.executeQuery();
+			fileName[0] = rs.next() ? rs.getString("newFileName1") : null;
+			fileName[1] = rs.next() ? rs.getString("newFileName2") : null;		
+			fileName[2] = rs.next() ? rs.getString("newFileName3") : null;		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return fileName;
+	}
+
+	public Integer update(ProductDTO dto) {
+		int success = 0;
+		/*
+		String sql="UPDATE product SET prd_Name=?,prd_Price=?,prd_From=?,prd_Count=?,prd_Content=? WHERE prd_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getPrd_Name());
+			ps.setString(2, dto.getPrd_Price());
+			ps.setString(3, dto.getPrd_From());
+			ps.setString(4, dto.getPrd_Count());
+			ps.setString(5, dto.getPrd_Content());
+			ps.setInt(6, Integer.parseInt(prd_Id()));
+			success = ps.executeUpdate();
+			if(rs.next()) {
+				sql = "UPDATE ProductImage SET newFileName1=?,newFileName2=?,newFileName3=? WHERE prd_id = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, photo1);
+				ps.setString(2, photo2);
+				ps.setString(3, photo3);
+				ps.setInt(4, Integer.parseInt(prd_Id));
+				ps.executeUpdate();
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		*/
+		return success;
+	}
+
+	public void fileNameUpdate(int prd_Id, String newFileName1, String[] oldFileName) {
+		/*
+		String sql="";		
+		try {
+			if(oldFileName != null) {//기존에 올린 파일이 있는 경우(UPDATE)
+				sql="UPDATE photo SET newFileName = ? WHERE idx = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1,newFileName);
+				ps.setInt(2, idx);
+			}else {//기존 파일이 없는 경우(INSERT)
+				sql="INSERT INTO photo VALUES(photo_seq.NEXTVAL,?,?,?)";
+				ps = conn.prepareStatement(sql);			
+				ps.setInt(1,idx);
+				ps.setString(2, "no file");
+				ps.setString(3, newFileName);
+			}
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}		
+		*/
+	}
 }

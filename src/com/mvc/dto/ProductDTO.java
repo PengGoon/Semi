@@ -3,7 +3,6 @@ package com.mvc.dto;
 import java.sql.Date;
 
 public class ProductDTO {
-	
 	private int prd_Id;
 	private String sell_Id;
 	private String cateFirst_Id;

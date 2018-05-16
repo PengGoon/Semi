@@ -60,10 +60,10 @@ public class ProductUpload {
 			dto.setPrd_Content(multi.getParameter("prd_content"));
 			
 			//수정할 때 필요(idx 값이 넘어올 경우만 작동)
-			/*String idx = multi.getParameter("idx");
-			if(idx != null) {
-				dto.setIdx(Integer.parseInt(idx));
-			}*/
+			String prd_Id = multi.getParameter("prd_Id");
+			if(prd_Id != null) {
+				dto.setPrd_Id(Integer.parseInt(prd_Id));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}			

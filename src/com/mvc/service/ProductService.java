@@ -58,24 +58,32 @@ public class ProductService {
 	}
 
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		request.setCharacterEncoding("UTF-8");
-		String prd_Id = request.getParameter("prd_Id");
-		String prd_Name = request.getParameter("prd_Name");
-		String prd_Price = request.getParameter("prd_Price");
-		String prd_From = request.getParameter("prd_From");
-		String prd_Count = request.getParameter("prd_Count");
-		String prd_Content = request.getParameter("prd_Content");
+		/*ProductUpload upload = new ProductUpload(request);
+		ProductDTO dto = upload.regist();
 		ProductDAO dao = new ProductDAO();
 		Gson json = new Gson();
 		HashMap<String, Integer> map = new HashMap<>();
-		map.put("success", dao.update(prd_Id,prd_Name,prd_Price,prd_From,prd_Count,prd_Content));
+
+		String[] oldFileName = null;
+		if(dto.getNewFileName1() != null) {//새로 올리는 파일이 있을경우
+			//올린파일이 있다는것은 기존파일을 지워야 하는 것을 의미하므로 파일명을 알아야한다.
+			//oldFileName = dao.fileNameCall(dto.getPrd_Id());
+			oldFileName = dao.fileNameCall(dto.getPrd_Id());
+			System.out.println(oldFileName[0]);
+			//파일명을 DB에서 수정
+			dao.fileNameUpdate(dto.getPrd_Id(),dto.getNewFileName1(),oldFileName[0]);
+			//기존 파일을 폴더에서 삭제
+			upload.del(oldFileName);
+		}
+		
+		map.put("success", dao.update(dto));
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
+	*/
 	}
 
 	public void updateView(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void sellerdetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -130,6 +138,17 @@ public class ProductService {
 		map.put("success", success);
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
+	}
+
+	public void prdSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//DB 에 개별 데이터 요청
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list = dao.prdSearch(request.getParameter("prd_search"));
+		//가져온 데이터를 request에 담기
+		request.setAttribute("list", list);
+		//특정한 페이지로 이동		
+		RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
+		dis.forward(request, response);
 	}
 
 }
