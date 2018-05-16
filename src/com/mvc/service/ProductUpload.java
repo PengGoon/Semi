@@ -92,4 +92,13 @@ public class ProductUpload {
 		return newFileName;			
 	}
 
+	//사진 삭제
+	public void del(String fileName) {
+		System.out.println("삭제 주소");
+		System.out.println(savePath);
+		File file = new File(savePath+"/"+fileName);
+		if(file.exists()) {//파일 존재 여보를 다시 한번 확인
+			System.out.println("파일을 삭제 성공 ? "+ file.delete());
+		}
+	}
 }

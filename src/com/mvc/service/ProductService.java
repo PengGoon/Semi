@@ -58,28 +58,29 @@ public class ProductService {
 	}
 
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		/*ProductUpload upload = new ProductUpload(request);
+		ProductUpload upload = new ProductUpload(request);
 		ProductDTO dto = upload.regist();
 		ProductDAO dao = new ProductDAO();
 		Gson json = new Gson();
 		HashMap<String, Integer> map = new HashMap<>();
 
 		String[] oldFileName = null;
+		System.out.println("새파일:"+dto.getNewFileName1());
 		if(dto.getNewFileName1() != null) {//새로 올리는 파일이 있을경우
 			//올린파일이 있다는것은 기존파일을 지워야 하는 것을 의미하므로 파일명을 알아야한다.
 			//oldFileName = dao.fileNameCall(dto.getPrd_Id());
 			oldFileName = dao.fileNameCall(dto.getPrd_Id());
-			System.out.println(oldFileName[0]);
+			System.out.println("배열:"+oldFileName);
 			//파일명을 DB에서 수정
-			dao.fileNameUpdate(dto.getPrd_Id(),dto.getNewFileName1(),oldFileName[0]);
+			//dao.fileNameUpdate(dto.getPrd_Id(),dto.getNewFileName1(),dto.getNewFileName2(),dto.getNewFileName3(),oldFileName);
 			//기존 파일을 폴더에서 삭제
-			upload.del(oldFileName);
+			//upload.del(oldFileName);
 		}
 		
 		map.put("success", dao.update(dto));
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
-	*/
+	
 	}
 
 	public void updateView(HttpServletRequest request, HttpServletResponse response) throws IOException {

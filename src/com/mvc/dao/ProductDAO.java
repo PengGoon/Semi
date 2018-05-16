@@ -202,7 +202,9 @@ public class ProductDAO {
 				ProductDTO dto = new ProductDTO();	
 				dto.setPrd_Id(rs.getInt("prd_id"));
 				dto.setPrd_Name(rs.getString("prd_name"));
+
 				fileName = fileNameCall(rs.getInt("prd_id"));
+				System.out.println(fileName[0]);
 				if(dto.getNewFileName1() != null) {
 					dto.setNewFileName1(fileName[0]);
 				}
@@ -220,9 +222,8 @@ public class ProductDAO {
 	
 	//게시글에 해당하는 파일명 추출
 	public String[] fileNameCall(int prd_id) {		
-		ProductDTO dto = null;
 		String sql="SELECT * From productimage WHERE prd_id = ?";
-		String[] fileName = null;
+		String[] fileName = new String[3];
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, prd_id);
@@ -238,24 +239,23 @@ public class ProductDAO {
 
 	public Integer update(ProductDTO dto) {
 		int success = 0;
-		/*
 		String sql="UPDATE product SET prd_Name=?,prd_Price=?,prd_From=?,prd_Count=?,prd_Content=? WHERE prd_id = ?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, dto.getPrd_Name());
-			ps.setString(2, dto.getPrd_Price());
+			ps.setInt(2, dto.getPrd_Price());
 			ps.setString(3, dto.getPrd_From());
-			ps.setString(4, dto.getPrd_Count());
+			ps.setInt(4, dto.getPrd_Count());
 			ps.setString(5, dto.getPrd_Content());
-			ps.setInt(6, Integer.parseInt(prd_Id()));
+			ps.setInt(6, dto.getPrd_Id());
 			success = ps.executeUpdate();
 			if(rs.next()) {
 				sql = "UPDATE ProductImage SET newFileName1=?,newFileName2=?,newFileName3=? WHERE prd_id = ?";
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, photo1);
-				ps.setString(2, photo2);
-				ps.setString(3, photo3);
-				ps.setInt(4, Integer.parseInt(prd_Id));
+				ps.setString(1, dto.getNewFileName1());
+				ps.setString(2, dto.getNewFileName2());
+				ps.setString(3, dto.getNewFileName3());
+				ps.setInt(4, dto.getPrd_Id());
 				ps.executeUpdate();
 			}			
 		} catch (SQLException e) {
@@ -263,23 +263,22 @@ public class ProductDAO {
 		} finally {
 			resClose();
 		}
-		*/
 		return success;
 	}
 
-	public void fileNameUpdate(int prd_Id, String newFileName1, String[] oldFileName) {
-		/*
+	/*
+	public void fileNameUpdate(int prd_Id, String newFileName1, String newFileName2, String newFileName3, String[] oldFileName) {
 		String sql="";		
 		try {
 			if(oldFileName != null) {//기존에 올린 파일이 있는 경우(UPDATE)
-				sql="UPDATE photo SET newFileName = ? WHERE idx = ?";
+				sql="UPDATE productimage SET newFileName1 = ?,newFileName2 = ?,newFileName3 = ?, WHERE prd_id = ?";
 				ps = conn.prepareStatement(sql);
 				ps.setString(1,newFileName);
-				ps.setInt(2, idx);
+				ps.setInt(2, prd_Id);
 			}else {//기존 파일이 없는 경우(INSERT)
-				sql="INSERT INTO photo VALUES(photo_seq.NEXTVAL,?,?,?)";
+				sql="INSERT INTO productimage VALUES(photo_seq.NEXTVAL,?,?,?)";
 				ps = conn.prepareStatement(sql);			
-				ps.setInt(1,idx);
+				ps.setInt(1,prd_Id);
 				ps.setString(2, "no file");
 				ps.setString(3, newFileName);
 			}
@@ -289,6 +288,6 @@ public class ProductDAO {
 		}finally {
 			resClose();
 		}		
-		*/
 	}
+	*/
 }
