@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
+import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.UserDAO;
 import com.mvc.dto.UserDTO;
 
@@ -96,10 +97,21 @@ public class AdminService {
 		
 	}
 
-	public void delete(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] delList = request.getParameterValues("delList[]"); 
+			
+			UserDAO dao = new UserDAO();
+			boolean success = false;
+			
+			if(dao.delete(delList) == delList.length) {
+				success = true;
+			}
+			
+			Gson json = new Gson();
+			HashMap<String, Boolean> map = new HashMap<>();
+			map.put("success", success);
+			String obj = json.toJson(map);
+			response.getWriter().println(obj);
+		}
 
 }

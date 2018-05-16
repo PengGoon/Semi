@@ -188,8 +188,8 @@
 		$("#listTable").append(content);
 	}
 	
-	/* $("#mem_del").click(function(){
-		obj.url="./notice_delete";
+	 $("#mem_del").click(function(){
+		obj.url="./admin_useDel";
 		var checked = [];
 		//$(elem).each() == elem.forEach()
 		$("input[type='checkbox']:checked").each(function(){
@@ -199,7 +199,10 @@
 		obj.data={delList:checked};
 		obj.success = function(data){
 			if(data.success){
-				alert("삭제에 성공 했습니다.");
+				confirm ("선택한 회원을 삭제 하시겠습니까?");
+				if(confirm ==true){
+					alert("삭제 되었습니다.")
+				}
 			}else{
 				alert("삭제에 실패 했습니다.");
 			}
@@ -208,10 +211,8 @@
 		}
 		console.log(obj);
 	    ajaxCall(obj);
-	}); */
-	
-	
-	
+	}); 
+
 	function ajaxCall(param){
 		console.log(param);
 		$.ajax(param);
