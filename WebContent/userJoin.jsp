@@ -99,8 +99,8 @@
     <body>
     	<jsp:include page="navi.jsp"></jsp:include>
     	<div class = userJoinTitle>
-    	<br/><br/>
-    	<h1>회원 가입</h1>
+    		<br/><br/>
+    		<h1>회원 가입 (개인)</h1>
     	</div> <br/>
     	<h5>* 필수입력사항</h5><br/>
     		<table class=userJoinTable>
@@ -113,21 +113,21 @@
     			<tr>
     				<td>아이디 *</td>
     				<td>
-    				<input class="inp" type="text" name="userId"/>
+    				<input class="inp" type="text" name="userId" placeholder="아이디"/>
     				<input type="button" id="overlay" value="아이디 중복 체크"/>
     				</td>
     			</tr>
     			<tr>
     				<td>비밀번호 *</td>
-    				<td><input class="inp" type="password" name="userPw"/></td>
+    				<td><input class="inp" type="password" name="userPw" placeholder="비밀번호"/></td>
     			</tr>
     			<tr>
     				<td>비밀번호 확인 *</td>
-    				<td><input class="inp" type="password" name="userPwCk"/></td>
+    				<td><input class="inp" type="password" name="userPwCk" placeholder="비밀번호 확인"/></td>
     			</tr>
     			<tr>
     				<td>이름 *</td>
-    				<td><input class="inp" type="text" name="userName"/></td>
+    				<td><input class="inp" type="text" name="userName" placeholder="이름"/></td>
     			</tr>
     			<tr>
     				<td>주소 *</td>
@@ -142,22 +142,23 @@
     			<tr>
     				<td>이메일 *</td>
     				<td>
-    				<input class= inp type="text" name="email"/>
-    				<input class= inp type="text" id="emailView" name="emailView" value="" />
-    				<select id="email" style="font-size:6">
-    					<option >이메일을 선택 하세요</option>
+    				<input class= inp type="text" name="email" placeholder="이메일" style="margin:0 5 0 0"/>@
+    				<input class= inp type="text" id="emailView" name="emailView" disabled="true" style="width:150" placeholder="이메일 선택" />
+    				<select id="email" >
+    					<option value="0">이메일 선택</option>
     					<option value="1">직접 입력</option>
-    					<option value="naver">naver.com</option>
-    					<option value="daum">daum.net</option>
-    					<option value="google">google.com</option>
-    					<option value="nate">nate.com</option>
+    					<option>naver.com</option>
+    					<option>daum.net</option>
+    					<option>hanmail.net</option>
+    					<option>google.com</option>
+    					<option>nate.com</option>
     				</select>
     				</td>
     			</tr>
     			
     			<tr>
     				<td>휴대폰 *</td>
-    				<td><input class="inp" type="text" name="phone"/></td>
+    				<td><input class="inp" type="text" name="phone" placeholder="휴대전화 번호"/></td>
     			</tr>
     			
     			<tr>

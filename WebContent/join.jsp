@@ -4,87 +4,186 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 - 판매자</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
-table, td, th {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 5px 10px;
-	text-align: center;
-	margin: 100 350;
-}
-
-input.inputTxt {
-	width: 100%;
-}
+ table, td, th{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+            hr{
+            	border:none;
+            	width:1000px;
+            	border:1px solid limegreen;
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+            }
+            
+           	h5{
+           		position:absolute;
+           		left:78%;
+           	}
+            
+            .sellerJoinTitle{
+            	margin : 60px 0px 55px 0px;
+            	text-align: center;
+            	color: limegreen;
+            	font-size: 20;
+            }
+            
+            .sellerJoinTable{
+            	position:absolute;
+            	left: 20%;
+				margin:  0 0 120px 0;
+            }
+            
+            select{
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            }
+            
+            .inp{
+            	height: 41px;
+            }
+            
+            #overlay, #path,#upload{
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
+            #join{
+            	position:absolute;
+            	left:86%;
+            	height : 42px;
+            	width: 130px;
+            	font-weight: 800;
+            	border-style : solid;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
+             .exit{
+            	position:absolute;
+            	left:1%;
+            	height : 30px;
+            	width: 130px;
+            	font-weight: 800;
+            	font-size:14;
+            	text-align:center;
+        		padding: 10px 0 0 0;
+            	border:2.5px solid limegreen;
+            	background-color : white;
+            	color: limegreen;
+            	cursor: pointer;
+            }
 </style>
 </head>
 <body>
-	<table>
-		<h2>판매자 회원가입</h2>
+	<jsp:include page="navi.jsp"></jsp:include>
+	<div class = sellerJoinTitle>
+    	<br/><br/>
+    	<h1>회원 가입 (판매자)</h1>
+    </div> <br/>
+    <h5>* 필수입력사항</h5><br/>
+	<table class=sellerJoinTable>
+		<br/>
+    			<tr>
+    				<td colspan="3">
+    				<hr/>
+    				</td>
+    			</tr>
 		<tr>
-			<td>아이디 </td>
-			<td><input style="width: 400" type="text" name="userId" placeholder="아이디 입력란"/> <input
-				id="overlay" type="button" value="중복 체크" /></td>
+			<td>아이디 *</td>
+			<td><input class="inp" type="text" name="userId" placeholder="아이디"/> 
+			<input type="button" id="overlay"  value="아이디 중복 체크" /></td>
 		</tr>
 		<tr>
-			<td>비밀번호 </td>
-			<td><input class="inputTxt" type="password" name="userPw" placeholder="비밀번호 입력란"/></td>
+			<td>비밀번호 *</td>
+			<td><input class="inp" type="password" name="userPw" placeholder="비밀번호"/></td>
 		</tr>
 		<tr>
-			<td>비밀번호 확인 </td>
-			<td><input class="inputTxt" type="password" name="userPwCk" placeholder="비밀번호 확인란"/></td>
+			<td>비밀번호 확인 *</td>
+			<td><input class="inp" type="password" name="userPwCk" placeholder="비밀번호 확인"/></td>
 		</tr>
 		<tr>
-			<td>이름</td>
-			<td><input class="inputTxt" type="text" name="userName" placeholder="이름 입력란"/></td>
+			<td>이름 *</td>
+			<td><input class="inp" type="text" name="userName" placeholder="이름"/></td>
 		</tr>
 		<tr>
-			<td>주소</td>
-			<td><input type="text" name="addr1" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button"
-				onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-				<input type="text" name="addr2" id="sample4_roadAddress"
-				placeholder="도로명주소"> <input type="text" name="addr3"
-				id="sample4_jibunAddress" placeholder="지번주소"> <span
-				id="guide" style="color: #999"></span></td>
+			<td>주소 *</td>
+			<td>
+			<input class=inp type="text" name="addr1" id="sample4_postcode" placeholder="우편번호" style="margin:4 0 4 0"> 
+			<input type="button" id="path" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" > <br>
+			<input class=inp type="text" name="addr2" id="sample4_roadAddress" placeholder="도로명주소" style="margin:4 0 4 0"> 
+			<input class=inp type="text" name="addr3" id="sample4_jibunAddress" placeholder="지번주소" style="margin:4 0 4 0"> 
+			<span id="guide" style="color: #999"></span>
+			</td>
 		</tr>
 		<tr>
 
 		</tr>
 		<tr>
-			<td>EMAIL</td>
-			<td><input class="inputTxt" type="text" name="email"
-				style="width: 150" placeholder="이메일 입력란" /> @ <input type="text" id="emailview"
-				name="emailview" style="width: 100" placeholder="이메일 선택" disabled="true"/> <select id="email">
-					<option value="0">이메일을 선택 하세요</option>
-					<option value="1">직접입력</option>
+			<td>이메일 *</td>
+			<td>
+			<input class=inp type="text" name="email" placeholder="이메일" style="margin:0 5 0 0"/>@ 
+			<input class=inp type="text" id="emailview" name="emailview" placeholder="이메일 선택" style="width:150" disabled="true"/> 
+			<select id="email">
+					<option value="0">이메일 선택</option>
+					<option value="1">직접 입력</option>
 					<option>naver.com</option>
-					<option>hanmail.net</option>
-					<option>google.com</option>
-					<option>nate.com</option>
-					<option>daum.net</option>
-			</select></td>
+    				<option>daum.net</option>
+    				<option>hanmail.net</option>
+    				<option>google.com</option>
+    				<option>nate.com</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호</td>
-			<td><input class="inputTxt" type="text" name="phone" placeholder="휴대폰 번호 입력란" /></td>
+			<td>휴대폰 *</td>
+			<td><input class="inp" type="text" name="phone" placeholder="휴대전화 번호" /></td>
 		</tr>
 		<tr>
-			<td>사업자 등록증</td>
-			<td><input type="text" id="successinfo" name="successinfo"
+			<td>사업자 등록증 *</td>
+			<td>
+			<input class="inp" type="text" id="successinfo" name="successinfo"
 				style="color: green" placeholder="사업자 등록증 등록란" disabled="true"/>
-				<input type="button" onclick="openChild()" value="업로드" />
+			<input type="button" id="upload" onclick="openChild()" value="업로드" />
 		</tr>
+		
 		<tr>
-			<td colspan="2">
-				<button id="join">회원가입</button>
+    		<td colspan="3">
+    			<hr/>
+    		</td>
+    	</tr>
+		
+		<tr>
+			<td colspan="3">
+				<button class=button id="join">회원가입</button>
+				<a class=exit onclick =" location.href='userLogin.jsp' ">나가기</a>
 			</td>
 		</tr>
 	</table>
+<br/>
+<br/>
+<br/>
 </body>
 <script>
 	var obj = {};//초기화   
