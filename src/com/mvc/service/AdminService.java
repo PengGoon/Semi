@@ -1,6 +1,7 @@
 package com.mvc.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
+import com.mvc.dao.UserDAO;
+import com.mvc.dto.UserDTO;
 
 public class AdminService {
 
@@ -41,11 +44,28 @@ public class AdminService {
 		
 	}
 
-	//메인페이지 이동 메서드 
+	//admin_main -> 회원리스트 보여주기 
 	public void main(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		//메인페이지 이동 , 
-		response.sendRedirect("a_main_user.jsp");
+		UserDAO dao = new UserDAO();
+		ArrayList<UserDTO> list = dao.list();
+		//로그인 상태 
+		String loginId =(String)request.getSession().getAttribute("loginId");
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		if(loginId !=null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+
+		map.put("list", list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset = UTF-8");
+		response.getWriter().println(obj);
+		//response.sendRedirect("a_main_user.jsp");
 		
 	}
 	//로그아웃 메서드
@@ -73,6 +93,11 @@ public class AdminService {
 		map.put("login", login);
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
+		
+	}
+
+	public void delete(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
 		
 	}
 

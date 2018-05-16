@@ -20,7 +20,7 @@ import com.mvc.service.UserService;
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
-	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView" })
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView" ,"admin_useDel"})
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -269,6 +269,11 @@ public class MainController extends HttpServlet {
 						admin = new AdminService();
 						admin.main(request, response);
 						break;
+						
+					case "/admin_useDel":
+						System.out.println("관리자페이지-회원삭제");
+						admin = new AdminService();
+						admin.delete(request, response);
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
