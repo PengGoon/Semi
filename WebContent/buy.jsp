@@ -68,11 +68,11 @@
 			<table>
 				<tr>
 					<td>이름</td>
-					<td>${user.user_Name }</td>
+					<td id="name"></td>
 				</tr>
 				<tr>
 					<td>연락처</td>
-					<td></td>
+					<td id="phone"></td>
 				</tr>
 				<tr>
 					<td>주소</td>
@@ -133,26 +133,34 @@
 		</div>
 	</body>
 	<script>
-	$.ajax({
-		type : "post",
-		url : "./login",
-		data : {
-			user_Id : $("#user_Id").val(),
-		},
-		dataType : "json",
-		success : function(data) {//인자 값은 서버에서 주는 메시지
-			console.log(data);
-		},
-		error : function(err) {//인자 값은 서버에서 주는 에러 메시지
-			console.log(err)
-		}
+	var id = "${sessionScope.loginUserId}";
+	var prd_id=${param.prd_id};
+	 $(document).ready(function(){
+		$.ajax({
+			type : "post",
+			url : "./prd2_user",
+			data : {
+				id:id,
+			},
+			dataType : "json",
+			success : function(data) {//인자 값은 서버에서 주는 메시지
+				console.log(data);
+			$("#name").text(data.dto3.user_Name);
+			//html,text
+			},
+			error : function(err) {//인자 값은 서버에서 주는 에러 메시지
+				console.log(err)
+			}
+		});
 	});
 	
-	$("#cancle").click(function(){
-		location.href="prd_detailForm.jsp"; 
-	});
-	$("#buy").click(function(){
-		location.href="buy1.jsp"; 
-	});
+		$("#cancle").click(function(){
+			location.href="prd_detailForm.jsp"; 
+		});
+		
+		$("#buy").click(function(){
+			console.log($("#user_Id").val());
+			//location.href="buy1.jsp"; 
+		});
 	</script>
 </html>

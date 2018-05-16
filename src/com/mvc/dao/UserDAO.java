@@ -126,6 +126,26 @@ public class UserDAO {
 		return list;
 	}
 	
-	
+	//구매 페이지에서 로그인 중인 회원 정보 뽑기
+	public UserDTO user(String user_id) {
+		UserDTO dto3 = null;
+		String sql="SELECT user_Name,user_Phone,user_Addr FROM UserDB WHERE user_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto3 = new UserDTO();
+				dto3.setUser_Name(rs.getString("user_Name"));
+				dto3.setUser_Phone(rs.getString("user_Phone"));
+				dto3.setUser_Addr(rs.getString("user_Addr"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();//자원 반납
+		}
+		return dto3;	
+	}
 
 }

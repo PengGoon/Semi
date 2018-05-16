@@ -98,4 +98,18 @@ public class UserService {
 		
 	}
 
+	public void buyuser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		UserDAO dao3 = new UserDAO();
+		System.out.println(request.getParameter("id"));
+		UserDTO dto3 = dao3.user(request.getParameter("id"));		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto3", dto3);
+		//map.put("dto2",dto2);
+		String obj = gson.toJson(map);
+		response.setContentType("text/html; UTF-8");
+		response.getWriter().println(obj);
+		
+	}
+
 }

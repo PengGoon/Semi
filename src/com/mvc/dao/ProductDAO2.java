@@ -72,11 +72,13 @@ public class ProductDAO2 {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}finally {
+			resClose();
+		}
 		return dto2;	
 	}
 	
-	public ProductDTO2 user(String user_id) {
+	/*public ProductDTO2 user(String user_id) {
 		ProductDTO2 dto2 = null;
 		String sql="SELECT user_Name,user_Phone,user_Addr FROM UserDB WHERE user_id = ?";
 		try {
@@ -95,6 +97,6 @@ public class ProductDAO2 {
 			resClose();//자원 반납
 		}
 		return dto2;
-	}
+	}*/
 
 }

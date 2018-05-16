@@ -174,8 +174,8 @@ public class MainController extends HttpServlet {
 					// 상품 구매자 정보
 					case "/prd2_user":
 						System.out.println("구매자 정보 호출");
-						product2 = new ProductService2();
-						product2.buyuser(request, response);
+						user = new UserService();
+						user.buyuser(request, response);
 						break;
 					
 					// 후기 리스트
