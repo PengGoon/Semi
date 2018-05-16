@@ -61,12 +61,14 @@ body {
 	<div id="menuCenter">
 		<button id="updateForm">수정</button>
 		<button id="save" style="display:none">저장</button>
-		<button id="del">삭제</button>
 		<div id="detailTable">
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
-					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
+					<th id="pic" colspan="2" rowspan="7">
+						<img width="500" src="./upload/${list.newFileName1}"/>
+						<input type="file" id="photo1" style="display:none"/>
+					</th>
 					<th colspan="2" style="width: 500px">
 						<input type="hidden" id="prd_Id" value="${info.prd_Id }" />
 						<input type="text" class="edit" id="prd_Name" value="${info.prd_Name }" readonly/>
@@ -102,7 +104,9 @@ body {
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
 						<img width="500" src="./upload/${list.newFileName2}"/>
+						<input type="file" id="photo2" style="display:none"/>
 						<img width="500" src="./upload/${list.newFileName3}"/>
+						<input type="file" id="photo3" style="display:none"/>
 					</th>
 				</tr>
 				<tr>
@@ -160,6 +164,7 @@ body {
 		$("#save").css("display","inline");
 		$(".edit").css("border-width","2px");
 		$(".edit").attr("readonly",false);
+		$("input[type='file']").css("display","inline");
 		$("#updateForm").css("display","none");
 	});
 	
@@ -172,7 +177,10 @@ body {
 			"prd_Price":$("#prd_Price").val(),
 			"prd_From":$("#prd_From").val(),
 			"prd_Count":$("#prd_Count").val(),
-			"prd_Content":$("#prd_Content").val()
+			"prd_Content":$("#prd_Content").val(),
+			"photo1":$("#photo1").val(),
+			"photo2":$("#photo2").val(),
+			"photo3":$("#photo3").val()
 		};
 		obj.success=function(data){
 			console.log(data);

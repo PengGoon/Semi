@@ -64,7 +64,7 @@
 		<br />
 		<hr />
 		<input id="del" type="button" value="삭제"/>
-		<input type="button" value="상품등록" onclick="location.href='writeForm.html'"/>
+		<input type="button" value="상품등록" onclick="location.href='prd_writeForm.jsp'"/>
 	</div>
 </body>
 <script>
