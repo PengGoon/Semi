@@ -68,7 +68,7 @@
 			<table>
 				<tr>
 					<td>이름</td>
-					<td></td>
+					<td>${user.user_Name }</td>
 				</tr>
 				<tr>
 					<td>연락처</td>
@@ -133,6 +133,21 @@
 		</div>
 	</body>
 	<script>
+	$.ajax({
+		type : "post",
+		url : "./login",
+		data : {
+			user_Id : $("#user_Id").val(),
+		},
+		dataType : "json",
+		success : function(data) {//인자 값은 서버에서 주는 메시지
+			console.log(data);
+		},
+		error : function(err) {//인자 값은 서버에서 주는 에러 메시지
+			console.log(err)
+		}
+	});
+	
 	$("#cancle").click(function(){
 		location.href="prd_detailForm.jsp"; 
 	});

@@ -26,9 +26,16 @@ public class ProductService2 {
 		request.setAttribute("info", dto2);
 		dto2 = dao2.list(request.getParameter("prd_id"));
 		request.setAttribute("list", dto2);
+		dto2 = dao2.user(request.getParameter("user_id"));
+		request.setAttribute("user", dto2);
 		//특정한 페이지로 이동		
 		RequestDispatcher dis = request.getRequestDispatcher("buy.jsp");
 		dis.forward(request, response);
+		
+	}
+
+	public void buyuser(HttpServletRequest request, HttpServletResponse response) {
+		
 		
 	}
 

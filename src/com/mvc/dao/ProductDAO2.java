@@ -49,9 +49,6 @@ public class ProductDAO2 {
 			if(rs.next()) {
 				dto2 = new ProductDTO2();
 				dto2.setPrd_Id(rs.getInt("prd_id"));
-				//dto2.setUser_Name(rs.getString("user_name"));
-				//dto2.setUser_Phone(rs.getString("user_phone"));
-				//dto2.setUser_Addr(rs.getString("user_addr"));
 				dto2.setPrd_Name(rs.getString("prd_name"));
 				dto2.setPrd_Price(rs.getInt("prd_price"));
 				dto2.setPrd_Count(rs.getInt("prd_count"));
@@ -75,10 +72,29 @@ public class ProductDAO2 {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			resClose();//자원 반납
 		}	
 		return dto2;	
+	}
+	
+	public ProductDTO2 user(String user_id) {
+		ProductDTO2 dto2 = null;
+		String sql="SELECT user_Name,user_Phone,user_Addr FROM UserDB WHERE user_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto2 = new ProductDTO2();
+				dto2.setUser_Name(rs.getString("user_Name"));
+				dto2.setUser_Phone(rs.getString("user_Phone"));
+				dto2.setUser_Addr(rs.getString("user_Addr"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();//자원 반납
+		}
+		return dto2;
 	}
 
 }
