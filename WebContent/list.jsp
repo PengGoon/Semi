@@ -22,10 +22,10 @@
 		<table>
 			<c:forEach items="${list}" var="bbs">
 				<tr>
-					<td><a href="prd_detail?prd_id=${bbs.prd_id}"><img width="500" src="./upload/${bbs.newFileName}"/></a></td>
+					<td><a href="prd_detail?prd_id=${bbs.prd_Id}"><img width="500" src="./upload/${bbs.newFileName1}"/></a></td>
 				</tr>
 				<tr>
-					<td><h3>${bbs.prd_name}</h3></td>
+					<td><h3>${bbs.prd_Name}</h3></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -3,81 +3,81 @@ package com.mvc.dto;
 import java.sql.Date;
 
 public class PhotoDTO {
-	/*Product 에 있는 컬럼*/
-	private int prd_id;
-	private String sell_id;
-	private String cateF_id;
-	private String cateS_id;
-	private String prd_name;
-	private int prd_price;
-	private int prd_count;
-	private String prd_from;
-	private int prd_soldout;
-	private Date prd_date;
+	private int prd_Id;
+	private String sell_Id;
+	private String cateFirst_Id;
+	private String cateSecond_Id;
+	private String prd_Name;
+	private int prd_Price;
+	private int prd_Count;
+	private String prd_From;
+	private int prd_Soldout;
+	private Date prd_Date;
 	private int prd_bHit;
+	private String newFileName1;
+	private String newFileName2;
+	private String newFileName3;
+	private String prd_Content;
 	
-	/*productImage 에 있는 컬럼*/
-	private String newFileName;
-	
-	public int getPrd_id() {
-		return prd_id;
+	public int getPrd_Id() {
+		return prd_Id;
 	}
-	public void setPrd_id(int prd_id) {
-		this.prd_id = prd_id;
+	public void setPrd_Id(int prd_Id) {
+		this.prd_Id = prd_Id;
 	}
-	public String getSell_id() {
-		return sell_id;
+	public String getSell_Id() {
+		return sell_Id;
 	}
-	public void setSell_id(String sell_id) {
-		this.sell_id = sell_id;
+	public void setSell_Id(String sell_Id) {
+		this.sell_Id = sell_Id;
 	}
-	public String getCateF_id() {
-		return cateF_id;
+	public String getCateFirst_Id() {
+		return cateFirst_Id;
 	}
-	public void setCateF_id(String cateF_id) {
-		this.cateF_id = cateF_id;
+	public void setCateFirst_Id(String cateFirst_Id) {
+		this.cateFirst_Id = cateFirst_Id;
 	}
-	public String getCateS_id() {
-		return cateS_id;
+	public String getCateSecond_Id() {
+		return cateSecond_Id;
 	}
-	public void setCateS_id(String cateS_id) {
-		this.cateS_id = cateS_id;
+	public void setCateSecond_Id(String cateSecond_Id) {
+		this.cateSecond_Id = cateSecond_Id;
 	}
-	public String getPrd_name() {
-		return prd_name;
+	public String getPrd_Name() {
+		return prd_Name;
 	}
-	public void setPrd_name(String prd_name) {
-		this.prd_name = prd_name;
+	public void setPrd_Name(String prd_Name) {
+		this.prd_Name = prd_Name;
 	}
-	public int getPrd_price() {
-		return prd_price;
+	public int getPrd_Price() {
+		return prd_Price;
 	}
-	public void setPrd_price(int prd_price) {
-		this.prd_price = prd_price;
+	public void setPrd_Price(int prd_Price) {
+		this.prd_Price = prd_Price;
 	}
-	public int getPrd_count() {
-		return prd_count;
+	public int getPrd_Count() {
+		return prd_Count;
 	}
-	public void setPrd_count(int prd_count) {
-		this.prd_count = prd_count;
+	public void setPrd_Count(int prd_Count) {
+		this.prd_Count = prd_Count;
 	}
-	public String getPrd_from() {
-		return prd_from;
+	public String getPrd_From() {
+		return prd_From;
 	}
-	public void setPrd_from(String prd_from) {
-		this.prd_from = prd_from;
+	public void setPrd_From(String prd_From) {
+		this.prd_From = prd_From;
 	}
-	public int getPrd_soldout() {
-		return prd_soldout;
+	public int getPrd_Soldout() {
+		return prd_Soldout;
 	}
-	public void setPrd_soldout(int prd_soldout) {
-		this.prd_soldout = prd_soldout;
+	public void setPrd_Soldout(int prd_Soldout) {
+		this.prd_Soldout = prd_Soldout;
 	}
-	public Date getPrd_date() {
-		return prd_date;
+	public Date getPrd_Date() {
+		return prd_Date;
 	}
-	public void setPrd_date(Date prd_date) {
-		this.prd_date = prd_date;
+	public void setPrd_Date(Date prd_Date) {
+		this.prd_Date = prd_Date;
 	}
 	public int getPrd_bHit() {
 		return prd_bHit;
@@ -85,11 +85,28 @@ public class PhotoDTO {
 	public void setPrd_bHit(int prd_bHit) {
 		this.prd_bHit = prd_bHit;
 	}
-	
-	public String getNewFileName() {
-		return newFileName;
+	public String getNewFileName1() {
+		return newFileName1;
 	}
-	public void setNewFileName(String newFileName) {
-		this.newFileName = newFileName;
+	public void setNewFileName1(String newFileName1) {
+		this.newFileName1 = newFileName1;
+	}
+	public String getNewFileName2() {
+		return newFileName2;
+	}
+	public void setNewFileName2(String newFileName2) {
+		this.newFileName2 = newFileName2;
+	}
+	public String getNewFileName3() {
+		return newFileName3;
+	}
+	public void setNewFileName3(String newFileName3) {
+		this.newFileName3 = newFileName3;
+	}
+	public String getPrd_Content() {
+		return prd_Content;
+	}
+	public void setPrd_Content(String prd_Content) {
+		this.prd_Content = prd_Content;
 	}
 }

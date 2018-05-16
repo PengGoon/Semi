@@ -38,14 +38,14 @@ public class PhotoDAO {
 				rs = ps.executeQuery();
 				while(rs.next()) {//rs 에서 값 가져와 dto 담기
 					PhotoDTO dto = new PhotoDTO();	
-					dto.setPrd_id(rs.getInt("prd_id"));
-					dto.setPrd_name(rs.getString("prd_name"));
+					dto.setPrd_Id(rs.getInt("prd_id"));
+					dto.setPrd_Name(rs.getString("prd_name"));
 					String newFileName = fileNameCall(rs.getInt("prd_id"));
 					if(newFileName != null) {
-						dto.setNewFileName(newFileName);
+						dto.setNewFileName1(newFileName);
 					}
-					System.out.println(dto.getPrd_name());
-					System.out.println(dto.getNewFileName());
+					System.out.println(dto.getPrd_Name());
+					System.out.println(dto.getNewFileName1());
 					list.add(dto);//dto 를 list 에 담기
 				}
 			} catch (SQLException e) {
