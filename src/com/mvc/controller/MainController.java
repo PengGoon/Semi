@@ -212,7 +212,7 @@ public class MainController extends HttpServlet {
 					case "/review_delete":
 						System.out.println("후기 삭제 요청");
 						review = new ReviewService();
-						review.del(request, response);
+						review.delete(request, response);
 						break;
 						
 					// 후기 상세보기
