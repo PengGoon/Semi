@@ -38,7 +38,7 @@ public class ReviewService {
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DB 에 개별 데이터 요청
 		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.detail(request.getParameter("review_id"));
+		ReviewDTO dto = dao.detailView(request.getParameter("review_id"));
 		request.setAttribute("info", dto);
 		//특정한 페이지로 이동		
 		RequestDispatcher dis = request.getRequestDispatcher("reviewDetail.jsp");
@@ -95,7 +95,7 @@ public class ReviewService {
 		String review_id = request.getParameter("review_id");
 		//상세정보 가져오기(DB)
 		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.detail(review_id);
+		ReviewDTO dto = dao.detailView(review_id);
 		//수정 보기 페이지에 뿌려 준다.
 		request.setAttribute("dto", dto);
 		RequestDispatcher dis = request.getRequestDispatcher("reviewUpdateForm.jsp");
@@ -130,8 +130,7 @@ public void update(HttpServletRequest request, HttpServletResponse response) thr
 	}
 
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-<<<<<<< HEAD
+	
 		String idx =(String) request.getSession().getAttribute("review_id");
 		String loginId = (String)request.getSession().getAttribute("loginUserId");
 		System.out.println(idx+"/"+loginId);
@@ -143,18 +142,6 @@ public void update(HttpServletRequest request, HttpServletResponse response) thr
 		if(loginId != null) {
 			ReviewDAO dao = new ReviewDAO();
 			ReviewDTO dto = dao.detailView(idx);
-=======
-		String review_id = (String) request.getSession().getAttribute("review_id");
-		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
-		boolean login = false;
-		
-		Gson json = new Gson();
-		HashMap<String, Object> map = new HashMap<>();
-		
-			if(loginUserId != null) {//로그인 일 경우만 정보를 가져 온다.
-			ReviewDAO dao = new ReviewDAO();
-			ReviewDTO dto = dao.detail(review_id);
->>>>>>> fe182e58dc3a103eaa7262e691adbb0ee0d16a24
 			login = true;
 			map.put("dto", dto);
 		}

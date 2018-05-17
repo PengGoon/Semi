@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,7 +32,7 @@ body {
 	height: 300px;
 }
 
-#updateForm, #save{
+#updateBtn, #save{
 	float: right;
 }
 
@@ -59,9 +60,9 @@ body {
 <body>
 	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
-		<form action="./prd_update" method="post" enctype="multipart/form-data">
-		<input type="button" id="updateForm" value="수정"/>
-		<button id="save" style="display:none">저장</button>
+		<form id="updateForm" action="./prd_update" method="post" enctype="multipart/form-data">
+		<input type="button" id="updateBtn" value="수정"/>
+		<input type="button" id="save" value="저장" onclick="emptyChk()" style="display:none"/>
 		<div id="detailTable">
 			<input type="hidden" name="cateFirst" value="${info.cateFirst_Id }" />
 			<input type="hidden" name="cateSecond" value="${info.cateSecond_Id }" />
@@ -69,11 +70,17 @@ body {
 			<table>
 				<tr>
 					<th id="pic" colspan="2" rowspan="7">
-						<img width="500" src="./upload/${list.newFileName1}"/>
+						<c:if test="${list.newFileName1 ne null}">
+							<img width="500" src="./upload/${list.newFileName1}"/>
+						</c:if>
 						<input type="file" name="photo1" style="display:none"/>
 					</th>
 					<th colspan="2" style="width: 500px">
 						<input type="hidden" name="prd_id" value="${info.prd_Id }" />
+						<c:if test="${info.prd_Count eq 0}">
+							<h2 style="color:red">[품절]</h2>
+						</c:if>
+						<h2>상품명</h2>
 						<input type="text" class="edit" name="prd_name" value="${info.prd_Name }" readonly/>
 					</th>
 				</tr>
@@ -106,9 +113,13 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<img width="500" src="./upload/${list.newFileName2}"/>
+						<c:if test="${list.newFileName2 ne null}">
+							<img width="500" src="./upload/${list.newFileName2}"/>
+						</c:if>
 						<input type="file" name="photo2" style="display:none"/>
-						<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName3 ne null}">
+							<img width="500" src="./upload/${list.newFileName3}"/>
+						</c:if>
 						<input type="file" name="photo3" style="display:none"/>
 					</th>
 				</tr>
@@ -166,42 +177,44 @@ body {
 	});
 	*/
 	
-	$("#updateForm").click(function(){
+	$("#updateBtn").click(function(){
 		$("#save").css("display","inline");
 		$(".edit").css("border-width","2px");
 		$(".edit").attr("readonly",false);
 		$("input[type='file']").css("display","inline");
-		$("#updateForm").css("display","none");
+		$("#updateBtn").css("display","none");
 	});
 	
-	//수정 요청
-	/*
-	$("#save").click(function(){
-		obj.url="./prd_update";
-		obj.data={
-			"prd_Id":$("#prd_Id").val(),
-			"prd_Name":$("#prd_Name").val(),
-			"prd_Price":$("#prd_Price").val(),
-			"prd_From":$("#prd_From").val(),
-			"prd_Count":$("#prd_Count").val(),
-			"prd_Content":$("#prd_Content").val(),
-			"photo1":$("#photo1").val(),
-			"photo2":$("#photo2").val(),
-			"photo3":$("#photo3").val()
-		};
-		obj.success=function(data){
-			console.log(data);
-			//성공,실패: 상세보기 페이지
-			if(data.success == 1){
-				alert("수정이 성공 했습니다.");
-				location.href="prd_sellerdetail?prd_id="+$("#prd_Id").val();
+	function emptyChk(){
+		var file1 = $("input[name=photo1]").val();
+		var file2 = $("input[name=photo2]").val();
+		var file3 = $("input[name=photo3]").val();
+		var fileExt1 = file1.substring(file1.lastIndexOf('.')+1); //파일 확장자
+		var fileExt2 = file2.substring(file2.lastIndexOf('.')+1); //파일 확장자
+		var fileExt3 = file3.substring(file3.lastIndexOf('.')+1); //파일 확장자
+		var fileflag1 = false;
+		var fileflag2 = false;
+		var fileflag3 = false;
+		
+		if($("input[name=prd_name]").val() == ""){ alert("상품명을 입력해주세요"); $("input[name=prd_name]").focus();
+		}else if($("input[name=prd_price]").val() == ""){ alert("판매가를 입력해주세요"); $("input[name=prd_price]").focus();
+		}else if($("input[name=prd_from]").val() == ""){ alert("원산지를 입력해주세요"); $("input[name=prd_from]").focus();
+		}else if($("input[name=prd_count]").val() == ""){ alert("상품수량을 입력해주세요"); $("input[name=prd_count]").focus();
+		}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() == ""){ 
+			if(fileExt2.toUpperCase() == "JPG" || fileExt2.toUpperCase() == "PNG" || fileExt2.toUpperCase() == ""){
+				if(fileExt3.toUpperCase() == "JPG" || fileExt3.toUpperCase() == "PNG" || fileExt3.toUpperCase() == ""){
+					alert("수정이 완료되었습니다.");
+					$("#updateForm").submit();
+				}else{
+					alert("jpg 또는 png 파일만 가능합니다.");
+				}
 			}else{
-				alert("수정이 실패 했습니다.");
+				alert("jpg 또는 png 파일만 가능합니다.");
 			}
-		};
-		ajaxCall(obj);
-	});
-	*/
+		}else{
+			alert("jpg 또는 png 파일만 가능합니다.");
+		}
+	}
 	
 	function ajaxCall(param){
 		console.log(param);

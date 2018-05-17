@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,8 +39,15 @@ body {
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
-					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
+					<th id="pic" colspan="2" rowspan="7">
+						<c:if test="${list.newFileName1 ne null}">
+							<img width="500" src="./upload/${list.newFileName1}"/>
+						</c:if>
+					</th>
 					<th colspan="2" style="width: 500px">
+						<c:if test="${info.prd_Count eq 0}">
+							<h2 style="color:red">[품절]</h2>
+						</c:if>
 						<h2>${info.prd_Name }</h2>
 					</th>
 				</tr>
@@ -76,8 +84,12 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<img width="500" src="./upload/${list.newFileName2}"/>
-						<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName2 ne null}">
+							<img width="500" src="./upload/${list.newFileName2}"/>
+						</c:if>
+						<c:if test="${list.newFileName3 ne null}">
+							<img width="500" src="./upload/${list.newFileName3}"/>
+						</c:if>
 					</th>
 				</tr>
 				<tr>
