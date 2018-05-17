@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>후기 상세보기</title>
 <style>
 	   	.ReviewWriteTitle{
@@ -106,7 +107,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="navi.jsp"></jsp:include>
    	<div class = Review>
    	<div class = ReviewDetailTitle>
    	<h1>후기 상세보기</h1>
@@ -122,7 +122,7 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea class="editable"  id="reviewContent" rows="15" readonly></td>
+			<td><textarea class="editable"  id="reviewContent" rows="15" readonly></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -145,18 +145,14 @@
 		console.log(e)
 	};
 
-
+	// 상세 정보 가져오기
    $(document).ready(function() {
-		obj.url = "./review_detailView";
+
+		obj.url = "./review_detailView"; 
 		obj.success = function(data) {
 			console.log(data);
-			if (data.login) {
-				printInfo(data.dto);
-			} else {
-				alert("로그인이 필요한 서비스 입니다.");
-				location.href = "userLogin.jsp";
-			}
-		};
+			printInfo(data.dto);
+		}
 		ajaxCall(obj);
 	});
  
