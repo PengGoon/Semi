@@ -28,6 +28,10 @@
       	width:70px;
       }
       
+       .Review #userId{
+       	border:none;
+       }
+      
       .Review table{
       	position: absolute;
       	left:25%;
@@ -102,9 +106,6 @@
      	padding: 0;
      }
      
-    
-     
-     
    </style>
    </head>
    <body>
@@ -118,6 +119,7 @@
          <th>작성자</th>
          <td><input type="text" id="userId" value=<%=request.getSession().getAttribute("loginUserId") %> readonly/></td>
       </tr>
+      
       <tr>
          <th>제목</th>
          <td><input type="text" id="reviewTitle" /></td>
