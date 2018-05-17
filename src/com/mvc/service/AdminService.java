@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
-import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.UserDAO;
 import com.mvc.dto.UserDTO;
 

@@ -1,7 +1,6 @@
 package com.mvc.service;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.mvc.dao.UserDAO;
 import com.mvc.dto.UserDTO;
-
-import oracle.sql.DATE;
 
 public class UserService {
 
@@ -83,6 +80,7 @@ public class UserService {
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUserId");
+		
 		response.sendRedirect("main/index.jsp");
 	}
 
@@ -112,5 +110,58 @@ public class UserService {
 		response.getWriter().println(obj);
 		
 	}
+	//상세보기
+	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		System.out.println("상세보기" +loginUserId);
+		boolean login = false;
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		if(loginUserId !=null) {
+			UserDAO dao = new UserDAO();
+			UserDTO dto = dao.detailView(loginUserId);
+			login = true;
+			map.put("dto", dto);
+		}
+		map.put("login", login);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+	//수정
+	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		String user_Pw = request.getParameter("user_Pw");
+		System.out.println("비밀번호확인"+user_Pw);
+		String user_Name =request.getParameter("user_Name");
+		System.out.println("이름확인"+user_Name);
+		String user_Addr = request.getParameter("user_Addr1")+request.getParameter("user_Addr2")+request.getParameter("user_Addr3");
+		String user_Email = request.getParameter("user_Email");
+		String user_Phone = request.getParameter("user_Phone");
+		UserDAO dao = new UserDAO();
+		Gson json = new Gson();
+		HashMap<String, Object> map =new HashMap<>();
+		map.put("success", dao.update(loginUserId,user_Pw,user_Name,user_Addr,user_Email,user_Phone));
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		
+	}
+	//비밀번호체크
+	public void upPwCheck(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String checkPw = request.getParameter("updatePwChk");
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		int success =0;
+		UserDAO dao = new UserDAO();
+		
+		success = dao.chekPw(loginUserId,checkPw);
+		System.out.println(success);
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+	}
+	
 
 }
