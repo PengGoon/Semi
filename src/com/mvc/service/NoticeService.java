@@ -117,7 +117,6 @@ public class NoticeService {
 
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
-		//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
 		response.sendRedirect("a_notice_detail.jsp");
 		
 	}
