@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
 import com.mvc.dao.NoticeDAO;
+import com.mvc.dao.ReviewDAO;
 import com.mvc.dao.UserDAO;
+import com.mvc.dto.ReviewDTO;
 import com.mvc.dto.UserDTO;
 
 public class AdminService {
@@ -116,4 +118,45 @@ public class AdminService {
 			response.getWriter().println(obj);
 		}
 
-}
+	public void review_view(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ReviewDAO dao = new ReviewDAO();
+		ArrayList<ReviewDTO> list = dao.review_list();
+		//로그인 상태 
+		String loginId =(String)request.getSession().getAttribute("loginId");
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		if(loginId !=null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+
+		map.put("list", list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset = UTF-8");
+		response.getWriter().println(obj);
+		
+	}
+
+	//관리자 페이지에서 리뷰 삭제
+	public void review_del(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String[] delList = request.getParameterValues("delList[]"); 
+			//리뷰삭제 DB 사용 
+			ReviewDAO dao = new ReviewDAO();
+			boolean success = false;
+			
+			if(dao.a_delete(delList) == delList.length) {
+				success = true;
+			}
+			
+			Gson json = new Gson();
+			HashMap<String, Boolean> map = new HashMap<>();
+			map.put("success", success);
+			String obj = json.toJson(map);
+			response.getWriter().println(obj);
+		}
+		
+	}
