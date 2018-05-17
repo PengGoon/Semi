@@ -39,7 +39,7 @@ public class ReviewDAO {
 			while(rs.next()) {//rs 에서 값 가져와 dto 담기
 				//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
 				ReviewDTO dto = new ReviewDTO();			
-				System.out.println("dto 확인");
+
 				dto.setReview_id(rs.getInt("review_id")); //번호
 				dto.setReview_title(rs.getString("review_title")); //제목
 				dto.setPrd_id(rs.getInt("prd_id"));
@@ -89,10 +89,10 @@ public class ReviewDAO {
 				dto.setbHit(rs.getInt("bHit"));
 			}
 			//파일명 추출
-			String newFileName = fileNameCall(dto.getReview_id());
+/*			String newFileName = fileNameCall(dto.getReview_id());
 			if(newFileName != null) {
 				dto.setNewFileName(newFileName);
-			}			
+			}			*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -108,7 +108,7 @@ public class ReviewDAO {
 	 * 
 	 */
 	//게시글에 해당하는 파일명 추출
-	public String fileNameCall(int review_id) {		
+/*	public String fileNameCall(int review_id) {		
 		String sql="SELECT newFileName From photo WHERE review_id = ?";
 		String fileName = null;
 		try {
@@ -120,7 +120,7 @@ public class ReviewDAO {
 			e.printStackTrace();
 		}		
 		return fileName;
-	}
+	}*/
 
 	//조회수 올리기
 	private void upHit(String review_id) {
