@@ -221,7 +221,6 @@ public class ReviewDAO {
 		}		
 	}
 
-
 	//관리자 페이지에서 리뷰 상세보기 
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
@@ -246,6 +245,7 @@ public class ReviewDAO {
 			resClose();//자원 반납
 		}	
 		return list;
+		
 	}
 
 	//관리자 페이지에서 리뷰 삭제 메서드
