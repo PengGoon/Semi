@@ -31,18 +31,22 @@ public class ReviewDAO {
 	//리스트 불러오기
 	public ArrayList<ReviewDTO> list() {		
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
+		String sql = "SELECT * FROM review ORDER BY review_id DESC";
 		try {
 			//쿼리 와 ps 준비
-			String sql = "SELECT * FROM review ORDER BY review_id DESC";
 			ps = conn.prepareStatement(sql);//쿼리 실행			
 			rs = ps.executeQuery();
 			while(rs.next()) {//rs 에서 값 가져와 dto 담기
-				ReviewDTO dto = new ReviewDTO();				
-				dto.setReview_id(rs.getInt("review_id"));
-				dto.setReview_title(rs.getString("review_title"));
-				dto.setUser_id(rs.getString("user_id"));
+				//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
+				ReviewDTO dto = new ReviewDTO();			
+				System.out.println("dto 확인");
+				dto.setReview_id(rs.getInt("review_id")); //번호
+				dto.setReview_title(rs.getString("review_title")); //제목
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setUser_id(rs.getString("user_id")); //작성자
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
+				dto.setNewFileName(rs.getString("newFileName"));
 				list.add(dto);//dto 를 list 에 담기
 			}						
 		} catch (SQLException e) {
