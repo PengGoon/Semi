@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -132,7 +131,6 @@
 				</tr>
 			</table>
 			<br/>
-			<!-- <button id="no_write">글쓰기</button><button id="no_del">삭제</button> -->
 			<center>
 			<input id="no_write" type="button" value="글쓰기" onclick="location.href='a_notice_write.jsp'" />
 			<input id="del" type="button" value="삭제" /> 

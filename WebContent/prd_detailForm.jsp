@@ -94,6 +94,7 @@ body {
 	</div>
 </body>
 <script>
+<<<<<<< HEAD
 $(document).ready(function(){
 	$.ajax({
 		type : "post",
@@ -129,6 +130,8 @@ $(document).ready(function(){
 		});
 	});
 	
+=======
+>>>>>>> d0add30c929444855e19d77befc50b9677064281
 	var cnt=0;
 	$("#inc").click(function() {
 		cnt=cnt+1;

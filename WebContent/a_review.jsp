@@ -120,11 +120,10 @@
 			<table>
 				<tr>
 					<th>체크</th>
-					<th>번호</th>
-					<th>제목</th>
+					<th>상품명(상품번호)</th>
+					<th>리뷰제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회</th>
 				</tr>
 			</table>
 			<br/>

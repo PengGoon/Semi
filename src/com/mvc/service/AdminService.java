@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
 import com.mvc.dao.NoticeDAO;
+import com.mvc.dao.ReviewDAO;
 import com.mvc.dao.UserDAO;
+import com.mvc.dto.ReviewDTO;
 import com.mvc.dto.UserDTO;
 
 public class AdminService {
@@ -115,5 +117,27 @@ public class AdminService {
 			String obj = json.toJson(map);
 			response.getWriter().println(obj);
 		}
+
+	public void review_view(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ReviewDAO dao = new ReviewDAO();
+		ArrayList<ReviewDTO> list = dao.review_list();
+		//로그인 상태 
+		String loginId =(String)request.getSession().getAttribute("loginId");
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		if(loginId !=null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+
+		map.put("list", list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset = UTF-8");
+		response.getWriter().println(obj);
+		
+	}
 
 }

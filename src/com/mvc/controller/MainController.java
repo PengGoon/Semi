@@ -188,10 +188,8 @@ public class MainController extends HttpServlet {
 					// 후기 상세보기
 					case "/review_detail":
 						System.out.println("후기 상세보기 화면 요청");
-						//받아온 파라메터를 세션에 저장
-						request.getSession().setAttribute("review_id", request.getParameter("review_id"));
-						//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
-						response.sendRedirect("reviewDetail.jsp");
+						review = new ReviewService();
+						review.detail(request,response);
 						break;	
 						
 					// 후기 수정
@@ -285,7 +283,8 @@ public class MainController extends HttpServlet {
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
-						
+						admin = new  AdminService();
+						admin.review_view(request,response);
 						break;
 						
 					case "/user_view":
