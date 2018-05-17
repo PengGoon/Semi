@@ -39,8 +39,15 @@ body {
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
-					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
+					<th id="pic" colspan="2" rowspan="7">
+						<c:if test="${list.newFileName1 ne null}">
+							<img width="500" src="./upload/${list.newFileName1}"/>
+						</c:if>
+					</th>
 					<th colspan="2" style="width: 500px">
+						<c:if test="${info.prd_Count eq 0}">
+							<h2 style="color:red">[품절]</h2>
+						</c:if>
 						<h2>${info.prd_Name }</h2>
 					</th>
 				</tr>
@@ -77,11 +84,12 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-					${list.newFileName2}
-						<c:if test="'${list.newFileName2}' != null">
+						<c:if test="${list.newFileName2 ne null}">
 							<img width="500" src="./upload/${list.newFileName2}"/>
 						</c:if>
-						<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName3 ne null}">
+							<img width="500" src="./upload/${list.newFileName3}"/>
+						</c:if>
 					</th>
 				</tr>
 				<tr>
@@ -94,44 +102,6 @@ body {
 	</div>
 </body>
 <script>
-<<<<<<< HEAD
-$(document).ready(function(){
-	$.ajax({
-		type : "post",
-		url : "./prd2_buy", // 구매내역으로
-		data : {
-			sessionscope : $("#user_Id").val()
-		},
-		dataType : "json",
-		success : function(data) {//인자 값은 서버에서 주는 메시지
-			console.log(data);
-			$("#user_ID").val(data.dto3.user_name);
-		},
-		error : function(err) {//인자 값은 서버에서 주는 에러 메시지
-			console.log(err)
-		}
-	});
-});
-
-	$(document).ready(function(){
-		$.ajax({
-			type:"get",
-			url:"./prd2_buy",
-			data : {
-				
-			},
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-			},
-			error:function(e){
-				console.log(e);
-			}
-		});
-	});
-	
-=======
->>>>>>> d0add30c929444855e19d77befc50b9677064281
 	var cnt=0;
 	$("#inc").click(function() {
 		cnt=cnt+1;

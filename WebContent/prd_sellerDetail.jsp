@@ -70,11 +70,16 @@ body {
 			<table>
 				<tr>
 					<th id="pic" colspan="2" rowspan="7">
-						<img width="500" src="./upload/${list.newFileName1}"/>
+						<c:if test="${list.newFileName1 ne null}">
+							<img width="500" src="./upload/${list.newFileName1}"/>
+						</c:if>
 						<input type="file" name="photo1" style="display:none"/>
 					</th>
 					<th colspan="2" style="width: 500px">
 						<input type="hidden" name="prd_id" value="${info.prd_Id }" />
+						<c:if test="${info.prd_Count eq 0}">
+							<h2 style="color:red">[품절]</h2>
+						</c:if>
 						<h2>상품명</h2>
 						<input type="text" class="edit" name="prd_name" value="${info.prd_Name }" readonly/>
 					</th>
@@ -108,9 +113,13 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<img width="500" src="./upload/${list.newFileName2}"/>
+						<c:if test="${list.newFileName2 ne null}">
+							<img width="500" src="./upload/${list.newFileName2}"/>
+						</c:if>
 						<input type="file" name="photo2" style="display:none"/>
-						<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName3 ne null}">
+							<img width="500" src="./upload/${list.newFileName3}"/>
+						</c:if>
 						<input type="file" name="photo3" style="display:none"/>
 					</th>
 				</tr>
