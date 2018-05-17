@@ -18,10 +18,16 @@ import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
+<<<<<<< HEAD
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
+=======
+	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
+	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
+>>>>>>> fe182e58dc3a103eaa7262e691adbb0ee0d16a24
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
+	"/a_review_delete",
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
 public class MainController extends HttpServlet {
 	
@@ -239,7 +245,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					// 후기 상세보기
-					case "review_detailView":
+					case "/review_detailView":
 						System.out.println("후기 상세보기 요청");
 						review = new ReviewService();
 						review.detailView(request, response);
@@ -301,7 +307,14 @@ public class MainController extends HttpServlet {
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
+						admin = new  AdminService();
+						admin.review_view(request,response);
+						break;
 						
+					case "/a_review_delete":
+						System.out.println("관리자페이지 = 리뷰 삭제");
+						admin = new  AdminService();
+						admin.review_del(request,response);
 						break;
 						
 					case "/user_view":
