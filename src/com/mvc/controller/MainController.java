@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mvc.service.AdminService;
+import com.mvc.service.CartService;
 import com.mvc.service.NoticeService;
 import com.mvc.service.PhotoService;
 import com.mvc.service.ProductService;
 import com.mvc.service.ProductService2;
+import com.mvc.service.PurchaseService;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
@@ -52,6 +54,8 @@ public class MainController extends HttpServlet {
 				PhotoService photo = null;
 				ProductService2 product2 = null;
 				PhotoService service = null;
+				CartService cart = null;
+				PurchaseService purchase = null;
 				
 				// "/login", "/logout", "/join", 
 				// "/list","/detail", "/update", "/updateView", 
@@ -183,6 +187,13 @@ public class MainController extends HttpServlet {
 						System.out.println("장바구니 담기 요청");
 						product2 = new ProductService2();
 						product2.cart(request, response);
+						break;
+						
+					// 구매내역
+					case "/prd2_purchase":
+						System.out.println("구매내역");
+						purchase = new PurchaseService();
+						purchase.purch(request, response);
 						break;
 						
 					// 후기 리스트
