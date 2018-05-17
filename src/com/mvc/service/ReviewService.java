@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.ReviewDAO;
+import com.mvc.dto.NoticeDTO;
 import com.mvc.dto.ReviewDTO;
 
 public class ReviewService {
@@ -21,11 +22,16 @@ public class ReviewService {
 		//DB 이용 해서 데이터 가져오기
 		ReviewDAO dao = new ReviewDAO();
 		ArrayList<ReviewDTO> list = dao.list();
-		//가져온 데이터를 request 에 담기
-		request.setAttribute("list", list);
-		//특정한 페이지로 이동		
-		RequestDispatcher dis = request.getRequestDispatcher("reviewList.jsp");
-		dis.forward(request, response);
+		
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("list", list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset = UTF-8");
+		response.getWriter().println(obj);
+		System.out.println("후기 리스트 요청 ");
 	}
 
 	//상세 보기

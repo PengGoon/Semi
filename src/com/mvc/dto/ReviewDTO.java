@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class ReviewDTO {
 	
+	//리뷰번호, 구매자, 리뷰제목, 리뷰 내용, 리뷰 작성일, 리뷰 조회수...등등
 	private int review_id;
 	private int prd_id;
 	private String user_id;
@@ -11,6 +12,8 @@ public class ReviewDTO {
 	private String review_content;
 	private Date review_date; 
 	private String newFileName;
+	private int bHit;
+	
 	
 	public int getbHit() {
 		return bHit;
@@ -18,7 +21,7 @@ public class ReviewDTO {
 	public void setbHit(int bHit) {
 		this.bHit = bHit;
 	}
-	private int bHit;
+
 	
 	public int getReview_id() {
 		return review_id;
