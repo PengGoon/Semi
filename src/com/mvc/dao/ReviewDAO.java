@@ -70,7 +70,7 @@ public class ReviewDAO {
 	}
 
 	// 상세보기
-	public ReviewDTO detail(String review_id) {
+	public ReviewDTO detailView(String review_id) {
 		ReviewDTO dto = null;
 		String sql="SELECT * FROM review WHERE review_id = ?";
 		try {
@@ -221,14 +221,7 @@ public class ReviewDAO {
 		}		
 	}
 
-<<<<<<< HEAD
-	
 
-	
-	
-}
-	
-=======
 	//관리자 페이지에서 리뷰 상세보기 
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
@@ -273,7 +266,6 @@ public class ReviewDAO {
 		}
 		return delCnt;
 	}
->>>>>>> 669168a8df200cffbe5a129b70ee49b51ef65990
 
 }
 

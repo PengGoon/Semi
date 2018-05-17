@@ -17,7 +17,7 @@ import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
-	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
+	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/a_review_delete",
@@ -222,7 +222,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					// 후기 상세보기
-					case "review_detailView":
+					case "/review_detailView":
 						System.out.println("후기 상세보기 요청");
 						review = new ReviewService();
 						review.detailView(request, response);
