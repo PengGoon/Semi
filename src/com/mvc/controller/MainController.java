@@ -16,7 +16,7 @@ import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
-	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
+	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
@@ -178,6 +178,13 @@ public class MainController extends HttpServlet {
 						user.buyuser(request, response);
 						break;
 					
+					// 장바구니
+					case "/prd2_cart":
+						System.out.println("장바구니 담기 요청");
+						product2 = new ProductService2();
+						product2.cart(request, response);
+						break;
+						
 					// 후기 리스트
 					case "/review_list":
 						System.out.println("후기 리스트 호출 요청");
