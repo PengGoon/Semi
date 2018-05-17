@@ -10,23 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mvc.service.AdminService;
 import com.mvc.service.MemberService;
+import com.mvc.service.CartService;
 import com.mvc.service.NoticeService;
 import com.mvc.service.PhotoService;
 import com.mvc.service.ProductService;
 import com.mvc.service.ProductService2;
+import com.mvc.service.PurchaseService;
 import com.mvc.service.ReviewService;
 import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
-	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
-	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
+@WebServlet({ "/login", "/logout", "/join", 
+	"/sell_prdList", "/sell_prdDelete",
+	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
+	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
-    "/acptok", "/acptno", "/send_no"})
+    "/acptok", "/acptno", "/send_no",
+	"/a_review_delete",
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -60,6 +65,9 @@ public class MainController extends HttpServlet {
 				PhotoService service = null;
 				MemberService member =null;
 				UploadService file_service = null;
+				CartService cart = null;
+				PurchaseService purchase = null;
+				
 				// "/login", "/logout", "/join", 
 				// "/list","/detail", "/update", "/updateView", 
 				// "/write", "/delete", "/findId", "/findPw","/payList","/restock"
@@ -185,6 +193,20 @@ public class MainController extends HttpServlet {
 						user.buyuser(request, response);
 						break;
 					
+					// 장바구니
+					case "/prd2_cart":
+						System.out.println("장바구니 담기 요청");
+						product2 = new ProductService2();
+						product2.cart(request, response);
+						break;
+					
+					// 구매내역
+					case "/prd2_purchase":
+						System.out.println("구매내역");
+						purchase = new PurchaseService();
+						purchase.purch(request, response);
+						break;
+						
 					// 후기 리스트
 					case "/review_list":
 						System.out.println("후기 리스트 호출 요청");
@@ -195,10 +217,8 @@ public class MainController extends HttpServlet {
 					// 후기 상세보기
 					case "/review_detail":
 						System.out.println("후기 상세보기 화면 요청");
-						//받아온 파라메터를 세션에 저장
-						request.getSession().setAttribute("review_id", request.getParameter("review_id"));
-						//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
-						response.sendRedirect("reviewDetail.jsp");
+						review = new ReviewService();
+						review.detail(request,response);
 						break;	
 						
 					// 후기 수정
@@ -230,7 +250,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					// 후기 상세보기
-					case "review_detailView":
+					case "/review_detailView":
 						System.out.println("후기 상세보기 요청");
 						review = new ReviewService();
 						review.detailView(request, response);
@@ -292,7 +312,14 @@ public class MainController extends HttpServlet {
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
+						admin = new  AdminService();
+						admin.review_view(request,response);
+						break;
 						
+					case "/a_review_delete":
+						System.out.println("관리자페이지 = 리뷰 삭제");
+						admin = new  AdminService();
+						admin.review_del(request,response);
 						break;
 						
 					case "/user_view":

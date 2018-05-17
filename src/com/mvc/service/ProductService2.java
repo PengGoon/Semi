@@ -20,12 +20,21 @@ public class ProductService2 {
 	public void buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DB 에 개별 데이터 요청
 		ProductDAO2 dao2 = new ProductDAO2();
-		System.out.println(request.getParameter("prd_id"));
 		ProductDTO2 dto2 = dao2.buy(request.getParameter("prd_id"));
 		request.setAttribute("info", dto2);
 		dto2 = dao2.list(request.getParameter("prd_id"));
 		request.setAttribute("list", dto2);
 		RequestDispatcher dis = request.getRequestDispatcher("buy.jsp");
+		dis.forward(request, response);
+	}
+
+	public void cart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductDAO2 dao2 = new ProductDAO2();
+		ProductDTO2 dto2 = dao2.buy(request.getParameter("prd_id"));
+		request.setAttribute("info", dto2);
+		dto2 = dao2.list(request.getParameter("prd_id"));
+		request.setAttribute("list", dto2);
+		RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
 		dis.forward(request, response);
 	}
 }

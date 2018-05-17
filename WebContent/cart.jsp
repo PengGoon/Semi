@@ -98,32 +98,26 @@
                 <td>배송비</td>
           </tr>
           <tr>
-                <td class="ta"><input type="checkbox" value=""><img src="#"></td>
-                <td>안심</td>
-                <td>10,000원</td>
-                <td>2,500원</td>
-          </tr>
-          <tr>
-                <td class="ta"><input type="checkbox" value=""><img src="#"></td>
-                <td>삼겹살</td>
-                <td>10,000원</td>
-              <td>2,500원</td>
+                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${list.newFileName1}"/></td>
+                <td>${info.prd_Name }</td>
+                <td>${info.prd_Price }원</td>
+                <td>0원</td>
           </tr>
           <tr>
                 <td rowspan="2" class="tds">총 주문금액</td>
                 <td class="tda"></td>
                 <td class="tda">총 상품금액</td>
-                <td class="tdz">25,000원</td>
+                <td class="tdz">${info.prd_Price }원</td>
           </tr>
           <tr>
                 <td class="tdb"></td>
                 <td class="tdb">배송비</td>
-                <td>5,000원</td>
+                <td>0원</td>
           </tr>
           <tr>
                 <td colspan="2" class="tds"></td>
                 <td class="tds">총 주문금액</td>
-                <td>30,000원</td>
+                <td>${info.prd_Price }원</td>
           </tr>
         </table>
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>

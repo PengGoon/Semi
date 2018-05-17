@@ -180,9 +180,20 @@
 		obj.success = function(data){
 			console.log(data);
 			if(data.success>0){
-				alert("글쓰기에 성공 했습니다.");
-				//글쓰기 성공시 경로 설정 
-				location.href = "a_notice_detail.jsp";
+				if((obj.data.title == null)){
+						alert("제목이 작성 되지 않았습니다!")
+					}
+				else if(obj.data.content == null){
+						alert("내용이 작성되지 않았습니다.")
+					}
+				else if(obj.data.title==null && obj.data.content==null){
+						alert("제목과 내용이 작성되지 않았습니다.")
+				}else{
+					alert("글쓰기에 성공 했습니다.");
+					//글쓰기 성공시 경로 설정 
+					location.href = "a_notice_detail.jsp";
+				}
+
 			}else{
 				alert("글쓰기에 실패 했습니다.");
 			}

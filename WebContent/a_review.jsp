@@ -111,34 +111,23 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>Review</h2>
 		<h4>회원들이 남긴 후기들을 볼 수 있습니다. 삭제하시려면 선택 후 삭제 버튼을 눌러 주세요.</h4>
 		
 		<div class ="member">
-			<table>
+			<table id= "listTable">
 				<tr>
 					<th>체크</th>
-					<th>번호</th>
-					<th>제목</th>
+					<th>상품명(상품번호)</th>
+					<th>리뷰제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회</th>
-				</tr>
-				<tr>
-					<td class="che">
-						<input type="checkbox"/>
-					</td>
-					<td class="idx"></td>
-					<td class="subject"></td>
-					<td class="user_Id"></td>
-					<td class="reg_Date"></td>
-					<td class="inquiry"></td>
 				</tr>
 			</table>
 			<br/>
-			<input id="mem_del" type="button" value="삭제" onclick="redel()" />
+			<input id="del" type="button" value="삭제" />
 		</div>
 	</body>
 	<script>
@@ -150,14 +139,74 @@
 		});
 	});
 	
-	function redel(){
-        var con = confirm("정말로 삭제 하시겠습니까?");
-        //"확인" 버튼을 눌렀을 경우
-        if(con ==true){
-            //삭제 처리(요청)
-            alert("삭제가 완료 되었습니다.");
-        }
+	//리스트 호출(ajax)
+	var obj = {};
+	obj.error = function(e){console.log(e)};
+	obj.type="post";
+	obj.dataType="json";
+	
+	
+	$(document).ready(function(){
+		obj.url="./review_view";
+		obj.success = function(data){
+			console.log(data);
+			if(data.login){
+				//리스트 보여주기
+				listPrint(data.list);
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="a_login.jsp";
+			}
+		}
+		ajaxCall(obj);
+	});
+	function listPrint(list){
+		console.log(list);
+		var content ="";
+		list.forEach(function(item,idx){
+			content += "<tr>";
+			content += "<td><input type='checkbox' value='"+item.reveiw_id+"'/></td>"; 
+			content += "<td>" +item.prd_id+"</td>"; 
+			content += "<td><a href='./a_review_detail?reveiw_id=" +item.reveiw_id+"'>"+item.review_title+"</a></td>"; 
+			content += "<td>" +item.user_id+"</td>"; 
+			content += "<td>" +item.review_date+"</td>"; 
+			content += "</tr>";
+			console.log(item);
+		});
+		$("#listTable").append(content);
 	}
+	//리뷰 삭제 
+	 $("#del").click(function(){
+		obj.url="./a_review_delete";
+		var checked = [];
+		//$(elem).each() == elem.forEach()
+		$("input[type='checkbox']:checked").each(function(){
+			checked.push($(this).val());
+		});
+		console.log(checked);
+		obj.data={delList:checked};
+		obj.success = function(data){
+			if(data.success){
+				alert("삭제에 성공 했습니다.");
+			}else{
+				alert("삭제에 실패 했습니다.");
+			}
+			location.href = "a_review.jsp";
+			
+		}
+		console.log(obj);
+	    ajaxCall(obj);
+	});
+	 
+	
+	
+	function ajaxCall(param){
+		console.log(param);
+		$.ajax(param);
+	}
+	
+	
+
 	
 	</script>
 </html>

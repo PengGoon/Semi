@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,8 +39,15 @@ body {
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
-					<th id="pic" colspan="2" rowspan="7"><img width="500" src="./upload/${list.newFileName1}"/></th>
+					<th id="pic" colspan="2" rowspan="7">
+						<c:if test="${list.newFileName1 ne null}">
+							<img width="500" src="./upload/${list.newFileName1}"/>
+						</c:if>
+					</th>
 					<th colspan="2" style="width: 500px">
+						<c:if test="${info.prd_Count eq 0}">
+							<h2 style="color:red">[품절]</h2>
+						</c:if>
 						<h2>${info.prd_Name }</h2>
 					</th>
 				</tr>
@@ -70,14 +78,18 @@ body {
 				<tr>
 					<th colspan="2">
 						<button onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}'">바로결제</button>
-						<button id="cart">장바구니 추가</button> 
+						<button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> 
 						<button id="restock">재입고 알림</button>
 					</th>
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<img width="500" src="./upload/${list.newFileName2}"/>
-						<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName2 ne null}">
+							<img width="500" src="./upload/${list.newFileName2}"/>
+						</c:if>
+						<c:if test="${list.newFileName3 ne null}">
+							<img width="500" src="./upload/${list.newFileName3}"/>
+						</c:if>
 					</th>
 				</tr>
 				<tr>
@@ -90,40 +102,6 @@ body {
 	</div>
 </body>
 <script>
-$(document).ready(function(){
-	$.ajax({
-		type : "post",
-		url : "./prd2_buy", // 구매내역으로
-		data : {
-			sessionscope : $("#user_Id").val()
-		},
-		dataType : "json",
-		success : function(data) {//인자 값은 서버에서 주는 메시지
-			console.log(data);
-			$("#user_ID").val(data.dto3.user_name);
-		},
-		error : function(err) {//인자 값은 서버에서 주는 에러 메시지
-			console.log(err)
-		}
-	});
-});
-	$(document).ready(function(){
-		$.ajax({
-			type:"get",
-			url:"./prd2_buy",
-			data : {
-				
-			},
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-			},
-			error:function(e){
-				console.log(e);
-			}
-		});
-	});
-	
 	var cnt=0;
 	$("#inc").click(function() {
 		cnt=cnt+1;

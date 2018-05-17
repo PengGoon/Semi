@@ -190,7 +190,6 @@ public class ProductDAO {
 
 	public ArrayList<ProductDTO> prdSearch(String prdSearch) {
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-		String[] fileName = null;
 		try {
 			//쿼리 와 ps 준비
 			String sql = "SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?";
@@ -203,10 +202,8 @@ public class ProductDAO {
 				ProductDTO dto = new ProductDTO();	
 				dto.setPrd_Id(rs.getInt("prd_id"));
 				dto.setPrd_Name(rs.getString("prd_name"));
-
-				fileName = fileNameCall(rs.getInt("prd_id"));
-				System.out.println(fileName[0]);
-				if(dto.getNewFileName1() != null) {
+				String[] fileName = fileNameCall(rs.getInt("prd_id"));
+				if(fileName[0] != null) {
 					dto.setNewFileName1(fileName[0]);
 				}
 				System.out.println(dto.getPrd_Name());
@@ -250,15 +247,14 @@ public class ProductDAO {
 			ps.setString(5, dto.getPrd_Content());
 			ps.setInt(6, dto.getPrd_Id());
 			success = ps.executeUpdate();
-			if(rs.next()) {
-				sql = "UPDATE ProductImage SET newFileName1=?,newFileName2=?,newFileName3=? WHERE prd_id = ?";
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, dto.getNewFileName1());
-				ps.setString(2, dto.getNewFileName2());
-				ps.setString(3, dto.getNewFileName3());
-				ps.setInt(4, dto.getPrd_Id());
-				ps.executeUpdate();
-			}			
+			
+			sql = "UPDATE ProductImage SET newFileName1=?,newFileName2=?,newFileName3=? WHERE prd_id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getNewFileName1());
+			ps.setString(2, dto.getNewFileName2());
+			ps.setString(3, dto.getNewFileName3());
+			ps.setInt(4, dto.getPrd_Id());
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
