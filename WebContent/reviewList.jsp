@@ -110,7 +110,7 @@
 			//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
 			content += "<tr>";
 			content += "<td>" +item.review_id+"</td>"; 
-			content += "<td><a href='./review_detailView?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>";
+			content += "<td><a href='./review_detail?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>";
 			content += "<td>" +item.prd_id+"</td>"; 
 			content += "<td>" +item.user_id+"</td>"; 
 			content += "<td>" +item.review_date+"</td>"; 

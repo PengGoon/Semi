@@ -69,8 +69,8 @@ public class ReviewDAO {
 		}		
 	}
 
-	//상세보기
-	public ReviewDTO detail(String review_id) {
+	// 상세보기
+	public ReviewDTO detailView(String review_id) {
 		ReviewDTO dto = null;
 		String sql="SELECT * FROM review WHERE review_id = ?";
 		try {
@@ -220,6 +220,8 @@ public class ReviewDAO {
 			resClose();
 		}		
 	}
+
+	
 
 	
 	

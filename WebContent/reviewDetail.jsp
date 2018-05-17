@@ -145,18 +145,17 @@
 		console.log(e)
 	};
 
-
+	// 상세 정보 가져오기
    $(document).ready(function() {
-		obj.url = "./review_detailView";
+	    console.log("후기 상세보기 요청");
+		obj.url = "./review_detailView"; 
+		System.out.println("상세");
 		obj.success = function(data) {
+			
 			console.log(data);
-			if (data.login) {
-				printInfo(data.dto);
-			} else {
-				alert("로그인이 필요한 서비스 입니다.");
-				location.href = "userLogin.jsp";
-			}
-		};
+			
+			printInfo(data.info);
+		}
 		ajaxCall(obj);
 	});
  
