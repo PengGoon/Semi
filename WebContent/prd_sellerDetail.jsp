@@ -59,40 +59,43 @@ body {
 <body>
 	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
-		<button id="updateForm">수정</button>
+		<form action="./prd_update" method="post" enctype="multipart/form-data">
+		<input type="button" id="updateForm" value="수정"/>
 		<button id="save" style="display:none">저장</button>
 		<div id="detailTable">
+			<input type="hidden" name="cateFirst" value="${info.cateFirst_Id }" />
+			<input type="hidden" name="cateSecond" value="${info.cateSecond_Id }" />
 			<h2>${info.cateFirst_Id } > ${info.cateSecond_Id }</h2>
 			<table>
 				<tr>
 					<th id="pic" colspan="2" rowspan="7">
 						<img width="500" src="./upload/${list.newFileName1}"/>
-						<input type="file" id="photo1" style="display:none"/>
+						<input type="file" name="photo1" style="display:none"/>
 					</th>
 					<th colspan="2" style="width: 500px">
-						<input type="hidden" id="prd_Id" value="${info.prd_Id }" />
-						<input type="text" class="edit" id="prd_Name" value="${info.prd_Name }" readonly/>
+						<input type="hidden" name="prd_id" value="${info.prd_Id }" />
+						<input type="text" class="edit" name="prd_name" value="${info.prd_Name }" readonly/>
 					</th>
 				</tr>
 				<tr>
 					<th style="width: 100px">판매자</th>
-					<th style="width: 400px"><input type="text" id="sell_Id" value="${info.sell_Id }" readonly/></th>
+					<th style="width: 400px"><input type="text" name="sell_id" value="${info.sell_Id }" readonly/></th>
 				</tr>
 				<tr>
 					<th>판매가(100g)</th>
-					<th><input type="text" class="edit" id="prd_Price" value="${info.prd_Price }" readonly/></th>
+					<th><input type="text" class="edit" name="prd_price" value="${info.prd_Price }" readonly/></th>
 				</tr>
 				<tr>
 					<th>원산지</th>
-					<th><input type="text" class="edit" id="prd_From" value="${info.prd_From }" readonly/></th>
+					<th><input type="text" class="edit" name="prd_from" value="${info.prd_From }" readonly/></th>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<th><input type="text" id="prd_bHit" value="${info.prd_bHit }" readonly/></th>
+					<th><input type="text" name="prd_bHit" value="${info.prd_bHit }" readonly/></th>
 				</tr>
 				<tr>
 					<th>물품수량</th>
-					<th><input type="text" class="edit" id="prd_Count" value="${info.prd_Count }" readonly/></th>
+					<th><input type="text" class="edit" name="prd_count" value="${info.prd_Count }" readonly/></th>
 				</tr>
 				<tr>
 					<th colspan="2">
@@ -104,17 +107,18 @@ body {
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
 						<img width="500" src="./upload/${list.newFileName2}"/>
-						<input type="file" id="photo2" style="display:none"/>
+						<input type="file" name="photo2" style="display:none"/>
 						<img width="500" src="./upload/${list.newFileName3}"/>
-						<input type="file" id="photo3" style="display:none"/>
+						<input type="file" name="photo3" style="display:none"/>
 					</th>
 				</tr>
 				<tr>
 					<th width="140px"><h3>글 내용</h3></th>
-					<th height="300px" colspan="3"><textarea class="edit" id="prd_Content" readonly>${info.prd_Content }</textarea></th>
+					<th height="300px" colspan="3"><textarea class="edit" name="prd_content" readonly>${info.prd_Content }</textarea></th>
 				</tr>
 			</table>
 		</div>
+		</form>
 	</div>
 </body>
 <script>
@@ -143,7 +147,9 @@ body {
 	var idx;
 	obj.type="POST";
 	obj.dataType="JSON";
+	//obj.contentType=false;
 	obj.error=function(e){console.log(e)};
+	console.log(obj);
 	/*
 	$(document).ready(function(){
 		obj.url="./detailView";
@@ -169,6 +175,7 @@ body {
 	});
 	
 	//수정 요청
+	/*
 	$("#save").click(function(){
 		obj.url="./prd_update";
 		obj.data={
@@ -194,6 +201,7 @@ body {
 		};
 		ajaxCall(obj);
 	});
+	*/
 	
 	function ajaxCall(param){
 		console.log(param);
