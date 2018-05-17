@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>후기 상세보기</title>
 <style>
-	   	.ReviewWriteTitle{
+	   	.ReviewDetailTitle{
             	margin : 30px 0px 20px 0px;
             	text-align: center;
             	color: limegreen;
@@ -107,10 +107,11 @@
 </style>
 </head>
 <body>
+	<jsp:include page="navi.jsp"></jsp:include>
    	<div class = Review>
    	<div class = ReviewDetailTitle>
    	<h1>후기 상세보기</h1>
-    	</div>
+    </div>
 	<table>
 		<tr>
 			<th>작성자</th>
@@ -127,8 +128,8 @@
 		<tr>
 			<td colspan="2">
 				<a class=exit href="reviewList.jsp">리스트 가기</a> 
-				<a class=edit>수정</a>
-				<a class=save>저장</a>
+				<button id="edit">수정</button>
+				<button id="save">저장</button>
 			</td>
 		</tr>
 	</table>

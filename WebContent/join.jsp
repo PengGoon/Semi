@@ -281,7 +281,7 @@
 						$("input[name='phone']").focus();//포커스 이동
 					} else {
 						console.log("서버 전송");
-						obj.url = "./join";
+						obj.url = "./sell_join";
 						obj.data.id = $("input[name='userId']").val();
 						obj.data.pw = $("input[name='userPw']").val();
 						obj.data.name = $("input[name='userName']").val();
