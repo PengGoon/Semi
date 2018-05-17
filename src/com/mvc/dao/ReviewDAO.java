@@ -81,9 +81,10 @@ public class ReviewDAO {
 				upHit(review_id);
 				dto = new ReviewDTO();
 				dto.setReview_id(rs.getInt("review_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setReview_content(rs.getString("review_content"));
 				dto.setReview_title(rs.getString("review_title"));
+				dto.setReview_content(rs.getString("review_content"));
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
 			}

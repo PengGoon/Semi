@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.ReviewDAO;
-import com.mvc.dto.NoticeDTO;
 import com.mvc.dto.ReviewDTO;
 
 public class ReviewService {
@@ -129,9 +127,28 @@ public class ReviewService {
 		
 	}
 
-	public void detailView(HttpServletRequest request, HttpServletResponse response) {
+	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String review_id = (String) request.getSession().getAttribute("review_id");
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		boolean login = false;
 		
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		
+		if(loginUserId != null) {//로그인 일 경우만 정보를 가져 온다.
+			ReviewDAO dao = new ReviewDAO();
+			ReviewDTO dto = dao.detail(review_id);
+			login = true;
+			map.put("dto", dto);
+		}
+		map.put("login", login);
+		String obj  = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
 	}
+		
+		
+	
 
 	public void delete(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub

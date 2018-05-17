@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>판매자 아이디 찾기</title>
 <style type="text/css">
 table, td, th {
 	border-collapse: collapse;

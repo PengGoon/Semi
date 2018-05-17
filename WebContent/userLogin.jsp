@@ -139,7 +139,7 @@ hr {
 							alert("로그인에 성공 했습니다.");
 							location.href = "index.jsp";
 						} else {
-							alert("로그인에 실패 했습니다.");
+							alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 						}
 					},
 					error : function(err) {//인자 값은 서버에서 주는 에러 메시지
