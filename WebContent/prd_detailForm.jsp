@@ -90,40 +90,6 @@ body {
 	</div>
 </body>
 <script>
-$(document).ready(function(){
-	$.ajax({
-		type : "post",
-		url : "./prd2_buy", // 구매내역으로
-		data : {
-			sessionscope : $("#user_Id").val()
-		},
-		dataType : "json",
-		success : function(data) {//인자 값은 서버에서 주는 메시지
-			console.log(data);
-			$("#user_ID").val(data.dto3.user_name);
-		},
-		error : function(err) {//인자 값은 서버에서 주는 에러 메시지
-			console.log(err)
-		}
-	});
-});
-	$(document).ready(function(){
-		$.ajax({
-			type:"get",
-			url:"./prd2_buy",
-			data : {
-				
-			},
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-			},
-			error:function(e){
-				console.log(e);
-			}
-		});
-	});
-	
 	var cnt=0;
 	$("#inc").click(function() {
 		cnt=cnt+1;
