@@ -20,6 +20,7 @@ import com.mvc.service.UserService;
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
+	"/a_review_delete",
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
 public class MainController extends HttpServlet {
 	
@@ -285,6 +286,12 @@ public class MainController extends HttpServlet {
 						System.out.println("리뷰 확인");
 						admin = new  AdminService();
 						admin.review_view(request,response);
+						break;
+						
+					case "/a_review_delete":
+						System.out.println("관리자페이지 = 리뷰 삭제");
+						admin = new  AdminService();
+						admin.review_del(request,response);
 						break;
 						
 					case "/user_view":

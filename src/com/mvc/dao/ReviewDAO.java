@@ -221,9 +221,10 @@ public class ReviewDAO {
 		}		
 	}
 
+	//관리자 페이지에서 리뷰 상세보기 
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
-		String sql = "SELECT * FROM review ORDER BY review_id DESC";
+		String sql = "SELECT * FROM review ORDER BY review_date ASC";
 		try {
 			//쿼리 와 ps 준비
 			ps = conn.prepareStatement(sql);//쿼리 실행			
@@ -231,7 +232,6 @@ public class ReviewDAO {
 			while(rs.next()) {//rs 에서 값 가져와 dto 담기
 				//번호, 제목, 상품명, 작성자 , 작성일
 				ReviewDTO dto = new ReviewDTO();			
-				System.out.println("dto 확인");
 				dto.setReview_id(rs.getInt("review_id")); //번호
 				dto.setReview_title(rs.getString("review_title")); //제목
 				dto.setPrd_id(rs.getInt("prd_id")); //상품번호
@@ -247,10 +247,24 @@ public class ReviewDAO {
 		return list;
 	}
 
+	//관리자 페이지에서 리뷰 삭제 메서드
+	public int a_delete(String[] delList) {
+		int delCnt = 0;
+		String sql = "DELETE FROM review WHERE review_id=?";
+		try {
+			for(int i=0; i<delList.length;i++) {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, delList[i]);
+				delCnt += ps.executeUpdate();
+				ps.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+		resClose();
+		}
+		return delCnt;
+	}
 
-	
-	
 }
-	
-
 
