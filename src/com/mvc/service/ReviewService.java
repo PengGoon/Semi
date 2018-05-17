@@ -34,9 +34,13 @@ public class ReviewService {
 
 	//상세 보기
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("review_id", request.getParameter("review_id"));
-		//html 간 이동시 값을 공유 할 수 없어 세션에 저장 한다.
-		response.sendRedirect("reviewDetail.jsp");
+		//DB 에 개별 데이터 요청
+		ReviewDAO dao = new ReviewDAO();
+		ReviewDTO dto = dao.detail(request.getParameter("review_id"));
+		request.setAttribute("info", dto);
+		//특정한 페이지로 이동		
+		RequestDispatcher dis = request.getRequestDispatcher("reviewDetail.jsp");
+		dis.forward(request, response);
 	}
 
 	//글쓰기 페이지
@@ -89,7 +93,7 @@ public class ReviewService {
 		String review_id = request.getParameter("review_id");
 		//상세정보 가져오기(DB)
 		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.detailView(review_id);
+		ReviewDTO dto = dao.detail(review_id);
 		//수정 보기 페이지에 뿌려 준다.
 		request.setAttribute("dto", dto);
 		RequestDispatcher dis = request.getRequestDispatcher("reviewUpdateForm.jsp");
@@ -124,6 +128,7 @@ public class ReviewService {
 	}
 
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		String review_id = (String) request.getSession().getAttribute("review_id");
 		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
 		boolean login = false;
@@ -131,9 +136,9 @@ public class ReviewService {
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		
-		if(loginUserId != null) {//로그인 일 경우만 정보를 가져 온다.
+			if(loginUserId != null) {//로그인 일 경우만 정보를 가져 온다.
 			ReviewDAO dao = new ReviewDAO();
-			ReviewDTO dto = dao.detailView(review_id);
+			ReviewDTO dto = dao.detail(review_id);
 			login = true;
 			map.put("dto", dto);
 		}

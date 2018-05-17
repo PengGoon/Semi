@@ -221,14 +221,6 @@ public class ReviewDAO {
 		}		
 	}
 
-<<<<<<< HEAD
-	
-
-	
-	
-}
-	
-=======
 	//관리자 페이지에서 리뷰 상세보기 
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
@@ -253,6 +245,7 @@ public class ReviewDAO {
 			resClose();//자원 반납
 		}	
 		return list;
+		
 	}
 
 	//관리자 페이지에서 리뷰 삭제 메서드
@@ -273,7 +266,6 @@ public class ReviewDAO {
 		}
 		return delCnt;
 	}
->>>>>>> 669168a8df200cffbe5a129b70ee49b51ef65990
 
 }
 
