@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,7 +77,10 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<img width="500" src="./upload/${list.newFileName2}"/>
+					${list.newFileName2}
+						<c:if test="'${list.newFileName2}' != null">
+							<img width="500" src="./upload/${list.newFileName2}"/>
+						</c:if>
 						<img width="500" src="./upload/${list.newFileName3}"/>
 					</th>
 				</tr>
@@ -107,6 +111,7 @@ $(document).ready(function(){
 		}
 	});
 });
+
 	$(document).ready(function(){
 		$.ajax({
 			type:"get",

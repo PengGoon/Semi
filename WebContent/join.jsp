@@ -225,7 +225,7 @@
 	var overChk = false;//중복체크 값
 
 
-	//파일 업로드
+	//아이디 중복체크
 	$("#overlay").click(function() {
 		obj.url = "./overlay";
 		obj.data = {

@@ -43,7 +43,7 @@ body {
 	<jsp:include page="seller_navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="writeTable">
-			<form action="prd_write" method="post" enctype="multipart/form-data">
+			<form id="writeForm" action="prd_write" method="post" enctype="multipart/form-data">
 				<select id="cateF" name="cateFirst" onchange="showCateS(this.value)">
 					<option value="정육/달걀" selected="selected">정육/달걀</option>
 					<option value="생선">생선</option>
@@ -103,7 +103,7 @@ body {
 					</tr>
 					<tr>
 						<th colspan="4" height="100px">
-							<button>물품등록</button>
+							<input type="button" value="물품등록" onclick="emptyChk()"/>
 							<input type="button" value="취소" onclick="location.href='index.jsp'"/>
 						</th>
 					</tr>
@@ -126,6 +126,36 @@ function showCateS(val){
 	}
 	if(val == "과일") {
 		$("#cateS").html("<option value='제철과일' selected='selected'>제철과일</option><option value='수입과일'>수입과일</option>");
+	}
+}
+
+function emptyChk(){
+	var file1 = $("input[name=photo1]").val();
+	var file2 = $("input[name=photo2]").val();
+	var file3 = $("input[name=photo3]").val();
+	var fileExt1 = file1.substring(file1.lastIndexOf('.')+1); //파일 확장자
+	var fileExt2 = file2.substring(file2.lastIndexOf('.')+1); //파일 확장자
+	var fileExt3 = file3.substring(file3.lastIndexOf('.')+1); //파일 확장자
+	var fileflag1 = false;
+	var fileflag2 = false;
+	var fileflag3 = false;
+	
+	if($("input[name=prd_name]").val() == ""){ alert("상품명을 입력해주세요"); $("input[name=prd_name]").focus();
+	}else if($("input[name=prd_price]").val() == ""){ alert("판매가를 입력해주세요"); $("input[name=prd_price]").focus();
+	}else if($("input[name=prd_from]").val() == ""){ alert("원산지를 입력해주세요"); $("input[name=prd_from]").focus();
+	}else if($("input[name=prd_count]").val() == ""){ alert("상품수량을 입력해주세요"); $("input[name=prd_count]").focus();
+	}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() == ""){ 
+		if(fileExt2.toUpperCase() == "JPG" || fileExt2.toUpperCase() == "PNG" || fileExt2.toUpperCase() == ""){
+			if(fileExt3.toUpperCase() == "JPG" || fileExt3.toUpperCase() == "PNG" || fileExt3.toUpperCase() == ""){
+				$("#writeForm").submit();
+			}else{
+				alert("jpg 또는 png 파일만 가능합니다.");
+			}
+		}else{
+			alert("jpg 또는 png 파일만 가능합니다.");
+		}
+	}else{
+		alert("jpg 또는 png 파일만 가능합니다.");
 	}
 }
 </script>
