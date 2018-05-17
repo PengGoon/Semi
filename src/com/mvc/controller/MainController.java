@@ -18,13 +18,8 @@ import com.mvc.service.ReviewService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
-<<<<<<< HEAD
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
-	"/review_list","/review_detail","/review_update","/review_updateView","/review_write",
-=======
-	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
->>>>>>> fe182e58dc3a103eaa7262e691adbb0ee0d16a24
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/a_review_delete",
