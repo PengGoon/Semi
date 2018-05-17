@@ -70,17 +70,19 @@ public class ProductService {
 			//올린파일이 있다는것은 기존파일을 지워야 하는 것을 의미하므로 파일명을 알아야한다.
 			//oldFileName = dao.fileNameCall(dto.getPrd_Id());
 			oldFileName = dao.fileNameCall(dto.getPrd_Id());
-			System.out.println("배열:"+oldFileName);
+			System.out.println("배열:"+oldFileName[0]);
 			//파일명을 DB에서 수정
 			//dao.fileNameUpdate(dto.getPrd_Id(),dto.getNewFileName1(),dto.getNewFileName2(),dto.getNewFileName3(),oldFileName);
 			//기존 파일을 폴더에서 삭제
 			//upload.del(oldFileName);
 		}
-		
-		map.put("success", dao.update(dto));
-		String obj = json.toJson(map);
-		response.getWriter().println(obj);
-	
+		int success = dao.update(dto);
+		String page = "./prd_sellerdetail?prd_id="+dto.getPrd_Id();
+		if(success > 0) {
+			//성공(상세보기) = 글쓰기 한 후 idx 반환
+			page = "./prd_sellerdetail?prd_id="+dto.getPrd_Id();
+		}
+		response.sendRedirect(page);
 	}
 
 	public void updateView(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -90,6 +92,7 @@ public class ProductService {
 	public void sellerdetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//DB 에 개별 데이터 요청
 		ProductDAO dao = new ProductDAO();
+		System.out.println("상품번호:"+request.getParameter("prd_id"));
 		ProductDTO dto = dao.detail(request.getParameter("prd_id"));
 		request.setAttribute("info", dto);
 		dto = dao.list(request.getParameter("prd_id"));
@@ -144,7 +147,7 @@ public class ProductService {
 	public void prdSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DB 에 개별 데이터 요청
 		ProductDAO dao = new ProductDAO();
-		ArrayList<ProductDTO> list = dao.prdSearch(request.getParameter("prd_search"));
+		ArrayList<ProductDTO> list = dao.prdSearch(request.getParameter("search_name"));
 		//가져온 데이터를 request에 담기
 		request.setAttribute("list", list);
 		//특정한 페이지로 이동		

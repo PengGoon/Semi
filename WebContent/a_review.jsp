@@ -111,7 +111,7 @@
 		
 		<br/><br/><br/><br/><br/><br/>
 		<hr/>
-		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='2.jsp'">로그아웃</button></h5>
+		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
 		<h2>Review</h2>
 		<h4>회원들이 남긴 후기들을 볼 수 있습니다. 삭제하시려면 선택 후 삭제 버튼을 눌러 주세요.</h4>
@@ -126,19 +126,9 @@
 					<th>작성일</th>
 					<th>조회</th>
 				</tr>
-				<tr>
-					<td class="che">
-						<input type="checkbox"/>
-					</td>
-					<td class="idx"></td>
-					<td class="subject"></td>
-					<td class="user_Id"></td>
-					<td class="reg_Date"></td>
-					<td class="inquiry"></td>
-				</tr>
 			</table>
 			<br/>
-			<input id="mem_del" type="button" value="삭제" onclick="redel()" />
+			<input id="mem_del" type="button" value="삭제" />
 		</div>
 	</body>
 	<script>
@@ -149,15 +139,7 @@
 			$(this).addClass('on');
 		});
 	});
-	
-	function redel(){
-        var con = confirm("정말로 삭제 하시겠습니까?");
-        //"확인" 버튼을 눌렀을 경우
-        if(con ==true){
-            //삭제 처리(요청)
-            alert("삭제가 완료 되었습니다.");
-        }
-	}
+
 	
 	</script>
 </html>
