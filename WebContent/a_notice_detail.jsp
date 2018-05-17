@@ -158,7 +158,7 @@
 	obj.type="POST";
 	obj.dataType="JSON";
 	obj.error=function(e){console.log(e)};
-	
+	console.log(obj);
 	$(document).ready(function(){
 		console.log("상세보기");
 		obj.url="./notice_detailView";
