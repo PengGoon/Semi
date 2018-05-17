@@ -285,7 +285,8 @@ public class MainController extends HttpServlet {
 						
 					case "/review_view":
 						System.out.println("리뷰 확인");
-						
+						admin = new  AdminService();
+						admin.review_view(request,response);
 						break;
 						
 					case "/user_view":
