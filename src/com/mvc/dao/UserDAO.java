@@ -1,7 +1,6 @@
 package com.mvc.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -166,6 +165,76 @@ public class UserDAO {
         }
         return dto3;    
     }
+    //회원상세보기
+    public UserDTO detailView(String loginId) {
+    	UserDTO dto = null;
+		String sql = "SELECT * FROM UserDB WHERE user_Id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto = new UserDTO();
+				dto.setUser_Id("user_Id");
+				dto.setUser_Pw(rs.getString("user_Pw"));
+				dto.setUser_Name(rs.getString("user_Name"));
+				dto.setUser_Addr(rs.getString("user_Addr"));
+				dto.setUser_Email(rs.getString("user_Email"));
+				dto.setUser_Phone(rs.getString("user_Phone"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+    
+    //회원수정
+	public Integer update(String loginUserId, String user_Pw, String user_Name, String user_Addr, String user_Email,String user_Phone) 
+	{
+	
+		int success = 0;
+		String sql = "UPDATE UserDB SET  user_Pw=?, user_Name=?, user_Addr=?, user_Email=?, user_Phone=? WHERE  user_Id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_Pw);
+			ps.setString(2, user_Name);
+			ps.setString(3, user_Addr);
+			ps.setString(4, user_Email);
+			ps.setString(5, user_Phone );
+			ps.setString(6, loginUserId);
+			
+			success = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return success;
+	}
+	
+	//회원 비밀번호 체크
+	public int chekPw(String loginUserId, String checkPw) {
+		int result = 0;
+		String sql = "select user_pw from UserDB where user_Id=? and user_Pw = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginUserId);
+			ps.setString(2, checkPw);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return result;
+	}
+	
 	
 
 }

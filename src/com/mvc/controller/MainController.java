@@ -1,6 +1,7 @@
 package com.mvc.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mvc.service.AdminService;
+import com.mvc.service.MemberService;
 import com.mvc.service.CartService;
 import com.mvc.service.NoticeService;
 import com.mvc.service.PhotoService;
@@ -15,13 +17,19 @@ import com.mvc.service.ProductService;
 import com.mvc.service.ProductService2;
 import com.mvc.service.PurchaseService;
 import com.mvc.service.ReviewService;
+import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
-@WebServlet({ "/login", "/logout", "/join", "/sell_prdList", "/sell_prdDelete",
+@WebServlet({ "/login", "/logout", "/join", 
+	"/sell_prdList", "/sell_prdDelete",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
+	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
+	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
+    "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
+    "/acptok", "/acptno", "/send_no",
 	"/a_review_delete",
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
 public class MainController extends HttpServlet {
@@ -55,6 +63,8 @@ public class MainController extends HttpServlet {
 				PhotoService photo = null;
 				ProductService2 product2 = null;
 				PhotoService service = null;
+				MemberService member =null;
+				UploadService file_service = null;
 				CartService cart = null;
 				PurchaseService purchase = null;
 				
@@ -359,7 +369,129 @@ public class MainController extends HttpServlet {
 						notice.update(request,response);
 						break;
 						
+					case "/u_detailView":
+						System.out.println("유저상세보기");
+						user = new UserService();
+						user.detailView(request, response);
+						break;
 
+					case "/u_update":
+						System.out.println("유저수정 요청");
+						user = new UserService();
+						user.update(request, response);
+						break;
+
+					case "/u_pwCheck":
+						System.out.println("유저수정 본인확인 요청");
+						user = new UserService();
+						user.upPwCheck(request, response);
+						break;
+						
+					case "/u_list":
+						System.out.println("유저 구매내역  요청");
+						product = new ProductService();
+						product.ulist(request, response);
+						break;
+					case "/sell_overlay":
+				         System.out.println("중복 체크");
+				         member = new MemberService();
+				         member.overlay(request, response);
+				         // upload 메서드를 실행 하면 사진의 경로를 반환
+				         // service.upload(request, response);// request : text+file;
+				         break;
+
+				      case "/sell_join":
+				         System.out.println("회원가입 요청");
+				         member = new MemberService();
+				         member.join(request, response);
+				         break;
+
+				      case "/sell_login":
+				         System.out.println("로그인 요청");
+				         member = new MemberService();
+				         member.login(request, response);
+				         break;
+
+				      case "/sell_logout":
+				         System.out.println("로그아웃");
+				         /* 알아서 처리 할 것 */
+				         break;
+
+				      case "/seller_accept_list":
+				         System.out.println("리스트 호출 요청");
+				         member = new MemberService();
+				         member.list(request, response);
+				         break;
+				         
+				      case "/detailView":
+				         member = new MemberService();
+				         member.detailView(request, response);
+				         break;
+
+				      case "/sell_delete":
+				         System.out.println("삭제 요청");
+				         member = new MemberService();
+				         member.sell_delete(request, response);
+				         break;
+
+				      case "/update":
+				         System.out.println("수정 요청");
+				         member = new MemberService();
+				         member.update(request, response);
+				         break;
+
+
+				      case "/upload":
+				         System.out.println("파일 업로드 요청"); // 받아서 서비스에 전달 UploadService
+				         file_service = new UploadService(); // upload 메서드를 실행 하면 사진의 경로를 반환
+				         file_service.upload(request, response);// request : text+file;
+				         break;
+
+				      case "/searchID":
+				         System.out.println("아이디 찾기 요청");
+				         member = new MemberService();
+				         member.searchID(request, response);
+				         break;
+				      case "/searchPW":
+				         System.out.println("비밀번호 찾기 요청");
+				         member = new MemberService();
+				         member.searchPW(request, response);
+				         break;
+
+				      case "/pwCheck":
+				         System.out.println("수정 본인확인 요청");
+				         member = new MemberService();
+				         member.upPwCheck(request, response);
+				         break;
+
+				      case "/request":
+				         System.out.println("판매자 등록 요청준비");
+				         member = new MemberService();
+				         member.request(request, response);
+				         break;
+
+				      case "/sell_request":
+				         System.out.println("판매자 등록 요청시작");
+				         member = new MemberService();
+				         member.sell_request(request, response);
+				         break;
+
+				      case "/acptok":
+				         System.out.println("판매자 등록요청 수락");
+				         System.out.println(request.getParameter("sell_id"));
+				         request.getSession().setAttribute("seller_id", request.getParameter("sell_id"));
+				         member = new MemberService();
+				         member.acptok(request, response);
+				         break;
+
+				      case "/acptno":
+				         System.out.println("판매자 등록요청 거절");
+				         request.getSession().setAttribute("seller_id", request.getParameter("sell_id"));
+				         request.getSession().setAttribute("seller_email", request.getParameter("sell_email"));
+				         request.getSession().setAttribute("no_msg", request.getParameter("no_msg"));
+				         member = new MemberService();
+				         member.acptno(request, response);
+				         break;
 						
 
 

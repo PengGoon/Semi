@@ -149,6 +149,14 @@
 		});
 	});
 	
+	$("#sell").click(function(){
+		location.href = "seller_list.jsp";
+	});
+	
+	$("#regist").click(function(){
+		location.href = "seller_accept.jsp";
+	});
+	
 	//리스트 호출(ajax)
 	var obj = {};
 	obj.error = function(e){console.log(e)};
