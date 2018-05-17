@@ -98,15 +98,11 @@
       <table>
       <tr>
          <th>작성자</th>
-         <td><input type="text" id="userId" value=<%=request.getSession().getAttribute("loginUserId") %> style="border:none"  readonly/></td>
-      </tr>
-      <tr>
-      	<th>상품명</th>
-      	<td><input type="text" id="prdName" value="" style="border:none"  readonly/></td>
+         <td><input type="text" id="userId" value=<%=request.getSession().getAttribute("loginUserId") %> readonly/></td>
       </tr>
       <tr>
          <th>제목</th>
-         <td><input type="text" id="reviewTitle" placeholder="제목을 입력하세요"/></td>
+         <td><input type="text" id="reviewTitle" /></td>
       </tr>
       <tr>
          <th>내용</th>
