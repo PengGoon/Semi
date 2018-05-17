@@ -17,15 +17,15 @@
 	<table>
 		<tr>
 			<th>작성자</th>
-			<td>${info.user_id}</td>
+			<td><input type="text" id="userId" readonly/></td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td>${info.review_title}</td>
+			<td><input class="edit" type="text" id="review_title" readonly/></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td>${info.review_content}</td>
+			<td><textarea class="edit" rows="15" id="review_content" readonly></td>
 		</tr>
 	<c:if test="${info.newFileName != null}"></c:if>
 		<tr>

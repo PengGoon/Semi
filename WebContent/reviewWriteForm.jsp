@@ -49,9 +49,25 @@
          text-align: left;
       }
       .photoAdd{
-      			position:absolute;
-            	left:4%;
+      	 position:relative;
+         left:4%;
+         height : 42px;
+		 width: 130px;
+		 cursor: pointer;
       }
+      
+       #replace {
+        position: absolute;
+        left:4%;
+        height : 42px;
+        width: 130px;
+        font-weight: 800;
+        border-style : solid;
+        border-color: limegreen;
+        background-color : limegreen;
+        color: white;
+        cursor: pointer;
+     }
       
       .write{
             	position:absolute;
@@ -86,6 +102,8 @@
      	padding: 0;
      }
      
+    
+     
      
    </style>
    </head>
@@ -115,7 +133,9 @@
       
       <tr>
          <td class=btnRow  colspan="2">
-         	<input class=photoAdd type="file" name="reviewPhoto"/>
+         	
+         	<button id="replace">파일 업로드</button>
+         	<input type="file" name="reviewPhoto" style="opacity:0"/>
             <a class=exit href="reviewList.jsp">취소</a>
             &nbsp;&nbsp;
             <button class=write id="writeBtn">작성 완료</button>
@@ -185,6 +205,7 @@
 		function ajaxCall(param){
 		$.ajax(param);
 	}
+	
 
 	</script>
 </html>
