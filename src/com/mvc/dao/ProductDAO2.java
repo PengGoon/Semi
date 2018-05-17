@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -77,6 +78,49 @@ public class ProductDAO2 {
 		}
 		return dto2;	
 	}
+
+	public ArrayList<ProductDTO2> ulist(String prd_id) {
+		ArrayList<ProductDTO2> list = new ArrayList<ProductDTO2>();
+		String sql = "SELECT * FROM Product WHERE prd_id = ?";
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(prd_id));
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					ProductDTO2 dto = new ProductDTO2();
+					dto.setPrd_Name(rs.getString("prd_Name"));
+					dto.setPrd_Price(rs.getInt("prd_Price"));
+					dto.setPrd_Count(rs.getInt("prd_Count"));
+					dto.setNewFileName1(rs.getString("newFileName1"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			
+		return list;
+	}
+
+	public ArrayList<ProductDTO2> uulist(String prd_id) {
+		ArrayList<ProductDTO2> list = new ArrayList<ProductDTO2>();
+		String sql="SELECT * From productimage WHERE prd_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(prd_id));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				ProductDTO2 dto = new ProductDTO2();
+				dto.setNewFileName1(rs.getString("newFileName1"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	
 	/*public ProductDTO2 user(String user_id) {
 		ProductDTO2 dto2 = null;

@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.mvc.dto.ProductDTO;
+import com.mvc.dto.ProductDTO2;
 
 public class ProductDAO {
 	Connection conn = null;
@@ -261,6 +262,10 @@ public class ProductDAO {
 		}
 		return success;
 	}
+
+	
+
+	
 
 	/*
 	public void fileNameUpdate(int prd_Id, String newFileName1, String newFileName2, String newFileName3, String[] oldFileName) {

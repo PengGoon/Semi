@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
+import com.mvc.dao.ProductDAO2;
 import com.mvc.dto.ProductDTO;
+import com.mvc.dto.ProductDTO2;
 
 public class ProductService {
 
-	public void list(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//DB 에 개별 데이터 요청
@@ -153,6 +152,19 @@ public class ProductService {
 		//특정한 페이지로 이동		
 		RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
 		dis.forward(request, response);
+	}
+	//주문내역
+	public void ulist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ProductDAO2 dao2 = new ProductDAO2();
+		ArrayList<ProductDTO2> ulist = dao2.ulist(request.getParameter("prd_id"));
+		ulist =dao2.uulist(request.getParameter("prd_id"));
+		
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("ulist",ulist);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
 	}
 
 }
