@@ -39,7 +39,7 @@ public class ProductUpload {
 			dto.setPrd_From(multi.getParameter("prd_from"));
 			dto.setPrd_bHit(0);
 			dto.setPrd_Count(Integer.parseInt(multi.getParameter("prd_count")));
-						
+			
 			//파일명 변경(업로드한 파일이 있을 경우만 실행)
 			String oriFileName1 = multi.getFilesystemName("photo1");
 			String oriFileName2 = multi.getFilesystemName("photo2");
@@ -60,7 +60,7 @@ public class ProductUpload {
 			dto.setPrd_Content(multi.getParameter("prd_content"));
 			
 			//수정할 때 필요(idx 값이 넘어올 경우만 작동)
-			String prd_Id = multi.getParameter("prd_Id");
+			String prd_Id = multi.getParameter("prd_id");
 			if(prd_Id != null) {
 				dto.setPrd_Id(Integer.parseInt(prd_Id));
 			}
