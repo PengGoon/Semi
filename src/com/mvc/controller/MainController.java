@@ -30,7 +30,7 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
-	"/a_review_delete"})
+	"/a_review_delete","/main_notice"})
 
 public class MainController extends HttpServlet {
 	
@@ -366,10 +366,17 @@ public class MainController extends HttpServlet {
 						notice.detail(request,response);
 						break;
 						
+						
 					case "/main_notice_detail":
-						System.out.println("공지사항 상세보기");
+						System.out.println("메인 페이지 에서 공지사항 상세보기");
 						notice = new NoticeService();
 						notice.main_notice_detail(request, response);
+						break;
+						
+					case "/main_notice":
+						System.out.println("메인 페이지 에서 공지사항 상세보기");
+						notice = new NoticeService();
+						notice.main_notice(request, response);
 						break;
 						
 					case "/notice_detailView":
@@ -377,8 +384,7 @@ public class MainController extends HttpServlet {
 						notice = new NoticeService();
 						notice.detailView(request,response);
 						break;
-						
-						
+									
 					case "/notice_update":
 						System.out.println("공지사항 수정하기");
 						notice = new NoticeService();
