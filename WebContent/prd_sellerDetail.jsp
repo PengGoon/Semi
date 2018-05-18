@@ -158,7 +158,6 @@ body {
 	var idx;
 	obj.type="POST";
 	obj.dataType="JSON";
-	//obj.contentType=false;
 	obj.error=function(e){console.log(e)};
 	console.log(obj);
 	/*
