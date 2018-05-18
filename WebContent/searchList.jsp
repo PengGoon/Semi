@@ -27,11 +27,20 @@
 				width:100px;
 				height:100px;
 			}
+			#sortSel{
+				float: right;
+			}
 		</style>
 	</head>
 	<body>
 		<jsp:include page="navi.jsp"></jsp:include>
 		<div id="listCenter">
+		<select id="sortSel" name="sortSel" onchange="sort(this.value)">
+			<option value="상세검색" selected="selected">상세검색</option>
+			<option value="조회수 순">조회수 순</option>
+			<option value="높은 가격 순">높은 가격 순</option>
+			<option value="낮은 가격 순">낮은 가격 순</option>
+		</select>
 		<h2>"<%=request.getParameter("search_name") %>" 로 검색하신 내용입니다.</h2>
 		<table id="searchlist">
 			<tr>
@@ -58,4 +67,34 @@
 		</table>
 		</div>
 	</body>
+	<script>
+		//html 문서를 로드하자 마자 상세 정보를 가져 온다.
+		var obj = {};
+		var idx;
+		obj.type="POST";
+		obj.dataType="JSON";
+		obj.error=function(e){console.log(e)};
+		console.log(obj);
+		
+		function ajaxCall(param){
+			console.log(param);
+			$.ajax(param);
+		}
+		
+		function sort(val){
+			switch (val) {
+			case "조회수 순":
+				console.log("조회수 순입니다.");
+				break;
+			case "높은 가격 순":
+				console.log("높은 가격 순입니다.");
+				break;
+			case "낮은 가격 순":
+				console.log("낮은 가격 순입니다.");
+				break;
+			}
+		}
+		
+		
+	</script>
 </html>
