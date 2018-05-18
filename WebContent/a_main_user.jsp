@@ -208,16 +208,14 @@
 		obj.success = function(data){
 			if(data.success){
 				
-				confirm ("선택한 회원을 삭제 하시겠습니까?");
-				if(confirm ==true){
-					alert("삭제 되었습니다.")
-				}
+/* 				confirm ("선택한 회원을 삭제 하시겠습니까?");
+				if(confirm ==true){ */
+					alert("삭제 되었습니다.");
+				location.href = "a_main_user.jsp";
 			}else{
 				alert("삭제에 실패 했습니다.");
-			}
-			location.href = "a_main_user.jsp";
-			
 		}
+			}
 		console.log(obj);
 	    ajaxCall(obj);
 	}); 

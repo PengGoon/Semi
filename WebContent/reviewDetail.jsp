@@ -8,25 +8,22 @@
 <title>후기 상세보기</title>
 <style>
 	   	.ReviewWriteTitle{
-            	margin : 30px 0px 20px 0px;
-            	text-align: center;
-            	color: limegreen;
-            	font-size: 20;
-            }
-
+            margin : 30px 0px 20px 0px;
+            text-align: center;
+            color: limegreen;
+            font-size: 20;
+       }
       .Review td{
       	border: 1px solid black;
         border-collapse: collapse;
         padding: 5px 10px;
       }
-      
       .Review th{
       	border: 1px solid black;
         border-collapse: collapse;
         padding: 5px 10px;
       	width:70px;
       }
-      
       .Review table{
       	position: absolute;
       	left:25%;
@@ -67,7 +64,6 @@
         color: white;
         cursor: pointer;
      }
-      
       .write{
             	position:absolute;
             	left:83%;
@@ -80,8 +76,7 @@
             	color: white;
             	cursor: pointer;
       }
-      
-      .exit{
+      #exit{
       			text-decoration:none;
             	position:absolute;
             	left:65%;
@@ -94,15 +89,14 @@
             	border:2.5px solid limegreen;
             	background-color : white;
             	color: limegreen;
-      }
-            
+      }      
      .btnRow{
      	height:80px;
      	padding: 0;
      }
-
-
-
+     #save{
+     display:none;
+	 }
 
 </style>
 </head>
@@ -126,9 +120,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a class=exit href="reviewList.jsp">리스트 가기</a> 
-				<a class=edit>수정</a>
-				<a class=save>저장</a>
+				<a id=exit href="reviewList.jsp">리스트 가기</a> 
+				<input id="edit" type="button" value="수정"/>
+				<input id="save" type="button" value="저장"/>
 			</td>
 		</tr>
 	</table>
@@ -136,7 +130,6 @@
 </body>
 <script>
 
-	//html 문서를 로드하자 마자 상세 정보를 가져 온다.
 	var obj = {};
 	var idx;
 	obj.type = "POST";
@@ -163,7 +156,7 @@
 		$("#reviewContent").val(info.review_content);
 	}
 
-	//수정 뷰
+	//수정 하기 버튼 클릭시 
 	$("#edit").click(function() {
 		$("#save").css("display", "inline");
 		$(".editable").css("border-width", "1px");
@@ -196,9 +189,3 @@
 	}
 </script>
 </html>
-
-
-
-
-
-
