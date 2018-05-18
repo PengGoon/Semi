@@ -1,31 +1,4 @@
 
-		
-	<!-- <div class ="member">
-		<table id=write-form>
-			<tr>
-				<td>상품번호(상품명)</td>
-				<td><input type="text" id="prd_id" name="prd_id"style="width: 50%; , border:none;"  readonly/> </td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				  <td><input type="text"  id="user_id"style="width: 90%;"  readonly/></td>
-			</tr>
-			<tr>
-				<td>작성일</td>
-				  <td><input type="text"  id="review_date"style="width: 90%;"  readonly/></td>
-			</tr>
-			<tr>
-			    <td>제목</td>
-			    <td><input class="edit" type="text" id="review_title"style="width: 90%;"  readonly/></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-			        <textarea class="edit" id="review_content" rows="15" cols="120" readonly></textarea>
-			    </td>
-			</tr>
-		</table> -->
-	
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>

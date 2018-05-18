@@ -29,7 +29,7 @@
 	
 	$(document).ready(function(){
 		console.log("상세보기");
-		obj.url="./notice_detailView";
+		obj.url="./main_notice_detail";
 		obj.success = function(data){
 			console.log(data);
 			printInfo(data.dto);

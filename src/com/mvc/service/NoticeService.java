@@ -140,9 +140,26 @@ public class NoticeService {
 	}
 
 	public void main_notice_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//인덱스 번호와 로그인 아이디를 세션으로 가져와서 확인하는 방법
+		System.out.println(request.getSession().getAttribute("notice_id"));
+		String idx =(String) request.getSession().getAttribute("notice_id");
+		System.out.println(idx);
+		Gson json = new Gson();
+		HashMap< String, Object> map = new HashMap<>();
+
+		NoticeDAO dao = new NoticeDAO();
+		NoticeDTO dto = dao.detailView(idx);
+
+		map.put("dto", dto);
+		String obj  = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+}
+
+
+	public void main_notice(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
 		response.sendRedirect("main_notice_detail.jsp");
-		
 		
 	}
 	
