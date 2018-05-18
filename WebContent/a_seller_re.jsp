@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -119,30 +120,8 @@
 		<br/><br/>
 		<h2>판매자 등록</h2>
 		<h4>판매자 등록을 승인 또는 거부할 수 있습니다. </h4>
+		<jsp:include page="seller_accept.jsp"></jsp:include>
 		
-		<div class ="member">
-			<table>
-				<tr>
-					<th>체크</th>
-					<th>번호</th>
-					<th>판매자(아이디)</th>
-					<th>요청일</th>
-					<th>사업자 등록증 이미지</th>
-					<th>승인/거부</th>
-				</tr>
-				<tr>
-					<td class="che">
-						<input type="checkbox"/>
-					</td>
-					<td ></td>
-					<td ></td>
-					<td ></td>
-					<td ></td>
-					<td ><button>승인</button><button>거부</button></td>
-				</tr>
-			</table>
-			<br/>
-		</div>
 	</body>
 	<script>
 	

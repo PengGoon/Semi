@@ -48,7 +48,7 @@
 	
 	#writeBtn{
 		position:absolute;
-		left:70%;
+		left:73%;
 		height : 42px;
 		width: 130px;
 		font-weight: 800;
@@ -72,15 +72,16 @@
 		<h5>상품 사용 후기를 남기는 공간입니다.해당 게시판의 성격과 다른 글은 사전 동의 없이 삭제 될 수 있습니다.</h5><hr/>
 	<table id = "listTable">
 		<tr>
-			<th>글 번호</th>
-			<th id=reviewTitle>제목</th>
-			<th>상품명</th>
-			<th id=userId>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
+			<th style="width:100px">글 번호</th>
+			<th style="width:300px">제목</th>
+			<th style="width:250px">상품명</th>
+			<th style="width:150px">작성자</th>
+			<th style="width:150px">작성일</th>
+			<th style="width:100px">조회수</th>
 		</tr>
 	</table>
 	<br/>
+	<hr/>
 	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button>
 	</div>
 	</body>
@@ -109,12 +110,12 @@
 		list.forEach(function(item,idx){
 			//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
 			content += "<tr>";
-			content += "<td>" +item.review_id+"</td>"; 
+			content += "<td style='text-align:center'>" +item.review_id+"</td>"; 
 			content += "<td><a href='./review_detail?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>";
-			content += "<td>" +item.prd_id+"</td>"; 
-			content += "<td>" +item.user_id+"</td>"; 
-			content += "<td>" +item.review_date+"</td>"; 
-			content += "<td>" +item.bHit+"</td>"; 
+			content += "<td style='text-align:center'>" +item.prd_id+"</td>"; 
+			content += "<td style='text-align:center'>" +item.user_id+"</td>"; 
+			content += "<td style='text-align:center'>" +item.review_date+"</td>"; 
+			content += "<td style='text-align:right'>" +item.bHit+"</td>"; 
 			content += "</tr>";
 			console.log(item);
 		});

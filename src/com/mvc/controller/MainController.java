@@ -29,8 +29,7 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
-    "/acptok", "/acptno", "/send_no",
-	"/a_review_delete"})
+    "/acptok", "/acptno", "/send_no","/admin","/a_review_delete"})
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -219,6 +218,13 @@ public class MainController extends HttpServlet {
 						review = new ReviewService();
 						review.detail(request,response);
 						break;	
+
+						// 후기 상세보기
+					case "/review_detailView":
+						System.out.println("후기 상세보기 요청");
+						review = new ReviewService();
+						review.detailView(request, response);
+						break;
 						
 					// 후기 수정
 					case "/review_update":
@@ -226,14 +232,7 @@ public class MainController extends HttpServlet {
 						review = new ReviewService();
 						review.update(request, response);
 						break;
-						
-					// 후기 수정 상세
-					case "/review_updateView":
-						System.out.println("후기 수정 상세 요청");
-						review = new ReviewService();
-						review.updateView(request,response);
-						break;
-					
+
 					// 후기 등록
 					case "/review_write":
 						System.out.println("후기 등록 요청");
@@ -248,12 +247,7 @@ public class MainController extends HttpServlet {
 						review.delete(request, response);
 						break;
 						
-					// 후기 상세보기
-					case "/review_detailView":
-						System.out.println("후기 상세보기 요청");
-						review = new ReviewService();
-						review.detailView(request, response);
-						break;
+
 						
 					// Id 찾기
 					case "/findId":
@@ -278,6 +272,11 @@ public class MainController extends HttpServlet {
 						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
+						
+					case "/admin":
+						System.out.println("관리자 페이지 접속");
+						response.sendRedirect("a_login.jsp");
+						break;
 						
 					case "/admin_loginCheck":
 						System.out.println("관리자 로그인");

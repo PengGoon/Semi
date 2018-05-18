@@ -6,31 +6,101 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>판매자 아이디 찾기</title>
 <style type="text/css">
-table, td, th {
-	border-collapse: collapse;
-	padding: 5px 10px;
-	text-align: center;
-	top: 150;
-	left: 200px;
-	border: 1px solid black;
-}
+	 .searchId table{
+            	border: none;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            }   
+            
+            .searchId td{
+            	border: none;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            }   
+            
+            .searchId th{
+            	border: none;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            }   
+     
+            
+            .searchIdTitle{
+            	margin : 30px 0px 60px 0px;
+            	text-align: center;
+            	color: limegreen;
+            	font-size: 20;
+            }
+            
+            .searchIdTable{
+            	position : fixed;
+            	top: 310px;
+            	left: 30%;
+            	width:1000px;
+            }
+            
+            .background{
+          		position : fixed;
+            	width: 100%;
+            	height: 230px;
+            	background-color: limegreen;
+            	opacity: 0.15;
+            }
+            
+            .inp, #search_email{
+            	height: 43px;
+            }
+            
+             .searchId hr{
+            	border:none;
+            	border:1px solid limegreen; 
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+   			    width:66%;
+   			    float: left;
+            }
+            
+            #searchIDbtn{
+            	position:absolute;
+            	left:24%;
+            	text-align: center;
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 50px;
+            	width: 150px;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
+<jsp:include page="navi.jsp"></jsp:include>
 <body>
-	<h2 style="text-align: center;">판매자 아이디 찾기</h2>
-	<table>
+	<div class = searchId>
+	<div class = searchIdTitle>
+    	<h1>아이디 찾기 (판매자)</h1>
+    </div>
+    <div class = background >
+    </div>
+	<table class="searchIdTable">
 		<tr>
-			<td>이름</td>
-			<td><input class="inputTxt" type="text" name="search_userName"
-				placeholder="이름 입력란" style="width: 100%" /></td>
+			<th>이름</th>
+			<td><input class=inp type="text" name="search_userName"
+				placeholder="이름 입력란"/></td>
 		</tr>
 		<tr>
-			<td>EMAIL</td>
-			<td><input class="inputTxt" type="text" name="search_email"
-				style="width: 150" placeholder="이메일 입력란" /> @ <input type="text"
-				id="emailview" name="search_emailview" style="width: 150"
-				placeholder="이메일 선택" disabled="true" /> <select id="search_email">
+			<th>EMAIL</th>
+			<td>
+				<input class=inp type="text" name="search_email" placeholder="이메일 입력란" /> <b>@</b>
+				<input type="text" class=inp id="emailview" name="search_emailview" placeholder="이메일 선택" disabled="true" />
+				<select id="search_email" >
 					<option value="0">이메일을 선택 하세요</option>
 					<option value="1">직접입력</option>
 					<option>naver.com</option>
@@ -38,13 +108,21 @@ table, td, th {
 					<option>google.com</option>
 					<option>nate.com</option>
 					<option>daum.net</option>
-			</select></td>
+				</select>
+			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" id="searchIDbtn"
-				value="아이디 찾기" /></td>
+			<td colspan="2">
+				<hr/>
+			</td>
+        </tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" id="searchIDbtn" value="아이디 찾기" />
+			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 <script type="text/javascript">
 	var msg = "${msg}";

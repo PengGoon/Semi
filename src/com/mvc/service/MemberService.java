@@ -251,7 +251,7 @@ public class MemberService {
          msg = "요청수락 성공";
       }
       request.setAttribute("msg", msg);
-      RequestDispatcher dis = request.getRequestDispatcher("seller_accept.jsp");
+      RequestDispatcher dis = request.getRequestDispatcher("a_seller_re.jsp");
       dis.forward(request, response);
    }
 

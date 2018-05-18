@@ -127,7 +127,8 @@
 				</tr>
 			</table>
 			<br/>
-			<input id="del" type="button" value="삭제" />
+			<center>
+			<input id="del" type="button" value="삭제" /></center>
 		</div>
 	</body>
 	<script>
