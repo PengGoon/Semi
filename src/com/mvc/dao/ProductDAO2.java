@@ -120,8 +120,7 @@ public class ProductDAO2 {
 		}
 		return list;
 	}
-	
-	
+
 	/*public ProductDTO2 user(String user_id) {
 		ProductDTO2 dto2 = null;
 		String sql="SELECT user_Name,user_Phone,user_Addr FROM UserDB WHERE user_id = ?";
