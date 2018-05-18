@@ -47,15 +47,8 @@
       .Review td{
          text-align: left;
       }
-      .photoAdd{
-      	 position:relative;
-         left:4%;
-         height : 42px;
-		 width: 130px;
-		 cursor: pointer;
-      }
       
-       #replace {
+       #edit {
         position: absolute;
         left:4%;
         height : 42px;
@@ -68,7 +61,7 @@
         cursor: pointer;
      }
       
-      .write{
+      #save{
             	position:absolute;
             	left:83%;
             	height : 42px;
@@ -81,7 +74,7 @@
             	cursor: pointer;
       }
       
-      .exit{
+      #exit{
       			text-decoration:none;
             	position:absolute;
             	left:65%;
@@ -95,14 +88,12 @@
             	background-color : white;
             	color: limegreen;
       }
-            
+
      .btnRow{
      	height:80px;
-     	padding: 0;
+     	padding: 0 0 50px 0 ;
+     	
      }
-
-
-
 
 </style>
 </head>
@@ -115,19 +106,19 @@
 	<table>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" id="userId" readonly /></td>
+			<td><input type="text" id="userId" style="border:none" readonly /></td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input class="editable" id="reviewTitle" type="text"  readonly /></td>
+			<td><input class="editable" id="reviewTitle" type="text" style="border:none" readonly /></td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td><textarea class="editable"  id="reviewContent" rows="15" readonly></textarea></td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<a class=exit href="reviewList.jsp">리스트 가기</a> 
+			<td class=btnRow colspan="2">
+				<a id="exit" href="reviewList.jsp">리스트 가기</a> 
 				<button id="edit">수정</button>
 				<button id="save">저장</button>
 			</td>

@@ -17,6 +17,9 @@ body {
 .jbTitle {
 	left: 40%;
 }
+#market{
+	color:#000000;
+}
 
 .jbFixed {
 	position: fixed;
@@ -168,7 +171,7 @@ div#category th {
 		</div>
 
 		<div class="jbTitle">
-			<h1>마켓</h1>
+			<h1><a href="index.jsp" id="market" style="text-decoration: none"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
 		</div>
 	</div>
 	<hr />
