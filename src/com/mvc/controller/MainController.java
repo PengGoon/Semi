@@ -29,7 +29,7 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
-    "/acptok", "/acptno", "/send_no","/admin",
+    "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView",
 	"/a_review_delete"})
 public class MainController extends HttpServlet {
 	
@@ -310,9 +310,23 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/review_view":
-						System.out.println("리뷰 확인");
+						System.out.println("관리자 페이지 : 리뷰 리스트보기");
 						admin = new  AdminService();
 						admin.review_view(request,response);
+						break;
+
+					case "/a_review_detail":
+						System.out.println("관리자 페이지 : 리뷰 상세보기");
+						admin = new  AdminService();
+						admin.review_detail(request,response);
+						break;
+						
+					case "/a_review_detailView":
+						System.out.println("관리자 페이지 : 리뷰 상세보기");
+/*						admin = new  AdminService();
+						admin.review_detailView(request,response);*/
+						review = new ReviewService();
+						review.detailView(request, response);
 						break;
 						
 					case "/a_review_delete":

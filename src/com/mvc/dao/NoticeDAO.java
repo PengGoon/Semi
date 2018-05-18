@@ -129,6 +129,7 @@ public class NoticeDAO {
 				if(rs.next()) {
 					upHit(idx);
 					dto = new NoticeDTO();
+					//번호, 제목, 내용 , 작성자, 조회수 
 					dto.setNotice_id(rs.getInt("notice_id"));
 					dto.setNotice_title(rs.getString("notice_title"));
 					dto.setNotice_content(rs.getString("notice_content"));

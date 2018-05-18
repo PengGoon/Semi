@@ -221,7 +221,7 @@ public class ReviewDAO {
 		}		
 	}
 
-	//관리자 페이지에서 리뷰 상세보기 
+	//관리자 페이지에서 리뷰 리스트
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
 		String sql = "SELECT * FROM review ORDER BY review_date ASC";
@@ -285,5 +285,31 @@ public class ReviewDAO {
 		return success;
 	}
 
+	//관리자 페이지 리뷰 상세보기 
+	public ReviewDTO a_detailView(String idx) {
+		ReviewDTO dto = null;
+		String sql="SELECT * FROM review WHERE review_id = ?";
+		try {
+			ps  = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(idx));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto = new ReviewDTO();
+				//번호, 상품번호, 작성자, 제목, 내용, 작성일 
+				//번호가 주키 
+				dto.setReview_id(rs.getInt("review_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setReview_title(rs.getString("review_title"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_date(rs.getDate("review_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return dto;
+	}
 }
 
