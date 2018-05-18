@@ -7,26 +7,23 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>후기 상세보기</title>
 <style>
-	   	.ReviewDetailTitle{
+	   .ReviewDetailTitle{
             	margin : 30px 0px 20px 0px;
             	text-align: center;
             	color: limegreen;
             	font-size: 20;
             }
-
       .Review td{
       	border: 1px solid black;
         border-collapse: collapse;
         padding: 5px 10px;
       }
-      
       .Review th{
       	border: 1px solid black;
         border-collapse: collapse;
         padding: 5px 10px;
       	width:70px;
       }
-      
       .Review table{
       	position: absolute;
       	left:25%;
@@ -60,8 +57,12 @@
         color: white;
         cursor: pointer;
      }
+<<<<<<< HEAD
       
       #save{
+=======
+      .write{
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
             	position:absolute;
             	left:83%;
             	height : 42px;
@@ -73,7 +74,10 @@
             	color: white;
             	cursor: pointer;
       }
+<<<<<<< HEAD
       
+=======
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
       #exit{
       			text-decoration:none;
             	position:absolute;
@@ -87,13 +91,23 @@
             	border:2.5px solid limegreen;
             	background-color : white;
             	color: limegreen;
+<<<<<<< HEAD
       }
 
+=======
+      }      
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
      .btnRow{
      	height:80px;
      	padding: 0 0 50px 0 ;
      	
      }
+<<<<<<< HEAD
+=======
+     #save{
+     display:none;
+	 }
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
 
 </style>
 </head>
@@ -121,6 +135,10 @@
 				<a id="exit" href="reviewList.jsp">리스트 가기</a> 
 				<button id="edit">수정</button>
 				<button id="save">저장</button>
+			<td colspan="2">
+				<a id=exit href="reviewList.jsp">리스트 가기</a> 
+				<input id="edit" type="button" value="수정"/>
+				<input id="save" type="button" value="저장"/>
 			</td>
 		</tr>
 	</table>
@@ -128,7 +146,6 @@
 </body>
 <script>
 
-	//html 문서를 로드하자 마자 상세 정보를 가져 온다.
 	var obj = {};
 	var idx;
 	obj.type = "POST";
@@ -155,7 +172,7 @@
 		$("#reviewContent").val(info.review_content);
 	}
 
-	//수정 뷰
+	//수정 하기 버튼 클릭시 
 	$("#edit").click(function() {
 		$("#save").css("display", "inline");
 		$(".editable").css("border-width", "1px");
@@ -188,9 +205,3 @@
 	}
 </script>
 </html>
-
-
-
-
-
-

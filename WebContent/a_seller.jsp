@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -115,31 +116,7 @@
 		
 		<h2>판매자 관리</h2>
 		<h4>승인이 완료된 판매자들을 확인 할 수 있습니다. </h4>
-		
-		<div class ="member">
-			<table>
-				<tr>
-					<th>체크</th>
-					<th>번호</th>
-					<th>판매자아이디</th>
-					<th>판매자주소</th>
-					<th>핸드폰 번호</th>
-					<th>가입일</th>
-				</tr>
-				<tr>
-					<td class="che">
-						<input type="checkbox"/>
-					</td>
-					<td class="idx"></td>
-					<td class="user_Id"></td>
-					<td class="user_Addr"></td>
-					<td class="user_Phone"></td>
-					<td class="reg_Date"></td>
-				</tr>
-			</table>
-			<br/>
-			<input id="mem_del" type="button" value="삭제" onclick="selldel()"/>
-		</div>
+		<jsp:include page="seller_list.jsp"></jsp:include>
 	</body>
 	<script>
 	
@@ -153,14 +130,7 @@
 		});
 	});
 	
-	function selldel(){
-        var con = confirm("정말로 삭제 하시겠습니까?");
-        //"확인" 버튼을 눌렀을 경우
-        if(con ==true){
-            //삭제 처리(요청)
-            alert("삭제가 완료 되었습니다.");
-        }
-	}
+
 	
 	</script>
 </html>
