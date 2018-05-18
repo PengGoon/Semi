@@ -5,7 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -234,6 +242,97 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
+	// 회원 ID 찾기
+	public String findID(String find_name, String find_email) {
+		String find_id = "해당 정보가 없습니다.";
+	      String sql = "SELECT user_id from userDB WHERE user_name=? AND user_email=?";
+	      try {
+	         ps = conn.prepareStatement(sql);
+	         ps.setString(1, find_name);
+	         ps.setString(2, find_email);
+	         rs = ps.executeQuery();
+	         System.out.println(rs.getString("find_id"));
+	         if (rs.next()) {
+	        	 find_id = rs.getString("user_id");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	         return null;
+	      } finally {
+	         resClose();
+	      }
+	      return find_id;
+	}
+
+	public boolean findPW(String search_id, String search_name, String search_email) {
+		String search_pw = "";
+	      boolean success = false;
+	      String sql = "SELECT sell_pw from seller WHERE sell_id=? AND sell_name=? AND sell_email=?";
+	      try {
+	         ps = conn.prepareStatement(sql);
+	         ps.setString(1, search_id);
+	         ps.setString(2, search_name);
+	         ps.setString(3, search_email);
+	         rs = ps.executeQuery();
+	         // System.out.println(rs.getString("sell_id"));
+	         if (rs.next()) {
+	            search_pw = rs.getString("sell_pw");
+
+	            System.out.println(search_pw);
+
+	            // 메일 보내기
+	            sendEmail(search_pw, search_email);
+
+	            success = true;
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	         return false;
+	      } finally {
+	         resClose();
+	      }
+	      return success;
+	}
+
+	private void sendEmail(String search_pw, String search_email) {
+		String host = "smtp.naver.com";
+	      final String user = "audwls7505";
+	      final String password = "audwls1185";
+
+	      String to = search_email;
+	      Properties props = new Properties();
+	      props.put("mail.smtp.host", host);
+	      props.put("mail.smtp.auth", "true");
+	      props.put("mail.smtp.ssl.enable", "true");
+	      props.put("mail.smtp.ssl.trust", "smtp.naver.com");
+
+	      Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+	         protected PasswordAuthentication getPasswordAuthentication() {
+	            return new PasswordAuthentication(user, password);
+	         }
+	      });
+
+	      // Compose the message
+	      try {
+	         MimeMessage message = new MimeMessage(session);
+	         message.setFrom(new InternetAddress(user));
+	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+	         // Subject
+	         message.setSubject("Mar-KH-et 비밀번호 찾기 요청 응답 메일입니다.");
+
+	         // Text
+	         message.setText("찾으시는 비밀번호는 < " + search_pw + " > 입니다.");
+
+	         // send the message
+	         Transport.send(message);
+	         System.out.println("message sent successfully...");
+
+	      } catch (MessagingException e) {
+	         e.printStackTrace();
+	      }
+	   }
 	
 	
 

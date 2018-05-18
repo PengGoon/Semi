@@ -34,7 +34,7 @@ table, td, th {
 	opacity: 0.15;
 }
 
-hr {
+.loginTable hr {
 	border: none;
 	border: 1px solid limegreen;
 	color: limegreen; /* IE */
@@ -91,10 +91,11 @@ hr {
 		</tr>
 		<tr>
 			<td colspan="3"><br />
-				<hr /> <input class=button onclick="findId()" type="button"
-				value="아이디 찾기" /> <input class=button onclick="findPw()"
-				type="button" value="비밀번호 찾기" /> <input class=button
-				onclick="join()" type="button" value="회원가입" /></td>
+				<hr /> 
+				<input class=button  id="findId" type="button" value="아이디 찾기" /> 
+				<input class=button  id="findPw" type="button" value="비밀번호 찾기" /> 
+				<input class=button  id="join" type="button" value="회원가입" />
+			</td>
 		</tr>
 	</table>
 
@@ -136,7 +137,6 @@ hr {
 					}
 				}); // 판매자 로그인 영역
 				
-				
 				// 구매자 라디오 버튼 선택시 - 구매자 로그인
 			} else if ($('input[name="sel"]:checked').val() == "user") { 
 				
@@ -168,19 +168,36 @@ hr {
 			}// 구매자, 판매자 라디오버튼 확인 영역
 
 		} //아이디, 비밀번호 입력여부 확인 영역 
-		
 	});
 
-	function join() {
+	$("#join").click(function() { 
 		location.href = "userJoinSelect.jsp";
-	}
+	});
 
-	function findId() {
-		location.href = "userFindId.jsp";
-	}
+	$("#findId").click(function() {
+		// 판매자 라디오버튼 클릭시
+		if ($('input[name="sel"]:checked').val() == "seller") {
+			location.href = "searchID.jsp";
+		// 개인 라디오버튼 클릭시 	
+		} else if ($('input[name="sel"]:checked').val() == "user")  {
+			location.href = "userFindId.jsp";
+		// 라디오버튼 미선택시			
+		} else {
+			alert("아이디를 찾고자 할 회원 종류를 선택해 주세요");
+		}
+	});
 
-	function findPw() {
-		location.href = "userFindPw.jsp";
-	}
+	$("#findPw").click(function() { 
+		// 판매자 라디오버튼 클릭시
+		if ($('input[name="sel"]:checked').val() == "seller") {
+			location.href = "searchPW.jsp";
+		// 개인 라디오버튼 클릭시 	
+		} else if ($('input[name="sel"]:checked').val() == "user")  {
+			location.href = "userFindPw.jsp";
+		// 라디오버튼 미선택시			
+		} else {
+			alert("비밀번호를 찾고자 할 회원 종류를 선택해 주세요");
+		}
+	});
 </script>
 </html>
