@@ -5,18 +5,31 @@
         <meta charset="UTF-8">
         <title>구매자 비밀번호 찾기</title>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <style>
-            table, td, th{
+        <style type="text/css">
+            .findPw table{
             	border: none;
             	border-collapse: collapse;
             	padding: 5px 10px;
-            	text-align:left;
-            	
-            	width:380px;
+            	text-align: left;
             }   
             
+            .findPw td{
+            	border: none;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            }   
+            
+            .findPw th{
+            	border: none;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            }   
+     
+            
             .findPwTitle{
-            	margin : 30px 0px 20px 0px;
+            	margin : 30px 0px 60px 0px;
             	text-align: center;
             	color: limegreen;
             	font-size: 20;
@@ -25,34 +38,40 @@
             .findPwTable{
             	position : fixed;
             	top: 310px;
-            	left: 39%;
+            	left: 30%;
+            	width:1000px;
             }
             
             .background{
-          		position : absolute;
+          		position : fixed;
             	width: 100%;
-            	height: 270px;
+            	height: 290px;
             	background-color: limegreen;
             	opacity: 0.15;
             }
             
-            #inp{
+            .inp, #search_email{
             	height: 43px;
             }
             
-            hr{
+              .findPw hr{
             	border:none;
             	border:1px solid limegreen; 
             	color: limegreen;    /* IE */
     			border-color: limegreen;  /* 사파리 */
    			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+   			    width:66%;
+   			    float: left;
             }
             
-            .button{
+            #searchPWbtn{
+            	position:absolute;
+            	left:24%;
+            	text-align: center;
             	font-weight: 600;
             	border-style : solid;
             	height : 50px;
-            	width: 100px;
+            	width: 150px;
             	border-color: limegreen;
             	background-color : limegreen;
             	color: white;
@@ -63,64 +82,116 @@
     </head>
     <body>
     	<jsp:include page="navi.jsp"></jsp:include>
+    	<div class = findPw>
     	<div class = findPwTitle>
-    	<h1>비밀번호 찾기</h1>
-    	<h4 style="color:black">
-    	개인 <input type="radio"  name="sel" value="user"/> <!-- userJoin.jsp(개인)로 이동  -->
-    	&nbsp;&nbsp;&nbsp;
-    	판매자 <input type="radio" name="sel" value="seller"/> <!--join.jsp(판매자) 로 이동 -->
-    	</h4> 
+    	<h1>비밀번호 찾기 (개인)</h1>
     	</div>
     	<div class = background >
     	</div>
         <table class = findPwTable>
             <tr>
-                <th>이름</th>
-                <td>
-                	<input id="inp" type="text" name="userName" />
-                </td>
-            </tr>
-            <tr>
-            <th>아이디</th>
-                <td>
-                	<input id="inp" type="text" name="userId"/>
-                </td>
-            </tr>
-            <tr>
-                <th>가입 메일주소</th>
-                <td>
-                	<input id="inp" type="text" name="email"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                	<hr/>
-                </td>
-            </tr>
-            <tr>
-            	<th></th>
-                <td colspan="3">
-                    <input class=button onclick="findPw()" type="button" value="확인"/>
-                </td>
-            </tr>
+				<th>아이디 </th>
+				<td><input type="text" class=inp name="search_userId" placeholder="아이디 입력란"/></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>
+					<input class=inp type="text" name="search_userName" placeholder="이름 입력란"/> </td>
+			</tr>
+			<tr>
+				<th>EMAIL</th>
+				<td>
+					<input class=inp type="text" name="search_email"  placeholder="이메일 입력란" /> <b>@</b> 
+					<input type="text" class=inp id="emailview" name="search_emailview" placeholder="이메일 선택" disabled="true" /> 
+					<select id="search_email">
+						<option value="0">이메일을 선택 하세요</option>
+						<option value="1">직접입력</option>
+						<option>naver.com</option>
+						<option>hanmail.net</option>
+						<option>google.com</option>
+						<option>nate.com</option>
+						<option>daum.net</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr/>
+				</td>
+        	</tr>
+			<tr>
+				<td colspan="2"><input type="button" id="searchPWbtn"
+					value="비밀번호 찾기" /></td>
+			</tr>
         </table>
+        </div>
     </body>
     <script>
+    var obj = {};//초기화   
+	obj.type = "post";
+	obj.dataType = "json";
+	obj.data={};
+	//obj.enctype = "multipart/form-data";
+	obj.error = function(e) {
+		console.log(e)
+	};
 
-    
-    function findPw(){
-   	 if ($("input[name='userName']").val() == "") {//이름 입력 확인
-            alert("이름을 입력하세요");
-            $("input[name='userName']").focus();//포커스 이동
-     } else if ($("input[name='userId']").val() == ""){
-  		 alert("아이디를 입력하세요");
-  		 $("input[name='userId']").focus();//포커스 이동
-   	 } else if ($("input[name='email']").val() == ""){
-   		 alert("메일을 입력하세요");
-   		$("input[name='email']").focus();//포커스 이동
-   	 } else { // 제대로 입력시
-   		 location.href = "#"; // 미구현
-   	 } 
-   }
+	$("#search_email").change(function() {
+		$("#search_email option:selected").each(function() {
+
+			if ($(this).val() == '0') {
+				$("#emailview").val("이메일 입력란");
+				$("#emailview").attr("disabled", true);
+			}
+
+			else if ($(this).val() == '1') { //직접입력일 경우
+				$("#emailview").val(''); //값 초기화
+				$("#emailview").attr("placeholder", "직접입력");
+				$("#emailview").attr("disabled", false); //활성화 
+			} else { //직접입력이 아닐경우 
+				$("#emailview").val($(this).text()); //선택값 입력
+				$("#emailview").attr("disabled", true); //비활성화
+			}
+		});
+	});
+
+	$("#searchPWbtn").click(
+			function() {
+				if ($("input[name='search_userId']").val() == "") {//이름 입력 확인
+					alert("아이디를 확인 해 주세요!");
+					$("input[name='userName']").focus();//포커스 이동
+				}
+				else if ($("input[name='search_userName']").val() == "") {//이름 입력 확인
+					alert("이름을 확인 해 주세요!");
+					$("input[name='userName']").focus();//포커스 이동
+				} else if ($("input[name='search_email']").val() == "") {//이메일 입력 확인
+					alert("이메일을 확인 해 주세요!");
+					$("input[name='searach_email']").focus();//포커스 이동
+				} else {
+					console.log("서버 전송");
+					obj.url = "./findPw";
+					obj.data.search_id = $("input[name=search_userId]").val();
+					obj.data.search_name = $("input[name='search_userName']").val();
+					obj.data.search_email = $("input[name='search_email']")
+							.val()
+							+ "@" + $("input[name=search_emailview]").val();
+
+					obj.success = function(data) {
+						if (data.success == true) {
+							alert("찾으시는 비밀번호를 메일로 전송했습니다.");
+							location.href = "index.jsp";
+							window.open("about:blank", "_self").close();
+						} else {
+							alert("해당 정보가 없습니다.");
+						}
+					}
+					console.log(obj);
+					ajaxCall(obj);
+				}
+			});
+
+	function ajaxCall(obj) {
+		$.ajax(obj);
+	}
     </script>
 </html>

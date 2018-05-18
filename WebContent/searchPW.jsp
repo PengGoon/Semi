@@ -89,15 +89,14 @@
     <div class = background >
     </div>
 		<table class = searchPwTable>
-		<tr>
-			<th>아이디 </th>
-			<td><input type="text" class=inp name="search_userId" placeholder="아이디 입력란"/></td>
-		</tr>
+			<tr>
+				<th>아이디 </th>
+				<td><input type="text" class=inp name="search_userId" placeholder="아이디 입력란"/></td>
+			</tr>
 			<tr>
 				<th>이름</th>
 				<td>
-					<input class=inp type="text" name="search_userName" placeholder="이름 입력란"/> 
-				</td>
+					<input class=inp type="text" name="search_userName" placeholder="이름 입력란"/> </td>
 			</tr>
 			<tr>
 				<th>EMAIL</th>
@@ -180,7 +179,7 @@
 
 					obj.success = function(data) {
 						if (data.success == true) {
-							alert("찾으시는 아이디를 메일로 전송했습니다.");
+							alert("찾으시는 비밀번호를 메일로 전송했습니다.");
 							location.href = "index.jsp";
 							window.open("about:blank", "_self").close();
 						} else {

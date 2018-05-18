@@ -21,7 +21,7 @@ import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", 
-	"/sell_prdList", "/sell_prdDelete",
+	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
@@ -29,8 +29,14 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
+<<<<<<< HEAD
     "/cartDetail", "/cartList",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_delete"})
+=======
+    "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
+	"/a_review_delete"})
+
+>>>>>>> 8b3e5ee0685c8b447a46da3ac53da2a080501e93
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -124,9 +130,16 @@ public class MainController extends HttpServlet {
 						
 					// 상품 검색	
 					case "/prd_search":
-						System.out.println("상품 리스트 호출 요청");
+						System.out.println("상품 검색 호출 요청");
 						product = new ProductService();
 						product.prdSearch(request, response);
+						break;
+						
+					// 상품 리스트 정렬	
+					case "/prd_searchSort":
+						System.out.println("상품 리스트 정렬 요청");
+						product = new ProductService();
+						product.prdSearchSort(request, response);
 						break;
 					
 					// 상품 상세보기
@@ -246,16 +259,7 @@ public class MainController extends HttpServlet {
 						review = new ReviewService();
 						review.write(request, response);
 						break;
-						
-					// 후기 삭제
-					case "/review_delete":
-						System.out.println("후기 삭제 요청");
-						review = new ReviewService();
-						review.delete(request, response);
-						break;
-						
 
-						
 					// Id 찾기
 					case "/findId":
 						System.out.println("ID찾기 요청");
@@ -316,9 +320,21 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/review_view":
-						System.out.println("리뷰 확인");
+						System.out.println("관리자 페이지 : 리뷰 리스트보기");
 						admin = new  AdminService();
 						admin.review_view(request,response);
+						break;
+
+					case "/a_review_detail":
+						System.out.println("관리자 페이지 : 리뷰 상세보기");
+						admin = new  AdminService();
+						admin.review_detail(request,response);
+						break;
+						
+					case "/a_review_detailView":
+						System.out.println("관리자 페이지 : 리뷰 상세보기");
+						admin = new  AdminService();
+						admin.review_detailView(request,response);
 						break;
 						
 					case "/a_review_delete":
@@ -359,6 +375,12 @@ public class MainController extends HttpServlet {
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
 						notice.detail(request,response);
+						break;
+						
+					case "/main_notice_detail":
+						System.out.println("공지사항 상세보기");
+						notice = new NoticeService();
+						notice.main_notice_detail(request, response);
 						break;
 						
 					case "/notice_detailView":

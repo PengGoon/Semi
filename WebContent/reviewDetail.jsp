@@ -57,12 +57,8 @@
         color: white;
         cursor: pointer;
      }
-<<<<<<< HEAD
-      
-      #save{
-=======
       .write{
->>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
+
             	position:absolute;
             	left:83%;
             	height : 42px;
@@ -74,10 +70,6 @@
             	color: white;
             	cursor: pointer;
       }
-<<<<<<< HEAD
-      
-=======
->>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
       #exit{
       			text-decoration:none;
             	position:absolute;
@@ -91,23 +83,17 @@
             	border:2.5px solid limegreen;
             	background-color : white;
             	color: limegreen;
-<<<<<<< HEAD
       }
-
-=======
-      }      
->>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
      .btnRow{
      	height:80px;
      	padding: 0 0 50px 0 ;
      	
      }
-<<<<<<< HEAD
-=======
+
      #save{
      display:none;
 	 }
->>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
+
 
 </style>
 </head>

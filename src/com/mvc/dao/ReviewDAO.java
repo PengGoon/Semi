@@ -46,7 +46,7 @@ public class ReviewDAO {
 				dto.setUser_id(rs.getString("user_id")); //작성자
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
-				dto.setNewFileName(rs.getString("newFileName"));
+				//dto.setNewFileName(rs.getString("newFileName"));
 				list.add(dto);//dto 를 list 에 담기
 			}						
 		} catch (SQLException e) {
@@ -88,11 +88,6 @@ public class ReviewDAO {
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
 			}
-			//파일명 추출
-/*			String newFileName = fileNameCall(dto.getReview_id());
-			if(newFileName != null) {
-				dto.setNewFileName(newFileName);
-			}			*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -102,26 +97,6 @@ public class ReviewDAO {
 	}
 
 	
-	/*
-	 * 2018/ 05/ 09  13:08 기준 photo 테이블이 없음
-	 * 
-	 * 
-	 */
-	//게시글에 해당하는 파일명 추출
-/*	public String fileNameCall(int review_id) {		
-		String sql="SELECT newFileName From photo WHERE review_id = ?";
-		String fileName = null;
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, review_id);
-			rs = ps.executeQuery();
-			fileName = rs.next() ? rs.getString("newFileName") : null;			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		return fileName;
-	}*/
-
 	//조회수 올리기
 	private void upHit(String review_id) {
 		String sql="UPDATE review SET bHit = bHit+1 WHERE review_id = ?";
@@ -221,7 +196,7 @@ public class ReviewDAO {
 		}		
 	}
 
-	//관리자 페이지에서 리뷰 상세보기 
+	//관리자 페이지에서 리뷰 리스트
 	public ArrayList<ReviewDTO> review_list() {
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
 		String sql = "SELECT * FROM review ORDER BY review_date ASC";
@@ -285,5 +260,32 @@ public class ReviewDAO {
 		return success;
 	}
 
+	//관리자 페이지 리뷰 상세보기 
+	public ReviewDTO a_detailView(String idx) {
+		ReviewDTO dto = null;
+		String sql="SELECT * FROM review WHERE review_id = ?";
+		try {
+			System.out.println("데이터 확인");
+			ps  = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(idx));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto = new ReviewDTO();
+				//번호, 상품번호, 작성자, 제목, 내용, 작성일 
+				//번호가 주키 
+				dto.setReview_id(rs.getInt("review_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setReview_title(rs.getString("review_title"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_date(rs.getDate("review_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return dto;
+	}
 }
 

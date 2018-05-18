@@ -1,6 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+		
+	<!-- <div class ="member">
+		<table id=write-form>
+			<tr>
+				<td>상품번호(상품명)</td>
+				<td><input type="text" id="prd_id" name="prd_id"style="width: 50%; , border:none;"  readonly/> </td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				  <td><input type="text"  id="user_id"style="width: 90%;"  readonly/></td>
+			</tr>
+			<tr>
+				<td>작성일</td>
+				  <td><input type="text"  id="review_date"style="width: 90%;"  readonly/></td>
+			</tr>
+			<tr>
+			    <td>제목</td>
+			    <td><input class="edit" type="text" id="review_title"style="width: 90%;"  readonly/></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td>
+			        <textarea class="edit" id="review_content" rows="15" cols="120" readonly></textarea>
+			    </td>
+			</tr>
+		</table> -->
+	
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,7 +84,7 @@
     	.member{
     		min-width : 800px;
     	}
-		#notice{
+		#review{
 			background-color: gray;
 		}
 
@@ -117,30 +144,28 @@
 		<hr/>
 		<h5> <%=request.getSession().getAttribute("loginId") %> , 로그인 중 <button onclick="location.href='a_login.jsp'">로그아웃</button></h5>
 		<br/><br/>
-		<div id="notice_form"><h2>공지사항</h2></div>
-		<h3>공지사항 글쓰기 </h3>
-		<jsp:include page="noticeList.jsp"></jsp:include>
-<!-- 		<table id="write-form" >
+		<div id="notice_form"><h2>회원후기</h2></div>
+		<h3>회원들이 작성한 후기를 확인할 수 있습니다. </h3>
+		
+		<table id="write-form" >
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" id="admin_id" readonly/></td>
+				<td><input type="text" id="user_id" readonly/></td>
 			</tr>
 			<tr>
 			    <td>제목</td>
-			    <td><input class="edit"type="text" name="notice_title" id="notice_title"style="width: 90%;"  readonly/></td>
+			    <td><input class="edit"type="text" name="review_title" id="review_title"style="width: 90%;"  readonly/></td>
 			</tr>
 			<tr>
 				<td>내용</td>
 			    <td>
-			        <textarea class="edit"  name="notice_content" id="notice_content" rows="15" cols="120" readonly></textarea>
+			        <textarea class="edit"  name="review_content" id="review_content" rows="15" cols="120" readonly></textarea>
 			    </td>
 			</tr>
-		</table> -->
+		</table>
 		<div style="text-align: center;padding-bottom: 15px;">
 			<br/><br/>
-			<a href="./a_notice.jsp">리스트 가기</a>
-			<button id="updateForm">수정</button>
-			<button id="save">저장</button>
+			<a href="./a_review.jsp">리스트 가기</a>
 		</div>
 		
 			</body>
@@ -160,61 +185,29 @@
 	obj.dataType="JSON";
 	obj.error=function(e){console.log(e)};
 	console.log(obj);
+	
 	$(document).ready(function(){
 		console.log("상세보기");
-		obj.url="./notice_detailView";
+		obj.url="./a_review_detailView";
 		obj.success = function(data){
 			console.log(data);
-			if(data.login){
+			if(data.login ){
 				printInfo(data.dto);
 			}else{
 				alert("로그인이 필요한 서비스 입니다.");
 				location.href="a_login.jsp";
 			}
-		};
+		}
 		ajaxCall(obj);
 	});
 	
 	function printInfo(info){
 		console.log(info);
-		idx = info.notice_id;
-		console.log(idx);
-		$("#admin_id").val(info.admin_id);
-		$("#notice_title").val(info.notice_title);
-		$("#notice_content").val(info.notice_content);
-		
-	}
-	
-	//수정 
-	$("#updateForm").click(function(){
-		$("#save").css("display","inline");
-		$(".edit").css("border-width","1px");
-		$(".edit").attr("readonly",false);
-		$("#updateForm").css("display","none");
-	});
-	
-	//수정 후 저장 버튼 클릭시 
-	$("#save").click(function(){
-		obj.url="./notice_update";
-		obj.data={
-				"notice_id":idx,
-				"notice_title":	$("#notice_title").val(),
-				"notice_content": $("#notice_content").val()
-		};
-		obj.success = function(data){
-			console.log(data);
-			//성공: 실패: 상세보기 페이지
-			if(data.success==1){
-				alert("수정이 성공 했습니다.");
-				location.href="a_notice_detail.jsp";
-				//location.href="notice_updateView?notice_id ="+$("#notice_id").val;
-			}else{
-				alert("수정이 실패 했습니다.");
-			}
-			
-		};
-		ajaxCall(obj);
-	});
+		idx = info.review_id;
+		$("#user_id").val(info.user_id);
+		$("#review_title").val(info.review_title);
+		$("#review_content").val(info.review_content);
+		}
 	
 
 		function ajaxCall(param){

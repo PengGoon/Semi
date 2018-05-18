@@ -120,6 +120,7 @@
 			<table id= "listTable">
 				<tr>
 					<th>체크</th>
+					<th>번호</th>
 					<th>상품명(상품번호)</th>
 					<th>리뷰제목</th>
 					<th>작성자</th>
@@ -166,9 +167,10 @@
 		var content ="";
 		list.forEach(function(item,idx){
 			content += "<tr>";
-			content += "<td><input type='checkbox' value='"+item.reveiw_id+"'/></td>"; 
+			content += "<td><input type='checkbox' value='"+item.review_id+"'/></td>"; 
+			content += "<td>" +item.review_id+"</td>"; 
 			content += "<td>" +item.prd_id+"</td>"; 
-			content += "<td><a href='./a_review_detail?reveiw_id=" +item.reveiw_id+"'>"+item.review_title+"</a></td>"; 
+			content += "<td><a href='./a_review_detail?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>"; 
 			content += "<td>" +item.user_id+"</td>"; 
 			content += "<td>" +item.review_date+"</td>"; 
 			content += "</tr>";

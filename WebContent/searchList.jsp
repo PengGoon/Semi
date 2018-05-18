@@ -30,18 +30,21 @@
 			#sortSel{
 				float: right;
 			}
+			#searchContent{
+				font-size: 30;
+			}
 		</style>
 	</head>
 	<body>
 		<jsp:include page="navi.jsp"></jsp:include>
 		<div id="listCenter">
 		<select id="sortSel" name="sortSel" onchange="sort(this.value)">
-			<option value="상세검색" selected="selected">상세검색</option>
+			<option value="전체 품목" selected="selected" >전체 품목</option>
 			<option value="조회수 순">조회수 순</option>
 			<option value="높은 가격 순">높은 가격 순</option>
 			<option value="낮은 가격 순">낮은 가격 순</option>
 		</select>
-		<h2>"<%=request.getParameter("search_name") %>" 로 검색하신 내용입니다.</h2>
+		<p id="searchContent"></p>
 		<table id="searchlist">
 			<tr>
 				<th colspan="2">상품명</th>
@@ -52,11 +55,7 @@
 			</tr>
 		<c:forEach items="${list}" var="bbs">
 			<tr>
-				<td>
-				<a href="prd_detail?prd_id=${bbs.prd_Id}">
-					<c:if test="${bbs.newFileName1 ne null}"><img src="./upload/${bbs.newFileName1}"/></c:if>
-				</a>
-				</td>
+				<td><a href="prd_detail?prd_id=${bbs.prd_Id}"><img src="./upload/${bbs.newFileName1}"/></a></td>
 				<td><a href="prd_detail?prd_id=${bbs.prd_Id}">${bbs.prd_Name}</a></td>
 				<td>${bbs.prd_Price}</td>
 				<td>${bbs.prd_Count}</td>
@@ -76,6 +75,15 @@
 		obj.error=function(e){console.log(e)};
 		console.log(obj);
 		
+		var content = "<%=request.getParameter("search_name") %>";
+		$(document).ready(function(){
+			if(content == ""){
+				$("#searchContent").text("전체항목에 대한 검색결과 입니다.");
+			}else{
+				$("#searchContent").text("'"+content+"' 에 대한 검색결과 입니다.");
+			}
+		});
+		
 		function ajaxCall(param){
 			console.log(param);
 			$.ajax(param);
@@ -84,17 +92,51 @@
 		function sort(val){
 			switch (val) {
 			case "조회수 순":
-				console.log("조회수 순입니다.");
+				tableSort(val,content);
 				break;
 			case "높은 가격 순":
-				console.log("높은 가격 순입니다.");
+				tableSort(val,content);
 				break;
 			case "낮은 가격 순":
-				console.log("낮은 가격 순입니다.");
+				tableSort(val,content);
+				break;
+			case "전체 품목":
+				tableSort(val,content);
 				break;
 			}
 		}
 		
+		//정렬
+		function tableSort(val,content){
+			obj.url="./prd_searchSort";
+			obj.data={data:val,content:content};
+			obj.success=function(data){
+				console.log(data.list);
+				$("#searchlist").empty();
+				listPrint(data.list);
+			}
+			console.log(obj);
+			ajaxCall(obj);
+		};
 		
+		//리스트 뽑아내기
+		function listPrint(list){
+			console.log(list);
+			var content = "";
+			var flag = "";
+			
+			content+="<tr><th colspan='2'>상품명</th><th>가격</th><th>남은수량</th><th>조회수</th><th></th></tr>"
+			list.forEach(function(item, prd_id){
+				content+="<tr>";
+				content+="<td><a href='prd_detail?prd_id="+item.prd_Id+"'><img src='./upload/"+item.newFileName1+"'/></a></td>";
+				content+="<td><a href='prd_detail?prd_id="+item.prd_Id+"'>"+item.prd_Name+"</a></td>";
+				content+="<td>"+item.prd_Price+"</td>";
+				content+="<td>"+item.prd_Count+"</td>";
+				content+="<td>"+item.prd_bHit+"</td>";
+				content+="<td><input type='button' value='더보기' onclick='#'/></td>";
+				content+="</tr>";
+			});
+			$("#searchlist").append(content);
+		}
 	</script>
 </html>
