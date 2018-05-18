@@ -8,78 +8,93 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <style>
+/* 메인 페이지  */
 body {
 	margin: 0px;
 	padding: 0px;
-	min-width: 900px;
+	min-width: 100%;
 }
-
+/* 마켓 타이틀 공간 */
 .jbTitle {
+	position: absolute;
 	left: 40%;
+	margin: 10 0 50 0;
 }
-#market{
-	color:#000000;
+/* 마켓 타이틀 폰트 색상 */
+#market {
+	color: #000000;
 }
-
+/* 추가 메뉴(?)를 위한 공간 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
 }
-
+/* 메뉴바 중앙 정렬 설정을 위한  클래스 */
 .menuCenter {
 	width: 1000px;
 	margin: 0 auto;
 }
-
-.menu {
+/* 상단 메뉴바 몸체 속성 */
+.menuBody {
 	text-align: center;
-	background-color: yellow;
-	width: 80%;
+	background-color: white;
+	width: 100%;
 	height: 45px;
 }
-
-.menu ul {
+/* 메뉴바 몸체 ul 속성 */
+.menuBody ul {
 	margin: 0px;
 	list-style-type: none;
 }
-
-.menu li {
+/* 메뉴바 몸체 li 속성(카테고리, 신상품, 인기상품, +@ 부분) */
+.menuBody li {
 	float: left;
-	background-color: yellowgreen;
 	width: 140px;
 	height: 40px;
 	text-align: center;
-	color: white;
+	color: black;
 	font-weight: 600;
 	font-size: 140%;
 	padding-top: 5px;
 }
-
-.menu li:hover {
-	background-color: orange;
+/* li 중 카테고리 속성 설정 */
+.menuBody #flip {
+	background-color: limegreen;
+	color: white;
 }
-
+/* li중 신상품 속성 설정 */
+.menuBody #new:hover {
+	color: limegreen;
+	text-decoration: underline;
+}
+/* li중 인기상품 속성 설정 */
+.menuBody #fav:hover {
+	color: limegreen;
+	text-decoration: underline;
+}
+/* 우측 상단 로그인 관리 바 속성 */
 .rightMenu {
 	float: right;
+	right: 10%; width : 280px;
+	margin-top: 0px;
 	width: 280px;
-	margin-top: 20px;
 }
-
+/* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
-	margin: 0 auto;
+	margin: 5 10;
 	list-style-type: none;
 }
-
-.rightMenu ul li {
+/* 우측 상단 로그인 관리 바 li 속성 */
+.rightMenu li {
 	float: left;
 	border-left: 1px solid black;
 }
-
+/* 검색바 */
 .searchBar {
 	float: right;
 	border: 1px solid black;
 }
-
+/* 검색바 입력창 */
 .searchBar input {
 	font-size: 18;
 	border: 0;
@@ -87,13 +102,48 @@ body {
 	padding: 12px;
 	width: 200px;
 }
-
+/* 검색바 돋보기아이콘 */
 .searchBar img {
 	margin: 5px 2px;
 	width: 30px;
 	height: 30px;
 }
-
+/* 카테고리 테이블 */
+#catTable{
+	border : 1px solid limegreen;
+	margin: 0 0 0 40;
+	background-color: white;
+	padding: 10px 10px 10px 10px;
+	color: black;
+}
+/* 하위카테고리(대분류) 마우스 오버시 */
+#catTable h3:hover{ 
+	text-decoration: underline;
+	color: limegreen;
+	cursor: pointer;
+}
+/* 테이블 내부 텍스트 좌측정렬 및 패딩 설정 */
+#catTable th {
+	padding: 10px 45px 10px 0px  ;
+	text-align: left;
+}
+#catTable a{
+	text-decoration: none;
+	color: black;
+}
+/* 하위카테고리(소분류) 마우스오버시 */
+#catTable a:hover {
+	text-decoration: underline;
+	color:limegreen;
+	cursor: pointer;
+}
+/* 하위카테고리(소분류) 동작중일시 */
+#catTable a:active{
+	text-decoration: none;
+	color: limegreen;
+	cursor: pointer;
+}
+/* 카테고리  */
 div#category {
 	width: 1000px;
 	margin: 0 auto;
@@ -105,21 +155,16 @@ div#category ul {
 	float: left;
 }
 
-div#category th {
-	padding: 0px 35px;
-	text-align: center;
-}
-
 .content {
 	margin: 0 auto;
 	position: relative;
-	margin-top: 50px;
+	margin-top: 20px;
 	display: inline-blcok;
 }
 
 .fly {
 	display: block;
-	right: -90px;
+	right: 150px;
 	top: 100px;
 	position: absolute;
 	z-index: 9999;
@@ -150,18 +195,19 @@ div#category th {
 }
 </style>
 <body>
-	<div class="loginStat">
-		<h4>
-			안녕하세요
-			<%=request.getSession().getAttribute("loginUserId")%>
-			님
-		</h4>
-		<button id="logout">로그아웃</button>
-		<button onclick="location.href='userLogin.jsp' ">로그인</button>
-		<a id="reviewWriteForm" href="reviewWriteForm.jsp">후기작성</a>
+
+	<!--  메인페이지 타이틀  -->
+	<div class="jbTitle">
+		<h1>
+			<a href="index.jsp" id="market" style="text-decoration: none"><img
+				src="아이콘.gif" />Mar-KH-et</a>
+		</h1>
 	</div>
+
+	<!--  최우측상단 바  -->
 	<div class="menuCenter">
 		<div class="rightMenu">
+			<h4>안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
 			<ul>
 				<li><input type="button" id="loginst" value="로그인"
 					onclick="location.href='userLogin.jsp'" /></li>
@@ -169,18 +215,24 @@ div#category th {
 				<a href="#"><li>공지사항</li></a>
 			</ul>
 		</div>
-		<hr>
-		<div class="jbTitle">
-			<h1><a href="index.jsp" id="market" style="text-decoration: none"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
-		</div>
 	</div>
-		
-	<div class="menu">
+
+	<!-- 상단 로그인상태, 로그인, 로그아웃버튼 (임시용)  -->
+	<div class="loginStat">
+		<button id="logout">로그아웃</button>
+		<button onclick="location.href='userLogin.jsp' ">로그인</button>
+		<a id="reviewWriteForm" href="reviewWriteForm.jsp">후기작성</a>
+	</div>
+
+
+	<!--  상단 메뉴바  -->
+	<br />
+	<div class="menuBody" style="margin-top: 100px">
 		<div class="menuCenter">
 			<ul>
 				<a href="#"><li id="flip">카테고리</li></a>
-				<a href="#"><li>신상품</li></a>
-				<a href="#"><li>인기상품</li></a>
+				<a href="#"><li id="new">신상품</li></a>
+				<a href="#"><li id="fav">인기상품</li></a>
 			</ul>
 			<div class="searchBar">
 				<input type="text" id="search" />
@@ -190,14 +242,20 @@ div#category th {
 			</div>
 		</div>
 	</div>
+
 	<div class="menuCenter">
 		<div id="category">
-			<table>
+			<table id="catTable">
 				<tr>
 					<th><h3>정육/달걀</h3></th>
 					<th><h3>생선</h3></th>
 					<th><h3>채소</h3></th>
 					<th><h3>과일</h3></th>
+				</tr>
+				<tr>
+					<th><hr/></th>
+					<th><hr/></th>
+					<th><hr/></th>
 				</tr>
 				<tr>
 					<th><a href="prd_list?cateS_id=돼지고기">돼지고기</a></th>
@@ -219,6 +277,7 @@ div#category th {
 			</table>
 		</div>
 	</div>
+	<hr/>
 	<div class="content">
 		<div class="fly">
 			<ul style="padding-left: 0px;">
@@ -230,7 +289,6 @@ div#category th {
 	</div>
 </body>
 <script>
-
 	$(document).ready(function() {
 		var loginUserId = "${sessionScope.loginUserId}";
 		console.log(loginUserId);
@@ -250,9 +308,9 @@ div#category th {
 			}
 		});
 	});
-	
-	function search(){
-		location.href="./prd_search?search_name="+$("#search").val();
+
+	function search() {
+		location.href = "./prd_search?search_name=" + $("#search").val();
 	}
 
 	$("#flip").click(function() {
@@ -260,7 +318,9 @@ div#category th {
 	});
 	$(window).scroll(function() {
 		var sct = $(this).scrollTop();
-		$('.fly').stop().animate({'top' : sct}, 500)
+		$('.fly').stop().animate({
+			'top' : sct
+		}, 500)
 	});
 
 	// 로그아웃 버튼 클릭시
