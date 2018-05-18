@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>아이디 찾기</title>
+        <title>구매자 아이디 찾기</title>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <style>
             table, td, th{

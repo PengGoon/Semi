@@ -202,6 +202,11 @@ public class ProductDAO {
 				ProductDTO dto = new ProductDTO();	
 				dto.setPrd_Id(rs.getInt("prd_id"));
 				dto.setPrd_Name(rs.getString("prd_name"));
+				//dto.setSell_Id(rs.getString("sell_id"));
+				dto.setPrd_Price(Integer.parseInt(rs.getString("prd_price")));
+				//dto.setPrd_From(rs.getString("prd_from"));
+				dto.setPrd_bHit(Integer.parseInt(rs.getString("prd_bHit")));
+				dto.setPrd_Count(Integer.parseInt(rs.getString("prd_count")));
 				String[] fileName = fileNameCall(rs.getInt("prd_id"));
 				if(fileName[0] != null) {
 					dto.setNewFileName1(fileName[0]);

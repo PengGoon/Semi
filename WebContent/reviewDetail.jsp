@@ -7,12 +7,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>후기 상세보기</title>
 <style>
-	   	.ReviewWriteTitle{
-            margin : 30px 0px 20px 0px;
-            text-align: center;
-            color: limegreen;
-            font-size: 20;
-       }
+	   .ReviewDetailTitle{
+            	margin : 30px 0px 20px 0px;
+            	text-align: center;
+            	color: limegreen;
+            	font-size: 20;
+            }
       .Review td{
       	border: 1px solid black;
         border-collapse: collapse;
@@ -44,15 +44,8 @@
       .Review td{
          text-align: left;
       }
-      .photoAdd{
-      	 position:relative;
-         left:4%;
-         height : 42px;
-		 width: 130px;
-		 cursor: pointer;
-      }
       
-       #replace {
+       #edit {
         position: absolute;
         left:4%;
         height : 42px;
@@ -64,7 +57,12 @@
         color: white;
         cursor: pointer;
      }
+<<<<<<< HEAD
+      
+      #save{
+=======
       .write{
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
             	position:absolute;
             	left:83%;
             	height : 42px;
@@ -76,6 +74,10 @@
             	color: white;
             	cursor: pointer;
       }
+<<<<<<< HEAD
+      
+=======
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
       #exit{
       			text-decoration:none;
             	position:absolute;
@@ -89,36 +91,50 @@
             	border:2.5px solid limegreen;
             	background-color : white;
             	color: limegreen;
+<<<<<<< HEAD
+      }
+
+=======
       }      
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
      .btnRow{
      	height:80px;
-     	padding: 0;
+     	padding: 0 0 50px 0 ;
+     	
      }
+<<<<<<< HEAD
+=======
      #save{
      display:none;
 	 }
+>>>>>>> e34da0f6a4b96a2d9cb2da8259bba6876302b72c
 
 </style>
 </head>
 <body>
+	<jsp:include page="navi.jsp"></jsp:include>
    	<div class = Review>
    	<div class = ReviewDetailTitle>
    	<h1>후기 상세보기</h1>
-    	</div>
+    </div>
 	<table>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" id="userId" readonly /></td>
+			<td><input type="text" id="userId" style="border:none" readonly /></td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input class="editable" id="reviewTitle" type="text"  readonly /></td>
+			<td><input class="editable" id="reviewTitle" type="text" style="border:none" readonly /></td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td><textarea class="editable"  id="reviewContent" rows="15" readonly></textarea></td>
 		</tr>
 		<tr>
+			<td class=btnRow colspan="2">
+				<a id="exit" href="reviewList.jsp">리스트 가기</a> 
+				<button id="edit">수정</button>
+				<button id="save">저장</button>
 			<td colspan="2">
 				<a id=exit href="reviewList.jsp">리스트 가기</a> 
 				<input id="edit" type="button" value="수정"/>
