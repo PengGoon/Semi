@@ -89,7 +89,18 @@ body {
 	float: left;
 	border-left: 1px solid black;
 }
+<<<<<<< HEAD
+
+.cart {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-left: 200px;
+}
+
+=======
 /* 검색바 */
+>>>>>>> 8b3e5ee0685c8b447a46da3ac53da2a080501e93
 .searchBar {
 	float: right;
 	border: 1px solid black;
@@ -234,6 +245,7 @@ div#category ul {
 				<a href="#"><li id="new">신상품</li></a>
 				<a href="#"><li id="fav">인기상품</li></a>
 			</ul>
+			<div><img class="cart" src="image/cart.png"/></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">

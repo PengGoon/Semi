@@ -71,14 +71,15 @@ body {
 					<th>구매수량</th>
 					<th>
 						<button id="dec">-</button> 
-						<span id="msg"></span>
+							<span id="msg">1</span>
 						<button id="inc">+</button>
 					</th>
 				</tr>
 				<tr>
 					<th colspan="2">
-						<button onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}'">바로결제</button>
-						<button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> 
+						<button onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}'">바로결제</button>
+						<button id="cart">장바구니 추가</button>
+						<%-- <button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> --%>
 						<button id="restock">재입고 알림</button>
 					</th>
 				</tr>
@@ -102,7 +103,16 @@ body {
 	</div>
 </body>
 <script>
-	var cnt=0;
+	var cnt=1;
+	/* var id = "${sessionScope.loginUserId}";
+	
+	$(document).ready(function() {
+		if(id != null) {
+			alert("로그인이 필요한 서비스입니다.");
+			history.back();
+		}	
+	}); */
+	
 	$("#inc").click(function() {
 		cnt=cnt+1;
 		$("#msg").text(cnt);
@@ -117,10 +127,37 @@ body {
 		
 		$("#msg").text(cnt);
 	});
+
+	<%-- function cart() {
+		location.href = "prd2_cart?prd_id=${info.prd_Id}&prd_count="+cnt;
+		<button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button>
+	} --%>
 	
+	///////////////
+	/*ProductDTO2 dto2 = dao2.buy(request.getParameter("prd_id"));
+	request.setAttribute("info", dto2);
+	dto2 = dao2.list(request.getParameter("prd_id"));
+	request.setAttribute("list", dto2);
+	RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
+	dis.forward(request, response);*/
+	
+	// 수량 컬럼 추가(필요)
 	$("#cart").click(function(){
-		//alert("선택하신 상품을 장바구니에 담았습니다.")
-		console.log($("user_Id"));
-	});
-</script>
+		$.ajax({
+			type : "post",
+			url : "./prd2_cart",
+			dataType : "json",
+			data : {
+				prd_id: "${info.prd_Id}",
+				user_id: "${sessionScope.loginUserId}",
+				prd_count: cnt
+			},
+			success : function(data) {
+				alert(data.msg);
+				location.href = "cartDetail?prd_id=${info.prd_Id}&prd_count="+cnt;
+			},
+			error : function(err) { console.log(err) }
+		});
+	}); 
+	</script>
 </html>

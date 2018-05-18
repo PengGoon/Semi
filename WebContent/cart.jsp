@@ -71,7 +71,9 @@
                     .tdz{
                         border-bottom: 1px solid #ffffff;
                     }
-      
+                    #totalPrice{
+                    	border-bottom: 1px solid #ffffff;
+                    }
 	</style>
 	<body>
         <ul class="menu">
@@ -94,35 +96,42 @@
                 <td colspan="2" class="ta">
                     <input type="checkbox">상품정보  
                 </td>
+                <td>수량</td>
                 <td>상품금액</td>
                 <td>배송비</td>
           </tr>
           <tr>
-                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${list.newFileName1}"/></td>
-                <td>${info.prd_Name }</td>
-                <td>${info.prd_Price }원</td>
+                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${dto.newFileName}"/></td>
+                <td>${dto.prd_name}</td>
+                <td>${param.prd_count }개</td>
+                <td>${dto.prd_price}원</td>
                 <td>0원</td>
           </tr>
           <tr>
                 <td rowspan="2" class="tds">총 주문금액</td>
                 <td class="tda"></td>
                 <td class="tda">총 상품금액</td>
-                <td class="tdz">${info.prd_Price }원</td>
+                <td colspan="2" id="totalPrice"></td>
           </tr>
           <tr>
                 <td class="tdb"></td>
                 <td class="tdb">배송비</td>
-                <td>0원</td>
+                <td colspan="2">0원</td>
           </tr>
           <tr>
                 <td colspan="2" class="tds"></td>
                 <td class="tds">총 주문금액</td>
-                <td>${info.prd_Price }원</td>
+                <td colspan="2" id="totalDelieveryPrice"></td>
           </tr>
         </table>
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
 	</body>
 	<script>
+		var p = "${dto.prd_price}";
+		var cnt = "${param.prd_count}";
+		
+		console.log(p*cnt);
+	
 		$("#continue").click(function(){
    	 		location.href="cate1.jsp"; 
     	});
@@ -130,5 +139,10 @@
 		$("#buy").click(function(){
    	 		location.href="buy.jsp"; 
     	});
+		
+		$(document).ready(function() {
+			$("#totalPrice").text(p*cnt+"원");
+			$("#totalDelieveryPrice").text(p*cnt+"원");
+		});
 	</script>
 </html>
