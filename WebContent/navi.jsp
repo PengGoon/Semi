@@ -212,7 +212,7 @@ div#category ul {
 				<li><input type="button" id="loginst" value="로그인"
 					onclick="location.href='userLogin.jsp'" /></li>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
-				<a href="#"><li>공지사항</li></a>
+				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
 		</div>
 	</div>
