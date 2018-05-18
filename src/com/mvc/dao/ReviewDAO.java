@@ -267,5 +267,23 @@ public class ReviewDAO {
 		return delCnt;
 	}
 
+	//수정
+	public Integer update(String review_id, String review_title, String review_content) {
+		String sql="UPDATE review SET review_title=?, review_content=?"
+				+" WHERE review_id=?";
+		int success = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, review_title);
+			ps.setString(2, review_content);
+			ps.setInt(3, Integer.parseInt(review_id));
+			success = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}				
+		return success;
+	}
+
 }
 

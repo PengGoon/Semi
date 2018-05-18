@@ -338,7 +338,7 @@ public class MemberDAO {
             dto.setId(rs.getString("sell_id"));
             dto.setEmail(rs.getString("sell_email"));
             dto.setName(rs.getString("sell_name"));
-            dto.setFilename(rs.getString("sell_img"));
+            dto.setFilename(rs.getString("newfilename"));
             dto.setSell_yn(rs.getInt("sell_YN"));
             dto.setAddr(rs.getString("sell_addr"));
             dto.setPhone(rs.getString("sell_phone"));

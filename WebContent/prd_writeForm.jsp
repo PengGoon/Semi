@@ -144,18 +144,18 @@ function emptyChk(){
 	}else if($("input[name=prd_price]").val() == ""){ alert("판매가를 입력해주세요"); $("input[name=prd_price]").focus();
 	}else if($("input[name=prd_from]").val() == ""){ alert("원산지를 입력해주세요"); $("input[name=prd_from]").focus();
 	}else if($("input[name=prd_count]").val() == ""){ alert("상품수량을 입력해주세요"); $("input[name=prd_count]").focus();
-	}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() == ""){ 
+	}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() != ""){ 
 		if(fileExt2.toUpperCase() == "JPG" || fileExt2.toUpperCase() == "PNG" || fileExt2.toUpperCase() == ""){
 			if(fileExt3.toUpperCase() == "JPG" || fileExt3.toUpperCase() == "PNG" || fileExt3.toUpperCase() == ""){
 				$("#writeForm").submit();
 			}else{
-				alert("jpg 또는 png 파일만 가능합니다.");
+				alert("3번째 사진을 확인해주세요.\n형식은 jpg 또는 png 파일만 가능합니다.");
 			}
 		}else{
-			alert("jpg 또는 png 파일만 가능합니다.");
+			alert("2번째 사진을 확인해주세요.\n형식은 jpg 또는 png 파일만 가능합니다.");
 		}
 	}else{
-		alert("jpg 또는 png 파일만 가능합니다.");
+		alert("1번째 사진은 필수 등록입니다.\n사진이 없거나 형식은 jpg 또는 png 파일만 가능합니다.");
 	}
 }
 </script>

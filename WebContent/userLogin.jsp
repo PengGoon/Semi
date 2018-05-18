@@ -111,20 +111,35 @@ hr {
 			$("input[name='user_Pw']").focus();//포커스 이동
 		} else { // 아이디, 비밀번호 모두 입력시
 
-			// 판매자 라디오 버튼 선택시 - 판매자 로그인 (미구현)
+			// 판매자 라디오 버튼 선택시 - 판매자 로그인
 			if ($('input[name="sel"]:checked').val() == "seller") {
-				location.href = "#"
-				alert("판매자 로그인은 아직 구현되지 않았습니다");
-
+				
+				$.ajax({
+					type : "post",
+					url : "./sell_login",
+					data : {
+						id : $("#user_Id").val(),
+						pw : $("#user_Pw").val()
+					},
+					dataType : "json",
+					success : function(data) {//인자 값은 서버에서 주는 메시지
+						console.log(data);
+						if (data.success) { // 안되면 if(data.success == 1) 
+							alert("판매자 로그인에 성공 했습니다.");
+							location.href = "index.jsp";
+						} else {
+							alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+						}
+					},
+					error : function(err) {//인자 값은 서버에서 주는 에러 메시지
+						console.log(err)
+					}
+				}); // 판매자 로그인 영역
+				
+				
 				// 구매자 라디오 버튼 선택시 - 구매자 로그인
 			} else if ($('input[name="sel"]:checked').val() == "user") { 
 				
-				
-				// 구매자 로그인 영역
-				//키와 값으로 복수개가 들어간다.
-				//type: [post|get], url: 어디로 보낼 것인가? 
-				//data: 어떤 파라메터와 값?, dataType: [json|xml|text|html|jsonp]
-				//success: 성공시 할 일, error: 실패시 할 일
 				$.ajax({
 					type : "post",
 					url : "./login",
