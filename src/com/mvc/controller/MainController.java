@@ -21,7 +21,7 @@ import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", 
-	"/sell_prdList", "/sell_prdDelete",
+	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
@@ -123,9 +123,16 @@ public class MainController extends HttpServlet {
 						
 					// 상품 검색	
 					case "/prd_search":
-						System.out.println("상품 리스트 호출 요청");
+						System.out.println("상품 검색 호출 요청");
 						product = new ProductService();
 						product.prdSearch(request, response);
+						break;
+						
+					// 상품 리스트 정렬	
+					case "/prd_searchSort":
+						System.out.println("상품 리스트 정렬 요청");
+						product = new ProductService();
+						product.prdSearchSort(request, response);
 						break;
 					
 					// 상품 상세보기
