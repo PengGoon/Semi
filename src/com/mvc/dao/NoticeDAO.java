@@ -178,6 +178,35 @@ public class NoticeDAO {
 			
 		}
 
+		public NoticeDTO main_detailView(String idx) {
+			NoticeDTO dto = null;
+			String sql = "SELECT * FROM Notice WHERE notice_id=?"; 
+		
+			try {
+				ps = conn.prepareStatement(sql);	
+				ps.setInt(1,Integer.parseInt(idx));
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					upHit(idx);
+					dto = new NoticeDTO();
+					//번호, 제목, 내용 , 작성자, 조회수 
+					dto.setNotice_id(rs.getInt("notice_id"));
+					dto.setNotice_title(rs.getString("notice_title"));
+					dto.setNotice_content(rs.getString("notice_content"));
+					dto.setAdmin_id(rs.getString("admin_id"));
+					dto.setbHit(rs.getInt("bHit"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			
+			
+			return dto;
+		}
+
 
 }
 

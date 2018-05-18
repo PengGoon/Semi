@@ -29,7 +29,7 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
-    "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView",
+    "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
 	"/a_review_delete"})
 
 public class MainController extends HttpServlet {
@@ -241,16 +241,7 @@ public class MainController extends HttpServlet {
 						review = new ReviewService();
 						review.write(request, response);
 						break;
-						
-					// 후기 삭제
-					case "/review_delete":
-						System.out.println("후기 삭제 요청");
-						review = new ReviewService();
-						review.delete(request, response);
-						break;
-						
 
-						
 					// Id 찾기
 					case "/findId":
 						System.out.println("ID찾기 요청");
@@ -366,6 +357,12 @@ public class MainController extends HttpServlet {
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
 						notice.detail(request,response);
+						break;
+						
+					case "/main_notice_detail":
+						System.out.println("공지사항 상세보기");
+						notice = new NoticeService();
+						notice.main_notice_detail(request, response);
 						break;
 						
 					case "/notice_detailView":

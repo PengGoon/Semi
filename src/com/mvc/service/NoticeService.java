@@ -138,6 +138,13 @@ public class NoticeService {
 		response.getWriter().println(obj);
 		
 	}
+
+	public void main_notice_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
+		response.sendRedirect("main_notice_detail.jsp");
+		
+		
+	}
 	
 }
 
