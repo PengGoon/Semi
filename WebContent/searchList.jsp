@@ -77,7 +77,6 @@
 		
 		var content = "<%=request.getParameter("search_name") %>";
 		$(document).ready(function(){
-			$("#sortSel option[value='전체 품목']").attr("selected", "selected");
 			if(content == ""){
 				$("#searchContent").text("전체항목에 대한 검색결과 입니다.");
 			}else{
