@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.mvc.dao.MemberDAO;
 import com.mvc.dao.UserDAO;
 import com.mvc.dto.UserDTO;
 
@@ -85,14 +86,42 @@ public class UserService {
 	}
 
 	// 아이디 찾기(미구현)
-	public void findId(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	public void findId(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-	}
+		  String find_name = request.getParameter("find_name");
+	      String find_email = request.getParameter("find_email");
+
+	      System.out.println(find_name + "//" + find_email);
+
+	      UserDAO dao = new UserDAO();
+	      String success = dao.findID(find_name, find_email);
+	      System.out.println(success);
+
+	      Gson json = new Gson();
+	      HashMap<String, String> map = new HashMap<>();
+	      map.put("success", success);
+	      String obj = json.toJson(map);
+	      response.setContentType("text/html; charset=UTF-8");
+	      response.getWriter().println(obj);
+	   }
+	
 	
 	// 비밀번호 찾기(미구현)
-	public void findPw(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	public void findPw(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		  String search_id = request.getParameter("search_id");
+	      String search_name = request.getParameter("search_name");
+	      String search_email = request.getParameter("search_email");
+
+	      UserDAO dao = new UserDAO();
+	      boolean success = dao.findPW(search_id, search_name, search_email);
+	      System.out.println(success);
+
+	      Gson json = new Gson();
+	      HashMap<String, Boolean> map = new HashMap<>();
+	      map.put("success", success);
+	      String obj = json.toJson(map);
+	      response.getWriter().println(obj);
 		
 	}
 	
