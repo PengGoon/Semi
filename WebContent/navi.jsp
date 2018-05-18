@@ -233,7 +233,7 @@ div#category ul {
 		<div class="rightMenu">
 			<h4 style="top:0px">안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
 			<ul>
-				<a href= "location.href='userLogin.jsp'" /><li>로그인</li></a>
+				<a href= "userLogin.jsp" /><li>로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
