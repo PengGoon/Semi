@@ -208,11 +208,7 @@ public class ProductDAO {
 				dto.setPrd_bHit(Integer.parseInt(rs.getString("prd_bHit")));
 				dto.setPrd_Count(Integer.parseInt(rs.getString("prd_count")));
 				String[] fileName = fileNameCall(rs.getInt("prd_id"));
-				if(fileName[0] != null) {
-					dto.setNewFileName1(fileName[0]);
-				}
-				System.out.println(dto.getPrd_Name());
-				System.out.println(dto.getNewFileName1());
+				dto.setNewFileName1(fileName[0]);
 				list.add(dto);//dto 를 list 에 담기
 			}
 		} catch (SQLException e) {
@@ -266,6 +262,45 @@ public class ProductDAO {
 			resClose();
 		}
 		return success;
+	}
+
+	public ArrayList<ProductDTO> searchSort(String data, String content) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = null;
+		if(data.equals("조회수 순")) {
+			sql = "SELECT * FROM (SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?) ORDER BY prd_bHit DESC";
+		}else if(data.equals("낮은 가격 순")) {
+			sql = "SELECT * FROM (SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?) ORDER BY prd_price ASC";
+		}else if(data.equals("높은 가격 순")) {
+			sql = "SELECT * FROM (SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?) ORDER BY prd_price DESC";
+		}else if(data.equals("전체 품목")) {
+			sql = "SELECT * FROM (SELECT * FROM product WHERE cateF_id LIKE ? OR cateS_id LIKE ? OR prd_name LIKE ?) product";
+		}
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+content+"%");
+			ps.setString(2, "%"+content+"%");
+			ps.setString(3, "%"+content+"%");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_Count(rs.getInt("prd_count"));
+				dto.setPrd_Date(rs.getDate("prd_date"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+				String[] fileName = fileNameCall(rs.getInt("prd_id"));
+				dto.setNewFileName1(fileName[0]);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return list;
 	}
 
 	

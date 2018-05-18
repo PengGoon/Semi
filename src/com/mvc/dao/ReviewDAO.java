@@ -46,7 +46,7 @@ public class ReviewDAO {
 				dto.setUser_id(rs.getString("user_id")); //작성자
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
-				dto.setNewFileName(rs.getString("newFileName"));
+				//dto.setNewFileName(rs.getString("newFileName"));
 				list.add(dto);//dto 를 list 에 담기
 			}						
 		} catch (SQLException e) {
