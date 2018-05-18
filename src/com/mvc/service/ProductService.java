@@ -150,7 +150,7 @@ public class ProductService {
 		//가져온 데이터를 request에 담기
 		request.setAttribute("list", list);
 		//특정한 페이지로 이동		
-		RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("searchList.jsp");
 		dis.forward(request, response);
 	}
 	//주문내역

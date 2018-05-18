@@ -12,7 +12,7 @@
 				width: 1000px;
 				margin: 0 auto;
 			}
-			th,td,tr{
+			#prdlist th,#prdlist td,#prdlist tr{
 				border: 1px solid black;
 				border-collapse: collapse;
 				text-align: center;
@@ -33,7 +33,7 @@
 	<body>
 		<jsp:include page="navi.jsp"></jsp:include>
 		<div id="listCenter">
-		<h2>"<%=request.getParameter("search_name") %>" 로 검색하신 내용입니다.</h2>
+		<h2>"<%=request.getParameter("cateS_id") %>" 카테고리의 내용입니다.</h2>
 		<c:forEach items="${list}" var="bbs">
 			<table id="prdlist" style="width:300px; height:300px;">
 				<tr>
