@@ -34,7 +34,7 @@ body {
 .menu {
 	text-align: center;
 	background-color: yellow;
-	width: 100%;
+	width: 80%;
 	height: 45px;
 }
 
@@ -169,12 +169,12 @@ div#category th {
 				<a href="#"><li>공지사항</li></a>
 			</ul>
 		</div>
-
+		<hr>
 		<div class="jbTitle">
 			<h1><a href="index.jsp" id="market" style="text-decoration: none"><img src="아이콘.gif"/>Mar-KH-et</a></h1>		
 		</div>
 	</div>
-	<hr />
+		
 	<div class="menu">
 		<div class="menuCenter">
 			<ul>
@@ -230,6 +230,7 @@ div#category th {
 	</div>
 </body>
 <script>
+
 	$(document).ready(function() {
 		var loginUserId = "${sessionScope.loginUserId}";
 		console.log(loginUserId);

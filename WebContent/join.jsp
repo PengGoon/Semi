@@ -227,7 +227,7 @@
 
 	//아이디 중복체크
 	$("#overlay").click(function() {
-		obj.url = "./overlay";
+		obj.url = "./sell_overlay";
 		obj.data = {
 			id : $("input[name='userId']").val()
 		};
