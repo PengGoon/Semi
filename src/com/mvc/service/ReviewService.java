@@ -100,17 +100,6 @@ public class ReviewService {
 		//파라메터 추출
 		String review_id = request.getParameter("review_id");
 		ReviewDAO dao = new ReviewDAO();
-		//글 번호로 파일명 추출(DB)
-	//	String fileName = dao.fileNameCall(Integer.parseInt(review_id));
-		//글 삭제(DB)
-/*		if(dao.del(review_id)>0) {
-			//파일 삭제(파일이 있을 경우만)
-			if(fileName != null) {
-				ReviewUpload review = new ReviewUpload(request);
-				review.del(fileName);
-			}
-		}		*/
-		//페이지 이동(리스트)
 		response.sendRedirect("reviewList.jsp");
 	}
 
@@ -128,25 +117,7 @@ public class ReviewService {
 
 	//수정 하기
 public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-/*		//PhotoUpload 의 regist() 실행
-		ReviewUpload upload = new ReviewUpload(request);
-		ReviewDTO dto = upload.regist();
-		//올린 파일이 있는가? 기존 파일 명은?
-		ReviewDAO dao = new ReviewDAO();
-		String oldFileName = null;		
-		dao.update(dto);//DB 이용 해서 글 수정
-		System.out.println("newFileName : "+dto.getNewFileName());
-		if(dto.getNewFileName() != null) {//새로 올리는 파일이 있을 경우
-			//올린파일이 있다는 것은 기존 파일을 지워야 하는 것을 의미하므로 파일명을 알아야 한다.
-			oldFileName = dao.fileNameCall(dto.getReview_id());		
-			dao = new ReviewDAO();//update() 에서 자원을 닫았으므로 다시 객체화			
 
-			//파일명을 DB 에서 수정
-			dao.fileNameUpdate(dto.getReview_id(),dto.getNewFileName(),oldFileName);
-			//기존 파일을 폴더에서 삭제	
-			upload.del(oldFileName);			
-		}
-		response.sendRedirect("reviewDetail?review_id="+dto.getReview_id());*/
 	request.setCharacterEncoding("UTF-8");
 	//수정할 부분 불러오기 =>  
 	String review_id  = request.getParameter("review_id");
@@ -162,17 +133,5 @@ public void update(HttpServletRequest request, HttpServletResponse response) thr
 
 }
 
-
-		
-		
-	
-
-	public void delete(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
 
 }
