@@ -9,16 +9,18 @@
 </head>
 <style>
 /* 메인 페이지  */
-body {
+.Navi body {
 	margin: 0px;
 	padding: 0px;
 	min-width: 100%;
+	
+	overflow:hidden;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
-	position: absolute;
+	position: relative;
 	left: 40%;
-	margin: 10 0 50 0;
+	margin: 20 0 0 0;
 }
 /* 마켓 타이틀 폰트 색상 */
 #market {
@@ -40,6 +42,7 @@ body {
 	background-color: white;
 	width: 100%;
 	height: 45px;
+	margin: 150px 0 20px 0;
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -62,21 +65,32 @@ body {
 	background-color: limegreen;
 	color: white;
 }
-/* li중 신상품 속성 설정 */
+/* li중 신상품 테두리 설정 */
+.menuBody #new{
+	border-right: 1px solid black;
+}
+/* li중 신상품 마우스오버시 속성 */
 .menuBody #new:hover {
 	color: limegreen;
 	text-decoration: underline;
 }
-/* li중 인기상품 속성 설정 */
+/* li중 인기상품 테두리 설정 */
+.menuBody #fav{
+	border-right: 1px solid black;
+}
+/* li중 인기상품 마우스 오버시 속성 */
 .menuBody #fav:hover {
 	color: limegreen;
 	text-decoration: underline;
 }
 /* 우측 상단 로그인 관리 바 속성 */
 .rightMenu {
+	position: absolute;
 	float: right;
-	right: 10%; width : 280px;
-	margin-top: 0px;
+	top:10px;
+	right:20px;
+	width : 280px;
+	margin:auto;
 	width: 280px;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
@@ -88,6 +102,11 @@ body {
 .rightMenu li {
 	float: left;
 	border-left: 1px solid black;
+}
+/* 우측 상단 로그인 관리 바 a태그 속성 */
+.rightMenu a{
+	text-decoration: none;
+	color: black;
 }
 /* 검색바 */
 .searchBar {
@@ -189,12 +208,12 @@ div#category ul {
 	text-align: center
 }
 
-.loginStat {
-	position: absolute;
-	left: 55%;
-}
+
 </style>
+
 <body>
+<!-- 바디 전체를 감싸는 Navi 클래스  -->	
+<div class="Navi"> 
 
 	<!--  메인페이지 타이틀  -->
 	<div class="jbTitle">
@@ -205,29 +224,19 @@ div#category ul {
 	</div>
 
 	<!--  최우측상단 바  -->
-	<div class="menuCenter">
 		<div class="rightMenu">
-			<h4>안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
+			<h4 style="top:0px">안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
 			<ul>
-				<li><input type="button" id="loginst" value="로그인"
-					onclick="location.href='userLogin.jsp'" /></li>
+				<a href= "location.href='userLogin.jsp'" /><li>로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
 		</div>
-	</div>
-
-	<!-- 상단 로그인상태, 로그인, 로그아웃버튼 (임시용)  -->
-	<div class="loginStat">
-		<button id="logout">로그아웃</button>
-		<button onclick="location.href='userLogin.jsp' ">로그인</button>
-		<a id="reviewWriteForm" href="reviewWriteForm.jsp">후기작성</a>
-	</div>
 
 
 	<!--  상단 메뉴바  -->
-	
-	<div class="menuBody" style="margin-top: 100px">
+	<div class="menuBody">
+		<hr/>
 		<div class="menuCenter">
 			<ul>
 				<a href="#"><li id="flip">카테고리</li></a>
@@ -242,7 +251,9 @@ div#category ul {
 			</div>
 		</div>
 	</div>
-
+	
+	
+	<!--  카테고리(대분류)  -->
 	<div class="menuCenter">
 		<div id="category">
 			<table id="catTable">
@@ -251,11 +262,6 @@ div#category ul {
 					<th><h3>생선</h3></th>
 					<th><h3>채소</h3></th>
 					<th><h3>과일</h3></th>
-				</tr>
-				<tr>
-					<th><hr/></th>
-					<th><hr/></th>
-					<th><hr/></th>
 				</tr>
 				<tr>
 					<th><a href="prd_list?cateS_id=돼지고기">돼지고기</a></th>
@@ -277,6 +283,8 @@ div#category ul {
 			</table>
 		</div>
 	</div>
+	
+	<!--  우측 최근 본 상품   -->
 	<hr/>
 	<div class="content">
 		<div class="fly">
@@ -287,6 +295,9 @@ div#category ul {
 			</ul>
 		</div>
 	</div>
+	
+</div>
+<!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
 <script>
 	$(document).ready(function() {
@@ -309,10 +320,12 @@ div#category ul {
 		});
 	});
 
+	// 검색바 기능
 	function search() {
 		location.href = "./prd_search?search_name=" + $("#search").val();
 	}
-
+	
+	// 카테고리 슬라이드 기능 
 	$("#flip").click(function() {
 		$("#category").slideToggle("fast");
 	});
