@@ -162,19 +162,18 @@ public class AdminService {
 	//관리자 페이지 리뷰 상세 보기 
 	public void review_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//DB에서 개별 데이터 요청 
-		ReviewDAO dao = new  ReviewDAO();
-		System.out.println(request.getParameter("review_id"));
-/*		request.getSession().setAttribute("review_id", request.getParameter("review_id"));
-		response.sendRedirect("a_review_detail.jsp");*/
+/*		ReviewDAO dao = new  ReviewDAO();
+		System.out.println(request.getParameter("review_id"));*/
+		request.getSession().setAttribute("review_id", request.getParameter("review_id"));
+		response.sendRedirect("a_review_detail.jsp");
 		System.out.println("넘어와서 넘어가긴 함");
 	}
 
 	public void review_detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("ㅇㅇ");
-		String idx =(String) request.getSession().getAttribute("review_id");
+		System.out.println("상세보기 서비ㅅ,");
+		String idx = (String)request.getSession().getAttribute("review_id");
 		System.out.println(idx);
-		String loginId = (String)request.getSession().getAttribute("loginUserId");
-		System.out.println(idx+"/"+loginId);
+		String loginId = (String)request.getSession().getAttribute("loginId");
 		//로그인 유무를 확인 
 		boolean login = false;
 		

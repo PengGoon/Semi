@@ -177,6 +177,7 @@
 	function printInfo(info){
 		console.log(info);
 		idx = info.notice_id;
+		console.log(idx);
 		$("#admin_id").val(info.admin_id);
 		$("#notice_title").val(info.notice_title);
 		$("#notice_content").val(info.notice_content);

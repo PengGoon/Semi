@@ -324,10 +324,8 @@ public class MainController extends HttpServlet {
 						
 					case "/a_review_detailView":
 						System.out.println("관리자 페이지 : 리뷰 상세보기");
-/*						admin = new  AdminService();
-						admin.review_detailView(request,response);*/
-						review = new ReviewService();
-						review.detailView(request, response);
+						admin = new  AdminService();
+						admin.review_detailView(request,response);
 						break;
 						
 					case "/a_review_delete":

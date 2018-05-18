@@ -88,11 +88,6 @@ public class ReviewDAO {
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
 			}
-			//파일명 추출
-/*			String newFileName = fileNameCall(dto.getReview_id());
-			if(newFileName != null) {
-				dto.setNewFileName(newFileName);
-			}			*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -102,26 +97,6 @@ public class ReviewDAO {
 	}
 
 	
-	/*
-	 * 2018/ 05/ 09  13:08 기준 photo 테이블이 없음
-	 * 
-	 * 
-	 */
-	//게시글에 해당하는 파일명 추출
-/*	public String fileNameCall(int review_id) {		
-		String sql="SELECT newFileName From photo WHERE review_id = ?";
-		String fileName = null;
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, review_id);
-			rs = ps.executeQuery();
-			fileName = rs.next() ? rs.getString("newFileName") : null;			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		return fileName;
-	}*/
-
 	//조회수 올리기
 	private void upHit(String review_id) {
 		String sql="UPDATE review SET bHit = bHit+1 WHERE review_id = ?";
@@ -290,6 +265,7 @@ public class ReviewDAO {
 		ReviewDTO dto = null;
 		String sql="SELECT * FROM review WHERE review_id = ?";
 		try {
+			System.out.println("데이터 확인");
 			ps  = conn.prepareStatement(sql);
 			ps.setInt(1, Integer.parseInt(idx));
 			rs = ps.executeQuery();
