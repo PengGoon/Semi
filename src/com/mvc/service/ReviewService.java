@@ -51,6 +51,7 @@ public class ReviewService {
 		
 		String idx =(String) request.getSession().getAttribute("review_id");
 		String loginId = (String)request.getSession().getAttribute("loginUserId");
+		System.out.println(idx+"/"+loginId);
 		//로그인 유무를 확인 
 		boolean login = false;
 		

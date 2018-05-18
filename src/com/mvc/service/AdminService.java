@@ -14,6 +14,7 @@ import com.mvc.dao.AdminDAO;
 import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.ReviewDAO;
 import com.mvc.dao.UserDAO;
+import com.mvc.dto.NoticeDTO;
 import com.mvc.dto.ReviewDTO;
 import com.mvc.dto.UserDTO;
 
@@ -157,5 +158,38 @@ public class AdminService {
 			String obj = json.toJson(map);
 			response.getWriter().println(obj);
 		}
+
+	//관리자 페이지 리뷰 상세 보기 
+	public void review_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB에서 개별 데이터 요청 
+/*		ReviewDAO dao = new  ReviewDAO();
+		System.out.println(request.getParameter("review_id"));*/
+		request.getSession().setAttribute("review_id", request.getParameter("review_id"));
+		response.sendRedirect("a_review_detail.jsp");
+		System.out.println("넘어와서 넘어가긴 함");
+	}
+
+	public void review_detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("상세보기 서비ㅅ,");
+		String idx = (String)request.getSession().getAttribute("review_id");
+		System.out.println(idx);
+		String loginId = (String)request.getSession().getAttribute("loginId");
+		//로그인 유무를 확인 
+		boolean login = false;
+		
+		Gson json = new Gson();
+		HashMap< String, Object> map = new HashMap<>();
+		if(loginId != null) {
+			ReviewDAO dao = new ReviewDAO();
+			ReviewDTO dto = dao.a_detailView(idx);
+			login = true;
+			map.put("dto", dto);
+		}
+		map.put("login", login);
+		String obj  = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
 		
 	}
+}
+
