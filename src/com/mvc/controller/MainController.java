@@ -29,14 +29,9 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
-<<<<<<< HEAD
-    "/cartDetail", "/cartList",
-    "/acptok", "/acptno", "/send_no","/admin","/a_review_delete"})
-=======
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
-	"/a_review_delete"})
+	"/a_review_delete", "/cartDetail", "/cartList"})
 
->>>>>>> 8b3e5ee0685c8b447a46da3ac53da2a080501e93
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
