@@ -134,8 +134,15 @@
 	</body>
 	<script>
 	var id = "${sessionScope.loginUserId}";
-	var prd_id=${param.prd_id};
+	var prd_id = "${param.prd_id}";
+	var sell_id = "${param.sell_id}";
+	
 	 $(document).ready(function(){
+		if(id == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			history.back();
+		}
+		 
 		$.ajax({
 			type : "post",
 			url : "./prd2_user",
@@ -144,15 +151,15 @@
 			},
 			dataType : "json",
 			success : function(data) {//인자 값은 서버에서 주는 메시지
-			$("#name").text(data.dto3.user_Name);
-			$("#phone").text(data.dto3.user_Phone);
-			$("#addr").text(data.dto3.user_Addr);
-			//html,text
+				$("#name").text(data.dto3.user_Name);
+				$("#phone").text(data.dto3.user_Phone);
+				$("#addr").text(data.dto3.user_Addr);
+				//html,text
 			},
 			error : function(err) {//인자 값은 서버에서 주는 에러 메시지
 				console.log(err)
 			}
-		});
+		}); 
 	});
 	
 		$("#cancle").click(function(){
@@ -160,8 +167,27 @@
 		});
 		
 		$("#buy").click(function(){
-			console.log($("#user_Id").val());
-			//location.href="buy1.jsp"; 
-		});
+			$.ajax({
+				type : "post",
+				url : "./prd2_purchase",
+				dataType : "json",
+				data : {
+					user_id: "${sessionScope.loginUserId}", 
+					prd_id: prd_id,
+					sell_id: sell_id,
+					// 수량, 주문상태 부분(미수정)
+					pur_count: 1,
+					pur_state: "주문중"
+				},
+				success : function(data) {
+					alert(data.msg);
+					// data.
+					// location.href = "";
+				},
+				error : function(err) { console.log(err) }
+			});
+		//location.href="buy1.jsp"; 
+	}); 
+		
 	</script>
 </html>

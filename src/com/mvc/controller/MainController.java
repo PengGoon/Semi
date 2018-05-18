@@ -29,6 +29,7 @@ import com.mvc.service.UserService;
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
+    "/cartDetail", "/cartList",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_delete"})
 public class MainController extends HttpServlet {
 	
@@ -194,8 +195,14 @@ public class MainController extends HttpServlet {
 					// 장바구니
 					case "/prd2_cart":
 						System.out.println("장바구니 담기 요청");
-						product2 = new ProductService2();
-						product2.cart(request, response);
+						cart = new CartService();
+						cart.cart(request, response);
+						break;
+						
+					case "/cartDetail":
+						System.out.println("카트 상세정보 보기 요청");
+						cart = new CartService();
+						cart.detail(request, response);
 						break;
 					
 					// 구매내역
@@ -473,7 +480,7 @@ public class MainController extends HttpServlet {
 				         member = new MemberService();
 				         member.sell_request(request, response);
 				         break;
-
+				         
 				      case "/acptok":
 				         System.out.println("판매자 등록요청 수락");
 				         System.out.println(request.getParameter("sell_id"));

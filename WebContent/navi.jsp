@@ -75,6 +75,13 @@ body {
 	border-left: 1px solid black;
 }
 
+.cart {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-left: 200px;
+}
+
 .searchBar {
 	float: right;
 	border: 1px solid black;
@@ -182,6 +189,7 @@ div#category th {
 				<a href="#"><li>신상품</li></a>
 				<a href="#"><li>인기상품</li></a>
 			</ul>
+			<div><img class="cart" src="image/cart.png"/></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">

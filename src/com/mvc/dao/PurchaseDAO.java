@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.mvc.dto.ProductDTO;
+import com.mvc.dto.PurchaseDTO;
 
 public class PurchaseDAO {
 	Connection conn = null;
@@ -38,26 +38,30 @@ public class PurchaseDAO {
 		}		
 	}
 	
-	public int write(ProductDTO dto) {
-		String sql="INSERT INTO product(prd_id,sell_id,cateF_id,cateS_id,prd_name,prd_price,prd_count,prd_from,prd_soldout,prd_bHit,prd_content) " + 
-				"VALUES(product_seq.NEXTVAL,?,?,?,?,?,?,?,0,0,?)";
+	public int purch(PurchaseDTO dto) {
+		int success = 0;
+		
+		String sql="INSERT INTO Purchase(pur_id, user_id, prd_id, sell_id, pur_count, pur_date, pur_state, pur_delievery) " + 
+				"VALUES(product_seq.NEXTVAL,?,?,?,?,SYSDATE,?,?)";
 		long fk = 0;
 		try {
 			//ojdbc 8  버전 이상에서 가능
 			//2번째 인자 값은 값을 넣고 반환 해 줄 컬럼
 			//new String[]{"반환받을 컬럼명"} 또는 new int[]{반환받을 컬럼번호}
-			ps = conn.prepareStatement(sql, new String[] {"prd_id"});
+			//ps = conn.prepareStatement(sql, new String[] {"prd_id"});
+			ps = conn.prepareStatement(sql);
 			//product 테이블에 데이터 추가
-			ps.setString(1, dto.getSell_Id());
-			ps.setString(2, dto.getCateFirst_Id());
-			ps.setString(3, dto.getCateSecond_Id());
-			ps.setString(4, dto.getPrd_Name());
-			ps.setInt(5, dto.getPrd_Price());
-			ps.setInt(6, dto.getPrd_Count());
-			ps.setString(7, dto.getPrd_From());
-			ps.setString(8, dto.getPrd_Content());
-			ps.executeUpdate();
-			rs = ps.getGeneratedKeys();//이 과정으로 원하는 컬럼을 받아 올 수 있다.
+			ps.setString(1, dto.getUser_id());
+			ps.setInt(2, dto.getPrd_id());
+			ps.setString(3, dto.getSell_Id());
+			ps.setInt(4, dto.getPur_count());
+			ps.setString(5, dto.getPur_state());
+			// ps.setInt(6, dto.getPur_delievery());
+			ps.setInt(6, 1111);
+			success = ps.executeUpdate();
+			
+			// rs = ps.getGeneratedKeys(); // 이 과정으로 원하는 컬럼을 받아 올 수 있다.
+			/*
 			String fileName1 = dto.getNewFileName1();
 			String fileName2 = dto.getNewFileName2();
 			String fileName3 = dto.getNewFileName3();
@@ -74,12 +78,13 @@ public class PurchaseDAO {
 				ps.setString(4, fileName3);
 				ps.executeUpdate();
 			}			
+			*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
 		}finally {
 			resClose();
 		}
-		return (int) fk;//idx 값 반환
+		return success;	//idx 값 반환
 	}
 }
