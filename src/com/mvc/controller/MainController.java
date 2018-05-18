@@ -30,8 +30,7 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no",
-	"/a_review_delete",
-	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel" })
+	"/a_review_delete"})
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -83,16 +82,16 @@ public class MainController extends HttpServlet {
 				
 					// 로그인
 					case "/login":
-					System.out.println("구매자 로그인 요청");
-					user = new UserService();
-					user.login(request, response);
+						System.out.println("구매자 로그인 요청");
+						user = new UserService();
+						user.login(request, response);
 					break;
 					
 					// 로그아웃
 					case "/logout":
-					user = new UserService();
-					user.logout(request,response);
-					System.out.println("구매자 로그아웃 요청");
+						user = new UserService();
+						user.logout(request,response);
+						System.out.println("구매자 로그아웃 요청");
 					break;
 					
 					// 회원가입

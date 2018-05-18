@@ -8,29 +8,48 @@
 		<title>Insert title here</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
+			#listCenter {
+				width: 1000px;
+				margin: 0 auto;
+			}
 			th,td,tr{
 				border: 1px solid black;
 				border-collapse: collapse;
 				text-align: center;
 			}
-			table{
+			#prdlist{
 				border: 1px solid black;
 				border-collapse: collapse;
 				text-align: center;
 				float: left;
+				margin: 10px;
+			}
+			#prdlist img{
+				width:290px;
+				height:240px;
 			}
 		</style>
 	</head>
 	<body>
+		<jsp:include page="navi.jsp"></jsp:include>
+		<div id="listCenter">
+		<h2>"<%=request.getParameter("search_name") %>" 로 검색하신 내용입니다.</h2>
 		<c:forEach items="${list}" var="bbs">
-			<table>
-				<tr style="width:100px">
-					<td><a href="prd_detail?prd_id=${bbs.prd_Id}"><img src="./upload/${bbs.newFileName1}"/></a></td>
+			<table id="prdlist" style="width:300px; height:300px;">
+				<tr>
+					<td>
+					<a href="prd_detail?prd_id=${bbs.prd_Id}">
+						<c:if test="${bbs.newFileName1 ne null}">
+							<img src="./upload/${bbs.newFileName1}"/>
+						</c:if>
+					</a>
+					</td>
 				</tr>
 				<tr>
-					<td><h3>${bbs.prd_Name}</h3></td>
+					<td style="height:50px;"><h3>${bbs.prd_Name}</h3></td>
 				</tr>
 			</table>
 		</c:forEach>
+		</div>
 	</body>
 </html>
