@@ -167,4 +167,27 @@ public class ProductService {
 		response.getWriter().println(obj);
 	}
 
+	public void prdSearchSort(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+				ProductDAO dao = new ProductDAO();
+				ArrayList<ProductDTO> list = dao.searchSort(request.getParameter("data"),request.getParameter("content"));
+				//로그인 상태
+				//String loginId = (String) request.getSession().getAttribute("loginId");
+
+				//response 반환
+				Gson json = new Gson();
+				HashMap<String, Object> map = new HashMap<>();
+				/*
+				if(loginId != null) {
+					map.put("login", true);
+				}else {
+					map.put("login", false);
+				}
+				*/
+				map.put("list",list);
+				String obj = json.toJson(map);
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().println(obj);
+	}
+
 }
