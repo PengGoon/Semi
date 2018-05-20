@@ -42,7 +42,8 @@
 	background-color: white;
 	width: 100%;
 	height: 45px;
-	margin: 150px 0 20px 0;
+	margin: 140px 0 20px 0;
+	padding: 0;
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -63,6 +64,7 @@
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
+	height:50px;
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -95,7 +97,7 @@
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
-	margin: 5 10;
+	margin: 5px 10px;
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
