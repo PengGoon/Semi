@@ -93,23 +93,14 @@ public class NoticeService {
 
 	//제목을 클릭했을 때 보여주는 공지사항 상세보기
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		//인덱스 번호와 로그인 아이디를 세션으로 가져와서 확인하는 방법
 				String idx =(String) request.getSession().getAttribute("notice_id");
-				String loginId = (String)request.getSession().getAttribute("loginId");
-				System.out.println(idx+"/"+loginId);
-				//로그인 유무를 확인 
-				boolean login = false;
-				
 				Gson json = new Gson();
 				HashMap< String, Object> map = new HashMap<>();
-				if(loginId != null) {
-					NoticeDAO dao = new NoticeDAO();
-					NoticeDTO dto = dao.detailView(idx);
-					login = true;
-					map.put("dto", dto);
-				}
-				map.put("login", login);
+
+				NoticeDAO dao = new NoticeDAO();
+				NoticeDTO dto = dao.detailView(idx);
+
+				map.put("dto", dto);
 				String obj  = json.toJson(map);
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().println(obj);
@@ -139,29 +130,12 @@ public class NoticeService {
 		
 	}
 
-	public void main_notice_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		//인덱스 번호와 로그인 아이디를 세션으로 가져와서 확인하는 방법
-		System.out.println(request.getSession().getAttribute("notice_id"));
-		String idx =(String) request.getSession().getAttribute("notice_id");
-		System.out.println(idx);
-		Gson json = new Gson();
-		HashMap< String, Object> map = new HashMap<>();
-
-		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = dao.detailView(idx);
-
-		map.put("dto", dto);
-		String obj  = json.toJson(map);
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println(obj);
-}
-
-
-	public void main_notice(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void main_detail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.getSession().setAttribute("notice_id", request.getParameter("notice_id"));
-		response.sendRedirect("main_notice_detail.jsp");
+		response.sendRedirect("M_notice_detail.jsp");
 		
 	}
+	
 	
 }
 
