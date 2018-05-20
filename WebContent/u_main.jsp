@@ -6,52 +6,35 @@
 		<title>Insert title here</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
-			.muen{
-                       
-                    }
-                    li{
-                        
-                        list-style: none;
-                        padding: 5px 10px;
-                        text-align: left;
-                        float: left;
-                        width: 300px;
-                        text-align: center;
-                        border: 1px solid black; 
-
-                    }
-                    a{
-                        text-decoration: none;
-                    }
-
-                    table,td,th {
-                            border: 1px solid black; 
-                            width: 0%;
-                            padding: 10px;
-                            border-top: 1px solid #444444;
-                            border-collapse: collapse;
-                          }
+			#myPage{
+				margin-left: 150px;
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+				width: 200px;
+				height: 300px;
+				font-size: 25px;
+	        }
+			#myPage tr{
+				
+	        }
 		</style>
 	</head>
 	<body>
-		<br>
-        <br>
-        <ul class="muen">
-            <li>
-                <a href="u_Order.jsp">주문내역</a>
-            </li>
-            <li>
-                <a href="#">장바구니</a>
-            </li>
-            <li>
-                <a href="#">작성한후기</a>
-            </li>
-            <li>
-                <a href="u_updateform.jsp">개인정보수정</a>
-            </li>
-            
-        </ul>
-        <br><br><br><br>
+		<table id="myPage">
+			<tr>
+				<td><a href="u_Order.jsp">주문내역</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">장바구니</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">작성한후기</a></td>
+			</tr>
+			<tr>
+				<td><a href="u_updateform.jsp">개인정보수정</a></td>
+			</tr>
+		</table>
 	</body>
 	<script>
 	

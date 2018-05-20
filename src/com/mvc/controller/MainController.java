@@ -21,7 +21,7 @@ import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", 
-	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort",
+	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort", "/main_list", "/prd_bHitlist", "/prd_datelist",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
@@ -122,6 +122,27 @@ public class MainController extends HttpServlet {
 						System.out.println("상품 리스트 호출 요청");
 						service = new PhotoService(request, response);
 						service.list();
+						break;
+						
+					// 메인화면 리스트	
+					case "/main_list":
+						System.out.println("메인 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.mainList(request, response);
+						break;
+					
+					// 인기순 리스트	
+					case "/prd_bHitlist":
+						System.out.println("인기순 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.bHitlist(request, response);
+						break;
+						
+					// 신상품순 리스트	
+					case "/prd_datelist":
+						System.out.println("신상품순 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.datelist(request, response);
 						break;
 						
 					// 상품 검색	

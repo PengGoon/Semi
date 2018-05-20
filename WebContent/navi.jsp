@@ -9,12 +9,10 @@
 </head>
 <style>
 /* 메인 페이지  */
-.Navi body {
+body {
 	margin: 0px;
 	padding: 0px;
 	min-width: 100%;
-	
-	overflow:hidden;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
@@ -91,9 +89,8 @@
 	float: right;
 	top:10px;
 	right:20px;
-	width : 280px;
+	width : 350px;
 	margin:auto;
-	width: 280px;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
@@ -143,12 +140,6 @@
 	padding: 10px 10px 10px 10px;
 	color: black;
 }
-/* 하위카테고리(대분류) 마우스 오버시 */
-#catTable h3:hover{ 
-	text-decoration: underline;
-	color: limegreen;
-	cursor: pointer;
-}
 /* 테이블 내부 텍스트 좌측정렬 및 패딩 설정 */
 #catTable th {
 	padding: 10px 45px 10px 0px  ;
@@ -172,6 +163,7 @@
 }
 /* 카테고리  */
 div#category {
+	z-index: 2;
 	width: 1000px;
 	margin: 0 auto;
 	display: none;
@@ -233,12 +225,14 @@ div#category ul {
 
 	<!--  최우측상단 바  -->
 		<div class="rightMenu">
-			<h4 style="top:0px">안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
 			<ul>
-				<a href= "userLogin.jsp" /><li>로그인</li></a>
+				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
+				<a id="myPage2"><li id="myPage1"></li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
+			<br/>
+			<h3 style="text-align: center;"></h3>
 		</div>
 
 
@@ -248,8 +242,8 @@ div#category ul {
 		<div class="menuCenter">
 			<ul>
 				<a href="#"><li id="flip">카테고리</li></a>
-				<a href="#"><li id="new">신상품</li></a>
-				<a href="#"><li id="fav">인기상품</li></a>
+				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
+				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
 			<div><img class="cart" src="image/cart.png"/></div>
 			<div class="searchBar">
@@ -311,20 +305,30 @@ div#category ul {
 <script>
 	$(document).ready(function() {
 		var loginUserId = "${sessionScope.loginUserId}";
+		var loginSellerId = "${sessionScope.loginId}";
 		console.log(loginUserId);
-		if (loginUserId == null) {
-			$("#loginst").val("로그인");
-			$("#loginst").attr("onclick", "location.href='userLogin.jsp'");
-		} else {
-			$("#loginst").val("로그아웃");
+		console.log(loginSellerId);
+		if (loginUserId == "" && loginSellerId == "") {
+			$("#loginst1").html("로그인");
+			$("#loginst2").attr("href", "userLogin.jsp");
+		}else{
+			$("#loginst1").html("로그아웃");
+			$("#loginst2").attr("href", "logout");
+			$("#myPage1").html("마이페이지");
+			$("#myPage2").attr("href", "myPage.jsp");
+			if(loginUserId != ""){
+				$(".rightMenu h3").html("안녕하세요, "+loginUserId+"님");
+			}else if(loginSellerId != ""){
+				$(".rightMenu h3").html("안녕하세요, [판매자]"+loginSellerId+"님");
+			}
 		}
 
-		var jbOffset = $('.menu').offset();
+		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
-				$('.menu').addClass('jbFixed');
+				$('.menuBody').addClass('jbFixed');
 			} else {
-				$('.menu').removeClass('jbFixed');
+				$('.menuBody').removeClass('jbFixed');
 			}
 		});
 	});

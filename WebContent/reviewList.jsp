@@ -47,8 +47,7 @@
 	}
 	
 	#writeBtn{
-		position:absolute;
-		left:73%;
+		float: right;
 		height : 42px;
 		width: 130px;
 		font-weight: 800;
