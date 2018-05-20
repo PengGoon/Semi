@@ -28,7 +28,7 @@ public class ProductDAO {
 		}
 	}
 
-	private void resClose() {
+	public void resClose() {
 		try {
 			if(rs != null) {
 				rs.close();
@@ -303,32 +303,35 @@ public class ProductDAO {
 		return list;
 	}
 
-	
-
-	
-
-	/*
-	public void fileNameUpdate(int prd_Id, String newFileName1, String newFileName2, String newFileName3, String[] oldFileName) {
-		String sql="";		
+	public ArrayList<ProductDTO> mainList(String state) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = null;
+		if(state.equals("bHit")) {
+			sql = "SELECT * FROM (SELECT * FROM product ORDER BY prd_bHit DESC) WHERE ROWNUM <=5";
+		}else if(state.equals("date")){
+			sql = "SELECT * FROM (SELECT * FROM product ORDER BY prd_date DESC) WHERE ROWNUM <=5";
+		}else if(state.equals("bHitAll")){
+			sql = "SELECT * FROM product ORDER BY prd_bHit DESC";
+		}else if(state.equals("dateAll")){
+			sql = "SELECT * FROM product ORDER BY prd_date DESC";
+		}
 		try {
-			if(oldFileName != null) {//기존에 올린 파일이 있는 경우(UPDATE)
-				sql="UPDATE productimage SET newFileName1 = ?,newFileName2 = ?,newFileName3 = ?, WHERE prd_id = ?";
-				ps = conn.prepareStatement(sql);
-				ps.setString(1,newFileName);
-				ps.setInt(2, prd_Id);
-			}else {//기존 파일이 없는 경우(INSERT)
-				sql="INSERT INTO productimage VALUES(photo_seq.NEXTVAL,?,?,?)";
-				ps = conn.prepareStatement(sql);			
-				ps.setInt(1,prd_Id);
-				ps.setString(2, "no file");
-				ps.setString(3, newFileName);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+				dto.setPrd_Date(rs.getDate("prd_Date"));
+				String[] fileName = fileNameCall(rs.getInt("prd_id"));
+				dto.setNewFileName1(fileName[0]);
+				list.add(dto);
 			}
-			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			resClose();
-		}		
+		}
+		return list;
 	}
-	*/
 }

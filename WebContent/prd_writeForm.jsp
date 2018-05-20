@@ -40,7 +40,7 @@ body {
 
 </style>
 <body>
-	<jsp:include page="seller_navi.jsp"></jsp:include>
+	<jsp:include page="navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="writeTable">
 			<form id="writeForm" action="prd_write" method="post" enctype="multipart/form-data">
@@ -136,15 +136,13 @@ function emptyChk(){
 	var fileExt1 = file1.substring(file1.lastIndexOf('.')+1); //파일 확장자
 	var fileExt2 = file2.substring(file2.lastIndexOf('.')+1); //파일 확장자
 	var fileExt3 = file3.substring(file3.lastIndexOf('.')+1); //파일 확장자
-	var fileflag1 = false;
-	var fileflag2 = false;
-	var fileflag3 = false;
+	console.log(fileExt1);
 	
 	if($("input[name=prd_name]").val() == ""){ alert("상품명을 입력해주세요"); $("input[name=prd_name]").focus();
 	}else if($("input[name=prd_price]").val() == ""){ alert("판매가를 입력해주세요"); $("input[name=prd_price]").focus();
 	}else if($("input[name=prd_from]").val() == ""){ alert("원산지를 입력해주세요"); $("input[name=prd_from]").focus();
 	}else if($("input[name=prd_count]").val() == ""){ alert("상품수량을 입력해주세요"); $("input[name=prd_count]").focus();
-	}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() != ""){ 
+	}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" && fileExt1.toUpperCase() != ""){ 
 		if(fileExt2.toUpperCase() == "JPG" || fileExt2.toUpperCase() == "PNG" || fileExt2.toUpperCase() == ""){
 			if(fileExt3.toUpperCase() == "JPG" || fileExt3.toUpperCase() == "PNG" || fileExt3.toUpperCase() == ""){
 				$("#writeForm").submit();
