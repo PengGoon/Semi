@@ -40,7 +40,8 @@ body {
 	background-color: white;
 	width: 100%;
 	height: 45px;
-	margin: 150px 0 20px 0;
+	margin: 140px 0 20px 0;
+	padding: 0;
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -61,6 +62,7 @@ body {
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
+	height:50px;
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -92,7 +94,7 @@ body {
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
-	margin: 5 10;
+	margin: 5px 10px;
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
@@ -143,6 +145,7 @@ body {
 	padding: 10px 45px 10px 0px  ;
 	text-align: left;
 }
+/* 테이블 내부 a태그 글씨 스타일 설정 */
 #catTable a{
 	text-decoration: none;
 	color: black;
@@ -159,7 +162,7 @@ body {
 	color: limegreen;
 	cursor: pointer;
 }
-/* 카테고리  */
+/* 카테고리 영역 속성 설정  */
 div#category {
 	z-index: 2;
 	width: 1000px;
@@ -167,18 +170,18 @@ div#category {
 	display: none;
 	position: absolute;
 }
-
+/* 카테고리 ul 내부 텍스트 좌측 정렬 */
 div#category ul {
 	float: left;
 }
-
+/* 화면 우측 최근 본 상품 영역 속성 설정1 */
 .content {
 	margin: 0 auto;
 	position: relative;
 	margin-top: 20px;
-	display: inline-blcok;
+	display: inline-block;
 }
-
+/* 화면 우측 최근 본 상품 영역 속성 설정2 */
 .fly {
 	display: block;
 	right: 150px;
@@ -191,11 +194,11 @@ div#category ul {
 	border: 1px #ccc solid;
 	text-align: center;
 }
-
+/* 화면 우측 최근 본 상품 영역 텍스트 설정 */
 .fly li {
 	list-style: none;
 }
-
+/* 화면 우측 최근 본 상품 영역 이미지 설정 */
 .fly img {
 	border: none;
 	list-style: none;

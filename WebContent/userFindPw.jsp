@@ -37,7 +37,7 @@
             
             .findPwTable{
             	position : fixed;
-            	top: 310px;
+            	top: 450px;
             	left: 30%;
             	width:1000px;
             }
