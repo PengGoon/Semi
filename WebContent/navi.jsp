@@ -94,7 +94,7 @@
 	right:150px;
 	width : 500px;
 	margin: auto;
-
+}
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
 	margin: 5px 10px;
