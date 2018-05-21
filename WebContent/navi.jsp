@@ -25,11 +25,18 @@
 #market {
 	color: #000000;
 }
-/* 추가 메뉴(카테고리, 인기상품, 신상품)를 위한 공간 속성 */
+/* 스크롤에 따라 움직이는 메뉴바 구현을 위한 속성 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
 }
+
+/* 스크롤에 따라 움직이는 카테고리 구현을 위한 속성 */
+.jcFixed {
+	position: fixed;
+	top: 0px;
+}
+
 /* 메뉴바 중앙 정렬 설정을 위한  클래스 */
 .menuCenter {
 	width: 1000px;
@@ -70,7 +77,7 @@
 }
 /* li중 신상품 테두리 설정 */
 .menuBody #new{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 신상품 마우스오버시 속성 */
 .menuBody #new:hover {
@@ -79,7 +86,7 @@
 }
 /* li중 인기상품 테두리 설정 */
 .menuBody #fav{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 인기상품 마우스 오버시 속성 */
 .menuBody #fav:hover {
@@ -91,36 +98,36 @@
 	position: absolute;
 	float: right;
 	top:10px;
-	right:50px;
+	right:0px;
 	width : 700px;
 	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
 	margin: 5px 10px;
+	padding: 0 5 0 5;
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
 .rightMenu li {
 	float:left;
-	border-right: 1px solid black;
-	padding: 0 30px 0 10px ;
+	border-right: 1px solid gray;
+	padding: 0 20px 0 0px ;
 	margin:0 0 0 15px;
 	text-align: center;
 }
 /* 우측 상단 로그인 관리 바 a태그 속성 */
 .rightMenu a{
 	text-decoration: none;
-	color: black;
+	font-weight: 600;
+	color: gray;
 }
-
+/* 로그인 상태(안녕하세요, id 님) 타이틀 */
 .rightMenu h3{
 	position:absolute;
 	float: right;
 	right: 150px;
 }
-
-
 /* 장바구니 아이콘 */
 .cart {
 	float: left;
@@ -204,7 +211,7 @@ div#category ul {
 	right: 150px;
 	top: 100px;
 	position: absolute;
-	z-index: 9999;
+	z-index: 2;
 	width: 80px;
 	background-color: #ffffff;
 	height: 200px;
@@ -220,7 +227,8 @@ div#category ul {
 	border: none;
 	list-style: none;
 	height: 70px;
-	display: block float:left;
+	display: block; 
+	float:left;
 	width: 75px;
 	border: 1px #ccc solid;
 	text-align: center
@@ -337,7 +345,8 @@ div#category ul {
 				$(".rightMenu h3").html("안녕하세요, [판매자]"+loginSellerId+"님");
 			}
 		}
-
+	
+		// 스크롤에 따라 움직이는 menuBody 기능
 		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
@@ -346,8 +355,9 @@ div#category ul {
 				$('.menuBody').removeClass('jbFixed');
 			}
 		});
+		
 	});
-
+	
 	// 검색바 기능
 	function search() {
 		location.href = "./prd_search?search_name=" + $("#search").val();
@@ -362,6 +372,17 @@ div#category ul {
 		$('.fly').stop().animate({
 			'top' : sct
 		}, 500)
+
+		// 스크롤에 따라 움직이는 category 기능
+		var jcOffset = $('#category').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jcOffset.top) {
+				$('#category').addClass('jcFixed');
+			} else {
+				$('#category').removeClass('jcFixed');
+			}
+		}); 
+	
 	});
 
 	// 로그아웃 버튼 클릭시
