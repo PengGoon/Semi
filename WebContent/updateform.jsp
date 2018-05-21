@@ -23,7 +23,8 @@ input.inputTxt {
 </style>
 </head>
 <body>
-
+	<jsp:include page="navi.jsp"></jsp:include>
+	<jsp:include page="myPage_menu.jsp"></jsp:include>
 	<!-- 기본 정보 뷰 -->
 	<table id="before" style="width: 600">
 		<h2>판매자 회원 정보 수정</h2>
