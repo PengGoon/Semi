@@ -48,15 +48,11 @@
 	background-color: white;
 	border-bottom: 1px solid gray;
 	width: 100%;
-<<<<<<< HEAD
-	height: 45px;
-	margin: 150px 0 20px 0;
-=======
 	height: 70px;
 	margin: 0;
 	padding: 0;
 	z-index: 1;
->>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
+
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -77,10 +73,7 @@
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
-<<<<<<< HEAD
-=======
 	height:48px;
->>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -112,12 +105,8 @@
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
-<<<<<<< HEAD
 	margin: 5px 10px;
 	padding: 0 5 0 5;
-=======
-	margin: 5 10;
->>>>>>> a87a74b216c218cd62aa70fbb54bd9276ec32bf6
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
@@ -321,7 +310,6 @@ div#category ul {
 			</table>
 		</div>
 	</div>
-	
 	
 	
 	<!--  우측 최근 본 상품   -->
