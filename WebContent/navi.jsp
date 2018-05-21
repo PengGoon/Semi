@@ -9,23 +9,22 @@
 </head>
 <style>
 /* 메인 페이지  */
- body {
-	resize:none;
-	margin: auto 0px;
+body {
+	margin: 0px;
 	padding: 0px;
-	width: 100%;
+	min-width: 100%;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
 	position: relative;
 	left: 40%;
-	margin: 20 0 140 0;
+	margin: 20 0 0 0;
 }
 /* 마켓 타이틀 폰트 색상 */
 #market {
 	color: #000000;
 }
-/* 추가 메뉴(카테고리, 인기상품, 신상품)를 위한 공간 속성 */
+/* 추가 메뉴(?)를 위한 공간 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
@@ -64,9 +63,9 @@
 }
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
-	background-color: limegreen;
+ 	background-color: limegreen; 
 	height:48px;
-	color: white;
+	color: white; 
 }
 /* li중 신상품 테두리 설정 */
 .menuBody #new{
@@ -86,6 +85,7 @@
 	color: limegreen;
 	text-decoration: underline;
 }
+
 /* 우측 상단 로그인 관리 바 속성 */
 .rightMenu {
 	position: absolute;
@@ -217,7 +217,6 @@ div#category ul {
 	border: 1px #ccc solid;
 	text-align: center
 }
-
 </style>
 
 <body>
@@ -376,5 +375,7 @@ div#category ul {
 			}
 		});
 	});
+
+
 </script>
 </html>
