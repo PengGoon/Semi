@@ -21,7 +21,7 @@ import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", 
-	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort", "/main_list", "/prd_bHitlist", "/prd_datelist",
+	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort", "/main_list", "/prd_bHitlist", "/prd_datelist","/prd_delieveryList", "/prd_delievery",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
@@ -108,6 +108,20 @@ public class MainController extends HttpServlet {
 						System.out.println("판매자별 상품 리스트 요청");
 						product = new ProductService();
 						product.sellprdlist(request, response);
+						break;
+					
+					// 상품별 배송 리스트
+					case "/prd_delieveryList":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.delieveryList(request, response);
+						break;
+						
+						// 상품별 배송 리스트
+					case "/prd_delievery":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.delievery(request, response);
 						break;
 					
 					// 상품 삭제	
