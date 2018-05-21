@@ -298,6 +298,19 @@ public class MainController extends HttpServlet {
 						user.overlay(request, response);
 						break;
 						
+						//공지사항 리스트 부분은 관리자에서 사용했던 /notice_main을 이용	
+						case "/main_notice_detail":
+							System.out.println("메인 페이지 : 공지사항 상세보기");
+							notice = new NoticeService();
+							notice.main_detail(request, response);
+							break;
+							
+						case "/main_notice_detailView":
+							System.out.println("222");
+							notice = new NoticeService();
+							notice.detailView(request, response);
+							break;
+						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
 						
@@ -392,19 +405,6 @@ public class MainController extends HttpServlet {
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
 						notice.detail(request,response);
-						break;
-						
-						
-					case "/main_notice_detail":
-						System.out.println("메인 페이지 에서 공지사항 상세보기");
-						notice = new NoticeService();
-						notice.main_notice_detail(request, response);
-						break;
-						
-					case "/main_notice":
-						System.out.println("메인 페이지 에서 공지사항 상세보기");
-						notice = new NoticeService();
-						notice.main_notice(request, response);
 						break;
 						
 					case "/notice_detailView":

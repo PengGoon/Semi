@@ -75,10 +75,10 @@
 	</style>
 	<body>
         <jsp:include page="navi.jsp"></jsp:include>
-        <div class = userJoinTitle>
-    		<br/><br/>
+	<br/>
+	     <div class = userJoinTitle>
     		<h1>공지 사항</h1>
-    	</div> <br/>
+    	</div>
     	
         <div id="reviewList">
 		<h3 class=msg >공지사항 게시판 입니다.</h3>
