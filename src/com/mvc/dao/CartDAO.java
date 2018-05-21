@@ -110,10 +110,11 @@ public class CartDAO {
 				dto.setPrd_name(rs.getString("prd_name"));
 				dto.setPrd_id(rs.getInt("prd_id"));
 				dto.setUser_id(rs.getString("user_id"));
+				dto.setPrd_price(rs.getInt("prd_price"));
+				dto.setPrd_count(rs.getInt("prd_count"));
 				//dto.setPrd_name(rs.getString("prd_name"));
 				list.add(dto);
 			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
