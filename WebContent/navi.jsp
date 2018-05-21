@@ -9,22 +9,23 @@
 </head>
 <style>
 /* 메인 페이지  */
-body {
-	margin: 0px;
+ body {
+	resize:none;
+	margin: auto 0px;
 	padding: 0px;
-	min-width: 100%;
+	width: 100%;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
 	position: relative;
 	left: 40%;
-	margin: 20 0 0 0;
+	margin: 20 0 140 0;
 }
 /* 마켓 타이틀 폰트 색상 */
 #market {
 	color: #000000;
 }
-/* 추가 메뉴(?)를 위한 공간 */
+/* 추가 메뉴(카테고리, 인기상품, 신상품)를 위한 공간 속성 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
@@ -38,9 +39,17 @@ body {
 .menuBody {
 	text-align: center;
 	background-color: white;
+	border-bottom: 1px solid gray;
 	width: 100%;
+<<<<<<< HEAD
 	height: 45px;
 	margin: 150px 0 20px 0;
+=======
+	height: 70px;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -61,6 +70,10 @@ body {
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
+<<<<<<< HEAD
+=======
+	height:48px;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -86,9 +99,9 @@ body {
 	position: absolute;
 	float: right;
 	top:10px;
-	right:20px;
-	width : 350px;
-	margin:auto;
+	right:50px;
+	width : 700px;
+	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
@@ -97,14 +110,26 @@ body {
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
 .rightMenu li {
-	float: left;
-	border-left: 1px solid black;
+	float:left;
+	border-right: 1px solid black;
+	padding: 0 30px 0 10px ;
+	margin:0 0 0 15px;
+	text-align: center;
 }
 /* 우측 상단 로그인 관리 바 a태그 속성 */
 .rightMenu a{
 	text-decoration: none;
 	color: black;
 }
+
+.rightMenu h3{
+	position:absolute;
+	float: right;
+	right: 150px;
+}
+
+
+/* 장바구니 아이콘 */
 .cart {
 	float: left;
 	width: 40px;
@@ -115,20 +140,22 @@ body {
 .searchBar {
 	float: right;
 	border: 1px solid black;
+	margin-right: 40px;
 }
 /* 검색바 입력창 */
 .searchBar input {
 	font-size: 18;
 	border: 0;
 	float: left;
-	padding: 12px;
+	padding:0;
 	width: 200px;
+	height: 33px;
 }
 /* 검색바 돋보기아이콘 */
 .searchBar img {
 	margin: 5px 2px;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 }
 /* 카테고리 테이블 */
 #catTable{
@@ -206,7 +233,6 @@ div#category ul {
 	text-align: center
 }
 
-
 </style>
 
 <body>
@@ -221,11 +247,11 @@ div#category ul {
 		</h1>
 	</div>
 
-	<!--  최우측상단 바  -->
+	<!--  우측상단 로그인 바  -->
 		<div class="rightMenu">
 			<ul>
-				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a id="myPage2"><li id="myPage1"></li></a>
+				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
@@ -282,9 +308,7 @@ div#category ul {
 			</table>
 		</div>
 	</div>
-	
 	<!--  우측 최근 본 상품   -->
-	<hr/>
 	<div class="content">
 		<div class="fly">
 			<ul style="padding-left: 0px;">
