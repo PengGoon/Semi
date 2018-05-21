@@ -36,34 +36,21 @@ public class ReviewService {
 
 	//상세 보기
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DB 에 개별 데이터 요청
-/*		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.detailView(request.getParameter("review_id"));
-		request.setAttribute("info", dto);
-		//특정한 페이지로 이동		
-		RequestDispatcher dis = request.getRequestDispatcher("reviewDetail.jsp");
-		dis.forward(request, response);*/
 		request.getSession().setAttribute("review_id", request.getParameter("review_id"));
 		response.sendRedirect("reviewDetail.jsp");
 	}
 	//후기 상세보기
 	public void detailView(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String idx =(String) request.getSession().getAttribute("review_id");
-		String loginId = (String)request.getSession().getAttribute("loginUserId");
-		System.out.println(idx+"/"+loginId);
-		//로그인 유무를 확인 
-		boolean login = false;
-		
+		String review_id =(String) request.getSession().getAttribute("review_id");
+
 		Gson json = new Gson();
 		HashMap< String, Object> map = new HashMap<>();
-		if(loginId != null) {
+
 			ReviewDAO dao = new ReviewDAO();
-			ReviewDTO dto = dao.detailView(idx);
-			login = true;
+			ReviewDTO dto = dao.detailView(review_id);
+
 			map.put("dto", dto);
-		}
-		map.put("login", login);
 		String obj  = json.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
