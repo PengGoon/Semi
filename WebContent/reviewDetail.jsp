@@ -14,13 +14,13 @@
             	font-size: 20;
             }
       .Review td{
-      	border: 1px solid black;
-        border-collapse: collapse;
+		border-top : 1px solid green;
+    	border-collapse: collapse;
         padding: 5px 10px;
       }
       .Review th{
-      	border: 1px solid black;
-        border-collapse: collapse;
+		border-top : 1px solid green;
+    	border-collapse: collapse;
         padding: 5px 10px;
       	width:70px;
       }
@@ -28,18 +28,22 @@
       	position: absolute;
       	left:25%;
         width: 800px;
-        border: 1px solid black;
-        border-collapse: collapse;
+		border-top : 1px solid green;
+    	border-collapse: collapse;
         padding: 5px 10px;
-        margin: 100px 0 100px 0;
+        margin: 100px 0 150px 0;
       }
-      .Review input[type='text']{
-         width:100%;
-      }
-      .Review textarea{
+		#reviews{
+			border-top: 1px solid green;
+			border-collapse: collapse;
+			margin: auto;
+		}
+      textarea{
          width:100%;
          resize:none;
-         height:300px;
+         height:600px;
+      	 resize:none;
+      	 border:none;
       }
       .Review td{
          text-align: left;
@@ -103,10 +107,15 @@
    	<div class = ReviewDetailTitle>
    	<h1>후기 상세보기</h1>
     </div>
-	<table>
+	<table id="reviews">
 		<tr>
 			<th>작성자</th>
 			<td><input type="text" id="userId" style="border:none" readonly /></td>
+		</tr>
+		<tr>
+			<th>상품번호</th>
+			<td><input type="text" id="prd_id" style="border:none" readonly />
+			</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -114,18 +123,14 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea class="editable"  id="reviewContent" rows="15" readonly></textarea></td>
+			<td><textarea class="editable"  id="reviewContent" rows="18" cols="30" readonly></textarea></td>
 		</tr>
 		<tr>
 			<td class=btnRow colspan="2">
-				<a id="exit" href="reviewList.jsp">리스트 가기</a> 
-				<button id="edit">수정</button>
+				<a id="exit" href="index.jsp">리스트 가기</a> 
+				<input type="hidden" id="edit" value="수정"/>
 				<button id="save">저장</button>
-			<td colspan="2">
-				<a id=exit href="reviewList.jsp">리스트 가기</a> 
-				<input id="edit" type="button" value="수정"/>
-				<input id="save" type="button" value="저장"/>
-			</td>
+
 		</tr>
 	</table>
 	</div>
@@ -154,6 +159,7 @@
 	function printInfo(info) {
 		review_id = info.review_id;
 		$("#userId").val(info.user_id);
+		$("#prd_id").val(info.prd_id);
 		$("#reviewTitle").val(info.review_title);
 		$("#reviewContent").val(info.review_content);
 	}
@@ -189,5 +195,12 @@
 	function ajaxCall(param) {
 		$.ajax(param);
 	}
+	
+	$(function(){
+		$('a').click(function(){
+			$('a').removeClass();
+			$(this).addClass('on');
+		});
+	});
 </script>
 </html>
