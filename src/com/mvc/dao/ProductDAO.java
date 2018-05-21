@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,6 +13,8 @@ import javax.sql.DataSource;
 
 import com.mvc.dto.ProductDTO;
 import com.mvc.dto.ProductDTO2;
+import com.mvc.dto.PurchaseDTO;
+import com.mvc.dto.UserDTO;
 
 public class ProductDAO {
 	Connection conn = null;
@@ -297,8 +300,6 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			resClose();
 		}
 		return list;
 	}
@@ -331,6 +332,63 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<PurchaseDTO> delieveryList(int prd_id) {
+		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
+		String sql = "SELECT * FROM purchase p, userDB u WHERE p.user_id=u.user_id AND prd_id=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, prd_id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				PurchaseDTO dto = new PurchaseDTO();
+				dto.setPur_id(rs.getInt("pur_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setPur_count(rs.getInt("pur_count"));
+				dto.setPur_state(rs.getString("pur_state"));
+				dto.setPur_delievery(rs.getInt("pur_delievery"));
+				dto.setPur_date(rs.getDate("pur_date"));
+				
+				dto.setUser_Name(rs.getString("user_name"));
+				dto.setUser_Phone(rs.getString("user_phone"));
+				dto.setUser_Addr(rs.getString("user_addr"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return list;
+	}
+
+	public ArrayList<PurchaseDTO> delievery(int pur_id) {
+		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
+		String sql = "UPDATE purchase SET pur_delievery=? WHERE pur_id=?";
+		Random random = new Random();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, random.nextInt(100000000));
+			ps.setInt(2, pur_id);
+			ps.executeUpdate();
+			
+			sql = "SELECT pur_delievery FROM purchase WHERE pur_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, pur_id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				PurchaseDTO dto = new PurchaseDTO();
+				dto.setPur_delievery(rs.getInt("pur_delievery"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
 		}
 		return list;
 	}

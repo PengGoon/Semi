@@ -8,27 +8,27 @@
 <title>등록한 상품 목록</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-#reviewList table {
+#listTable {
 	border: none;
 	border-collapse: collapse;
 	padding: 10px 10px;
 	text-align: center;
 }
 
-#reviewList th {
+#listTable th {
 	border: none;
 	border-collapse: collapse;
 	padding: 10px 10px;
 	width: 150px;
 }
 
-#reviewList td {
+#listTable td {
 	border: none;
 	border-collapse: collapse;
 	padding: 10px 10px;
 }
 
-#reviewList hr {
+#prdList hr {
 	border: none;
 	width: 1000px;
 	border: 1px solid limegreen;
@@ -37,18 +37,18 @@
 	background-color: limegreen; /* 크롬, 모질라 등, 기타 브라우저 */
 }
 
-#reviewList {
+#prdList {
 	width: 1000px;
 	margin: 0 auto;
 }
 
-#reviewList input[type='button']{
+#btnWrite{
 	float: right;
 }
 </style>
 </head>
 <body>
-	<div id="reviewList">
+	<div id="prdList">
 		<hr />
 		<table id="listTable">
 			<tr>
@@ -58,13 +58,14 @@
 				<th>남은수량</th>
 				<th>조회수</th>
 				<th>등록일</th>
-				<th>비고</th>
+				<th>상태</th>
+				<th>배송/재입고</th>
 			</tr>
 		</table>
 		<br />
 		<hr />
 		<input id="del" type="button" value="삭제"/>
-		<input type="button" value="상품등록" onclick="location.href='prd_writeForm.jsp'"/>
+		<input type="button" id="btnWrite" value="상품등록" onclick="location.href='prd_writeForm.jsp'"/>
 	</div>
 </body>
 <script>
@@ -78,7 +79,7 @@
 	$(document).ready(function(){
 		obj.url="./sell_prdList";
 		obj.data={
-			sell_id:"seller01"
+			sell_id:"${sessionScope.loginId}"
 		};
 		obj.success = function(data){
 			console.log(data);
@@ -115,6 +116,7 @@
 				flag = "<td style='color:red'>품절</td>";
 			}
 			content+=flag;
+			content+="<td><input type='button' onclick='pur_st("+item.prd_Id+")' value='배송관리'/></td>";
 			content+="</tr>";
 		});
 		$("#listTable").append(content);
@@ -145,6 +147,52 @@
 	function ajaxCall(param){
 		console.log(param);
 		$.ajax(param);
+	}
+	
+	function pur_st(prd_id){
+		obj.url="./prd_delieveryList";
+		obj.data={prd_id:prd_id};
+		obj.success=function(data){
+			console.log(data.list);
+			$("#listTable").empty();
+			delieveryList(data.list);
+		}
+		ajaxCall(obj);
+	}
+	//상품별 주문내역 리스트 뽑아내기
+	function delieveryList(list){
+		console.log(list);
+		var content = "<input type='button' onclick=location.href='myPage.jsp' value='돌아가기'/>";
+		content+="";
+		content+="<table id='listTable'><tr><th>주문날짜</th><th>이름</th><th>주소</th>"
+			+"<th>전화번호</th><th>주문수량</th><th>상태</th><th>운송장번호</th></tr>";
+		list.forEach(function(item, pur_id){
+			content+="<tr>";
+			content+="<td>"+item.pur_date+"</td>";
+			content+="<td>"+item.user_Name+"</td>";
+			content+="<td>"+item.user_Addr+"</td>";
+			content+="<td>"+item.user_Phone+"</td>";
+			content+="<td>"+item.pur_count+"</td>";
+			content+="<td>"+item.pur_state+"</td>";
+			content+="<td id='delie_"+item.pur_id+"'>"+item.pur_delievery+"</td>";
+			content+="<td><input type='button' onclick='delievery("+item.pur_id+")' value='배송등록'/></td>";
+			content+="</tr>";
+		});
+		content+="</table>";
+		$("#listTable").append(content);
+	}
+	function delievery(pur_id){
+		obj.url="./prd_delievery";
+		obj.data={pur_id:pur_id};
+		obj.success=function(data){
+			if(data.list.length > 0){
+				alert("배송등록 되었습니다.");
+				$("#delie_"+pur_id).html(data.list[0].pur_delievery);
+			}else{
+				alert("배송등록에 실패했습니다.");
+			}
+		}
+		ajaxCall(obj);
 	}
 </script>
 </html>

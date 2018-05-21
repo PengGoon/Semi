@@ -117,7 +117,7 @@
 			}
 			console.log(obj);
 			ajaxCall(obj);
-		};
+		}
 		
 		//리스트 뽑아내기
 		function listPrint(list){

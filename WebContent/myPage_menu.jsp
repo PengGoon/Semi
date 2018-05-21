@@ -39,7 +39,6 @@
 				<tr>
 					<td><a href="myPage.jsp">등록상품관리</a></td>
 					<td><a href="prd_writeForm.jsp">상품등록</a></td>
-					<td><a href="#">주문내역관리</a></td>
 					<td><a href="#">개인정보수정</a></td>
 					<td><a href="#">판매권한신청</a></td>
 				</tr>
