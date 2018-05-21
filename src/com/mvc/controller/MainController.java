@@ -30,8 +30,7 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
-
-	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete"})
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView"})
 
 
 
