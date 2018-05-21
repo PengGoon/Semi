@@ -48,10 +48,15 @@
 	background-color: white;
 	border-bottom: 1px solid gray;
 	width: 100%;
+<<<<<<< HEAD
+	height: 45px;
+	margin: 150px 0 20px 0;
+=======
 	height: 70px;
 	margin: 0;
 	padding: 0;
 	z-index: 1;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -72,7 +77,10 @@
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
+<<<<<<< HEAD
+=======
 	height:48px;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -104,8 +112,12 @@
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
+<<<<<<< HEAD
 	margin: 5px 10px;
 	padding: 0 5 0 5;
+=======
+	margin: 5 10;
+>>>>>>> a87a74b216c218cd62aa70fbb54bd9276ec32bf6
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
@@ -169,7 +181,6 @@
 	padding: 10px 45px 10px 0px  ;
 	text-align: left;
 }
-/* 테이블 내부 a태그 글씨 스타일 설정 */
 #catTable a{
 	text-decoration: none;
 	color: black;
@@ -186,7 +197,7 @@
 	color: limegreen;
 	cursor: pointer;
 }
-/* 카테고리 영역 속성 설정  */
+/* 카테고리  */
 div#category {
 	z-index: 2;
 	width: 1000px;
@@ -194,18 +205,18 @@ div#category {
 	display: none;
 	position: absolute;
 }
-/* 카테고리 ul 내부 텍스트 좌측 정렬 */
+
 div#category ul {
 	float: left;
 }
-/* 화면 우측 최근 본 상품 영역 속성 설정1 */
+
 .content {
 	margin: 0 auto;
 	position: relative;
 	margin-top: 20px;
-	display: inline-block;
+	display: inline-blcok;
 }
-/* 화면 우측 최근 본 상품 영역 속성 설정2 */
+
 .fly {
 	display: block;
 	right: 150px;
@@ -218,11 +229,11 @@ div#category ul {
 	border: 1px #ccc solid;
 	text-align: center;
 }
-/* 화면 우측 최근 본 상품 영역 텍스트 설정 */
+
 .fly li {
 	list-style: none;
 }
-/* 화면 우측 최근 본 상품 영역 이미지 설정 */
+
 .fly img {
 	border: none;
 	list-style: none;
@@ -270,7 +281,7 @@ div#category ul {
 				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
 				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
-			<div><img class="cart" src="image/cart.png"/></div>
+			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">
@@ -328,11 +339,10 @@ div#category ul {
 <!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
 <script>
+	var loginUserId = "${sessionScope.loginUserId}";
+	var loginSellerId = "${sessionScope.loginId}";
+
 	$(document).ready(function() {
-		var loginUserId = "${sessionScope.loginUserId}";
-		var loginSellerId = "${sessionScope.loginId}";
-		console.log(loginUserId);
-		console.log(loginSellerId);
 		if (loginUserId == "" && loginSellerId == "") {
 			$("#loginst1").html("로그인");
 			$("#loginst2").attr("href", "userLogin.jsp");
