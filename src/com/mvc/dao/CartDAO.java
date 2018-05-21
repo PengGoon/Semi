@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -94,6 +95,86 @@ public class CartDAO {
 		return dto;
 	}
 	
+	public ArrayList<CartDTO> view(String user_id) {
+		ArrayList<CartDTO> list = new ArrayList<>();
+		String sql = "SELECT * FROM cart c, product p WHERE c.prd_id = p.prd_id AND c.user_id=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				CartDTO dto = new CartDTO();
+				dto.setCart_id(rs.getInt("cart_id"));
+				dto.setPrd_name(rs.getString("prd_name"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				//dto.setPrd_name(rs.getString("prd_name"));
+				list.add(dto);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			resClose();
+		}
+		return list;
+	}
+	
+	/*// 카트 리스트 보기
+	public ArrayList<CartDTO> view(String user_id) {
+		ArrayList<CartDTO> list = new ArrayList<>();
+		String sql = "SELECT * FROM Cart WHERE user_id = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				CartDTO dto = new CartDTO();
+				dto.setCart_id(rs.getInt("cart_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				//dto.setPrd_name(rs.getString("prd_name"));
+				list.add(dto);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			resClose();
+		}
+		return list;
+	}*/
+	
+	/*public CartDTO view1(int prd_id) {
+		CartDTO dto = new CartDTO();
+		String sql = "SELECT prd_price, prd_name FROM Product WHERE prd_id = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, prd_id);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				dto.setPrd_price(rs.getInt("prd_price"));
+				dto.setPrd_name(rs.getString("prd_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			resClose();
+		}
+		return dto;
+	}*/
+	
 	// 자원 반납
 	private void resClose() {
 		try {
@@ -106,4 +187,5 @@ public class CartDAO {
 			e.printStackTrace();
 		}		
 	}
+	
 }

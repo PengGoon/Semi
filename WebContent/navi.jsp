@@ -243,7 +243,7 @@ div#category ul {
 				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
 				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
-			<div><img class="cart" src="image/cart.png"/></div>
+			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">
@@ -252,8 +252,6 @@ div#category ul {
 			</div>
 		</div>
 	</div>
-	
-	
 	<!--  카테고리(대분류)  -->
 	<div class="menuCenter">
 		<div id="category">
@@ -301,11 +299,10 @@ div#category ul {
 <!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
 <script>
+	var loginUserId = "${sessionScope.loginUserId}";
+	var loginSellerId = "${sessionScope.loginId}";
+
 	$(document).ready(function() {
-		var loginUserId = "${sessionScope.loginUserId}";
-		var loginSellerId = "${sessionScope.loginId}";
-		console.log(loginUserId);
-		console.log(loginSellerId);
 		if (loginUserId == "" && loginSellerId == "") {
 			$("#loginst1").html("로그인");
 			$("#loginst2").attr("href", "userLogin.jsp");
@@ -366,13 +363,6 @@ div#category ul {
 				console.log(err)
 			}
 		});
-	});
-	
-	$(".cart").click(function() {
-		$.ajax({
-			type : "post",
-			url : "./cartList"
-		})
 	});
 </script>
 </html>

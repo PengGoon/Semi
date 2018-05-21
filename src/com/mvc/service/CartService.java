@@ -1,6 +1,7 @@
 package com.mvc.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -49,8 +50,17 @@ public class CartService {
 	}
 	
 	// 장바구니 리스트 보기 요청
-	public void view(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	public void view(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String user_id = request.getParameter("user_id");
+		CartDAO dao = new CartDAO();
+		ArrayList<CartDTO> list = dao.view(user_id);
 		
+		Gson gson = new Gson();
+		HashMap<String, ArrayList<CartDTO>> map = new HashMap<>();
+		map.put("list", list);
+		
+		String obj = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(obj);
 	}
 }
