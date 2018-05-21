@@ -12,11 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
 import com.mvc.dto.ProductDTO;
-<<<<<<< HEAD
-=======
-import com.mvc.dto.ProductDTO2;
 import com.mvc.dto.PurchaseDTO;
->>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
+
 
 public class ProductService {
 

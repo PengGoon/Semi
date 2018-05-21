@@ -11,12 +11,15 @@ public class PurchaseDTO {
 	private Date pur_date;
 	private String pur_state;
 	private int pur_delievery;
-<<<<<<< HEAD
 	private String prd_name;
 	private int prd_price;
 	private String newFileName1;
 	
-	
+	private String user_Id;
+	private String user_Name;
+	private String user_Addr;
+	private String user_Email;
+	private String user_Phone;
 	
 	
 	public String getNewFileName1() {
@@ -38,14 +41,9 @@ public class PurchaseDTO {
 	public void setPrd_price(int prd_price) {
 		this.prd_price = prd_price;
 	}
-=======
-	private String user_Id;
-	private String user_Name;
-	private String user_Addr;
-	private String user_Email;
-	private String user_Phone;
+
+
 	
->>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
 	public int getPur_id() {
 		return pur_id;
 	}
