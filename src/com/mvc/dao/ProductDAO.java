@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import com.mvc.dto.ProductDTO;
 import com.mvc.dto.PurchaseDTO;
 
+
 public class ProductDAO {
 	Connection conn = null;
 	PreparedStatement ps = null;

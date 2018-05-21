@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
 import com.mvc.dto.ProductDTO;
+
+
+import com.mvc.dto.ProductDTO2;
 import com.mvc.dto.PurchaseDTO;
+
 
 public class ProductService {
 

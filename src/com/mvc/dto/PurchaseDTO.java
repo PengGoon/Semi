@@ -44,6 +44,7 @@ public class PurchaseDTO {
 		this.prd_price = prd_price;
 	}
 
+
 	public int getPur_id() {
 		return pur_id;
 	}
