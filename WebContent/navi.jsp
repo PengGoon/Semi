@@ -34,7 +34,7 @@
 /* 스크롤에 따라 움직이는 카테고리 구현을 위한 속성 */
 .jcFixed {
 	position: fixed;
-	top: 0px;
+	top: 70px;
 }
 
 /* 메뉴바 중앙 정렬 설정을 위한  클래스 */
@@ -266,7 +266,7 @@ div#category ul {
 		<hr/>
 		<div class="menuCenter">
 			<ul>
-				<a href="#"><li id="flip">카테고리</li></a>
+				<a href="#" 	onclick="return false"><li id="flip">카테고리</li></a>
 				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
 				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
@@ -278,8 +278,7 @@ div#category ul {
 				</button>
 			</div>
 		</div>
-	</div>
-	
+	</div> <!-- menuBody  -->
 	
 	<!--  카테고리(대분류)  -->
 	<div class="menuCenter">
@@ -311,6 +310,9 @@ div#category ul {
 			</table>
 		</div>
 	</div>
+	
+	
+	
 	<!--  우측 최근 본 상품   -->
 	<div class="content">
 		<div class="fly">
@@ -346,7 +348,7 @@ div#category ul {
 			}
 		}
 	
-		// 스크롤에 따라 움직이는 menuBody 기능
+		// 스크롤에 따라 움직이는 menuBody  기능
 		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
@@ -355,6 +357,8 @@ div#category ul {
 				$('.menuBody').removeClass('jbFixed');
 			}
 		});
+		
+		
 		
 	});
 	
@@ -366,22 +370,24 @@ div#category ul {
 	// 카테고리 슬라이드 기능 
 	$("#flip").click(function() {
 		$("#category").slideToggle("fast");
-	});
-	$(window).scroll(function() {
-		var sct = $(this).scrollTop();
-		$('.fly').stop().animate({
-			'top' : sct
-		}, 500)
-
-		// 스크롤에 따라 움직이는 category 기능
-		var jcOffset = $('#category').offset();
+		
+		// 스크롤에 따라 움직이는 Category 기능
+		var jbOffset = $('#category').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jcOffset.top) {
 				$('#category').addClass('jcFixed');
 			} else {
 				$('#category').removeClass('jcFixed');
 			}
-		}); 
+		});
+		
+	});
+	
+	$(window).scroll(function() {
+		var sct = $(this).scrollTop();
+		$('.fly').stop().animate({
+			'top' : sct
+		}, 500)
 	
 	});
 
