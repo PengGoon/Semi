@@ -30,8 +30,11 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
-	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/main_notice_detailView","/u_delete"})
-
+<<<<<<< HEAD
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete"})
+=======
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/main_notice_detailView"})
+>>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
 
 
 public class MainController extends HttpServlet {
