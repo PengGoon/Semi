@@ -63,4 +63,18 @@ public class CartService {
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().write(obj);
 	}
+
+	public void buy(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String prd_id = request.getParameter("prd_id");
+		CartDAO dao = new CartDAO();
+		CartDTO dto = dao.cartbuy(prd_id);
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("dto", dto);
+		
+		String obj = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(obj);
+	}
 }

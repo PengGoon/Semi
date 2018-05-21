@@ -98,7 +98,7 @@
 				success : function(data) {
 					console.log(data);
 					for(var i=0; i<data.list.length; i++) {
-						var str = "<tr><td>"+data.list[i].prd_name+"</td>";
+						var str = "<tr><td><a href=./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"</a></td>";
 							str += "<td>"+data.list[i].prd_count+"</td>";
 							str += "<td>"+data.list[i].prd_price*data.list[i].prd_count+"원"+"</td></tr>";
 						$("#h").after(str);

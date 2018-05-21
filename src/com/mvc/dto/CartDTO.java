@@ -8,7 +8,14 @@ public class CartDTO {
 	private int prd_price;
 	private int prd_count;
 	private String newFileName;
+	private String sell_Id;
 	
+	public String getSell_Id() {
+		return sell_Id;
+	}
+	public void setSell_Id(String sell_Id) {
+		this.sell_Id = sell_Id;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}
