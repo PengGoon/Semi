@@ -91,8 +91,8 @@
 	position: absolute;
 	float: right;
 	top:10px;
-	right:150px;
-	width : 500px;
+	right:50px;
+	width : 700px;
 	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
@@ -113,6 +113,14 @@
 	text-decoration: none;
 	color: black;
 }
+
+.rightMenu h3{
+	position:absolute;
+	float: right;
+	right: 150px;
+}
+
+
 /* 장바구니 아이콘 */
 .cart {
 	float: left;
@@ -235,8 +243,8 @@ div#category ul {
 	<!--  우측상단 로그인 바  -->
 		<div class="rightMenu">
 			<ul>
-				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a id="myPage2"><li id="myPage1"></li></a>
+				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
