@@ -10,16 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO2;
-import com.mvc.dto.ProductDTO;
 import com.mvc.dto.ProductDTO2;
 
 public class ProductService2 {
 
-	public void list(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
+	public void list(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 	}
-	
 	public void buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DB 에 개별 데이터 요청
 		ProductDAO2 dao2 = new ProductDAO2();

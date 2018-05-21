@@ -17,13 +17,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.apache.catalina.connector.Request;
-
 import com.mvc.dto.MemberDTO;
 
 public class MemberDAO {
    
-   Request request=null;
+   	
    Connection conn = null;
    PreparedStatement ps = null;
    ResultSet rs = null;

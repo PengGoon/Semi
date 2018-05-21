@@ -11,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.mvc.dto.ProductDTO;
-import com.mvc.dto.ProductDTO2;
 
 public class ProductDAO {
 	Connection conn = null;
