@@ -41,6 +41,7 @@ body {
 </style>
 <body>
 	<jsp:include page="navi.jsp"></jsp:include>
+	<jsp:include page="myPage_menu.jsp"></jsp:include>
 	<div id="menuCenter">
 		<div id="writeTable">
 			<form id="writeForm" action="prd_write" method="post" enctype="multipart/form-data">

@@ -56,11 +56,6 @@
 				<td><input type="text" id="admin_id" readonly/></td>
 			</tr>
 			<tr>
-				<td>작성일</td>
-				<td><input type="text" id="notice_date" readonly/></td>
-			</tr>
-
-			<tr>
 				<td></td>
 			    <td>
 			        <textarea class="edit"  name="notice_content" id="notice_content" rows="15" cols="120" readonly></textarea>

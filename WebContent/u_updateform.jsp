@@ -12,20 +12,21 @@
 			border-collapse: collapse;
 			padding: 5px 10px;
 			text-align: center;
-			margin: 100 350;
+			margin: 0 auto;
 		}
 		
-		input.inputTxt {
+	/* 	input.inputTxt {
 			width: 100%;
-		}
+		} */
+	
 		</style>
 	</head>
 	<body>
-	<jsp:include page="navi.jsp" />
-
+		<jsp:include page="navi.jsp"></jsp:include>
+		<jsp:include page="myPage_menu.jsp"></jsp:include>
+		<br><br>
 	<!-- 기본 정보 뷰 -->
 	<table id="before" style="width: 600">
-		<h2>판매자 회원 정보 수정</h2>
 		<tr>
 			<td>회원 이름</td>
 			<td><input class="inputTxt" type="text" name="userName"
@@ -155,7 +156,7 @@
 				 console.log(emailSplit[1]); 
 				
 				$("#after_userName").val(data.dto.user_Name);
-				$("#after_email").val(emailSplit[    0]);
+				$("#after_email").val(emailSplit[0]);
 				$("#emailview").val(emailSplit[1]); 
 				$("#after_phone").val(data.dto.user_Phone);
 				
@@ -176,6 +177,25 @@
 
 		$("#update_end2").click(function() {
 			location.href = "u_main.jsp";
+		});
+		
+		$("#email").change(function() {
+			$("#email option:selected").each(function() {
+
+				if ($(this).val() == '0') {
+					$("#emailview").val("이메일 입력란");
+					$("#emailview").attr("disabled", true);
+				}
+
+				else if ($(this).val() == '1') { //직접입력일 경우
+					$("#emailview").val(''); //값 초기화
+					$("#emailview").attr("placeholder", "직접입력");
+					$("#emailview").attr("disabled", false); //활성화 
+				} else { //직접입력이 아닐경우 
+					$("#emailview").val($(this).text()); //선택값 입력
+					$("#emailview").attr("disabled", true); //비활성화
+				}
+			});
 		});
 		
 		$("#update_start")
@@ -229,7 +249,7 @@
 						obj.success = function(data) {
 							if (data.success == 1) {
 								alert("회원 정보 수정을 완료했습니다.");
-								location.href = "u_main.jsp";
+								location.href = "myPage.jsp";
 							} else {
 								alert("회원 정보 수정에 실패했습니다.");
 							}

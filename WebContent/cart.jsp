@@ -76,19 +76,20 @@
                     }
 	</style>
 	<body>
-        <ul class="menu">
+       <ul class="muen">
             <li>
-                <a  href="4.jsp">주문내역</a>
+                <a href="u_Order.jsp">주문내역</a>
             </li>
             <li>
-                <a href="5.jsp">장바구니</a>
+                <a href="cart.jsp">장바구니</a>
             </li>
             <li>
-                <a href="6.jsp">작성한후기</a>
+                <a href="#">작성한후기</a>
             </li>
             <li>
-                <a href="7.jsp">개인정보수정</a>
+                <a href="u_updateform.jsp">개인정보수정</a>
             </li>
+            
         </ul>
         <br><br><br>
         <table>
