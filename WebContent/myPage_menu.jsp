@@ -20,7 +20,7 @@
 				font-size: 25px;
 	        }
 	
-	        .myPageTr a{
+		     .myPageTr a{
 	      	  text-decoration: none;
 	        }
 	        
