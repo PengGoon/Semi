@@ -76,73 +76,41 @@
                     }
 	</style>
 	<body>
-        <ul class="menu">
-            <li>
-                <a  href="4.jsp">주문내역</a>
-            </li>
-            <li>
-                <a href="5.jsp">장바구니</a>
-            </li>
-            <li>
-                <a href="6.jsp">작성한후기</a>
-            </li>
-            <li>
-                <a href="7.jsp">개인정보수정</a>
-            </li>
-        </ul>
-        <br><br><br>
         <table>
           <tr>
-                <td colspan="2" class="ta">
-                    <input type="checkbox">상품정보  
-                </td>
-                <td>수량</td>
-                <td>상품금액</td>
-                <td>배송비</td>
+                <td>장바구니 번호</td>
+                <td>상품명</td>
           </tr>
-          <tr>
-                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${dto.newFileName}"/></td>
-                <td>${dto.prd_name}</td>
-                <td>${param.prd_count }개</td>
-                <td>${dto.prd_price}원</td>
-                <td>0원</td>
-          </tr>
-          <tr>
-                <td rowspan="2" class="tds">총 주문금액</td>
-                <td class="tda"></td>
-                <td class="tda">총 상품금액</td>
-                <td colspan="2" id="totalPrice"></td>
-          </tr>
-          <tr>
-                <td class="tdb"></td>
-                <td class="tdb">배송비</td>
-                <td colspan="2">0원</td>
-          </tr>
-          <tr>
-                <td colspan="2" class="tds"></td>
-                <td class="tds">총 주문금액</td>
-                <td colspan="2" id="totalDelieveryPrice"></td>
-          </tr>
+                <input type="hidden" id="h"/>
         </table>
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
 	</body>
 	<script>
-		var p = "${dto.prd_price}";
-		var cnt = "${param.prd_count}";
+		$(document).ready(function() {
+			$.ajax({
+				type : "post",
+				url : "./cartList",
+				dataType : "json",
+				data : {
+					user_id: "${sessionScope.loginUserId}",
+				},
+				success : function(data) {
+					console.log(data);
+					for(var i=0; i<data.list.length; i++) {
+						var str = "<tr><td>"+data.list[i].cart_id+"</td>";
+							str += "<td>"+data.list[i].prd_name+"</td></tr>";
+						$("#h").after(str);
+					}
+				},
+				error : function(err) {
+					console.log(err)
+				}
+			});
+		});
 		
-		console.log(p*cnt);
-	
 		$("#continue").click(function(){
    	 		location.href="index.jsp"; 
     	});
-		
-		$("#buy").click(function(){
-   	 		location.href="buy.jsp"; 
-    	});
-		
-		$(document).ready(function() {
-			$("#totalPrice").text(p*cnt+"원");
-			$("#totalDelieveryPrice").text(p*cnt+"원");
-		});
+	
 	</script>
 </html>

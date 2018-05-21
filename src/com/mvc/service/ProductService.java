@@ -14,6 +14,7 @@ import com.mvc.dao.ProductDAO;
 import com.mvc.dao.ProductDAO2;
 import com.mvc.dto.ProductDTO;
 import com.mvc.dto.ProductDTO2;
+import com.mvc.dto.PurchaseDTO;
 
 public class ProductService {
 
@@ -234,6 +235,35 @@ public class ProductService {
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void delieveryList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<PurchaseDTO> list = dao.delieveryList(Integer.parseInt(request.getParameter("prd_id")));
+		dao.resClose();
+		
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void delievery(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		ArrayList<PurchaseDTO> list = dao.delievery(Integer.parseInt(request.getParameter("pur_id")));
 		map.put("list",list);
 		String obj = json.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");

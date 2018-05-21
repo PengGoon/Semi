@@ -24,11 +24,22 @@ body {
 #market {
 	color: #000000;
 }
+<<<<<<< HEAD
 /* 추가 메뉴(?)를 위한 공간 */
+=======
+/* 스크롤에 따라 움직이는 메뉴바 구현을 위한 속성 */
+>>>>>>> cf6ef106a819a81c4d367b111781b9bfe5a420fc
 .jbFixed {
 	position: fixed;
 	top: 0px;
 }
+
+/* 스크롤에 따라 움직이는 카테고리 구현을 위한 속성 */
+.jcFixed {
+	position: fixed;
+	top: 70px;
+}
+
 /* 메뉴바 중앙 정렬 설정을 위한  클래스 */
 .menuCenter {
 	width: 1000px;
@@ -40,10 +51,15 @@ body {
 	background-color: white;
 	border-bottom: 1px solid gray;
 	width: 100%;
+<<<<<<< HEAD
+	height: 45px;
+	margin: 150px 0 20px 0;
+=======
 	height: 70px;
 	margin: 0;
 	padding: 0;
 	z-index: 1;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -63,13 +79,22 @@ body {
 }
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
+<<<<<<< HEAD
  	background-color: limegreen; 
 	height:48px;
 	color: white; 
+=======
+	background-color: limegreen;
+<<<<<<< HEAD
+=======
+	height:48px;
+>>>>>>> c10a885a4ea24b17e932e517cdfce2ca4b4103b0
+	color: white;
+>>>>>>> cf6ef106a819a81c4d367b111781b9bfe5a420fc
 }
 /* li중 신상품 테두리 설정 */
 .menuBody #new{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 신상품 마우스오버시 속성 */
 .menuBody #new:hover {
@@ -78,7 +103,7 @@ body {
 }
 /* li중 인기상품 테두리 설정 */
 .menuBody #fav{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 인기상품 마우스 오버시 속성 */
 .menuBody #fav:hover {
@@ -91,27 +116,39 @@ body {
 	position: absolute;
 	float: right;
 	top:10px;
-	right:150px;
-	width : 500px;
+	right:0px;
+	width : 700px;
 	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
+<<<<<<< HEAD
 	margin: 5px 10px;
+	padding: 0 5 0 5;
+=======
+	margin: 5 10;
+>>>>>>> a87a74b216c218cd62aa70fbb54bd9276ec32bf6
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
 .rightMenu li {
 	float:left;
-	border-right: 1px solid black;
-	padding: 0 30px 0 10px ;
+	border-right: 1px solid gray;
+	padding: 0 20px 0 0px ;
 	margin:0 0 0 15px;
 	text-align: center;
 }
 /* 우측 상단 로그인 관리 바 a태그 속성 */
 .rightMenu a{
 	text-decoration: none;
-	color: black;
+	font-weight: 600;
+	color: gray;
+}
+/* 로그인 상태(안녕하세요, id 님) 타이틀 */
+.rightMenu h3{
+	position:absolute;
+	float: right;
+	right: 150px;
 }
 /* 장바구니 아이콘 */
 .cart {
@@ -154,7 +191,6 @@ body {
 	padding: 10px 45px 10px 0px  ;
 	text-align: left;
 }
-/* 테이블 내부 a태그 글씨 스타일 설정 */
 #catTable a{
 	text-decoration: none;
 	color: black;
@@ -171,7 +207,7 @@ body {
 	color: limegreen;
 	cursor: pointer;
 }
-/* 카테고리 영역 속성 설정  */
+/* 카테고리  */
 div#category {
 	z-index: 2;
 	width: 1000px;
@@ -179,40 +215,41 @@ div#category {
 	display: none;
 	position: absolute;
 }
-/* 카테고리 ul 내부 텍스트 좌측 정렬 */
+
 div#category ul {
 	float: left;
 }
-/* 화면 우측 최근 본 상품 영역 속성 설정1 */
+
 .content {
 	margin: 0 auto;
 	position: relative;
 	margin-top: 20px;
-	display: inline-block;
+	display: inline-blcok;
 }
-/* 화면 우측 최근 본 상품 영역 속성 설정2 */
+
 .fly {
 	display: block;
 	right: 150px;
 	top: 100px;
 	position: absolute;
-	z-index: 9999;
+	z-index: 2;
 	width: 80px;
 	background-color: #ffffff;
 	height: 200px;
 	border: 1px #ccc solid;
 	text-align: center;
 }
-/* 화면 우측 최근 본 상품 영역 텍스트 설정 */
+
 .fly li {
 	list-style: none;
 }
-/* 화면 우측 최근 본 상품 영역 이미지 설정 */
+
 .fly img {
 	border: none;
 	list-style: none;
 	height: 70px;
-	display: block float:left;
+	display: block; 
+	float:left;
 	width: 75px;
 	border: 1px #ccc solid;
 	text-align: center
@@ -234,8 +271,8 @@ div#category ul {
 	<!--  우측상단 로그인 바  -->
 		<div class="rightMenu">
 			<ul>
-				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a id="myPage2"><li id="myPage1"></li></a>
+				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
@@ -249,11 +286,11 @@ div#category ul {
 		<hr/>
 		<div class="menuCenter">
 			<ul>
-				<a href="#"><li id="flip">카테고리</li></a>
+				<a href="#" 	onclick="return false"><li id="flip">카테고리</li></a>
 				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
 				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
-			<div><img class="cart" src="image/cart.png"/></div>
+			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">
@@ -261,8 +298,7 @@ div#category ul {
 				</button>
 			</div>
 		</div>
-	</div>
-	
+	</div> <!-- menuBody  -->
 	
 	<!--  카테고리(대분류)  -->
 	<div class="menuCenter">
@@ -294,6 +330,9 @@ div#category ul {
 			</table>
 		</div>
 	</div>
+	
+	
+	
 	<!--  우측 최근 본 상품   -->
 	<div class="content">
 		<div class="fly">
@@ -309,11 +348,10 @@ div#category ul {
 <!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
 <script>
+	var loginUserId = "${sessionScope.loginUserId}";
+	var loginSellerId = "${sessionScope.loginId}";
+
 	$(document).ready(function() {
-		var loginUserId = "${sessionScope.loginUserId}";
-		var loginSellerId = "${sessionScope.loginId}";
-		console.log(loginUserId);
-		console.log(loginSellerId);
 		if (loginUserId == "" && loginSellerId == "") {
 			$("#loginst1").html("로그인");
 			$("#loginst2").attr("href", "userLogin.jsp");
@@ -328,7 +366,8 @@ div#category ul {
 				$(".rightMenu h3").html("안녕하세요, [판매자]"+loginSellerId+"님");
 			}
 		}
-
+	
+		// 스크롤에 따라 움직이는 menuBody  기능
 		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
@@ -337,8 +376,11 @@ div#category ul {
 				$('.menuBody').removeClass('jbFixed');
 			}
 		});
+		
+		
+		
 	});
-
+	
 	// 검색바 기능
 	function search() {
 		location.href = "./prd_search?search_name=" + $("#search").val();
@@ -347,12 +389,25 @@ div#category ul {
 	// 카테고리 슬라이드 기능 
 	$("#flip").click(function() {
 		$("#category").slideToggle("fast");
+		
+		// 스크롤에 따라 움직이는 Category 기능
+		var jbOffset = $('#category').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jcOffset.top) {
+				$('#category').addClass('jcFixed');
+			} else {
+				$('#category').removeClass('jcFixed');
+			}
+		});
+		
 	});
+	
 	$(window).scroll(function() {
 		var sct = $(this).scrollTop();
 		$('.fly').stop().animate({
 			'top' : sct
 		}, 500)
+	
 	});
 
 	// 로그아웃 버튼 클릭시
