@@ -32,7 +32,7 @@
             .radioTable{
            		 font-weight: 600;
             	position : fixed;
-            	top: 490px;
+            	top: 350px;
             	left: 41%;
             }
             

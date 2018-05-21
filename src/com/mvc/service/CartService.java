@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.CartDAO;
-import com.mvc.dao.ProductDAO2;
 import com.mvc.dto.CartDTO;
 
 public class CartService {

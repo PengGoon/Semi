@@ -76,6 +76,25 @@
                     }
 	</style>
 	<body>
+<<<<<<< HEAD
+=======
+       <ul class="muen">
+            <li>
+                <a href="u_Order.jsp">주문내역</a>
+            </li>
+            <li>
+                <a href="cart.jsp">장바구니</a>
+            </li>
+            <li>
+                <a href="#">작성한후기</a>
+            </li>
+            <li>
+                <a href="u_updateform.jsp">개인정보수정</a>
+            </li>
+            
+        </ul>
+        <br><br><br>
+>>>>>>> 6f89b566380a556e1c7a74dd2f6560d111e8e7fb
         <table>
           <tr>
                 <td colspan="2" class="ta">상품정보</td>

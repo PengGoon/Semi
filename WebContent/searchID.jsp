@@ -38,7 +38,7 @@
             
             .searchIdTable{
             	position : fixed;
-            	top: 470px;
+            	top: 330px;
             	left: 30%;
             	width:1000px;
             }

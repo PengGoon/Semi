@@ -58,7 +58,7 @@ body {
 }
 </style>
 <body>
-	<jsp:include page="seller_navi.jsp"></jsp:include>
+	<jsp:include page="navi.jsp"></jsp:include>
 	<div id="menuCenter">
 		<form id="updateForm" action="./prd_update" method="post" enctype="multipart/form-data">
 		<input type="button" id="updateBtn" value="수정"/>
@@ -133,26 +133,6 @@ body {
 	</div>
 </body>
 <script>
-	var cnt=0;
-	$("#inc").click(function() {
-		cnt=cnt+1;
-		$("#msg").text(cnt);
-	});
-
-	$("#dec").click(function() {
-		cnt=cnt-1;
-		if(cnt<0){
-			alert("수량을 다시 입력해주세요.");
-			cnt=0;
-		};
-		
-		$("#msg").text(cnt);
-	});
-	
-	$("#cart").click(function(){
-		alert("선택하신 상품을 장바구니에 담았습니다.")
-	});
-	
 	//html 문서를 로드하자 마자 상세 정보를 가져 온다.
 	var obj = {};
 	var idx;
@@ -199,19 +179,19 @@ body {
 		}else if($("input[name=prd_price]").val() == ""){ alert("판매가를 입력해주세요"); $("input[name=prd_price]").focus();
 		}else if($("input[name=prd_from]").val() == ""){ alert("원산지를 입력해주세요"); $("input[name=prd_from]").focus();
 		}else if($("input[name=prd_count]").val() == ""){ alert("상품수량을 입력해주세요"); $("input[name=prd_count]").focus();
-		}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" || fileExt1.toUpperCase() == ""){ 
+		}else if(fileExt1.toUpperCase() == "JPG" || fileExt1.toUpperCase() == "PNG" && fileExt1.toUpperCase() != ""){ 
 			if(fileExt2.toUpperCase() == "JPG" || fileExt2.toUpperCase() == "PNG" || fileExt2.toUpperCase() == ""){
 				if(fileExt3.toUpperCase() == "JPG" || fileExt3.toUpperCase() == "PNG" || fileExt3.toUpperCase() == ""){
 					alert("수정이 완료되었습니다.");
 					$("#updateForm").submit();
 				}else{
-					alert("jpg 또는 png 파일만 가능합니다.");
+					alert("3번째 사진을 확인해주세요.\n형식은 jpg 또는 png 파일만 가능합니다.");
 				}
 			}else{
-				alert("jpg 또는 png 파일만 가능합니다.");
+				alert("2번째 사진을 확인해주세요.\n형식은 jpg 또는 png 파일만 가능합니다.");
 			}
 		}else{
-			alert("jpg 또는 png 파일만 가능합니다.");
+			alert("1번째 사진은 필수 등록입니다.\n사진이 없거나 형식은 jpg 또는 png 파일만 가능합니다.");
 		}
 	}
 	
