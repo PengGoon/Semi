@@ -7,130 +7,132 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>후기 상세보기</title>
 <style>
-.ReviewDetailTitle {
-	margin: 30px 0px 20px 0px;
-	text-align: center;
-	color: limegreen;
-	font-size: 20;
-}
 
-.Review td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 5px 10px;
-}
+	   .ReviewDetailTitle{
+            	margin : 30px 0px 20px 0px;
+            	text-align: center;
+            	color: limegreen;
+            	font-size: 20;
+            }
+      .Review td{
+		border-top : 1px solid green;
+    	border-collapse: collapse;
+        padding: 5px 10px;
+      }
+      .Review th{
+		border-top : 1px solid green;
+    	border-collapse: collapse;
+        padding: 5px 10px;
+      	width:70px;
+      }
+      .Review table{
+      	position: absolute;
+      	left:25%;
+        width: 800px;
+		border-top : 1px solid green;
+    	border-collapse: collapse;
+        padding: 5px 10px;
+        margin: 100px 0 150px 0;
+      }
+		#reviews{
+			border-top: 1px solid green;
+			border-collapse: collapse;
+			margin: auto;
+		}
+      textarea{
+         width:100%;
+         resize:none;
+         height:600px;
+      	 resize:none;
+      	 border:none;
+      }
+      .Review td{
+         text-align: left;
+      }
+      
+       #edit {
+        position: absolute;
+        left:4%;
+        height : 42px;
+        width: 130px;
+        font-weight: 800;
+        border-style : solid;
+        border-color: limegreen;
+        background-color : limegreen;
+        color: white;
+        cursor: pointer;
+     }
+      .write{
 
-.Review th {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 5px 10px;
-	width: 70px;
-}
+            	position:absolute;
+            	left:83%;
+            	height : 42px;
+            	width: 130px;
+            	font-weight: 800;
+            	border-style : solid;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+      }
+      #exit{
+      			text-decoration:none;
+            	position:absolute;
+            	left:65%;
+            	height : 29px;
+            	width: 130px;
+            	font-weight: 800;
+            	font-size:14;
+            	text-align:center;
+        		padding: 10px 0 0 0;
+            	border:2.5px solid limegreen;
+            	background-color : white;
+            	color: limegreen;
+      }
+     .btnRow{
+     	height:80px;
+     	padding: 0 0 50px 0 ;
+     	
+     }
 
-.Review table {
-	position: absolute;
-	left: 25%;
-	width: 800px;
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 5px 10px;
-	margin: 100px 0 100px 0;
-}
-
-.Review input[type='text'] {
-	width: 100%;
-}
-
-.Review textarea {
-	width: 100%;
-	resize: none;
-	height: 300px;
-}
-
-.Review td {
-	text-align: left;
-}
-
-#edit {
-	position: relative;
-	left: 0%;
-	height: 42px;
-	width: 130px;
-	font-weight: 800;
-	border-style: solid;
-	border-color: limegreen;
-	background-color: limegreen;
-	color: white;
-	cursor: pointer;
-}
-
-#save {
-	position: relative;
-	left: 65%;
-	height: 42px;
-	width: 130px;
-	font-weight: 800;
-	border-style: solid;
-	border-color: limegreen;
-	background-color: limegreen;
-	color: white;
-	cursor: pointer;
-}
-
-#exit {
-	text-decoration: none;
-	position: absolute;
-	left: 82%;
-	height: 29px;
-	width: 130px;
-	font-weight: 800;
-	font-size: 14;
-	text-align: center;
-	padding: 10px 0 0 0;
-	border: 2.5px solid limegreen;
-	background-color: white;
-	color: limegreen;
-}
-
-.btnRow {
-	height: 80px;
-	padding: 0px;
-}
-
-#save {
-	display: none;
-}
+     #save{
+     display:none;
+	 }
 </style>
 </head>
 <body>
 	<jsp:include page="navi.jsp"></jsp:include>
-	<div class=Review>
-		<div class=ReviewDetailTitle>
-			<h1>후기 상세보기</h1>
-		</div>
-		<table>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" id="userId" style="border: none"
-					readonly /></td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><input class="editable" id="reviewTitle" type="text"
-					style="border: none" readonly /></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea class="editable" id="reviewContent" rows="15"
-						readonly></textarea></td>
-			</tr>
-			<tr>
-				<td class=btnRow colspan="2"><a id="exit" href="reviewList.jsp">리스트
-						가기</a>
-					<button id="edit">수정</button>
-					<button id="save">저장</button></td>
-			</tr>
-		</table>
+   	<div class = Review>
+   	<div class = ReviewDetailTitle>
+   	<h1>후기 상세보기</h1>
+    </div>
+	<table id="reviews">
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" id="userId" style="border:none" readonly /></td>
+		</tr>
+		<tr>
+			<th>상품번호</th>
+			<td><input type="text" id="prd_id" style="border:none" readonly />
+			</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td><input class="editable" id="reviewTitle" type="text" style="border:none" readonly /></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea class="editable"  id="reviewContent" rows="18" cols="30" readonly></textarea></td>
+		</tr>
+		<tr>
+			<td class=btnRow colspan="2">
+				<a id="exit" href="index.jsp">리스트 가기</a> 
+				<input type="hidden" id="edit" value="수정"/>
+				<button id="save">저장</button>
+
+		</tr>
+	</table>
+
 	</div>
 </body>
 <script>
@@ -156,6 +158,7 @@
 	function printInfo(info) {
 		review_id = info.review_id;
 		$("#userId").val(info.user_id);
+		$("#prd_id").val(info.prd_id);
 		$("#reviewTitle").val(info.review_title);
 		$("#reviewContent").val(info.review_content);
 	}
@@ -191,5 +194,12 @@
 	function ajaxCall(param) {
 		$.ajax(param);
 	}
+	
+	$(function(){
+		$('a').click(function(){
+			$('a').removeClass();
+			$(this).addClass('on');
+		});
+	});
 </script>
 </html>

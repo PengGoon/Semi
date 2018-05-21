@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.mvc.dto.ProductDTO;
 import com.mvc.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -72,6 +73,7 @@ public class ReviewDAO {
 	// 상세보기
 	public ReviewDTO detailView(String review_id) {
 		ReviewDTO dto = null;
+		ProductDTO dto2 = null;
 		String sql="SELECT * FROM review WHERE review_id = ?";
 		try {
 			ps  = conn.prepareStatement(sql);
@@ -88,6 +90,7 @@ public class ReviewDAO {
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
