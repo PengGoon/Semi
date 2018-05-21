@@ -18,6 +18,8 @@
 				text-align: center;
 			}
 			#prdlist{
+				width:300px; 
+				height:300px;
 				border: 1px solid black;
 				border-collapse: collapse;
 				text-align: center;
@@ -35,7 +37,7 @@
 		<div id="listCenter">
 		<h2>"<%=request.getParameter("cateS_id") %>" 카테고리의 내용입니다.</h2>
 		<c:forEach items="${list}" var="bbs">
-			<table id="prdlist" style="width:300px; height:300px;">
+			<table id="prdlist">
 				<tr>
 					<td>
 					<a href="prd_detail?prd_id=${bbs.prd_Id}">

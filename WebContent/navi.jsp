@@ -9,12 +9,10 @@
 </head>
 <style>
 /* 메인 페이지  */
-.Navi body {
+body {
 	margin: 0px;
 	padding: 0px;
 	min-width: 100%;
-	
-	overflow:hidden;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
@@ -26,11 +24,19 @@
 #market {
 	color: #000000;
 }
-/* 추가 메뉴(?)를 위한 공간 */
+
+/* 스크롤에 따라 움직이는 메뉴바 구현을 위한 속성 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
 }
+
+/* 스크롤에 따라 움직이는 카테고리 구현을 위한 속성 */
+.jcFixed {
+	position: fixed;
+	top: 70px;
+}
+
 /* 메뉴바 중앙 정렬 설정을 위한  클래스 */
 .menuCenter {
 	width: 1000px;
@@ -40,9 +46,12 @@
 .menuBody {
 	text-align: center;
 	background-color: white;
+	border-bottom: 1px solid gray;
 	width: 100%;
-	height: 45px;
-	margin: 150px 0 20px 0;
+	height: 70px;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -63,11 +72,12 @@
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
+	height:48px;
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
 .menuBody #new{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 신상품 마우스오버시 속성 */
 .menuBody #new:hover {
@@ -76,38 +86,50 @@
 }
 /* li중 인기상품 테두리 설정 */
 .menuBody #fav{
-	border-right: 1px solid black;
+	border-right: 1px solid gray;
 }
 /* li중 인기상품 마우스 오버시 속성 */
 .menuBody #fav:hover {
 	color: limegreen;
 	text-decoration: underline;
 }
+
 /* 우측 상단 로그인 관리 바 속성 */
 .rightMenu {
 	position: absolute;
 	float: right;
 	top:10px;
-	right:20px;
-	width : 280px;
-	margin:auto;
-	width: 280px;
+	right:0px;
+	width : 700px;
+	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
-	margin: 5 10;
+	margin: 5px 10px;
+	padding: 0 5 0 5;
 	list-style-type: none;
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
 .rightMenu li {
-	float: left;
-	border-left: 1px solid black;
+	float:left;
+	border-right: 1px solid gray;
+	padding: 0 20px 0 0px ;
+	margin:0 0 0 15px;
+	text-align: center;
 }
 /* 우측 상단 로그인 관리 바 a태그 속성 */
 .rightMenu a{
 	text-decoration: none;
-	color: black;
+	font-weight: 600;
+	color: gray;
 }
+/* 로그인 상태(안녕하세요, id 님) 타이틀 */
+.rightMenu h3{
+	position:absolute;
+	float: right;
+	right: 150px;
+}
+/* 장바구니 아이콘 */
 .cart {
 	float: left;
 	width: 40px;
@@ -118,20 +140,22 @@
 .searchBar {
 	float: right;
 	border: 1px solid black;
+	margin-right: 40px;
 }
 /* 검색바 입력창 */
 .searchBar input {
 	font-size: 18;
 	border: 0;
 	float: left;
-	padding: 12px;
+	padding:0;
 	width: 200px;
+	height: 33px;
 }
 /* 검색바 돋보기아이콘 */
 .searchBar img {
 	margin: 5px 2px;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 }
 /* 카테고리 테이블 */
 #catTable{
@@ -140,12 +164,6 @@
 	background-color: white;
 	padding: 10px 10px 10px 10px;
 	color: black;
-}
-/* 하위카테고리(대분류) 마우스 오버시 */
-#catTable h3:hover{ 
-	text-decoration: underline;
-	color: limegreen;
-	cursor: pointer;
 }
 /* 테이블 내부 텍스트 좌측정렬 및 패딩 설정 */
 #catTable th {
@@ -170,6 +188,7 @@
 }
 /* 카테고리  */
 div#category {
+	z-index: 2;
 	width: 1000px;
 	margin: 0 auto;
 	display: none;
@@ -192,7 +211,7 @@ div#category ul {
 	right: 150px;
 	top: 100px;
 	position: absolute;
-	z-index: 9999;
+	z-index: 2;
 	width: 80px;
 	background-color: #ffffff;
 	height: 200px;
@@ -208,13 +227,12 @@ div#category ul {
 	border: none;
 	list-style: none;
 	height: 70px;
-	display: block float:left;
+	display: block; 
+	float:left;
 	width: 75px;
 	border: 1px #ccc solid;
 	text-align: center
 }
-
-
 </style>
 
 <body>
@@ -229,14 +247,16 @@ div#category ul {
 		</h1>
 	</div>
 
-	<!--  최우측상단 바  -->
+	<!--  우측상단 로그인 바  -->
 		<div class="rightMenu">
-			<h4 style="top:0px">안녕하세요<%=request.getSession().getAttribute("loginUserId")%>님</h4>
 			<ul>
-				<a href= "userLogin.jsp" /><li>로그인</li></a>
+				<a id="myPage2"><li id="myPage1"></li></a>
+				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
 				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
+			<br/>
+			<h3 style="text-align: center;"></h3>
 		</div>
 
 
@@ -245,11 +265,11 @@ div#category ul {
 		<hr/>
 		<div class="menuCenter">
 			<ul>
-				<a href="#"><li id="flip">카테고리</li></a>
-				<a href="#"><li id="new">신상품</li></a>
-				<a href="#"><li id="fav">인기상품</li></a>
+				<a href="#" 	onclick="return false"><li id="flip">카테고리</li></a>
+				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
+				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
 			</ul>
-			<div><img class="cart" src="image/cart.png"/></div>
+			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">
@@ -257,8 +277,7 @@ div#category ul {
 				</button>
 			</div>
 		</div>
-	</div>
-	
+	</div> <!-- menuBody  -->
 	
 	<!--  카테고리(대분류)  -->
 	<div class="menuCenter">
@@ -291,8 +310,9 @@ div#category ul {
 		</div>
 	</div>
 	
+	
+	
 	<!--  우측 최근 본 상품   -->
-	<hr/>
 	<div class="content">
 		<div class="fly">
 			<ul style="padding-left: 0px;">
@@ -307,26 +327,39 @@ div#category ul {
 <!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
 <script>
-	$(document).ready(function() {
-		var loginUserId = "${sessionScope.loginUserId}";
-		console.log(loginUserId);
-		if (loginUserId == null) {
-			$("#loginst").val("로그인");
-			$("#loginst").attr("onclick", "location.href='userLogin.jsp'");
-		} else {
-			$("#loginst").val("로그아웃");
-		}
+	var loginUserId = "${sessionScope.loginUserId}";
+	var loginSellerId = "${sessionScope.loginId}";
 
-		var jbOffset = $('.menu').offset();
+	$(document).ready(function() {
+		if (loginUserId == "" && loginSellerId == "") {
+			$("#loginst1").html("로그인");
+			$("#loginst2").attr("href", "userLogin.jsp");
+		}else{
+			$("#loginst1").html("로그아웃");
+			$("#loginst2").attr("href", "logout");
+			$("#myPage1").html("마이페이지");
+			$("#myPage2").attr("href", "myPage.jsp");
+			if(loginUserId != ""){
+				$(".rightMenu h3").html("안녕하세요, "+loginUserId+"님");
+			}else if(loginSellerId != ""){
+				$(".rightMenu h3").html("안녕하세요, [판매자]"+loginSellerId+"님");
+			}
+		}
+	
+		// 스크롤에 따라 움직이는 menuBody  기능
+		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > jbOffset.top) {
-				$('.menu').addClass('jbFixed');
+				$('.menuBody').addClass('jbFixed');
 			} else {
-				$('.menu').removeClass('jbFixed');
+				$('.menuBody').removeClass('jbFixed');
 			}
 		});
+		
+		
+		
 	});
-
+	
 	// 검색바 기능
 	function search() {
 		location.href = "./prd_search?search_name=" + $("#search").val();
@@ -335,12 +368,25 @@ div#category ul {
 	// 카테고리 슬라이드 기능 
 	$("#flip").click(function() {
 		$("#category").slideToggle("fast");
+		
+		// 스크롤에 따라 움직이는 Category 기능
+		var jbOffset = $('#category').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jcOffset.top) {
+				$('#category').addClass('jcFixed');
+			} else {
+				$('#category').removeClass('jcFixed');
+			}
+		});
+		
 	});
+	
 	$(window).scroll(function() {
 		var sct = $(this).scrollTop();
 		$('.fly').stop().animate({
 			'top' : sct
 		}, 500)
+	
 	});
 
 	// 로그아웃 버튼 클릭시
@@ -363,5 +409,7 @@ div#category ul {
 			}
 		});
 	});
+
+
 </script>
 </html>

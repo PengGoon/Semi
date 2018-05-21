@@ -22,7 +22,7 @@ table, td, th {
 
 .loginTable {
 	position: fixed;
-	top: 460px;
+	top: 480px;
 	left: 39%;
 }
 

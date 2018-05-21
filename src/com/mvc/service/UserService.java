@@ -81,8 +81,8 @@ public class UserService {
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUserId");
-		
-		response.sendRedirect("main/index.jsp");
+		session.removeAttribute("loginId");
+		response.sendRedirect("index.jsp");
 	}
 
 	// 아이디 찾기(미구현)

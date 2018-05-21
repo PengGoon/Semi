@@ -47,8 +47,7 @@
 	}
 	
 	#writeBtn{
-		position:absolute;
-		left:73%;
+		float: right;
 		height : 42px;
 		width: 130px;
 		font-weight: 800;
@@ -82,7 +81,7 @@
 	</table>
 	<br/>
 	<hr/>
-	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button>
+<!-- 	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button> -->
 	</div>
 	</body>
 	<script>

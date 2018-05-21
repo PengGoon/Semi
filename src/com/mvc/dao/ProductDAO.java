@@ -5,12 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.mvc.dto.ProductDTO;
+<<<<<<< HEAD
+=======
+import com.mvc.dto.ProductDTO2;
+import com.mvc.dto.PurchaseDTO;
+import com.mvc.dto.UserDTO;
+>>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
 
 public class ProductDAO {
 	Connection conn = null;
@@ -27,7 +34,7 @@ public class ProductDAO {
 		}
 	}
 
-	private void resClose() {
+	public void resClose() {
 		try {
 			if(rs != null) {
 				rs.close();
@@ -296,38 +303,96 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<ProductDTO> mainList(String state) {
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = null;
+		if(state.equals("bHit")) {
+			sql = "SELECT * FROM (SELECT * FROM product ORDER BY prd_bHit DESC) WHERE ROWNUM <=5";
+		}else if(state.equals("date")){
+			sql = "SELECT * FROM (SELECT * FROM product ORDER BY prd_date DESC) WHERE ROWNUM <=5";
+		}else if(state.equals("bHitAll")){
+			sql = "SELECT * FROM product ORDER BY prd_bHit DESC";
+		}else if(state.equals("dateAll")){
+			sql = "SELECT * FROM product ORDER BY prd_date DESC";
+		}
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit"));
+				dto.setPrd_Date(rs.getDate("prd_Date"));
+				String[] fileName = fileNameCall(rs.getInt("prd_id"));
+				dto.setNewFileName1(fileName[0]);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<PurchaseDTO> delieveryList(int prd_id) {
+		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
+		String sql = "SELECT * FROM purchase p, userDB u WHERE p.user_id=u.user_id AND prd_id=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, prd_id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				PurchaseDTO dto = new PurchaseDTO();
+				dto.setPur_id(rs.getInt("pur_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setPur_count(rs.getInt("pur_count"));
+				dto.setPur_state(rs.getString("pur_state"));
+				dto.setPur_delievery(rs.getInt("pur_delievery"));
+				dto.setPur_date(rs.getDate("pur_date"));
+				
+				dto.setUser_Name(rs.getString("user_name"));
+				dto.setUser_Phone(rs.getString("user_phone"));
+				dto.setUser_Addr(rs.getString("user_addr"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			resClose();
 		}
 		return list;
 	}
 
-	
-
-	
-
-	/*
-	public void fileNameUpdate(int prd_Id, String newFileName1, String newFileName2, String newFileName3, String[] oldFileName) {
-		String sql="";		
+	public ArrayList<PurchaseDTO> delievery(int pur_id) {
+		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
+		String sql = "UPDATE purchase SET pur_delievery=? WHERE pur_id=?";
+		Random random = new Random();
 		try {
-			if(oldFileName != null) {//기존에 올린 파일이 있는 경우(UPDATE)
-				sql="UPDATE productimage SET newFileName1 = ?,newFileName2 = ?,newFileName3 = ?, WHERE prd_id = ?";
-				ps = conn.prepareStatement(sql);
-				ps.setString(1,newFileName);
-				ps.setInt(2, prd_Id);
-			}else {//기존 파일이 없는 경우(INSERT)
-				sql="INSERT INTO productimage VALUES(photo_seq.NEXTVAL,?,?,?)";
-				ps = conn.prepareStatement(sql);			
-				ps.setInt(1,prd_Id);
-				ps.setString(2, "no file");
-				ps.setString(3, newFileName);
-			}
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, random.nextInt(100000000));
+			ps.setInt(2, pur_id);
 			ps.executeUpdate();
+			
+			sql = "SELECT pur_delievery FROM purchase WHERE pur_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, pur_id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				PurchaseDTO dto = new PurchaseDTO();
+				dto.setPur_delievery(rs.getInt("pur_delievery"));
+				list.add(dto);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			resClose();
-		}		
+		}
+		return list;
 	}
-	*/
 }

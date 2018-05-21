@@ -21,7 +21,7 @@ import com.mvc.service.UploadService;
 import com.mvc.service.UserService;
 
 @WebServlet({ "/login", "/logout", "/join", 
-	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort",
+	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort", "/main_list", "/prd_bHitlist", "/prd_datelist","/prd_delieveryList", "/prd_delievery",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
 	"/findId", "/findPw","/payList","/restock","/overlay",
@@ -30,7 +30,11 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
+<<<<<<< HEAD
 	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete"})
+=======
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/main_notice_detailView"})
+>>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
 
 
 public class MainController extends HttpServlet {
@@ -110,6 +114,20 @@ public class MainController extends HttpServlet {
 						product.sellprdlist(request, response);
 						break;
 					
+					// 상품별 배송 리스트
+					case "/prd_delieveryList":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.delieveryList(request, response);
+						break;
+						
+						// 상품별 배송 리스트
+					case "/prd_delievery":
+						System.out.println("판매자별 상품 리스트 요청");
+						product = new ProductService();
+						product.delievery(request, response);
+						break;
+					
 					// 상품 삭제	
 					case "/sell_prdDelete":
 						System.out.println("판매자별 상품 리스트 요청");
@@ -122,6 +140,27 @@ public class MainController extends HttpServlet {
 						System.out.println("상품 리스트 호출 요청");
 						service = new PhotoService(request, response);
 						service.list();
+						break;
+						
+					// 메인화면 리스트	
+					case "/main_list":
+						System.out.println("메인 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.mainList(request, response);
+						break;
+					
+					// 인기순 리스트	
+					case "/prd_bHitlist":
+						System.out.println("인기순 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.bHitlist(request, response);
+						break;
+						
+					// 신상품순 리스트	
+					case "/prd_datelist":
+						System.out.println("신상품순 상품 리스트 호출 요청");
+						product = new ProductService();
+						product.datelist(request, response);
 						break;
 						
 					// 상품 검색	
@@ -214,6 +253,12 @@ public class MainController extends HttpServlet {
 						cart.detail(request, response);
 						break;
 					
+					case "/cartList":
+						System.out.println("카트 리스트 보기 요청");
+						cart = new CartService();
+						cart.view(request, response);
+						break;
+					
 					// 구매내역
 					case "/prd2_purchase":
 						System.out.println("구매내역");
@@ -276,6 +321,19 @@ public class MainController extends HttpServlet {
 						user = new UserService();
 						user.overlay(request, response);
 						break;
+						
+						//공지사항 리스트 부분은 관리자에서 사용했던 /notice_main을 이용	
+						case "/main_notice_detail":
+							System.out.println("메인 페이지 : 공지사항 상세보기");
+							notice = new NoticeService();
+							notice.main_detail(request, response);
+							break;
+							
+						case "/main_notice_detailView":
+							System.out.println("222");
+							notice = new NoticeService();
+							notice.detailView(request, response);
+							break;
 						
 						
 					// ㅡㅡㅡㅡㅡ관리자 	
@@ -371,19 +429,6 @@ public class MainController extends HttpServlet {
 						System.out.println("공지사항 상세보기");
 						notice = new NoticeService();
 						notice.detail(request,response);
-						break;
-						
-						
-					case "/main_notice_detail":
-						System.out.println("메인 페이지 에서 공지사항 상세보기");
-						notice = new NoticeService();
-						notice.main_notice_detail(request, response);
-						break;
-						
-					case "/main_notice":
-						System.out.println("메인 페이지 에서 공지사항 상세보기");
-						notice = new NoticeService();
-						notice.main_notice(request, response);
 						break;
 						
 					case "/notice_detailView":

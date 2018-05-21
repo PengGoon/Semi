@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO;
 import com.mvc.dto.ProductDTO;
+<<<<<<< HEAD
+=======
+import com.mvc.dto.ProductDTO2;
+import com.mvc.dto.PurchaseDTO;
+>>>>>>> e4b478ff2fd5f87b61adf267b0cf1463e74c606f
 
 public class ProductService {
 
@@ -155,25 +160,104 @@ public class ProductService {
 
 	public void prdSearchSort(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//DB 이용 해서 데이터 가져오기
-				ProductDAO dao = new ProductDAO();
-				ArrayList<ProductDTO> list = dao.searchSort(request.getParameter("data"),request.getParameter("content"));
-				//로그인 상태
-				//String loginId = (String) request.getSession().getAttribute("loginId");
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list = dao.searchSort(request.getParameter("data"),request.getParameter("content"));
+		//로그인 상태
+		//String loginId = (String) request.getSession().getAttribute("loginId");
 
-				//response 반환
-				Gson json = new Gson();
-				HashMap<String, Object> map = new HashMap<>();
-				/*
-				if(loginId != null) {
-					map.put("login", true);
-				}else {
-					map.put("login", false);
-				}
-				*/
-				map.put("list",list);
-				String obj = json.toJson(map);
-				response.setContentType("text/html; charset=UTF-8");
-				response.getWriter().println(obj);
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		/*
+		if(loginId != null) {
+			map.put("login", true);
+		}else {
+			map.put("login", false);
+		}
+		*/
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void mainList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list1 = dao.mainList("bHit");
+		ArrayList<ProductDTO> list2 = dao.mainList("date");
+		dao.resClose();
+
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("list1",list1);
+		map.put("list2",list2);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void bHitlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list = dao.mainList("bHitAll");
+		dao.resClose();
+		
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void datelist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> list = dao.mainList("dateAll");
+		dao.resClose();
+		
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void delieveryList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		ArrayList<PurchaseDTO> list = dao.delieveryList(Integer.parseInt(request.getParameter("prd_id")));
+		dao.resClose();
+		
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+
+	public void delievery(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//DB 이용 해서 데이터 가져오기
+		ProductDAO dao = new ProductDAO();
+		//response 반환
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		ArrayList<PurchaseDTO> list = dao.delievery(Integer.parseInt(request.getParameter("pur_id")));
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
 	}
 
 }

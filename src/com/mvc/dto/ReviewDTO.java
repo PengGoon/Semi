@@ -13,8 +13,7 @@ public class ReviewDTO {
 	private Date review_date; 
 	private String newFileName;
 	private int bHit;
-	
-	
+
 	public int getbHit() {
 		return bHit;
 	}

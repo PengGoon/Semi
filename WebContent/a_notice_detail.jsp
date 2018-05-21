@@ -119,8 +119,7 @@
 		<br/><br/>
 		<div id="notice_form"><h2>공지사항</h2></div>
 		<h3>공지사항 글쓰기 </h3>
-		<jsp:include page="noticeList.jsp"></jsp:include>
-<!-- 		<table id="write-form" >
+	<table id="write-form" >
 			<tr>
 				<td>작성자</td>
 				<td><input type="text" id="admin_id" readonly/></td>
@@ -135,7 +134,7 @@
 			        <textarea class="edit"  name="notice_content" id="notice_content" rows="15" cols="120" readonly></textarea>
 			    </td>
 			</tr>
-		</table> -->
+		</table> 
 		<div style="text-align: center;padding-bottom: 15px;">
 			<br/><br/>
 			<a href="./a_notice.jsp">리스트 가기</a>
@@ -165,12 +164,7 @@
 		obj.url="./notice_detailView";
 		obj.success = function(data){
 			console.log(data);
-			if(data.login){
-				printInfo(data.dto);
-			}else{
-				alert("로그인이 필요한 서비스 입니다.");
-				location.href="a_login.jsp";
-			}
+			printInfo(data.dto);
 		};
 		ajaxCall(obj);
 	});
