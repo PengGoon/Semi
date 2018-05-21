@@ -235,6 +235,12 @@ public class MainController extends HttpServlet {
 						cart.detail(request, response);
 						break;
 					
+					case "/cartList":
+						System.out.println("카트 리스트 보기 요청");
+						cart = new CartService();
+						cart.view(request, response);
+						break;
+					
 					// 구매내역
 					case "/prd2_purchase":
 						System.out.println("구매내역");

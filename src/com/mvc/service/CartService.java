@@ -47,4 +47,10 @@ public class CartService {
 		RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
 		dis.forward(request, response);
 	}
+	
+	// 장바구니 리스트 보기 요청
+	public void view(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
 }

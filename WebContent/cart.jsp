@@ -133,7 +133,7 @@
 		console.log(p*cnt);
 	
 		$("#continue").click(function(){
-   	 		location.href="cate1.jsp"; 
+   	 		location.href="index.jsp"; 
     	});
 		
 		$("#buy").click(function(){
