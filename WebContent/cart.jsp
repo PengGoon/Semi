@@ -76,25 +76,6 @@
                     }
 	</style>
 	<body>
-<<<<<<< HEAD
-=======
-       <ul class="muen">
-            <li>
-                <a href="u_Order.jsp">주문내역</a>
-            </li>
-            <li>
-                <a href="cart.jsp">장바구니</a>
-            </li>
-            <li>
-                <a href="#">작성한후기</a>
-            </li>
-            <li>
-                <a href="u_updateform.jsp">개인정보수정</a>
-            </li>
-            
-        </ul>
-        <br><br><br>
->>>>>>> 6f89b566380a556e1c7a74dd2f6560d111e8e7fb
         <table>
           <tr>
                 <td colspan="2" class="ta">상품정보</td>
@@ -103,8 +84,13 @@
                 <td>배송비</td>
           </tr>
           <tr>
+<<<<<<< HEAD
+                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${dto.newFileName}"/></td>
+                <td><div id="div_1">${dto.prd_name}</div></td>
+=======
                 <td class="ta"><img width="100" src="./upload/${dto.newFileName}"/></td>
                 <td>${dto.prd_name}</td>
+>>>>>>> cb41482e5fbac7c4974389b474bb4cd06d8edc87
                 <td>${param.prd_count }개</td>
                 <td>${dto.prd_price}원</td>
                 <td>0원</td>
@@ -129,6 +115,22 @@
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
 	</body>
 	<script>
+		$.ajax({
+			type : "post",
+			url : "./cartList",
+			dataType : "json",
+			data : {
+				user_id: "${sessionScope.loginUserId}",
+			},
+			success : function(data) {
+				alert(data.msg);
+				console.log(data.list[0]);
+				data.list.each()
+				$("#div_1").text(data.list[0].prd_name);
+			},
+			error : function(err) { console.log(err) }
+		});
+	
 		var p = "${dto.prd_price}";
 		var cnt = "${param.prd_count}";
 		

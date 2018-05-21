@@ -17,7 +17,6 @@ public class CartDAO {
 	Connection conn = null ; 
 	PreparedStatement ps =  null;
 	ResultSet rs = null;
-	
 
 	// DB 연결
 	public CartDAO() {
@@ -136,7 +135,6 @@ public class CartDAO {
 			while(rs.next()) {
 				dto.setPrd_id(rs.getInt("prd_id"));
 				dto.setSell_Id(rs.getString("sell_id"));
-				System.out.println();
 			}
 			
 		} catch (SQLException e) {

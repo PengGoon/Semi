@@ -45,11 +45,18 @@
 		<div id="myPage_menu">
 		<table id="myPage">
 			<c:if test="${sessionScope.loginUserId ne null}">
+<<<<<<< HEAD
+				<tr>
+					<td><a href="u_Order.jsp">주문내역</a></td>
+					<td><a href="#">작성한후기</a></td>
+					<td><a href="u_updateform.jsp">개인정보수정</a></td>
+=======
 				<tr class=myPageTr>
 					<td><a class=myPageAtag href="u_Order.jsp">주문내역</a></td>
 					<td><a class=myPageAtag href="#">장바구니</a></td>
 					<td><a class=myPageAtag href="#">작성한후기</a></td>
 					<td><a class=myPageAtag href="u_updateform.jsp">개인정보수정</a></td>
+>>>>>>> cb41482e5fbac7c4974389b474bb4cd06d8edc87
 				</tr>
 			</c:if>
 			<c:if test="${sessionScope.loginId ne null}">
