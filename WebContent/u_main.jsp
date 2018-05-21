@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html> 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
-			.muen{
-                       
-                    }
-                    li{
+			.muen li{
                         
                         list-style: none;
                         padding: 5px 10px;
@@ -34,6 +32,8 @@
 		</style>
 	</head>
 	<body>
+	<jsp:include page="user_navi.jsp"></jsp:include>
+	
 		<br>
         <br>
         <ul class="muen">
@@ -41,7 +41,7 @@
                 <a href="u_Order.jsp">주문내역</a>
             </li>
             <li>
-                <a href="#">장바구니</a>
+                <a href="cart.jsp">장바구니</a>
             </li>
             <li>
                 <a href="#">작성한후기</a>

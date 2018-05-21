@@ -11,6 +11,32 @@ public class PurchaseDTO {
 	private Date pur_date;
 	private String pur_state;
 	private int pur_delievery;
+	private String prd_name;
+	private int prd_price;
+	private String newFileName1;
+	
+	
+	
+	
+	public String getNewFileName1() {
+		return newFileName1;
+	}
+	public void setNewFileName1(String newFileName1) {
+		this.newFileName1 = newFileName1;
+	}
+	public String getPrd_name() {
+		return prd_name;
+	}
+	public void setPrd_name(String prd_name) {
+		this.prd_name = prd_name;
+	}
+	
+	public int getPrd_price() {
+		return prd_price;
+	}
+	public void setPrd_price(int prd_price) {
+		this.prd_price = prd_price;
+	}
 	public int getPur_id() {
 		return pur_id;
 	}

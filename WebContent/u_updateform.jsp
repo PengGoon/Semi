@@ -18,14 +18,37 @@
 		input.inputTxt {
 			width: 100%;
 		}
+		.muen li{
+                        
+                        list-style: none;
+                        padding: 5px 10px;
+                        text-align: left;
+                        float: left;
+                        width: 300px;
+                        text-align: center;
+                       	 border: 1px solid black; 
+
+                    }
 		</style>
 	</head>
 	<body>
 	<jsp:include page="navi.jsp" />
-
+	<ul class="muen">
+            <li>
+                <a href="u_Order.jsp">주문내역</a>
+            </li>
+            <li>
+                <a href="cart.jsp">장바구니</a>
+            </li>
+            <li>
+                <a href="reviewList.jsp">작성한후기</a>
+            </li>
+            <li>
+                <a href="u_updateform.jsp">개인정보수정</a>
+            </li>
+        </ul>
 	<!-- 기본 정보 뷰 -->
 	<table id="before" style="width: 600">
-		<h2>판매자 회원 정보 수정</h2>
 		<tr>
 			<td>회원 이름</td>
 			<td><input class="inputTxt" type="text" name="userName"
