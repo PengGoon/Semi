@@ -465,7 +465,7 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/u_delete":
-						System.out.println("유저 구매내역  요청");
+						System.out.println("유저 삭제  요청");
 						purchase = new PurchaseService();
 						purchase.delete(request, response);
 						break;	

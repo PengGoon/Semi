@@ -124,7 +124,7 @@
 		});
 		//삭제
 		$("#del").click(function() {
-			obj.url = "./delete";
+			obj.url = "./u_delete";
 			var checked = [];
 			//$(elem).each() == elem.forEach()
 			$(".checkcheck:checked").each(function() {
@@ -141,7 +141,7 @@
 				} else {
 					alert("삭제에 실패 했습니다.");
 				}
-				location.href = "main.html";
+				location.href = "myPage.jsp";
 			}
 			console.log(obj);
 			ajaxCall(obj);
