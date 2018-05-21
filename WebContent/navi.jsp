@@ -39,10 +39,12 @@
 .menuBody {
 	text-align: center;
 	background-color: white;
+	border-bottom: 1px solid gray;
 	width: 100%;
-	height: 45px;
-	margin: 0px 0 20px 0;
+	height: 70px;
+	margin: 0;
 	padding: 0;
+	z-index: 1;
 }
 /* 메뉴바 몸체 ul 속성 */
 .menuBody ul {
@@ -63,7 +65,7 @@
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
-	height:50px;
+	height:48px;
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
@@ -89,9 +91,9 @@
 	position: absolute;
 	float: right;
 	top:10px;
-	right:20px;
-	width : 350px;
-	margin:auto;
+	right:150px;
+	width : 500px;
+	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
 .rightMenu ul {
@@ -100,8 +102,11 @@
 }
 /* 우측 상단 로그인 관리 바 li 속성 */
 .rightMenu li {
-	float: left;
-	border-left: 1px solid black;
+	float:left;
+	border-right: 1px solid black;
+	padding: 0 30px 0 10px ;
+	margin:0 0 0 15px;
+	text-align: center;
 }
 /* 우측 상단 로그인 관리 바 a태그 속성 */
 .rightMenu a{
