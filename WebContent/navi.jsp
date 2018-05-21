@@ -9,22 +9,23 @@
 </head>
 <style>
 /* 메인 페이지  */
-body {
-	margin: 0px;
+ body {
+	resize:none;
+	margin: auto 0px;
 	padding: 0px;
-	min-width: 100%;
+	width: 100%;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
 	position: relative;
 	left: 40%;
-	margin: 20 0 0 0;
+	margin: 20 0 140 0;
 }
 /* 마켓 타이틀 폰트 색상 */
 #market {
 	color: #000000;
 }
-/* 추가 메뉴(?)를 위한 공간 */
+/* 추가 메뉴(카테고리, 인기상품, 신상품)를 위한 공간 속성 */
 .jbFixed {
 	position: fixed;
 	top: 0px;
@@ -40,7 +41,7 @@ body {
 	background-color: white;
 	width: 100%;
 	height: 45px;
-	margin: 140px 0 20px 0;
+	margin: 0px 0 20px 0;
 	padding: 0;
 }
 /* 메뉴바 몸체 ul 속성 */
@@ -107,6 +108,7 @@ body {
 	text-decoration: none;
 	color: black;
 }
+/* 장바구니 아이콘 */
 .cart {
 	float: left;
 	width: 40px;
@@ -117,20 +119,22 @@ body {
 .searchBar {
 	float: right;
 	border: 1px solid black;
+	margin-right: 40px;
 }
 /* 검색바 입력창 */
 .searchBar input {
 	font-size: 18;
 	border: 0;
 	float: left;
-	padding: 12px;
+	padding:0;
 	width: 200px;
+	height: 33px;
 }
 /* 검색바 돋보기아이콘 */
 .searchBar img {
 	margin: 5px 2px;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 }
 /* 카테고리 테이블 */
 #catTable{
@@ -209,7 +213,6 @@ div#category ul {
 	text-align: center
 }
 
-
 </style>
 
 <body>
@@ -224,7 +227,7 @@ div#category ul {
 		</h1>
 	</div>
 
-	<!--  최우측상단 바  -->
+	<!--  우측상단 로그인 바  -->
 		<div class="rightMenu">
 			<ul>
 				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
@@ -287,9 +290,7 @@ div#category ul {
 			</table>
 		</div>
 	</div>
-	
 	<!--  우측 최근 본 상품   -->
-	<hr/>
 	<div class="content">
 		<div class="fly">
 			<ul style="padding-left: 0px;">

@@ -17,7 +17,7 @@
             	border:none;
             }   
             
-            hr{
+            .userJoin hr{
             	border:none;
             	width:1000px;
             	border:1px solid limegreen;
@@ -26,7 +26,7 @@
    			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
             }
             
-           	h5{
+           	.userJoin h5{
            		position:absolute;
            		left:78%;
            	}
@@ -44,7 +44,7 @@
 				margin:  0 0 120px 0;
             }
             
-            select{
+            .userJoin select{
             	font-weight: 600;
             	border-style : solid;
             	height : 41px;
@@ -98,6 +98,8 @@
     </head>
     <body>
     	<jsp:include page="navi.jsp"></jsp:include>
+    	<!-- 바디 전체를 감사는 userJoin  클래스 -->
+    <div class = userJoin>
     	<div class = userJoinTitle>
     		<br/><br/>
     		<h1>회원 가입 (개인)</h1>
@@ -177,6 +179,7 @@
     	<br/>
     	<br/>
     	<br/>
+    </div>
     </body>
     <script>
     
