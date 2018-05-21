@@ -76,6 +76,8 @@
                     }
 	</style>
 	<body>
+<<<<<<< HEAD
+=======
        <ul class="muen">
             <li>
                 <a href="u_Order.jsp">주문내역</a>
@@ -92,17 +94,16 @@
             
         </ul>
         <br><br><br>
+>>>>>>> 6f89b566380a556e1c7a74dd2f6560d111e8e7fb
         <table>
           <tr>
-                <td colspan="2" class="ta">
-                    <input type="checkbox">상품정보  
-                </td>
+                <td colspan="2" class="ta">상품정보</td>
                 <td>수량</td>
                 <td>상품금액</td>
                 <td>배송비</td>
           </tr>
           <tr>
-                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${dto.newFileName}"/></td>
+                <td class="ta"><img width="100" src="./upload/${dto.newFileName}"/></td>
                 <td>${dto.prd_name}</td>
                 <td>${param.prd_count }개</td>
                 <td>${dto.prd_price}원</td>
@@ -131,14 +132,27 @@
 		var p = "${dto.prd_price}";
 		var cnt = "${param.prd_count}";
 		
-		console.log(p*cnt);
-	
 		$("#continue").click(function(){
    	 		location.href="index.jsp"; 
     	});
 		
+		// prd_id, sell_id 필요
 		$("#buy").click(function(){
-   	 		location.href="buy.jsp"; 
+			$.ajax({
+   	 			type : "post",
+				url : "./cartBuy",
+				dataType : "json",
+				data : {
+					prd_id: "${dto.prd_id}",
+				},
+				success : function(data) {
+					console.log(data);
+					console.log(data.dto.prd_id);
+					console.log(data.dto.sell_Id);
+					location.href = "./prd2_buy?prd_id="+data.dto.prd_id+"&&sell_id="+data.dto.sell_Id;
+				},
+				error : function(err) { console.log(err) }
+   	 		});
     	});
 		
 		$(document).ready(function() {

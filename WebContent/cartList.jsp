@@ -78,8 +78,9 @@
 	<body>
         <table>
           <tr>
-                <td>장바구니 번호</td>
                 <td>상품명</td>
+                <td>상품수량</td>
+                <td>가격</td>
           </tr>
                 <input type="hidden" id="h"/>
         </table>
@@ -97,8 +98,9 @@
 				success : function(data) {
 					console.log(data);
 					for(var i=0; i<data.list.length; i++) {
-						var str = "<tr><td>"+data.list[i].cart_id+"</td>";
-							str += "<td>"+data.list[i].prd_name+"</td></tr>";
+						var str = "<tr><td><a href=./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"</a></td>";
+							str += "<td>"+data.list[i].prd_count+"</td>";
+							str += "<td>"+data.list[i].prd_price*data.list[i].prd_count+"원"+"</td></tr>";
 						$("#h").after(str);
 					}
 				},
