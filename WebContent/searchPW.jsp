@@ -38,7 +38,7 @@
             
             .searchPwTable{
             	position : fixed;
-            	top: 310px;
+            	top: 470px;
             	left: 30%;
             	width:1000px;
             }

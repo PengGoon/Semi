@@ -31,6 +31,51 @@ body {
 	width: 1000px;
 	height: 300px;
 }
+
+
+.myButton {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+	background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:7px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+	background:-moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+	background-color:#72b352;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
 </style>
 <body>
 	<jsp:include page="navi.jsp"></jsp:include>
@@ -77,10 +122,13 @@ body {
 				</tr>
 				<tr>
 					<th colspan="2">
-						<button onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}'">바로결제</button>
-						<button id="cart">장바구니 추가</button>
+						<button class=myButton id="pay" onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}'">바로결제</button>
+						<button class=myButton id="cart">장바구니 추가</button>
 						<%-- <button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> --%>
-						<button id="restock">재입고 알림</button>
+						<button class=myButton  id="restock" sytle=("border-style : solid" ,"border-color: limegreen"
+		background-color : limegreen
+		color: white
+		cursor: pointer")>재입고 알림</button>
 					</th>
 				</tr>
 				<tr>

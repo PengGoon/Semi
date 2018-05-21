@@ -55,16 +55,20 @@
 			<img src="image/main3.png" /> 
 			<img src="image/main4.png" />  
 		</div>
+		
 		<br/>
         <h2>BEST</h2>
         <div class="bestImg" id="bHitTable"></div>
+        
         <br/>
         <h2>신상품</h2>
         <div class="bestImg" id="dateTable"></div>
+       
         <br/>
-        <h2>후기</h2>
-        	<jsp:include page="reviewList.jsp"></jsp:include>
+        <h2>후기</h2> 
+        <jsp:include page="reviewList.jsp"></jsp:include>
     </div>
+    
 	</body>
 	<script>
 		//리스트 호출
