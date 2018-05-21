@@ -342,7 +342,7 @@ div#category ul {
 	</div>
 	
 	
-	<!--  우측 최근 본 상품   -->
+<!--  우측 최근 본 상품  
 	<div class="content">
 		<div class="fly">
 			<ul style="padding-left: 0px;">
@@ -352,7 +352,7 @@ div#category ul {
 			</ul>
 		</div>
 	</div>
-	
+	 -->
 </div>
 <!-- 바디 전체를 감싸는 Navi 클래스  --> 	
 </body>
@@ -376,6 +376,7 @@ div#category ul {
 			}
 		}
 	
+		/* 
 		// 스크롤에 따라 움직이는 menuBody  기능
 		var jbOffset = $('.menuBody').offset();
 		$(window).scroll(function() {
@@ -384,8 +385,10 @@ div#category ul {
 			} else {
 				$('.menuBody').removeClass('jbFixed');
 			}
-		});
+		}); 
+		*/
 		
+		/* 
 		// 스크롤에 따라 움직이는 Category 기능
 		var jcOffset = $('#category').offset();
 		$(window).scroll(function() {
@@ -394,7 +397,8 @@ div#category ul {
 			} else {
 				$('#category').removeClass('jcFixed');
 			}
-		});
+		}); 
+		*/
 		
 	});
 	
@@ -408,6 +412,7 @@ div#category ul {
 		$("#category").slideToggle("fast");
 	});
 	
+	/* 
 	// 선택된 메뉴의 색상 변경 기능
 	$("#fav").click(function(){
 		("#fav").removeClass('on');
@@ -418,15 +423,17 @@ div#category ul {
 		("#new").removeClass('on');
 		("#fav").removeClass('on');
 		(this).addClass('on');
-	});
+	}); 
+	*/
 	
+	/* 
 	$(window).scroll(function() {
 		var sct = $(this).scrollTop();
 		$('.fly').stop().animate({
 			'top' : sct
 		}, 500)
-	
-	});
+	}); 
+	*/
 
 	// 로그아웃 버튼 클릭시
 	$("#logout").click(function logout() {
