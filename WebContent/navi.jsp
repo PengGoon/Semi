@@ -13,6 +13,8 @@ body {
 	margin: 0px;
 	padding: 0px;
 	min-width: 100%;
+	overflow-x: hidden; 
+	overflow-y: scroll;
 }
 /* 마켓 타이틀 공간 */
 .jbTitle {
@@ -69,6 +71,11 @@ body {
 	font-size: 140%;
 	padding-top: 5px;
 }
+/* 선택된 메뉴만 색상이 설정되는 속성 */
+.menubody .clear{
+	clear: both;
+}
+
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
 	background-color: limegreen;
@@ -76,16 +83,36 @@ body {
 	color: white;
 }
 /* li중 신상품 테두리 설정 */
-.menuBody #new{
+.menuBody .new{
 	border-right: 1px solid gray;
+}
+/* li중 신상품 기본 상태 속성 */
+.menuBody #new{
+	color: black;
+	text-decoration: none;
 }
 /* li중 신상품 마우스오버시 속성 */
 .menuBody #new:hover {
 	color: limegreen;
 	text-decoration: underline;
 }
-/* li중 인기상품 테두리 설정 */
+/* 신상품 미선택, 선택 시 텍스트 색상 변경 */
+.new.on{
+	color:limegreen;
+	font-weight: 800;
+}
+/* li중 인기상품 기본 상태 속성 */
 .menuBody #fav{
+	color: black;
+	text-decoration: none;
+}
+/* 선택시 색상 변경 */
+.menuBody #fav.on{
+	color: limegreen;
+	text-decoration: none;
+}
+/* li중 인기상품 테두리 설정 */
+.menuBody .fav{
 	border-right: 1px solid gray;
 }
 /* li중 인기상품 마우스 오버시 속성 */
@@ -93,7 +120,11 @@ body {
 	color: limegreen;
 	text-decoration: underline;
 }
-
+/* 선택시 색상 변경 */
+.menuBody #new.on{
+	color: limegreen;
+	text-decoration: none;
+}
 /* 우측 상단 로그인 관리 바 속성 */
 .rightMenu {
 	position: absolute;
@@ -127,7 +158,7 @@ body {
 .rightMenu h3{
 	position:absolute;
 	float: right;
-	right: 150px;
+	right: 270px;
 }
 /* 장바구니 아이콘 */
 .cart {
@@ -266,8 +297,8 @@ div#category ul {
 		<div class="menuCenter">
 			<ul>
 				<a href="#" 	onclick="return false"><li id="flip">카테고리</li></a>
-				<a href="./prd_bHitlist.jsp"><li id="fav">인기상품</li></a>
-				<a href="./prd_datelist.jsp"><li id="new">신상품</li></a>
+				<li class=fav><a id="fav" href="./prd_bHitlist.jsp">인기상품</a></li>
+				<li class=new><a id="new" href="./prd_datelist.jsp">신상품</a></li>
 			</ul>
 			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
@@ -309,7 +340,6 @@ div#category ul {
 			</table>
 		</div>
 	</div>
-	
 	
 	
 	<!--  우측 최근 본 상품   -->
@@ -356,7 +386,15 @@ div#category ul {
 			}
 		});
 		
-		
+		// 스크롤에 따라 움직이는 Category 기능
+		var jcOffset = $('#category').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jcOffset.top) {
+				$('#category').addClass('jcFixed');
+			} else {
+				$('#category').removeClass('jcFixed');
+			}
+		});
 		
 	});
 	
@@ -368,17 +406,18 @@ div#category ul {
 	// 카테고리 슬라이드 기능 
 	$("#flip").click(function() {
 		$("#category").slideToggle("fast");
-		
-		// 스크롤에 따라 움직이는 Category 기능
-		var jbOffset = $('#category').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > jcOffset.top) {
-				$('#category').addClass('jcFixed');
-			} else {
-				$('#category').removeClass('jcFixed');
-			}
-		});
-		
+	});
+	
+	// 선택된 메뉴의 색상 변경 기능
+	$("#fav").click(function(){
+		("#fav").removeClass('on');
+		("#new").removeClass('on');
+		(this).addClass('on');
+	});
+	$("#new").click(function(){
+		("#new").removeClass('on');
+		("#fav").removeClass('on');
+		(this).addClass('on');
 	});
 	
 	$(window).scroll(function() {
