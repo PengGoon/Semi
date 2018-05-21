@@ -81,7 +81,7 @@
 	</table>
 	<br/>
 	<hr/>
-	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button>
+<!-- 	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button> -->
 	</div>
 	</body>
 	<script>
