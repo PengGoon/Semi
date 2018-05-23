@@ -264,7 +264,7 @@ public class MainController extends HttpServlet {
 					case "/cartDel":
 						System.out.println("장바구니 삭제 요청");
 						cart = new CartService();
-						cart.del(request, response);
+						cart.delete(request, response);
 						break;	
 						
 					// 구매내역
