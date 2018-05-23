@@ -105,7 +105,7 @@ public class PurchaseDAO {
 				dto.setPrd_id(rs.getInt("prd_id"));//
 				dto.setPur_count(rs.getInt("pur_count"));// 수량
 				dto.setPur_date(rs.getDate("pur_date"));// 구매일
-				dto.setPur_state(rs.getString("pur_state"));// 배송 list.add(dto);
+				dto.setPur_state(rs.getString("pur_state"));// 배송 
 				dto.setPrd_name(rs.getString("prd_name")); //안됨
 				dto.setPrd_price(rs.getInt("prd_price"));
 				String[] fileName = dao.fileNameCall(rs.getInt("prd_id"));
