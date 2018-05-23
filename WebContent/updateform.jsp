@@ -8,15 +8,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
- 			.updateForm table #after{
+ 			.updateForm table {
    		        font-weight: 600;
             	border: 1px solid black;
             	border-collapse: collapse;
             	padding: 5px 10px;
             	text-align: left;
             	border:none;
-            	margin:  0 auto;
+            	margin:  0 auto 70 auto;
             }   
+            
+            .updateForm #after
+            {
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            	margin:  0 auto 70 auto;
+            }  
             
              .updateForm td{
    		        font-weight: 600;
@@ -53,7 +64,7 @@
             .userUpdateTitle{
             	margin : 60px 0px 55px 0px;
             	text-align: center;
-            	color: limegreen;
+            	color: black;
             	font-size: 20;
             }
             
@@ -136,7 +147,7 @@
     		<h1>회원(판매자) 정보 수정</h1>
     </div> <br/>
 	<!-- 기본 정보 뷰 -->
-	<table class=updateFormTable id="before" style="width: 600">
+	<table class=updateFormTable id="before" >
 		<br/>
     	<tr><td colspan="3"><hr/></td></tr>
 		<tr>
@@ -147,7 +158,7 @@
 		<tr>
 			<td>회원 주소</td>
 			<td><input class=inp  type="text" id="beforeAddr" disabled="true"
-				style="width: 100%" /></td>
+				style="width: 70%" /></td>
 		</tr>
 		<tr>
 			<td>회원 EMAIL</td>
@@ -168,7 +179,7 @@
 		<tr><td colspan="3"><hr/></td></tr>
 		
 		<tr>
-			<td colspan="2" style="text-align: left;">
+			<td colspan="2" style="text-align: right">
 				<button id="update_start">정보 수정하기</button>
 				<button id="update_end2">취소</button>
 			</td>
@@ -176,7 +187,7 @@
 	</table>
 
 	<!-- 	본인확인 완료 후 창 -->
-	<table style="display: none;" id="after" style="margin:">
+	<table style="display: none;" id="after">
 	
 		<tr><td colspan="3"><hr/></td></tr>
 		
@@ -244,9 +255,9 @@
 		<tr><td colspan="3"><hr/></td></tr>
 		
 		<tr>
-			<td colspan="2" style="text-align: right;">
-				<button id="update_end1">취소</button>
+			<td colspan="2" style="text-align: right">
 				<button id="update_success">저장</button>
+				<button id="update_end1">취소</button>
 			</td>
 		</tr>
 	</table>
@@ -267,7 +278,7 @@
 		window.name = "parentForm";
 		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open("upload.jsp", "childForm",
-				"width=600, height=200, resizable = no, scrollbars = no");
+				"width=600, height=250, resizable = no, scrollbars = no");
 	}
 
 	$(document).ready(function() {
@@ -393,7 +404,7 @@
 					obj.success = function(data) {
 						if (data.success == 1) {
 							alert("회원 정보 수정을 완료했습니다.");
-							location.href = "main.jsp";
+							location.href = "myPage.jsp";
 						} else {
 							alert("회원 정보 수정에 실패했습니다.");
 						}

@@ -105,7 +105,7 @@ body {
 					<tr>
 						<th colspan="4" height="100px">
 							<input type="button" value="물품등록" onclick="emptyChk()"/>
-							<input type="button" value="취소" onclick="location.href='index.jsp'"/>
+							<input type="button" value="취소" onclick="location.href='myPage.jsp'"/>
 						</th>
 					</tr>
 				</table>
@@ -172,7 +172,7 @@ $(document).ready(function() {
 		console.log(data);
 		if (data.YN != 2) {
 			alert("등급을 확인해주세요.");
-			location.href = "index.jsp";
+			location.href = "myPage.jsp";
 		}
 	}
 	ajaxCall(obj);

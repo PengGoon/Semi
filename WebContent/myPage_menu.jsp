@@ -12,19 +12,20 @@
 			    margin: 0 auto;
 			}
 			#myPage{
-				border: 1px solid black;
+				border: 1px solid gray;
 				border-collapse: collapse;
 				text-align: center;
 				width: 1000px;
 				height: 100px;
 				font-size: 25px;
+				margin : 10px auto 10px auto;
 	        }
 	
-		     .myPageTr a{
+		    #myPage_menu a{
 	      	  text-decoration: none;
 	        }
 	        
-	        .myPageTr a:visited{
+	        #myPage_menu a:visited{
 	        	color: black;
 	        	text-decoration: none;
 	        }
@@ -33,12 +34,7 @@
 	          color:limegreen;
 	      	  text-decoration: underline;
 	        }
-	        
-	      a .on{
-	          color:limegreen;
-	        }
-	        
-	        
+
 		</style>
 	</head>
 	<body>
@@ -63,9 +59,5 @@
 		</div>
 	</body>
 	<script>
-			$('a').click(function(){
-				$('a').removeClass('.on');
-				$(this).addClass('.on');
-			});
 	</script>
 </html>

@@ -9,17 +9,43 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-.updateTitle {
+.uploadTitle {
 	margin: 10px auto 25px auto;
 	text-align: center;
 	font-size: 20;
 }
- .updateTable{
-            	position:relative;
-				margin:  0 auto;
-            }
-#upPw {
-    height : 42px;
+
+.uploadTable {
+	position: relative;
+	width: 200px;
+	margin: 0 auto;
+	text-align: right;
+}
+
+.uploadTable hr {
+	border: none;
+	width: 100%;
+	border: 1px solid limegreen;
+	color: limegreen; /* IE */
+	border-color: limegreen; /* 사파리 */
+	background-color: limegreen; /* 크롬, 모질라 등, 기타 브라우저 */
+}
+
+.inp {
+	height: 41px;
+}
+
+#filenamee {
+	position: relative;
+	height: 42px;
+	width: 130px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+#fileReplace {
+	position: absolute;
+	height: 42px;
 	width: 130px;
 	font-weight: 800;
 	border-style: solid;
@@ -27,32 +53,64 @@
 	background-color: limegreen;
 	color: white;
 	cursor: pointer;
-	margin:  auto;
 }
- .updateTable hr{
-            	border:none;
-            	width:100%;
-            	border:1px solid limegreen;
-            	color: limegreen;    /* IE */
-    			border-color: limegreen;  /* 사파리 */
-   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
-            }
 
-.inp {
-	height: 41px;
+#submitt {
+	position:relative;
+	float:right;
+	margin:0 0 0 0;
+	height: 42px;
+	width: 130px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+	margin: auto;
+	opacity: 0;
 }
+
+#submitReplace {
+	position: absolute;
+	float:right;
+	margin:0 0 0 0;
+	height: 42px;
+	width: 130px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
-	<div class=updateTitle><h2>사업자 등록증 업로드</h2></div>
-	<table class=updateTable>
-	<form action="./upload" method="post" enctype="multipart/form-data" name="form">
-		<tr><td colspan="3"><hr/></td></tr>
-		<tr><td><input type="text" id="result" name="result" value="${filename}" /></td></tr>
-		<tr><td><input type="file" id="filenamee" name="filename" /></td></tr> 
-		<tr><td colspan="3"><hr/></td></tr>	
-		<tr><td><input type="submit" value="업로드" /></td></tr>
-	</form>
+	<div class=uploadTitle>
+		<h2>사업자 등록증 업로드</h2>
+	</div>
+	<table class=uploadTable>
+		<form action="./upload" method="post" enctype="multipart/form-data"
+			name="form">
+		<tr>
+			<td colspan="3"><hr /></td>
+		</tr>
+		<tr>
+			<td><input type="text" id="result" name="result"
+				value="${filename}" disabled="true" style="height: 36px" /></td>
+			<td><button id="fileReplace">파일 찾기</button>
+				<input type="file" id="filenamee" name="filename" /></td>
+		</tr>
+		<tr>
+			<td colspan="3"><hr /></td>
+		</tr>
+		<tr>
+			<td><button id="submitReplace">등록증 업로드</button>
+				<input type="submit" id="submitt" /></td>
+		</tr>
+		</form>
 	</table>
 </body>
 

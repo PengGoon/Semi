@@ -163,6 +163,38 @@ body {
 	height: 40px;
 	margin-left: 200px;
 }
+/* 장바구니 마우스오버시 말풍선 위치*/
+.arrow_box {
+  margin-left:565px;
+  margin-top:0px;
+  display: none;
+  position: absolute;
+  padding: 16px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;  
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+}
+/* 생성된 말풍선 속성 */
+.arrow_box:after {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  float:right;
+  margin-top: -10px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-left-color: #333;
+  pointer-events: none;
+  content: " ";
+}
+/* 장바구니 영역 마우스 오버시 말풍선 생성 */
+.cart:hover + p.arrow_box {
+  display: block;
+}
 /* 검색바 */
 .searchBar {
 	float: right;
@@ -187,7 +219,7 @@ body {
 /* 카테고리 테이블 */
 #catTable{
 	border : 1px solid limegreen;
-	margin: 0 0 0 40;
+	margin: -10 0 0 40;
 	background-color: white;
 	padding: 10px 10px 10px 10px;
 	color: black;
@@ -293,7 +325,9 @@ div#category ul {
 				<li class=fav><a id="fav" href="./prd_bHitlist.jsp">인기상품</a></li>
 				<li class=new><a id="new" href="./prd_datelist.jsp">신상품</a></li>
 			</ul>
-			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
+			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/>
+			<p class="arrow_box">장바구니</p>
+			</a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">

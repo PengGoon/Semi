@@ -25,6 +25,7 @@
 		<jsp:include page="navi.jsp"></jsp:include>
 		<jsp:include page="myPage_menu.jsp"></jsp:include>
 		<br><br>
+		<div class=uUpdateForm>
 	<!-- 기본 정보 뷰 -->
 	<table id="before" style="width: 600">
 		<tr>
@@ -54,6 +55,7 @@
 				<button id="update_end2">취소</button>&nbsp;&nbsp;
 			</td>
 		</tr>
+		</div>
 	</table>
 
 	<!-- 	본인확인 완료 후 창 -->
