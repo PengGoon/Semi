@@ -6,7 +6,21 @@
 <title>회원 로그인</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-table, td, th {
+.userLogin table {
+	border: none;
+	border-collapse: collapse;
+	padding: 5px 10px;
+	text-align: center;
+}
+
+.userLogin td{
+	border: none;
+	border-collapse: collapse;
+	padding: 5px 10px;
+	text-align: center;
+}
+
+.userLogin th{
 	border: none;
 	border-collapse: collapse;
 	padding: 5px 10px;
@@ -67,6 +81,8 @@ table, td, th {
 </head>
 <body>
 	<jsp:include page="navi.jsp"></jsp:include>
+<!-- 바디 전체를 감싸는 userLogin 클래스 -->
+<div class = userLogin>
 	<div class=loginTitle>
 		<h1>로그인</h1>
 		<h4 style="color: black">
@@ -98,7 +114,7 @@ table, td, th {
 			</td>
 		</tr>
 	</table>
-
+</div>
 </body>
 <script>
 	$("#login").click(function() { // 로그인 버튼 클릭 시 

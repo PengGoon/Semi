@@ -71,10 +71,6 @@ body {
 	font-size: 140%;
 	padding-top: 5px;
 }
-/* 선택된 메뉴만 색상이 설정되는 속성 */
-.menubody .clear{
-	clear: both;
-}
 
 /* li 중 카테고리 속성 설정 */
 .menuBody #flip {
@@ -211,12 +207,7 @@ body {
 	color:limegreen;
 	cursor: pointer;
 }
-/* 하위카테고리(소분류) 동작중일시 */
-#catTable a:active{
-	text-decoration: none;
-	color: limegreen;
-	cursor: pointer;
-}
+
 /* 카테고리  */
 div#category {
 	z-index: 2;
@@ -264,6 +255,8 @@ div#category ul {
 	border: 1px #ccc solid;
 	text-align: center
 }
+
+
 </style>
 
 <body>
@@ -296,7 +289,7 @@ div#category ul {
 		<hr/>
 		<div class="menuCenter">
 			<ul>
-				<a href="#" 	onclick="return false"><li id="flip">카테고리</li></a>
+				<a href="#"><li id="flip">카테고리</li></a>
 				<li class=fav><a id="fav" href="./prd_bHitlist.jsp">인기상품</a></li>
 				<li class=new><a id="new" href="./prd_datelist.jsp">신상품</a></li>
 			</ul>
@@ -375,30 +368,6 @@ div#category ul {
 				$(".rightMenu h3").html("안녕하세요, [판매자]"+loginSellerId+"님");
 			}
 		}
-	
-		/* 
-		// 스크롤에 따라 움직이는 menuBody  기능
-		var jbOffset = $('.menuBody').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > jbOffset.top) {
-				$('.menuBody').addClass('jbFixed');
-			} else {
-				$('.menuBody').removeClass('jbFixed');
-			}
-		}); 
-		*/
-		
-		/* 
-		// 스크롤에 따라 움직이는 Category 기능
-		var jcOffset = $('#category').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > jcOffset.top) {
-				$('#category').addClass('jcFixed');
-			} else {
-				$('#category').removeClass('jcFixed');
-			}
-		}); 
-		*/
 		
 	});
 	
@@ -412,29 +381,6 @@ div#category ul {
 		$("#category").slideToggle("fast");
 	});
 	
-	/* 
-	// 선택된 메뉴의 색상 변경 기능
-	$("#fav").click(function(){
-		("#fav").removeClass('on');
-		("#new").removeClass('on');
-		(this).addClass('on');
-	});
-	$("#new").click(function(){
-		("#new").removeClass('on');
-		("#fav").removeClass('on');
-		(this).addClass('on');
-	}); 
-	*/
-	
-	/* 
-	$(window).scroll(function() {
-		var sct = $(this).scrollTop();
-		$('.fly').stop().animate({
-			'top' : sct
-		}, 500)
-	}); 
-	*/
-
 	// 로그아웃 버튼 클릭시
 	$("#logout").click(function logout() {
 		$.ajax({

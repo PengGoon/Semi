@@ -6,7 +6,7 @@
         <title>회원가입 선택</title> <!-- 구매자: userJoinForm.jsp ,  판매자: join.jsp -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <style>
-            table, td, th{
+            .joinSel table{
             	border: none;
             	width:300px;
             	border-collapse: collapse;
@@ -14,7 +14,23 @@
             	text-align: center;
             }  
             
-            hr{
+             .joinSel td{
+            	border: none;
+            	width:300px;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: center;
+            }
+            
+             .joinSel th{
+            	border: none;
+            	width:300px;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: center;
+            }
+            
+            .joinSel hr{
           		border:none;
           		border:1px solid limegreen;
             	color: limegreen;    /* IE */
@@ -62,6 +78,8 @@
     <body>
     	<jsp:include page="navi.jsp"></jsp:include>
     	<!-- 구매자: userJoinForm.jsp ,  판매자: join.jsp -->
+    <!-- 바디 전체를 감싸는 joinSel 클래스 -->
+    <div class = joinSel>
     	<div class = joinTitle>
     	<h1>회원 가입</h1>
     	</div>
@@ -85,6 +103,7 @@
             </tr>
         </table>
         </form>
+    </div>
     </body>
     <script>
         function toJoin(){

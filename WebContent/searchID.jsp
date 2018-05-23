@@ -182,7 +182,7 @@
 							alert(data.success);
 						} else {
 							alert("찾으시는 아이디는 " + data.success + " 입니다.");
-							window.open("about:blank", "_self").close();
+							location.href = "userLogin.jsp";
 						}
 					}
 					console.log(obj);
