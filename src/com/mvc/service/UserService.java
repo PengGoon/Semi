@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.mvc.dao.MemberDAO;
 import com.mvc.dao.UserDAO;
 import com.mvc.dto.UserDTO;
 
@@ -190,6 +189,28 @@ public class UserService {
 		map.put("success", success);
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
+	}
+	
+	//회원탈퇴
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("안녕");
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		System.out.println("회원탈퇴"+loginUserId);
+		
+		UserDAO dao = new UserDAO();
+		int success = dao.del(loginUserId);
+		System.out.println("회원"+success);
+		
+		 if(success > 0) { 
+	         request.getSession().removeAttribute(loginUserId);
+	      }
+		
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		
 	}
 	
 
