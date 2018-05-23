@@ -260,7 +260,7 @@ public class MemberDAO {
       } catch (SQLException e) {
          e.printStackTrace();
       } finally {
-//         resClose();
+         resClose();
       }
       return dto;
    }

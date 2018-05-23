@@ -91,6 +91,8 @@ public class CartDAO {
 			return null;
 		} finally {
 			resClose();
+			resClose();
+			resClose();
 		}
 		return dto;
 	}
