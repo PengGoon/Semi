@@ -447,8 +447,12 @@ div#category ul {
 				console.log(data);
 				if(loginUserId != ""){
 					location.href = "cartList.jsp";
-				}else {
+				}else if(loginSellerId == ""){
 					alert("로그인이 필요한 서비스입니다.");
+					location.href = "index.jsp";
+				}else if(loginUserId == ""){
+					alert("개인 회원만 이용 가능한 서비스입니다.");
+					location.href = "index.jsp";
 				}
 			},
 			error : function(err) {

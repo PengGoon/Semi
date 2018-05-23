@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import com.mvc.dto.CartDTO;
@@ -126,7 +127,7 @@ public class CartDAO {
 		return list;
 	}
 	
-	/*public CartDTO cartbuy(String prd_id) {
+	public CartDTO cartbuy(String prd_id) {
 		String sql = "SELECT sell_id, prd_id FROM Product WHERE prd_id=?";
 		CartDTO dto = new CartDTO();
 		try {
@@ -146,7 +147,7 @@ public class CartDAO {
 			resClose();
 		}
 		return dto;
-	}*/
+	}
 	
 	//장바구니 삭제
 	public int delete(String[] delList) {		
@@ -197,41 +198,6 @@ public class CartDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
-	}
-
-	public ArrayList<CartDTO> detailList(String[] buyList) {
-		ArrayList<CartDTO> list = new ArrayList<CartDTO>();
-		String sql = "SELECT * FROM cart WHERE cart_id=?";
-		//int buyCnt=0;
-		try {
-			for(int i=0; i<buyList.length; i++) {
-				if(conn.isClosed()) {
-					try {
-						System.out.println("객체화");
-						Context ctx = new InitialContext();
-						DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Oracle");
-						conn = ds.getConnection();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				System.out.println(buyList[i]);
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, Integer.parseInt(buyList[i]));
-				rs = ps.executeQuery();
-				if(rs.next()) {
-					CartDTO dto = new CartDTO();
-					dto = detail(rs.getInt("prd_id"));
-					list.add(dto);
-				}
-				ps.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			resClose();
-		}
-		return list;
 	}
 
 }
