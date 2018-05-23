@@ -110,6 +110,11 @@
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
 	</body>
 	<script>
+		$(document).ready(function() {
+			$("#totalPrice").text(p*cnt+"원");
+			$("#totalDelieveryPrice").text(p*cnt+"원");
+		});
+	
 		$.ajax({
 			type : "post",
 			url : "./cartList",
@@ -118,10 +123,7 @@
 				user_id: "${sessionScope.loginUserId}",
 			},
 			success : function(data) {
-				alert(data.msg);
 				console.log(data.list[0]);
-				data.list.each()
-				$("#div_1").text(data.list[0].prd_name);
 			},
 			error : function(err) { console.log(err) }
 		});
@@ -152,10 +154,5 @@
 				error : function(err) { console.log(err) }
    	 		});
     	});
-		
-		$(document).ready(function() {
-			$("#totalPrice").text(p*cnt+"원");
-			$("#totalDelieveryPrice").text(p*cnt+"원");
-		});
 	</script>
 </html>
