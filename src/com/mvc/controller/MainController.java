@@ -30,11 +30,7 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
-<<<<<<< HEAD
-	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView", "/cartBuy", "/cartDel"})
-=======
-	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView", "/cartBuy","/review_mypage","/u_del","/m_delete"})
->>>>>>> 473888cd6a3e5bc7e653700a5178cc0832fce414
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView", "/cartBuy","/cartDel", "/review_mypage","/u_del","/m_delete"})
 
 
 public class MainController extends HttpServlet {
@@ -268,7 +264,7 @@ public class MainController extends HttpServlet {
 					case "/cartDel":
 						System.out.println("장바구니 삭제 요청");
 						cart = new CartService();
-						cart.del(request, response);
+						cart.delete(request, response);
 						break;	
 						
 					// 구매내역

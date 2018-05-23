@@ -90,8 +90,8 @@
 	<script>
 		var obj = {};
 		obj.error = function(e){console.log(e)};
-		obj.type="post";
-		obj.dataType="json";
+		obj.type="POST";
+		obj.dataType="JSON";
 		
 		$(document).ready(function() {
 			$.ajax({
@@ -123,24 +123,28 @@
 		$("#del").click(function(){
 			obj.url="./cartDel";
 			var checked = [];
-			//$(elem).each() == elem.forEach()
+			
 			$("input[type='checkbox']:checked").each(function(){
 				checked.push($(this).val());
 			});
 			console.log(checked);
-			obj.data={delList:checked};
+			obj.data = {delList:checked};
 			obj.success = function(data){
 				if(data.success){
-					alert("삭제에 성공 했습니다.");
+					alert("삭제에 성공했습니다.");
 				}else{
-					alert("삭제에 실패 했습니다.");
+					alert("삭제에 실패했습니다.");
 				}
-				location.href = "a_review.jsp";
-				
+				location.href="cartList.jsp";
 			}
 			console.log(obj);
-		    ajaxCall(obj);
+			ajaxCall(obj);
 		});
+		
+		function ajaxCall(param){
+			console.log(param);
+			$.ajax(param);
+		}
 		 
 	</script>
 </html>

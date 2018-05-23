@@ -147,22 +147,21 @@ public class CartDAO {
 	}
 	
 	//장바구니 삭제
-	
-	public int cart_del(String[] delList) {
+	public int delete(String[] delList) {		
+		String sql="DELETE FROM cart WHERE cart_id = ?";
 		int delCnt = 0;
-		String sql = "DELETE FROM cart WHERE cart_id=?";
 		try {
-			for(int i=0; i<delList.length;i++) {
+			for(int i=0;i<delList.length; i++) {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, delList[i]);
+				ps.setInt(1, Integer.parseInt(delList[i]));
 				delCnt += ps.executeUpdate();
 				ps.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-		resClose();
-		}
+			resClose();
+		}		
 		return delCnt;
 	}
 	
