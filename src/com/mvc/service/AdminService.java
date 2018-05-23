@@ -11,10 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.mvc.dao.AdminDAO;
-import com.mvc.dao.NoticeDAO;
 import com.mvc.dao.ReviewDAO;
 import com.mvc.dao.UserDAO;
-import com.mvc.dto.NoticeDTO;
 import com.mvc.dto.ReviewDTO;
 import com.mvc.dto.UserDTO;
 
