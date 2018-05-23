@@ -91,6 +91,16 @@
 		});
 		
 		$("#buy").click(function(){
+			var checked = [];
+			$("input[type='checkbox']:checked").each(function(){
+				checked.push($(this).val());
+			});
+			console.log(checked);
+			location.href='./cart.jsp?checked='+checked;
+		});
+		
+		/*
+		$("#buy").click(function(){
 			obj.url="./cartBuy";
 			var checked = [];
 			$("input[type='checkbox']:checked").each(function(){
@@ -108,6 +118,7 @@
 			}
 			ajaxCall(obj);
 		});
+		*/
 		
 		/* $("#buy").click(function(){
 			obj.url="./cartBuy";
