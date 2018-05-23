@@ -61,7 +61,8 @@ public class ReviewService {
 		String user_Id = request.getParameter("user_Id");
 		String review_title = request.getParameter("review_title");
 		String review_content = request.getParameter("review_content");
-		System.out.println(user_Id + "/" + review_title + "/" + review_content);
+		String review_prd = request.getParameter("review_Prd");
+		System.out.println(user_Id + "/" + review_title + "/" + review_content + "/" +review_prd);
 
 		// 2. DAO 요청
 		ReviewDAO dao = new ReviewDAO();
@@ -69,7 +70,7 @@ public class ReviewService {
 		// 3. 결과값 JSON 변환
 		Gson json = new Gson();
 		HashMap<String, Integer> map = new HashMap<>();
-		int review_id = dao.write(user_Id, review_title, review_content);
+		int review_id = dao.write(user_Id, review_title, review_content,review_prd);
 		// 세션에서 review_id를 string 으로 불러 내기 때문에 넣을 때 문자 열로 형변환 해야 한다.
 		request.getSession().setAttribute("review_id", Integer.toString(review_id));
 		map.put("success", review_id);

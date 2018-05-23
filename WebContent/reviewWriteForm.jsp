@@ -28,7 +28,7 @@
       	width:70px;
       }
       
-       .Review #userId{
+       .Review #userId,.Review #reviewPrd_Name{
        	border:none;
        }
       
@@ -119,7 +119,13 @@
          <th>작성자</th>
          <td><input type="text" id="userId" value=<%=request.getSession().getAttribute("loginUserId") %> readonly/></td>
       </tr>
-      
+      <tr>
+         <th>상품명</th>
+         <td>
+         	<input type="text" id="reviewPrd_Name"  value=<%=request.getParameter("reviewPrd_Name") %> readonly/>
+         	<input type="hidden" id="reviewPrd_Id"  value=<%=request.getParameter("reviewPrd_Id") %>/>
+         </td>
+      </tr>
       <tr>
          <th>제목</th>
          <td><input type="text" id="reviewTitle" /></td>
@@ -131,9 +137,6 @@
       
       <tr>
          <td class=btnRow  colspan="2">
-         	
-         	<button id="replace">파일 업로드</button>
-         	<input type="file" name="reviewPhoto" style="opacity:0"/>
             <a class=exit href="reviewList.jsp">취소</a>
             &nbsp;&nbsp;
             <button class=write id="writeBtn">작성 완료</button>
@@ -187,6 +190,7 @@
 		obj.data.user_Id = $("#userId").val();
 		obj.data.review_title = $("#reviewTitle").val();
 		obj.data.review_content = $("#reviewContent").val();
+		obj.data.review_Prd = $("#reviewPrd_Id").val();
 		obj.success = function(data){
 			console.log(data);
 			if(data.success>0){

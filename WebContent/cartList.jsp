@@ -76,6 +76,7 @@
                     }
 	</style>
 	<body>
+		<jsp:include page="navi.jsp"></jsp:include>
         <table>
           <tr>
           		<td></td>

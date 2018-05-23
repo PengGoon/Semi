@@ -22,6 +22,7 @@ public class ProductDAO {
 
 	public ProductDAO() {
 		try {
+			System.out.println("pro 객체화");
 			Context ctx = new InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Oracle");
 			conn = ds.getConnection();
@@ -32,14 +33,23 @@ public class ProductDAO {
 
 	public void resClose() {
 		try {
-			if(rs != null) {
+			if (rs != null) {
 				rs.close();
+				System.out.println("pro rs : "+rs.isClosed());
 			}
-			ps.close();
-			conn.close();
+			if (ps != null) {
+				ps.close();
+				System.out.println("pro ps : "+ps.isClosed());
+			}
+			if (conn != null) {
+				conn.close();
+				System.out.println("pro conn : "+conn.isClosed());
+			}			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
+
 	}
 	
 	public int write(ProductDTO dto) {
@@ -304,6 +314,7 @@ public class ProductDAO {
 	}
 
 	public ArrayList<ProductDTO> mainList(String state) {
+		System.out.println("dao테스트1");
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		String sql = null;
 		if(state.equals("bHit")) {
@@ -329,6 +340,7 @@ public class ProductDAO {
 				dto.setNewFileName1(fileName[0]);
 				list.add(dto);
 			}
+			System.out.println("dao테스트2");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -113,21 +113,19 @@ public class ReviewDAO {
 	}
 
 	// 글쓰기
-	public Integer write(String user_Id, String review_title, String review_content) {
+	public Integer write(String user_Id, String review_title, String review_content, String review_prd) {
 		System.out.println("공지사항 작성");
 		System.out.println(user_Id);
 		int success =0;
 		// 상품번호 4번에대해서만 들어감
-		String sql = "INSERT INTO Review(review_id, prd_id, user_id, review_title, review_content, "
-				+ "review_date,newFileName) "
-				
-				+"VALUES(review_seq.NEXTVAL, 26, ?, ?, ?, "    
-				+ "SYSDATE, 12345)";
+		String sql = "INSERT INTO Review(review_id, prd_id, user_id, review_title, review_content,review_date) "
+				+"VALUES(review_seq.NEXTVAL, ?, ?, ?, ?,SYSDATE)";
 		try {
 			ps = conn.prepareStatement(sql, new String[] {"review_id"});
-			ps.setString(1, user_Id);
-			ps.setString(2, review_title);
-			ps.setString(3, review_content);
+			ps.setString(1, review_prd);
+			ps.setString(2, user_Id);
+			ps.setString(3, review_title);
+			ps.setString(4, review_content);
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			if(rs.next()) {

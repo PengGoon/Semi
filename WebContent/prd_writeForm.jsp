@@ -114,6 +114,13 @@ body {
 	</div>
 </body>
 <script>
+//html 문서를 로그하자마자 상세정보를 가져온다
+var obj={};
+var idx;
+obj.type="POST";
+obj.dataType="JSON";
+obj.error=function(e){console.log(e)};
+
 function showCateS(val){
 	console.log(val);
 	if(val == "정육/달걀") {
@@ -156,6 +163,24 @@ function emptyChk(){
 	}else{
 		alert("1번째 사진은 필수 등록입니다.\n사진이 없거나 형식은 jpg 또는 png 파일만 가능합니다.");
 	}
+}
+
+$(document).ready(function() {
+	obj.url = "./sell_YN";
+	obj.data={sell_id:"${sessionScope.loginId}"};
+	obj.success = function(data) {
+		console.log(data);
+		if (data.YN != 2) {
+			alert("등급을 확인해주세요.");
+			location.href = "index.jsp";
+		}
+	}
+	ajaxCall(obj);
+});
+
+function ajaxCall(param) {
+	//console.log(param);
+	$.ajax(param);
 }
 </script>
 </html>

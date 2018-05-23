@@ -305,4 +305,18 @@ public class MemberService {
       response.getWriter().println(obj);      
    }
 
+public void sell_YN(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	int YN = 0;
+    String seller_id = request.getParameter("sell_id");
+    MemberDAO dao = new MemberDAO();
+    YN = dao.sell_YN(seller_id);
+    
+    Gson gson = new Gson();
+    HashMap<String, Integer> map = new HashMap<>();
+    map.put("YN",YN);
+    String obj = gson.toJson(map);
+    response.setContentType("text/html; charset=UTF-8");
+    response.getWriter().println(obj);
+}
+
 }
