@@ -6,89 +6,33 @@
 		<title>Insert title here</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
-			body {
-			min-width : 2750px;  
-        	margin : 0 auto;
-      	}
-		.jbTitle {
-			text-align: center;
-		}
-		
-		.jbMenu {
-			text-align: center;
-			background-color: yellow;
-			padding: 10px 0px;
-			width: 100%;
-		}
-		.jbFixed {
-        	position: fixed;
-        	top: 0px;
-      	}
-
-           li{
-                        list-style: none;
-                        padding: 5px 10px;
-                        text-align: left;
-                        float: left;
-                        width: 300px;
-                        text-align: center;
-                        border: 1px solid black; 
-
-                    }
-                    a{
-                        text-decoration: none;
-                    }
-
-                    table {
-                            width: 50%;
-                            border-top: 1px solid #444444;
-                            border-collapse: collapse;
-                          }
-                    th{
-                        border-bottom: 1px solid #444444;
-                        padding: 10px;
-                      }
-                    td{
-                        padding: 10px;
-                         border-bottom: 1px solid #444444;
-                        border-right:  1px solid #444444;
-                    }
-                    .ta{
-                        border-left: 1px solid #444444;
-                    }
-                    .tds{
-                        border-right: 1px solid #ffffff;
-                        border-left: 1px solid #444444;
-                    }
-                    .tda{
-                        border-bottom: 1px solid #ffffff;
-                        border-right:  1px solid #ffffff;
-                    }
-                    .tdb{
-                        border-right:  1px solid #ffffff;
-                    }
-                    .tdz{
-                        border-bottom: 1px solid #ffffff;
-                    }
-                    .tt{
-                    	border-bottom: 1px solid #ffffff;
-                    }
+			.buyListTable,.buyListTable td{
+				border: 1px solid black;
+				border-collapse: collapse;
+				width: 1000px;
+				text-align: center;
+			}
+			#buyListDiv{
+				width: 1000px;
+				margin: 0 auto;
+			}
 		</style>
 	</head>
 	<body>
+	<jsp:include page="navi.jsp"></jsp:include>
+		<div id="buyListDiv">
 		<h3>결제</h3>
-		<div>
-			<table>
+			<table class="buyListTable">
 				<tr>
 					<td>${info.prd_Name } 상품을 주문합니다.</td> 
 				</tr>	
 			</table><hr/>
-			<table>
+			<table class="buyListTable">
 				<tr>
 					<th>배송지 정보</th>
 				</tr>
 			</table>
-			<table>
+			<table class="buyListTable">
 				<tr>
 					<td>이름</td>
 					<td id="name"></td>
@@ -102,7 +46,7 @@
 					<td id="addr"></td>
 				</tr>
 			</table><hr/>
-			<table>
+			<table class="buyListTable">
 				<tr>
                 <td colspan="2" class="ta">
                     	주문정보  

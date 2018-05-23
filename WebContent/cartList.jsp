@@ -31,7 +31,6 @@
           </tr>
         </table>
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="buy">구매하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="del" type="button" value="삭제" />
         </div>
 	</body>
@@ -89,57 +88,6 @@
 			console.log(obj);
 			ajaxCall(obj);
 		});
-		
-		$("#buy").click(function(){
-			var checked = [];
-			$("input[type='checkbox']:checked").each(function(){
-				checked.push($(this).val());
-			});
-			console.log(checked);
-			location.href='./cart.jsp?checked='+checked;
-		});
-		
-		/*
-		$("#buy").click(function(){
-			obj.url="./cartBuy";
-			var checked = [];
-			$("input[type='checkbox']:checked").each(function(){
-				checked.push($(this).val());
-			});
-			console.log(checked);
-			obj.data = {buyList:checked};
-			obj.success = function(data){
-				if(data.success){
-					//location.href='./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"';
-					location.href='./cartDetail';
-				}else{
-					alert("구매에 실패했습니다.");
-				}
-			}
-			ajaxCall(obj);
-		});
-		*/
-		
-		/* $("#buy").click(function(){
-			obj.url="./cartBuy";
-			var checked = [];
-			
-			$("input[type='checkbox']:checked").each(function(){
-				checked.push($(this).val());
-			});
-			console.log(checked);
-			obj.data = {delList:checked};
-			obj.success = function(data){
-				if(data.success){
-					alert("삭제에 성공했습니다.");
-				}else{
-					alert("삭제에 실패했습니다.");
-				}
-				location.href="cartList.jsp";
-			}
-			console.log(obj);
-			ajaxCall(obj);
-		}); */
 		
 		function ajaxCall(param){
 			console.log(param);
