@@ -96,34 +96,6 @@
             	cursor: pointer;
             }
             
-            #join{
-            	position:absolute;
-            	left:86%;
-            	height : 42px;
-            	width: 130px;
-            	font-weight: 800;
-            	border-style : solid;
-            	border-color: limegreen;
-            	background-color : limegreen;
-            	color: white;
-            	cursor: pointer;
-            }
-            
-             .exit{
-            	position:absolute;
-            	left:1%;
-            	height : 30px;
-            	width: 130px;
-            	font-weight: 800;
-            	font-size:14;
-            	text-align:center;
-        		padding: 10px 0 0 0;
-            	border:2.5px solid limegreen;
-            	background-color : white;
-            	color: limegreen;
-            	cursor: pointer;
-            }
-            
 	 #upload {
         position: absolute;
         height : 42px;
@@ -225,7 +197,7 @@
 				style="margin:0 5 0 0" placeholder="이메일 입력란" /> @ <input class=inp  type="text"
 				id="emailview" name="after_emailview" style="width: 150"
 				placeholder="이메일 선택" disabled="true" /> <select id="email">
-					<option value="0">이메일을 선택 하세요</option>
+					<option value="0">이메일 선택</option>
 					<option value="1">직접입력</option>
 					<option>naver.com</option>
 					<option>hanmail.net</option>

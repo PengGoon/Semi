@@ -154,7 +154,7 @@ body {
 .rightMenu h3{
 	position:absolute;
 	float: right;
-	right: 270px;
+	right: 300px;
 }
 /* 장바구니 아이콘 */
 .cart {

@@ -7,7 +7,18 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-table, td {
+.uOder table {
+	/* border: 1px solid black; */
+	width: 0%;
+	padding: 10px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+	border-bottom: 1px solid #444444;
+}
+
+.uOder td {
 	/* border: 1px solid black; */
 	width: 0%;
 	padding: 10px;
@@ -49,6 +60,9 @@ table, td {
 </style>
 </head>
 <body>
+<jsp:include page="navi.jsp"></jsp:include>
+<jsp:include page="myPage_menu.jsp"></jsp:include>
+<div class= uOder>
 <br/><br/>
 	<table id="listTable">
 		<tr>
@@ -63,6 +77,7 @@ table, td {
 		<!-- JSON 내용을 테이블로 출력 -->
 	</table>
 	<input id="del" type="button" value="삭제" />
+	</div>
 </body>
 <script>
 	//리스트 호출(ajax)
