@@ -84,7 +84,7 @@ public class PurchaseDAO {
 	}
 
 	public ArrayList<PurchaseDTO> list(String loginUserId) {
-		ArrayList<PurchaseDTO> list = new ArrayList<>();
+		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
 		String sql = "SELECT p.prd_id, p.pur_id,t.prd_name,p.pur_count,t.prd_price,p.pur_date,p.pur_state FROM Purchase P,Product t WHERE p.prd_id=t.prd_id AND user_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
@@ -101,13 +101,16 @@ public class PurchaseDAO {
 				dto.setPur_state(rs.getString("pur_state"));// 배송 list.add(dto);
 				dto.setPrd_name(rs.getString("prd_name")); //안됨
 				dto.setPrd_price(rs.getInt("prd_price"));
-				String[] fileName = dao.fileNameCall(rs.getInt("prd_id"));
-				dto.setNewFileName1(fileName[0]);
+				//String[] fileName = dao.fileNameCall(rs.getInt("prd_id"));
+				//dto.setNewFileName1(fileName[0]);
 				list.add(dto);
 				System.out.println(rs.getInt("prd_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			resClose();
+			resClose();
 		}
 		return list;
 	}
