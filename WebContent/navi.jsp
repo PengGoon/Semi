@@ -308,7 +308,7 @@ div#category ul {
 			<ul>
 				<a id="myPage2"><li id="myPage1"></li></a>
 				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
-				<a href="userJoinSelect.jsp"><li>회원가입</li></a>
+				<a href="userJoinSelect.jsp"><li id="join">회원가입</li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
 			<br/>
@@ -391,9 +391,11 @@ div#category ul {
 		if (loginUserId == "" && loginSellerId == "") {
 			$("#loginst1").html("로그인");
 			$("#loginst2").attr("href", "userLogin.jsp");
+			$("#join").html("회원가입");
 		}else{
 			$("#loginst1").html("로그아웃");
 			$("#loginst2").attr("href", "logout");
+			$("#join").html("");
 			$("#myPage1").html("마이페이지");
 			$("#myPage2").attr("href", "myPage.jsp");
 			if(loginUserId != ""){
@@ -435,7 +437,25 @@ div#category ul {
 			}
 		});
 	});
-
+	
+	$(".cart").click(function(){
+		$.ajax({
+			type : "post",
+			url : "./cartList", //경로 이동 
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				if(loginUserId != ""){
+					location.href = "cartList.jsp";
+				}else {
+					alert("로그인이 필요한 서비스입니다.");
+				}
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		});
+	}); 
 
 </script>
 </html>

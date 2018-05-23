@@ -49,12 +49,7 @@ table, td {
 </style>
 </head>
 <body>
-	<jsp:include page="navi.jsp"></jsp:include>
-	<jsp:include page="myPage_menu.jsp"></jsp:include>
-	<br>
-	<br>
-	<br>
-	<br>
+<br/><br/>
 	<table id="listTable">
 		<tr>
 			<td colspan="2"><input type="checkbox" id="allcheck">주문번호
@@ -145,11 +140,11 @@ table, td {
 		obj.success = function(data) {
 			if (data.success) {
 				alert("삭제에 성공 했습니다.");
-				location.href = "u_Order.jsp";
+				location.href = "myPage.jsp";
 			} else {
 				alert("삭제에 실패 했습니다.");
 			}
-			location.href = "u_Order.jsp";
+			location.href = "myPage.jsp";
 		}
 		console.log(obj);
 		ajaxCall(obj);

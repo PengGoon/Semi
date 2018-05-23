@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.CartDAO;
+import com.mvc.dao.ProductDAO;
 import com.mvc.dto.CartDTO;
+import com.mvc.dto.ProductDTO;
 
 public class CartService {
 	public void cart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +40,17 @@ public class CartService {
 
 	// 장바구니 상세보기 요청
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String[] buyList= request.getParameterValues("buyList[]");
+		System.out.println(buyList.length);
+		CartDAO dao = new CartDAO();
+		ArrayList<CartDTO> list = dao.detailList(buyList);
+
+		Gson json = new Gson();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("list",list);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		/*
 		int prd_id = Integer.parseInt(request.getParameter("prd_id"));
 		
 		CartDAO dao = new CartDAO();
@@ -46,6 +59,7 @@ public class CartService {
 		request.setAttribute("dto", dto);
 		RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
 		dis.forward(request, response);
+		*/
 	}
 	
 	// 장바구니 리스트 보기 요청
@@ -67,9 +81,6 @@ public class CartService {
 	//form 방식에서는 상관 없으나 javascript 배열 방식으로 보낼 경우는 뒤에 [] 를 붙여 준다.
 	String[] buyList = request.getParameterValues("buyList[]");
 	System.out.println(buyList.length);
-	//복수개의 데이터를 지우기
-	//1. 지울 수 만큼 쿼리를 반복
-	//2. DELETE FROM bbs WHERE idx=? + OR idx=?
 	CartDAO dao = new CartDAO();
 	boolean success = false;
 		
