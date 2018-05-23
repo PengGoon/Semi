@@ -53,21 +53,15 @@ public class PurchaseService {
 
 	// 주문내역
 	public void ulist(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
-		
-		
+		String user_id = request.getParameter("user_id");
 		PurchaseDAO dao = new PurchaseDAO();
-		ArrayList<PurchaseDTO> list = dao.list(loginUserId);
-		System.out.println("주문내역" + list);
-		
-
+		ArrayList<PurchaseDTO> list = dao.list(user_id);
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
 		String obj = json.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
-
 	}
 
 	// 삭제

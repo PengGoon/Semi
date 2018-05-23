@@ -24,7 +24,7 @@ import com.mvc.service.UserService;
 	"/sell_prdList", "/sell_prdDelete", "/prd_searchSort", "/main_list", "/prd_bHitlist", "/prd_datelist","/prd_delieveryList", "/prd_delievery",
 	"/prd_search", "/prd_list", "/prd_detail", "/prd_update", "/prd_updateView", "/prd_write", "/prd_delete", "/prd_sellerdetail", "/prd2_buy", "/prd2_list", "/prd2_user", "/prd2_cart", "/prd2_purchase",
 	"/review_list","/review_detail","/review_update","/review_updateView","/review_write", "/review_detailView",
-	"/findId", "/findPw","/payList","/restock","/overlay",
+	"/findId", "/findPw","/payList","/restock","/overlay","/sell_YN",
 	"/admin_loginCheck","/admin_main" , "/admin_login" , "/admin_logout" , "/review_view", "/user_view", "/seller_view",
 	"/notice_main", "/notice_write", "/notice_delete", "/notice_detail","/notice_update" , "/notice_detailView","/admin_useDel","/u_update","/u_pwCheck", "/u_detailView",
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
@@ -206,6 +206,13 @@ public class MainController extends HttpServlet {
 						System.out.println("상품 등록 요청");
 						product = new ProductService();
 						product.write(request, response);
+						break;
+						
+					// 판매자 등급 가져오기
+					case "/sell_YN":
+						System.out.println("상품 등록 요청");
+						member = new MemberService();
+						member.sell_YN(request, response);
 						break;
 					
 					// 상품 삭제

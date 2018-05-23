@@ -188,7 +188,7 @@ body {
 			},
 			success : function(data) {
 				alert(data.msg);
-				location.href = "cartDetail?prd_id=${info.prd_Id}&prd_count="+cnt;
+				//location.href = "cartDetail?prd_id=${info.prd_Id}&prd_count="+cnt;
 			},
 			error : function(err) { console.log(err) }
 		});

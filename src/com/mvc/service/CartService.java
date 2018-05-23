@@ -62,8 +62,26 @@ public class CartService {
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().write(obj);
 	}
-
+	
 	public void buy(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	//form 방식에서는 상관 없으나 javascript 배열 방식으로 보낼 경우는 뒤에 [] 를 붙여 준다.
+	String[] buyList = request.getParameterValues("buyList[]");
+	System.out.println(buyList.length);
+	CartDAO dao = new CartDAO();
+	boolean success = false;
+		
+	if(dao.buy(buyList) == buyList.length) {
+		success = true;
+	}
+		
+	Gson json = new Gson();
+	HashMap<String, Boolean> map = new HashMap<>();
+	map.put("success", success);
+	String obj = json.toJson(map);
+	response.getWriter().println(obj);	
+}
+	
+	/*public void buy(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String prd_id = request.getParameter("prd_id");
 		CartDAO dao = new CartDAO();
 		CartDTO dto = dao.cartbuy(prd_id);
@@ -75,7 +93,7 @@ public class CartService {
 		String obj = gson.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().write(obj);
-	}
+	}*/
 
 	public void delete(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {

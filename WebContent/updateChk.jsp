@@ -5,16 +5,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 재확인</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.updateChkTitle {
+	margin: 10px auto 25px auto;
+	text-align: center;
+	font-size: 20;
+}
+ .updateChkTable{
+            	position:relative;
+				margin:  0 auto;
+            }
+#upPw {
+    height : 42px;
+	width: 130px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+	margin:  auto;
+}
+ .updateChkTable hr{
+            	border:none;
+            	width:100%;
+            	border:1px solid limegreen;
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+            }
+
+.inp {
+	height: 41px;
+}
+</style>
 </head>
 <body>
-	<fieldset>
-		<legend>본인확인을 위해 비밀번호를 입력해 주세요.</legend>
-		비밀번호 확인 : <input type="password" name="updatePwChk"
-			placeholder="비밀번호 확인 요청" />
-		<button id="upPw">확인</button>
-	</fieldset>
+		<div class=updateChkTitle><h2>본인확인을 위해 비밀번호를 입력해 주세요.</h2></div>
+		<table class=updateChkTable >
+			<tr><td colspan="3"><hr/></td></tr>
+			<tr>
+				<th>비밀번호 확인 :</th> 
+				<td><input type="password" class=inp name="updatePwChk" placeholder="비밀번호 확인 요청" /></td>
+			</tr>
+			<tr><td colspan="3"><hr/></td></tr>
+			<tr><td><button id="upPw">확인</button></td></tr>
+		</table>
 </body>
 <script type="text/javascript">
 	var msg = "${msg}";

@@ -91,6 +91,8 @@ public class CartDAO {
 			return null;
 		} finally {
 			resClose();
+			resClose();
+			resClose();
 		}
 		return dto;
 	}
@@ -124,7 +126,7 @@ public class CartDAO {
 		return list;
 	}
 	
-	public CartDTO cartbuy(String prd_id) {
+	/*public CartDTO cartbuy(String prd_id) {
 		String sql = "SELECT sell_id, prd_id FROM Product WHERE prd_id=?";
 		CartDTO dto = new CartDTO();
 		try {
@@ -144,7 +146,7 @@ public class CartDAO {
 			resClose();
 		}
 		return dto;
-	}
+	}*/
 	
 	//장바구니 삭제
 	public int delete(String[] delList) {		
@@ -163,6 +165,25 @@ public class CartDAO {
 			resClose();
 		}		
 		return delCnt;
+	}
+	
+	//장바구니 구매
+	public int buy(String[] buyList) {
+		String sql="INSERT INTO purchase VALUSE(purchase_seq.NEXTVAL,?,?,?)";
+		int buyCnt = 0;
+		try {
+			for(int i=0;i<buyList.length; i++) {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, Integer.parseInt(buyList[i]));
+				buyCnt += ps.executeUpdate();
+				ps.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}		
+		return buyCnt;
 	}
 	
 	// 자원 반납

@@ -138,7 +138,7 @@
           <tr>
                 <td colspan="2" class="tds"></td>
                 <td class="tds">총 주문금액</td>
-                <td colspan="2"></td>
+                <td colspan="2">${info.prd_Price*param.prd_count }원</td>
           </tr>
 			</table>
 			<br/>

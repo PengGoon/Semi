@@ -260,7 +260,7 @@ public class MemberDAO {
       } catch (SQLException e) {
          e.printStackTrace();
       } finally {
-//         resClose();
+         resClose();
       }
       return dto;
    }
@@ -402,5 +402,26 @@ public class MemberDAO {
       }      
       return delCnt;
    }
+
+public int sell_YN(String seller_id) {
+	int YN = 0;
+	String sql="SELECT sell_YN FROM seller WHERE sell_id = ?";
+    int delCnt = 0;
+    MemberDTO dto;
+    try {
+    	ps = conn.prepareStatement(sql);
+        ps.setString(1, seller_id);
+        rs = ps.executeQuery();	
+		if(rs.next()) {
+			dto = new MemberDTO();	
+			YN = rs.getInt("sell_yn");
+		}
+    } catch (SQLException e) {
+       e.printStackTrace();
+    }finally {
+       resClose();
+    }      
+	return YN;
+}
 
 }
