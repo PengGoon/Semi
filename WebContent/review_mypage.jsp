@@ -120,7 +120,7 @@
 		list.forEach(function(item,review_id){
 			//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
 			content += "<tr>";
-			content += "<td style='text-align:center'><input class='checkcheck' type='checkbox' value='"+list.review_id+"' />" +item.review_id+"</td>"; 
+			content += "<td style='text-align:center'><input class='checkcheck' type='checkbox' value='"+item.review_id+"' />" +item.review_id+"</td>"; 
 			content += "<td class='td'><a href='./review_detail?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>";
 			content += "<td style='text-align:center'>" +item.prd_Name+"</td>"; 
 			content += "<td style='text-align:center'>" +item.user_id+"</td>"; 
@@ -147,13 +147,14 @@
 		$("#del").click(function() {
 			obj.url = "./m_delete";
 			var checked = [];
+			//$("input[type='checkbox']:checked").each(function() {
 			$(".checkcheck:checked").each(function() {
 				checked.push($(this).val());
 			});
-			console.log(checked);
 			obj.data = {
 				delList : checked
 			};
+			console.log(checked);
 			obj.success = function(data) {
 				if (data.success) {
 					alert("삭제에 성공 했습니다.");
