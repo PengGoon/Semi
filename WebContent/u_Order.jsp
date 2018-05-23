@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,15 +42,19 @@
 		border-left: 1px solid #FFFFFF;
 		border-right: 1px solid #444444;
 	}
-	#del{
+	
+	#del {
 		margin: 0 1110px;
-	}	
+	}
 	</style>
 	</head>
 	<body>
 		<jsp:include page="navi.jsp"></jsp:include>
 		<jsp:include page="myPage_menu.jsp"></jsp:include>
-		<br><br><br><br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<table id="listTable">
 			<tr>
 				<td colspan="2"><input type="checkbox" id="allcheck">주문번호
@@ -93,7 +97,8 @@
 			console.log(list);
 			var content = "";
 	
-			list.forEach(function(list, pur_id) {
+			list
+					.forEach(function(list, pur_id) {
 						content += "<tr>";
 						content += "<td class='tb'><input class='checkcheck' type='checkbox' value='"+list.pur_id+"'/></td>";
 						//content +="<td class='td'><a href='./list?prd_Id="+list.prd_Id+"'>"+list.prd_id+"</a></td>";
