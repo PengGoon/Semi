@@ -4,17 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매자 정보 수정</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
- 			.updateForm table{
+ 			.updateForm table #after{
    		        font-weight: 600;
             	border: 1px solid black;
             	border-collapse: collapse;
             	padding: 5px 10px;
             	text-align: left;
             	border:none;
+            	margin:  0 auto;
             }   
             
              .updateForm td{
@@ -73,7 +74,7 @@
             	height: 41px;
             }
             
-            #overlay, #path{
+            #update_start, #update_end1, #update_end2,#update_success,#path{
             	font-weight: 600;
             	border-style : solid;
             	height : 41px;
@@ -112,6 +113,17 @@
             	cursor: pointer;
             }
             
+	 #upload {
+        position: absolute;
+        height : 42px;
+        width: 130px;
+        font-weight: 800;
+        border-style : solid;
+        border-color: limegreen;
+        background-color : limegreen;
+        color: white;
+        cursor: pointer;
+     }
 </style>
 </head>
 <body>
@@ -121,16 +133,12 @@
 <div class = updateForm>
 	<div class = userUpdateTitle>
     		<br/><br/>
-    		<h1>회원 정보 수정</h1>
+    		<h1>회원(판매자) 정보 수정</h1>
     </div> <br/>
 	<!-- 기본 정보 뷰 -->
 	<table class=updateFormTable id="before" style="width: 600">
 		<br/>
-    			<tr>
-    				<td colspan="3">
-    				<hr/>
-    				</td>
-    			</tr>
+    	<tr><td colspan="3"><hr/></td></tr>
 		<tr>
 			<td>회원 이름</td>
 			<td><input class=inp  type="text" name="userName"
@@ -143,8 +151,7 @@
 		</tr>
 		<tr>
 			<td>회원 EMAIL</td>
-			<td><input class=inp type="text" id="beforeEmail" disabled="true"
-				style="width: 100%" /></td>
+			<td><input class=inp type="text" id="beforeEmail" disabled="true"/></td>
 		</tr>
 		<tr>
 			<td>회원 휴대폰 번호</td>
@@ -157,19 +164,25 @@
 				<img width="300" id="after_filename"/>
 			</td>
 		</tr>
+		
+		<tr><td colspan="3"><hr/></td></tr>
+		
 		<tr>
 			<td colspan="2" style="text-align: left;">
-				<button id="update_start">정보 수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button id="update_end2">취소</button>&nbsp;&nbsp;
+				<button id="update_start">정보 수정하기</button>
+				<button id="update_end2">취소</button>
 			</td>
 		</tr>
 	</table>
 
 	<!-- 	본인확인 완료 후 창 -->
-	<table style="display: none;" id="after">
+	<table style="display: none;" id="after" style="margin:">
+	
+		<tr><td colspan="3"><hr/></td></tr>
+		
 		<tr>
 			<td>새로운 비밀번호</td>
-			<td><input class="inputTxt" type="password" name="userPw"
+			<td><input class="inp" type="password" name="userPw"
 				placeholder="비밀번호 입력란" /></td>
 		</tr>
 		<tr>
@@ -185,11 +198,11 @@
 		<tr>
 			<td>새로운 주소</td>
 			<td><input class=inp  type="text" name="addr1" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button" class=inp 
+				placeholder="우편번호"  style="margin:4 0 4 0"> <input type="button" class=inp id="path" 
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
 				<input type="text" class=inp  name="addr2" id="sample4_roadAddress"
-				placeholder="도로명주소"> <input type="text" class=inp  name="addr3"
-				id="sample4_jibunAddress" placeholder="지번주소""> <span
+				placeholder="도로명주소"  style="margin:4 0 4 0"> <input type="text" class=inp  name="addr3"
+				id="sample4_jibunAddress" placeholder="지번주소"  style="margin:4 0 4 0"> <span
 				id="guide" style="color: #999"></span></td>
 		</tr>
 		<tr>
@@ -198,8 +211,8 @@
 		<tr>
 			<td>새로운 EMAIL</td>
 			<td><input class=inp  type="text" name="after_email" id="after_email"
-				style="width: 150" placeholder="이메일 입력란" /> @ <input type="text"
-				id="emailview" name="after_emailview" style="width: 100"
+				style="margin:0 5 0 0" placeholder="이메일 입력란" /> @ <input class=inp  type="text"
+				id="emailview" name="after_emailview" style="width: 150"
 				placeholder="이메일 선택" disabled="true" /> <select id="email">
 					<option value="0">이메일을 선택 하세요</option>
 					<option value="1">직접입력</option>
@@ -225,12 +238,15 @@
 			<td>새로운 사업자 등록증</td>
 			<td><input type="text" class=inp id="successinfo" name="successinfo"
 				style="color: green" placeholder="사업자 등록증 등록란" disabled="true" /> <input
-				type="button" onclick="openChild()" value="업로드" />
+				type="button" onclick="openChild()" id="upload" value="업로드" style="margin:0 0 0 5px"/>
 		</tr>
+		
+		<tr><td colspan="3"><hr/></td></tr>
+		
 		<tr>
-			<td colspan="2" style="text-align: left;">
-				<button id="update_end1">취소</button>&nbsp;&nbsp;
-				<button id="update_success">저장</button>&nbsp;&nbsp;
+			<td colspan="2" style="text-align: right;">
+				<button id="update_end1">취소</button>
+				<button id="update_success">저장</button>
 			</td>
 		</tr>
 	</table>
@@ -251,7 +267,7 @@
 		window.name = "parentForm";
 		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open("upload.jsp", "childForm",
-				"width=570, height=200, resizable = no, scrollbars = no");
+				"width=600, height=200, resizable = no, scrollbars = no");
 	}
 
 	$(document).ready(function() {
@@ -326,7 +342,7 @@
 						//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 						openWin = window
 								.open("updateChk.jsp", "childForm",
-										"width=700, height=200, resizable = no, scrollbars = no");
+										"width=550, height=250, resizable = no, scrollbars = no");
 
 					});
 

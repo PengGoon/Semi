@@ -8,17 +8,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.updateTitle {
+	margin: 10px auto 25px auto;
+	text-align: center;
+	font-size: 20;
+}
+ .updateTable{
+            	position:relative;
+				margin:  0 auto;
+            }
+#upPw {
+    height : 42px;
+	width: 130px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+	margin:  auto;
+}
+ .updateTable hr{
+            	border:none;
+            	width:100%;
+            	border:1px solid limegreen;
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+            }
+
+.inp {
+	height: 41px;
+}
+</style>
 </head>
 <body>
-	<form action="./upload" method="post" enctype="multipart/form-data"
-		name="form">
-		<fieldset>
-			<legend>사업자 등록증 업로드</legend>
-			<input type="text" id="result" name="result" value="${filename}" />
-			<input type="file" id="filenamee" name="filename" /> <input
-				type="submit" value="업로드" />
-		</fieldset>
+	<div class=updateTitle><h2>사업자 등록증 업로드</h2></div>
+	<table class=updateTable>
+	<form action="./upload" method="post" enctype="multipart/form-data" name="form">
+		<tr><td colspan="3"><hr/></td></tr>
+		<tr><td><input type="text" id="result" name="result" value="${filename}" /></td></tr>
+		<tr><td><input type="file" id="filenamee" name="filename" /></td></tr> 
+		<tr><td colspan="3"><hr/></td></tr>	
+		<tr><td><input type="submit" value="업로드" /></td></tr>
 	</form>
+	</table>
 </body>
 
 <script>
