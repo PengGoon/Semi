@@ -81,7 +81,7 @@
 		$(document).ready(function() {
 			obj.url = "./u_list";
 			obj.success = function(data) {
-				//console.log(data);
+				console.log(data);
 				if (data.list) {
 					//리스트 보여주기
 					listPrint(data.list);
@@ -97,13 +97,13 @@
 			console.log(list);
 			var content = "";
 	
-			list
-					.forEach(function(list, pur_id) {
+			list.forEach(function(list, pur_id) {
+					console.log(list.pur_id);
 						content += "<tr>";
 						content += "<td class='tb'><input class='checkcheck' type='checkbox' value='"+list.pur_id+"'/></td>";
 						//content +="<td class='td'><a href='./list?prd_Id="+list.prd_Id+"'>"+list.prd_id+"</a></td>";
 						content += "<td class='td'>" + list.prd_id + "</td>";
-						content += "<td class='ta'><img width='100' src='./upload/"+list.newFileName1+"'/></td>";//상품이름
+						//content += "<td class='ta'><img width='100' src='./upload/"+list.newFileName1+"'/></td>";//상품이름
 						content += "<td class='tc'>" + list.prd_name + "</td>";//상품이름
 						content += "<td class='te'>가격:" + list.prd_price + "원</td>"; //가격
 						content += "<td>" + list.pur_count + "</td>";//수량

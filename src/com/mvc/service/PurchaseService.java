@@ -54,7 +54,7 @@ public class PurchaseService {
 	// 주문내역
 	public void ulist(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
-		
+		System.out.println("로그인아이디"+loginUserId);
 		
 		PurchaseDAO dao = new PurchaseDAO();
 		ArrayList<PurchaseDTO> list = dao.list(loginUserId);

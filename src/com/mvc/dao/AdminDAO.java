@@ -63,11 +63,5 @@ public class AdminDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		}
-
-
-
-			
 	}
-
+}
