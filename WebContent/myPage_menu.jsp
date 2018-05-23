@@ -47,7 +47,7 @@
 			<c:if test="${sessionScope.loginUserId ne null}">
 				<tr>
 					<td><a href="u_Order.jsp">주문내역</a></td>
-					<td><a href="#">작성한후기</a></td>
+					<td><a href="review_mypage.jsp">작성한후기</a></td>
 					<td><a href="u_updateform.jsp">개인정보수정</a></td>
 				</tr>
 			</c:if>
@@ -55,8 +55,8 @@
 				<tr class=myPageTr>
 					<td><a class=myPageAtag href="myPage.jsp">등록상품관리</a></td>
 					<td><a class=myPageAtag href="prd_writeForm.jsp">상품등록</a></td>
-					<td><a class=myPageAtag href="#">개인정보수정</a></td>
-					<td><a class=myPageAtag href="#">판매권한신청</a></td>
+					<td><a class=myPageAtag href="updateform.jsp">개인정보수정</a></td>
+               		<td><a class=myPageAtag href="requestform.jsp">판매권한신청</a></td>
 				</tr>
 			</c:if>
 		</table>

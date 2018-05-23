@@ -6,27 +6,51 @@
 		<title>Insert title here</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
-			body{
-				min-width : 3100px;  
-         		margin : 0 auto;
-			}
-            a{
-                text-decoration: none;
-              }
+			body {
+			min-width : 2750px;  
+        	margin : 0 auto;
+      	}
+		.jbTitle {
+			text-align: center;
+		}
+		
+		.jbMenu {
+			text-align: center;
+			background-color: yellow;
+			padding: 10px 0px;
+			width: 100%;
+		}
+		.jbFixed {
+        	position: fixed;
+        	top: 0px;
+      	}
 
-            table {
-                     width: 50%;
-                     border-top: 1px solid;
-                     border-collapse: collapse;
-                  }
-                  
+           li{
+                        list-style: none;
+                        padding: 5px 10px;
+                        text-align: left;
+                        float: left;
+                        width: 300px;
+                        text-align: center;
+                        border: 1px solid black; 
+
+                    }
+                    a{
+                        text-decoration: none;
+                    }
+
+                    table {
+                            width: 50%;
+                            border-top: 1px solid #444444;
+                            border-collapse: collapse;
+                          }
                     th{
                         border-bottom: 1px solid #444444;
                         padding: 10px;
                       }
                     td{
                         padding: 10px;
-                        border-bottom: 1px solid #444444;
+                         border-bottom: 1px solid #444444;
                         border-right:  1px solid #444444;
                     }
                     .ta{
@@ -39,16 +63,15 @@
                     .tda{
                         border-bottom: 1px solid #ffffff;
                         border-right:  1px solid #ffffff;
-                    } 
+                    }
                     .tdb{
                         border-right:  1px solid #ffffff;
-                    } 
+                    }
                     .tdz{
                         border-bottom: 1px solid #ffffff;
                     }
-                    .name, .address, .phone{
-                    	width: 100px;
-                    	padding: 10px 20px;
+                    .tt{
+                    	border-bottom: 1px solid #ffffff;
                     }
 		</style>
 	</head>
@@ -85,12 +108,14 @@
                     	주문정보  
                 </td>
                 <td>상품금액</td>
+                <td>상품수량</td>
                 <td>배송비</td>
           </tr>
           <tr>
                 <td class="ta"><img width="150" src="./upload/${list.newFileName1}"/></td>
                 <td>${info.prd_Name }</td>
                 <td>${info.prd_Price}원</td>
+                <td>${param.prd_count }개</td>
                 <td>0원</td>
           </tr>
           <!-- <tr>
@@ -100,20 +125,20 @@
               <td>2,500원</td>
           </tr> -->
           <tr>
-                <td rowspan="2" class="tds">총 주문금액</td>
+               <td rowspan="2" class="tds">총 주문금액</td>
                 <td class="tda"></td>
                 <td class="tda">총 상품금액</td>
-                <td class="tdz">${info.prd_Price }원</td>
+                <td colspan="2" class="tt">${info.prd_Price*param.prd_count }원</td>
           </tr>
           <tr>
                 <td class="tdb"></td>
                 <td class="tdb">배송비</td>
-                <td>0원</td>
+                <td colspan="2">0원</td>
           </tr>
           <tr>
                 <td colspan="2" class="tds"></td>
                 <td class="tds">총 주문금액</td>
-                <td>${info.prd_Price }원</td>
+                <td colspan="2"></td>
           </tr>
 			</table>
 			<br/>
@@ -136,7 +161,7 @@
 	var id = "${sessionScope.loginUserId}";
 	var prd_id = "${param.prd_id}";
 	var sell_id = "${param.sell_id}";
-	
+	var prd_count = "${param.prd_count}";
 	 $(document).ready(function(){
 		if(id == "") {
 			alert("로그인이 필요한 서비스입니다.");
@@ -163,7 +188,7 @@
 	});
 	
 		$("#cancle").click(function(){
-			location.href="prd_detailForm.jsp"; 
+			location.href="index.jsp"; 
 		});
 		
 		$("#buy").click(function(){
@@ -175,18 +200,16 @@
 					user_id: "${sessionScope.loginUserId}", 
 					prd_id: prd_id,
 					sell_id: sell_id,
-					// 수량, 주문상태 부분(미수정)
-					pur_count: 1,
+					// 주문상태 부분(미수정)
+					pur_count: prd_count,
 					pur_state: "주문중"
 				},
 				success : function(data) {
 					alert(data.msg);
-					// data.
-					// location.href = "";
+					location.href = "index.jsp";
 				},
 				error : function(err) { console.log(err) }
 			});
-		//location.href="buy1.jsp"; 
 	}); 
 		
 	</script>

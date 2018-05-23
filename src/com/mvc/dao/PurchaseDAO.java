@@ -93,7 +93,6 @@ public class PurchaseDAO {
 			while (rs.next()) {
 				PurchaseDTO dto = new PurchaseDTO();
 				ProductDAO dao = new ProductDAO();
-				System.out.println("어어");
 				dto.setPur_id(rs.getInt("pur_id"));// 상품고유번호 됨 됨
 				dto.setPrd_id(rs.getInt("prd_id"));//
 				dto.setPur_count(rs.getInt("pur_count"));// 수량

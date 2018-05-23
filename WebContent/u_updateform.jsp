@@ -49,6 +49,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align: left;">
+				<button id="del">회원탈퇴</button>
 				<button id="update_start">정보 수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button id="update_end2">취소</button>&nbsp;&nbsp;
 			</td>
@@ -197,6 +198,20 @@
 				}
 			});
 		});
+		//회원탈퇴
+	      $("#del").click(function(){
+	         obj.url="./u_del";
+	         obj.success = function(data) {
+	               if (data.success > 0 ) {
+	               alert("삭제에 성공 했습니다.");
+	               location.href="index.jsp";
+	            }else{
+	               alert("삭제에 실패 했습니다.");
+	            }      
+	         }
+	         console.log(obj);
+	         ajaxCall(obj);
+	      });
 		
 		$("#update_start")
 		.click(

@@ -151,6 +151,22 @@ public class UserDAO {
 		}
 		return delCnt;
 	}
+	
+	//회원탈퇴
+		public int del(String loginUserId) {
+			String sql = "DELETE FROM UserDB WHERE user_Id = ?";
+			int success = 0;
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, loginUserId);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			return success;
+		}
 
     //구매 페이지에서 로그인 중인 회원 정보 뽑기
     public UserDTO user(String user_id) {
@@ -333,6 +349,7 @@ public class UserDAO {
 	         e.printStackTrace();
 	      }
 	   }
+	
 	
 	
 
