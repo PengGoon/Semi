@@ -90,6 +90,7 @@ public class PurchaseDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, loginUserId);
 			rs = ps.executeQuery();
+			System.out.println(loginUserId);
 			while (rs.next()) {
 				PurchaseDTO dto = new PurchaseDTO();
 				ProductDAO dao = new ProductDAO();
@@ -103,6 +104,7 @@ public class PurchaseDAO {
 				String[] fileName = dao.fileNameCall(rs.getInt("prd_id"));
 				dto.setNewFileName1(fileName[0]);
 				list.add(dto);
+				System.out.println(rs.getInt("prd_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

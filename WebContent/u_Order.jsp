@@ -81,7 +81,7 @@
 		$(document).ready(function() {
 			obj.url = "./u_list";
 			obj.success = function(data) {
-				//console.log(data);
+				console.log(data);
 				if (data.list) {
 					//리스트 보여주기
 					listPrint(data.list);
@@ -97,8 +97,8 @@
 			console.log(list);
 			var content = "";
 	
-			list
-					.forEach(function(list, pur_id) {
+			list.forEach(function(list, pur_id) {
+					console.log(list.pur_id);
 						content += "<tr>";
 						content += "<td class='tb'><input class='checkcheck' type='checkbox' value='"+list.pur_id+"'/></td>";
 						//content +="<td class='td'><a href='./list?prd_Id="+list.prd_Id+"'>"+list.prd_id+"</a></td>";
