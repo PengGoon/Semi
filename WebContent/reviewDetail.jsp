@@ -112,8 +112,8 @@
 			<td><input type="text" id="userId" style="border:none" readonly /></td>
 		</tr>
 		<tr>
-			<th>상품번호</th>
-			<td><input type="text" id="prd_id" style="border:none" readonly />
+			<th>상품명</th>
+			<td><input type="text" id="prd_Name" style="border:none" readonly />
 			</td>
 		</tr>
 		<tr>
@@ -158,7 +158,7 @@
 	function printInfo(info) {
 		review_id = info.review_id;
 		$("#userId").val(info.user_id);
-		$("#prd_id").val(info.prd_id);
+		$("#prd_Name").val(info.prd_Name);
 		$("#reviewTitle").val(info.review_title);
 		$("#reviewContent").val(info.review_content);
 	}

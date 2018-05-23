@@ -13,7 +13,15 @@ public class ReviewDTO {
 	private Date review_date; 
 	private String newFileName;
 	private int bHit;
+	private String prd_Name;
+	
 
+	public String getPrd_Name() {
+		return prd_Name;
+	}
+	public void setPrd_Name(String prd_Name) {
+		this.prd_Name = prd_Name;
+	}
 	public int getbHit() {
 		return bHit;
 	}

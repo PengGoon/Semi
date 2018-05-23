@@ -111,7 +111,7 @@
 			content += "<tr>";
 			content += "<td style='text-align:center'>" +item.review_id+"</td>"; 
 			content += "<td><a href='./review_detail?review_id=" +item.review_id+"'>"+item.review_title+"</a></td>";
-			content += "<td style='text-align:center'>" +item.prd_id+"</td>"; 
+			content += "<td style='text-align:center'>" +item.prd_Name+"</td>"; 
 			content += "<td style='text-align:center'>" +item.user_id+"</td>"; 
 			content += "<td style='text-align:center'>" +item.review_date+"</td>"; 
 			content += "<td style='text-align:right'>" +item.bHit+"</td>"; 
