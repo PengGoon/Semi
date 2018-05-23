@@ -18,7 +18,7 @@
 		<jsp:include page="navi.jsp"></jsp:include>
 		<jsp:include page="myPage_menu.jsp"></jsp:include>
 		<c:if test="${sessionScope.loginUserId ne null}">
-			
+			<jsp:include page="u_Order.jsp"></jsp:include>
 		</c:if>
 		<c:if test="${sessionScope.loginId ne null}">
 			<jsp:include page="sell_prdList.jsp"></jsp:include>

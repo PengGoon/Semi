@@ -67,30 +67,33 @@
 	.td{
 		text-align: center;
 	}
+	#del{
+		float: right;
+	}
 </style>
 <body>
-		<jsp:include page="navi.jsp"></jsp:include>
-		<jsp:include page="myPage_menu.jsp"></jsp:include>
+	<jsp:include page="navi.jsp"></jsp:include>
+	<jsp:include page="myPage_menu.jsp"></jsp:include>
 	<div id="reviewList">
 		<h3 class=msg>PRODUCT REVIEW</h3>
-		<h5>상품 사용 후기를 남기는 공간입니다.해당 게시판의 성격과 다른 글은 사전 동의 없이 삭제 될 수 있습니다.</h5><hr/>
-	<table id = "listTable">
-		<tr>
-			<th style="width:100px"><input type="checkbox" id="allcheck">글 번호</th>
-			<th style="width:300px">제목</th>
-			<th style="width:250px">상품명</th>
-			<th style="width:150px">작성자</th>
-			<th style="width:150px">작성일</th>
-			<th style="width:100px">조회수</th>
-		</tr>
-	</table>
-	<br/>
-	<hr/>
-<!-- 	<button id=writeBtn onclick="location.href='reviewWriteForm.jsp'">후기 작성</button> -->
-	</div>
+		<h5>상품 사용 후기를 남기는 공간입니다.해당 게시판의 성격과 다른 글은 사전 동의 없이 삭제 될 수 있습니다.</h5>
+		<hr />
+		<table id="listTable">
+			<tr>
+				<th style="width: 100px"><input type="checkbox" id="allcheck">글번호</th>
+				<th style="width: 300px">제목</th>
+				<th style="width: 250px">상품명</th>
+				<th style="width: 150px">작성자</th>
+				<th style="width: 150px">작성일</th>
+				<th style="width: 100px">조회수</th>
+			</tr>
+		</table>
+		<br />
+		<hr />
 		<input id="del" type="button" value="삭제" />
-	</body>
-	<script>
+	</div>
+</body>
+<script>
 	//리스트 호출
 	var obj = {};
 		obj.error = function(e) {

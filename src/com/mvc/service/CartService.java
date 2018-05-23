@@ -67,9 +67,6 @@ public class CartService {
 	//form 방식에서는 상관 없으나 javascript 배열 방식으로 보낼 경우는 뒤에 [] 를 붙여 준다.
 	String[] buyList = request.getParameterValues("buyList[]");
 	System.out.println(buyList.length);
-	//복수개의 데이터를 지우기
-	//1. 지울 수 만큼 쿼리를 반복
-	//2. DELETE FROM bbs WHERE idx=? + OR idx=?
 	CartDAO dao = new CartDAO();
 	boolean success = false;
 		

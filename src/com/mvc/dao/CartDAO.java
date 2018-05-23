@@ -169,7 +169,7 @@ public class CartDAO {
 	
 	//장바구니 구매
 	public int buy(String[] buyList) {
-		String sql="SELECT sell_id, prd_id FROM Product WHERE prd_id=?";
+		String sql="INSERT INTO purchase VALUSE(purchase_seq.NEXTVAL,?,?,?)";
 		int buyCnt = 0;
 		try {
 			for(int i=0;i<buyList.length; i++) {
