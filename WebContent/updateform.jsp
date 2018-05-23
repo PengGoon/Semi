@@ -7,45 +7,148 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
 <style>
-table, td, th {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 5px 10px;
-	text-align: center;
-	margin: 100 350;
-}
-
-input.inputTxt {
-	width: 100%;
-}
+ 			.updateForm table{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+             .updateForm td{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+            .updateForm th{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+            .updateForm hr{
+            	border:none;
+            	width:1000px;
+            	border:1px solid limegreen;
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+            }
+            
+           	.updateForm h5{
+           		position:absolute;
+           		left:78%;
+           	}
+            
+            .userUpdateTitle{
+            	margin : 60px 0px 55px 0px;
+            	text-align: center;
+            	color: limegreen;
+            	font-size: 20;
+            }
+            
+            .updateFormTable{
+            	position:absolute;
+            	left: 20%;
+				margin:  0 0 120px 0;
+            }
+            
+            .updateForm select{
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            }
+            
+            .inp{
+            	height: 41px;
+            }
+            
+            #overlay, #path{
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
+            #join{
+            	position:absolute;
+            	left:86%;
+            	height : 42px;
+            	width: 130px;
+            	font-weight: 800;
+            	border-style : solid;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
+             .exit{
+            	position:absolute;
+            	left:1%;
+            	height : 30px;
+            	width: 130px;
+            	font-weight: 800;
+            	font-size:14;
+            	text-align:center;
+        		padding: 10px 0 0 0;
+            	border:2.5px solid limegreen;
+            	background-color : white;
+            	color: limegreen;
+            	cursor: pointer;
+            }
+            
 </style>
 </head>
 <body>
 	<jsp:include page="navi.jsp"></jsp:include>
 	<jsp:include page="myPage_menu.jsp"></jsp:include>
+<!-- 바디 전체를 감싸는 updateForm 클래스 -->
+<div class = updateForm>
+	<div class = userUpdateTitle>
+    		<br/><br/>
+    		<h1>회원 정보 수정</h1>
+    </div> <br/>
 	<!-- 기본 정보 뷰 -->
-	<table id="before" style="width: 600">
-		<h2>판매자 회원 정보 수정</h2>
+	<table class=updateFormTable id="before" style="width: 600">
+		<br/>
+    			<tr>
+    				<td colspan="3">
+    				<hr/>
+    				</td>
+    			</tr>
 		<tr>
 			<td>회원 이름</td>
-			<td><input class="inputTxt" type="text" name="userName"
+			<td><input class=inp  type="text" name="userName"
 				id="beforeName"  disabled="true" /></td>
 		</tr>
 		<tr>
 			<td>회원 주소</td>
-			<td><input type="text" id="beforeAddr" disabled="true"
+			<td><input class=inp  type="text" id="beforeAddr" disabled="true"
 				style="width: 100%" /></td>
 		</tr>
 		<tr>
 			<td>회원 EMAIL</td>
-			<td><input type="text" id="beforeEmail" disabled="true"
+			<td><input class=inp type="text" id="beforeEmail" disabled="true"
 				style="width: 100%" /></td>
 		</tr>
 		<tr>
 			<td>회원 휴대폰 번호</td>
-			<td><input class="inputTxt" type="text" name="phone"
+			<td><input class=inp  type="text" name="phone"
 				id="beforePhone" disabled="true" /></td>
 		</tr>
 		<tr>
@@ -71,21 +174,21 @@ input.inputTxt {
 		</tr>
 		<tr>
 			<td>새로운 비밀번호 확인</td>
-			<td><input class="inputTxt" type="password" name="userPwCk"
+			<td><input class=inp  type="password" name="userPwCk"
 				placeholder="비밀번호 확인란" /></td>
 		</tr>
 		<tr>
 			<td>새로운 이름</td>
-			<td><input class="inputTxt" type="text" name="after_userName" id="after_userName"
+			<td><input class=inp  type="text" name="after_userName" id="after_userName"
 				placeholder="이름 입력란" /></td>
 		</tr>
 		<tr>
 			<td>새로운 주소</td>
-			<td><input type="text" name="addr1" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button"
+			<td><input class=inp  type="text" name="addr1" id="sample4_postcode"
+				placeholder="우편번호"> <input type="button" class=inp 
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-				<input type="text" name="addr2" id="sample4_roadAddress"
-				placeholder="도로명주소"> <input type="text" name="addr3"
+				<input type="text" class=inp  name="addr2" id="sample4_roadAddress"
+				placeholder="도로명주소"> <input type="text" class=inp  name="addr3"
 				id="sample4_jibunAddress" placeholder="지번주소""> <span
 				id="guide" style="color: #999"></span></td>
 		</tr>
@@ -94,7 +197,7 @@ input.inputTxt {
 		</tr>
 		<tr>
 			<td>새로운 EMAIL</td>
-			<td><input class="inputTxt" type="text" name="after_email" id="after_email"
+			<td><input class=inp  type="text" name="after_email" id="after_email"
 				style="width: 150" placeholder="이메일 입력란" /> @ <input type="text"
 				id="emailview" name="after_emailview" style="width: 100"
 				placeholder="이메일 선택" disabled="true" /> <select id="email">
@@ -109,7 +212,7 @@ input.inputTxt {
 		</tr>
 		<tr>
 			<td>새로운 휴대폰 번호</td>
-			<td><input class="inputTxt" type="text" name="after_phone" id="after_phone"
+			<td><input class=inp type="text" name="after_phone" id="after_phone"
 				placeholder="휴대폰 번호 입력란" /></td>
 		</tr>
 		<tr>
@@ -120,7 +223,7 @@ input.inputTxt {
 		</tr>
 		<tr>
 			<td>새로운 사업자 등록증</td>
-			<td><input type="text" id="successinfo" name="successinfo"
+			<td><input type="text" class=inp id="successinfo" name="successinfo"
 				style="color: green" placeholder="사업자 등록증 등록란" disabled="true" /> <input
 				type="button" onclick="openChild()" value="업로드" />
 		</tr>
@@ -131,6 +234,7 @@ input.inputTxt {
 			</td>
 		</tr>
 	</table>
+</div>
 </body>
 <script>
 	var obj = {};//초기화   

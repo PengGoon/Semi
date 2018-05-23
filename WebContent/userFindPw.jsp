@@ -179,8 +179,7 @@
 					obj.success = function(data) {
 						if (data.success == true) {
 							alert("찾으시는 비밀번호를 메일로 전송했습니다.");
-							location.href = "index.jsp";
-							window.open("about:blank", "_self").close();
+							location.href = "userLogin.jsp";
 						} else {
 							alert("해당 정보가 없습니다.");
 						}
