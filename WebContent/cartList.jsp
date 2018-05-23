@@ -89,6 +89,7 @@
 	</body>
 	<script>
 		var obj = {};
+		var cnt = "data.list[i].prd_count";
 		obj.error = function(e){console.log(e)};
 		obj.type="POST";
 		obj.dataType="JSON";
@@ -140,6 +141,46 @@
 			console.log(obj);
 			ajaxCall(obj);
 		});
+		
+		$("#buy").click(function(){
+			obj.url="./cartBuy";
+			var checked = [];
+			$("input[type='checkbox']:checked").each(function(){
+				checked.push($(this).val());
+			});
+			console.log(checked);
+			obj.data = {buyList:checked};
+			obj.success = function(data){
+				if(data.success){
+					location.href='./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"';
+				}else{
+					alert("구매에 실패했습니다.");
+				}
+			}
+			console.log(obj);
+			ajaxCall(obj);
+		});
+		
+		/* $("#buy").click(function(){
+			obj.url="./cartBuy";
+			var checked = [];
+			
+			$("input[type='checkbox']:checked").each(function(){
+				checked.push($(this).val());
+			});
+			console.log(checked);
+			obj.data = {delList:checked};
+			obj.success = function(data){
+				if(data.success){
+					alert("삭제에 성공했습니다.");
+				}else{
+					alert("삭제에 실패했습니다.");
+				}
+				location.href="cartList.jsp";
+			}
+			console.log(obj);
+			ajaxCall(obj);
+		}); */
 		
 		function ajaxCall(param){
 			console.log(param);
