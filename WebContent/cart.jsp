@@ -84,8 +84,13 @@
                 <td>배송비</td>
           </tr>
           <tr>
+<<<<<<< HEAD
+                <td class="ta"><input type="checkbox" value=""><img width="100" src="./upload/${dto.newFileName}"/></td>
+                <td><div id="div_1">${dto.prd_name}</div></td>
+=======
                 <td class="ta"><img width="100" src="./upload/${dto.newFileName}"/></td>
                 <td>${dto.prd_name}</td>
+>>>>>>> cb41482e5fbac7c4974389b474bb4cd06d8edc87
                 <td>${param.prd_count }개</td>
                 <td>${dto.prd_price}원</td>
                 <td>0원</td>
@@ -110,6 +115,22 @@
         <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
 	</body>
 	<script>
+		$.ajax({
+			type : "post",
+			url : "./cartList",
+			dataType : "json",
+			data : {
+				user_id: "${sessionScope.loginUserId}",
+			},
+			success : function(data) {
+				alert(data.msg);
+				console.log(data.list[0]);
+				data.list.each()
+				$("#div_1").text(data.list[0].prd_name);
+			},
+			error : function(err) { console.log(err) }
+		});
+	
 		var p = "${dto.prd_price}";
 		var cnt = "${param.prd_count}";
 		

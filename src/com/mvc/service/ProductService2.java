@@ -1,14 +1,12 @@
 package com.mvc.service;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.mvc.dao.ProductDAO2;
 import com.mvc.dto.ProductDTO2;
 
@@ -26,5 +24,7 @@ public class ProductService2 {
 		request.setAttribute("list", dto2);
 		RequestDispatcher dis = request.getRequestDispatcher("buy.jsp");
 		dis.forward(request, response);
+		
+		
 	}
 }

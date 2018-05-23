@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.mvc.dao.ProductDAO;
 import com.mvc.dao.PurchaseDAO;
-import com.mvc.dto.ProductDTO;
 import com.mvc.dto.PurchaseDTO;
 
 public class PurchaseService {
@@ -57,12 +55,8 @@ public class PurchaseService {
 	public void ulist(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
 		
-		String[] oldFileName = null;
 		
 		PurchaseDAO dao = new PurchaseDAO();
-
-		
-		
 		ArrayList<PurchaseDTO> list = dao.list(loginUserId);
 		System.out.println("주문내역" + list);
 		
@@ -82,6 +76,7 @@ public class PurchaseService {
 		System.out.println(delList.length);
 		PurchaseDAO dao = new PurchaseDAO();
 		boolean success = false;
+		
 		if (dao.delete(delList) == delList.length) {
 			success = true;
 		}

@@ -32,7 +32,7 @@ public class ReviewDAO {
 	//리스트 불러오기
 	public ArrayList<ReviewDTO> list() {		
 		ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
-		String sql = "SELECT * FROM review ORDER BY review_id DESC";
+		String sql = "SELECT r.review_id, p.prd_name, r.user_id, r.review_date, r.bHit, r.review_title  FROM review r,Product p WHERE r.prd_id = p.prd_id";
 		try {
 			//쿼리 와 ps 준비
 			ps = conn.prepareStatement(sql);//쿼리 실행			
@@ -40,10 +40,9 @@ public class ReviewDAO {
 			while(rs.next()) {//rs 에서 값 가져와 dto 담기
 				//번호, 제목, 상품명, 작성자 , 작성일, 조회수 
 				ReviewDTO dto = new ReviewDTO();			
-
 				dto.setReview_id(rs.getInt("review_id")); //번호
 				dto.setReview_title(rs.getString("review_title")); //제목
-				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_Name")); //상품이름
 				dto.setUser_id(rs.getString("user_id")); //작성자
 				dto.setReview_date(rs.getDate("review_date"));
 				dto.setbHit(rs.getInt("bHit"));
@@ -74,7 +73,7 @@ public class ReviewDAO {
 	public ReviewDTO detailView(String review_id) {
 		ReviewDTO dto = null;
 		ProductDTO dto2 = null;
-		String sql="SELECT * FROM review WHERE review_id = ?";
+		String sql="SELECT r.review_id, p.prd_name, r.user_id, r.review_date, r.bHit, r.review_title, r.review_content  FROM review r,Product p WHERE r.prd_id = p.prd_id AND review_id=?";
 		try {
 			ps  = conn.prepareStatement(sql);
 			ps.setInt(1, Integer.parseInt(review_id));
@@ -83,7 +82,8 @@ public class ReviewDAO {
 				upHit(review_id);
 				dto = new ReviewDTO();
 				dto.setReview_id(rs.getInt("review_id"));
-				dto.setPrd_id(rs.getInt("prd_id"));
+				//dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_Name"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setReview_title(rs.getString("review_title"));
 				dto.setReview_content(rs.getString("review_content"));
@@ -118,10 +118,10 @@ public class ReviewDAO {
 		System.out.println(user_Id);
 		int success =0;
 		// 상품번호 4번에대해서만 들어감
-		String sql = "INSERT INTO review(review_id, prd_id, user_id, review_title, review_content, "
-				+ "review_date,newfilename) "
+		String sql = "INSERT INTO Review(review_id, prd_id, user_id, review_title, review_content, "
+				+ "review_date,newFileName) "
 				
-				+"VALUES(review_seq.NEXTVAL, 19, ?, ?, ?, "
+				+"VALUES(review_seq.NEXTVAL, 26, ?, ?, ?, "    
 				+ "SYSDATE, 12345)";
 		try {
 			ps = conn.prepareStatement(sql, new String[] {"review_id"});
@@ -289,6 +289,50 @@ public class ReviewDAO {
 			resClose();
 		}
 		return dto;
+	}
+	//유저 후기  리스트보기
+	public ArrayList<ReviewDTO> mlist(String loginUserId) {
+		ArrayList<ReviewDTO> list = new ArrayList<>();
+		String sql = "SELECT r.review_id, p.prd_name, r.review_date, r.bHit, r.user_id, r.review_title  FROM review r,Product p WHERE r.prd_id = p.prd_id AND user_id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginUserId);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				ReviewDTO dto = new	ReviewDTO();
+				dto.setReview_id(rs.getInt("review_id")); //번호
+				dto.setReview_title(rs.getString("review_title")); //제목
+				dto.setPrd_Name(rs.getString("prd_Name")); //상품이름
+				dto.setUser_id(rs.getString("user_id")); //작성자
+				dto.setReview_date(rs.getDate("review_date")); //작성일
+				dto.setbHit(rs.getInt("bHit"));//조회수
+				list.add(dto);//dto 를 list 에 담기
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	//유저 후기삭제
+	public int delete(String[] delList) {
+		String sql = "DELETE FROM Review WHERE review_id = ?";
+		int delCnt = 0;
+		try {
+			for (int i = 0; i < delList.length; i++) {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, (delList[i]));
+				// ps.setInt(1, Integer.parseInt(delList[i]));
+				delCnt += ps.executeUpdate();
+				ps.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return delCnt;
 	}
 }
 

@@ -30,7 +30,11 @@ import com.mvc.service.UserService;
 	"/u_list","/detailView", "/sell_overlay", "/sell_join", "/sell_login", "/sell_logout", "/seller_accept_list","/seller_list",
     "/sell_delete", "/write", "/update", "/upload", "/searchID", "/searchPW", "/pwCheck", "/request", "/sell_request",
     "/acptok", "/acptno", "/send_no","/admin","/a_review_detail","/a_review_detailView","/main_notice_detail",
+<<<<<<< HEAD
 	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView", "/cartBuy", "/cartDel"})
+=======
+	"/a_review_delete", "/cartDetail", "/cartList","/main_notice","/u_delete","/main_notice_detailView", "/cartBuy","/review_mypage","/u_del","/m_delete"})
+>>>>>>> 473888cd6a3e5bc7e653700a5178cc0832fce414
 
 
 public class MainController extends HttpServlet {
@@ -308,6 +312,13 @@ public class MainController extends HttpServlet {
 						review = new ReviewService();
 						review.write(request, response);
 						break;
+					
+					// 유저 후기 
+					case "/review_mypage":
+						System.out.println("후기 등록 요청");
+						review = new ReviewService();
+						review.mypage(request, response);
+						break;	
 
 					// Id 찾기
 					case "/findId":
@@ -476,9 +487,21 @@ public class MainController extends HttpServlet {
 						break;
 						
 					case "/u_delete":
-						System.out.println("유저 구매내역  요청");
+						System.out.println("주문내역 삭제  요청");
 						purchase = new PurchaseService();
 						purchase.delete(request, response);
+						break;
+						
+					case "/m_delete":
+						System.out.println("후기리스트 삭제  요청");
+						review = new ReviewService();
+						review.delete(request, response);
+						break;
+						
+					case "/u_del":
+						System.out.println("회원 탈퇴  요청");
+						user = new UserService();
+						user.delete(request, response);
 						break;	
 						
 						
