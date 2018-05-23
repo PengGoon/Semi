@@ -40,15 +40,17 @@ public class CartService {
 
 	// 장바구니 상세보기 요청
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String[] buyList= request.getParameterValues("buyList[]");
 		System.out.println(buyList.length);
 		CartDAO dao = new CartDAO();
 		ArrayList<CartDTO> list = dao.detailList(buyList);
-
+		
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list",list);
 		String obj = json.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
 		/*
 		int prd_id = Integer.parseInt(request.getParameter("prd_id"));

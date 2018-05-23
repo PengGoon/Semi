@@ -161,8 +161,14 @@
 	});
 
 	// prd_id, sell_id 필요
-	$("#buy").click(
-			function() {
+	$("#buy").click(function() {
+			var buy = [];
+			$("input[type='checkbox']:checked").each(function(){
+				buy.push($(this).val());
+			});
+			console.log(checked);
+			
+			/*
 				$.ajax({
 					type : "post",
 					url : "./cartBuy",
@@ -171,10 +177,10 @@
 						prd_id : "${dto.prd_id}",
 					},
 					success : function(data) {
-						/* console.log(data);
+						 console.log(data);
 						console.log(data.dto.prd_id);
 						console.log(data.dto.sell_Id);
-						console.log(cnt); */
+						console.log(cnt);
 						location.href = "./prd2_buy?prd_id=" + data.dto.prd_id
 								+ "&sell_id=" + data.dto.sell_Id
 								+ "&prd_count=" + cnt;
@@ -183,6 +189,7 @@
 						console.log(err)
 					}
 				});
+			*/
 			});
 </script>
 </html>
