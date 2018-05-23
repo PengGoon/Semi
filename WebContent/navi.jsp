@@ -293,7 +293,7 @@ div#category ul {
 				<li class=fav><a id="fav" href="./prd_bHitlist.jsp">인기상품</a></li>
 				<li class=new><a id="new" href="./prd_datelist.jsp">신상품</a></li>
 			</ul>
-			<div><a href="./cartList.jsp"><img class="cart" src="image/cart.png"/></a></div>
+			<div><a href="#"><img class="cart" src="image/cart.png"/></a></div>
 			<div class="searchBar">
 				<input type="text" id="search" />
 				<button onclick="search()">
@@ -403,7 +403,25 @@ div#category ul {
 			}
 		});
 	});
-
+	
+	$(".cart").click(function(){
+		$.ajax({
+			type : "post",
+			url : "./cartList", //경로 이동 
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				if(loginUserId != ""){
+					location.href = "cartList.jsp";
+				}else {
+					alert("로그인이 필요한 서비스입니다.");
+				}
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		});
+	}); 
 
 </script>
 </html>
