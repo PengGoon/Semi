@@ -122,7 +122,7 @@ body {
 				</tr>
 				<tr>
 					<th colspan="2">
-						<button class=myButton id="pay" onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}'">바로결제</button>
+						<button class=myButton id="pay" onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}&prd_count='+cnt">바로결제</button>
 						<button class=myButton id="cart">장바구니 추가</button>
 						<%-- <button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> --%>
 						<button class=myButton  id="restock" sytle=("border-style : solid" ,"border-color: limegreen"
@@ -175,21 +175,7 @@ body {
 		
 		$("#msg").text(cnt);
 	});
-
-	<%-- function cart() {
-		location.href = "prd2_cart?prd_id=${info.prd_Id}&prd_count="+cnt;
-		<button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button>
-	} --%>
 	
-	///////////////
-	/*ProductDTO2 dto2 = dao2.buy(request.getParameter("prd_id"));
-	request.setAttribute("info", dto2);
-	dto2 = dao2.list(request.getParameter("prd_id"));
-	request.setAttribute("list", dto2);
-	RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
-	dis.forward(request, response);*/
-	
-	// 수량 컬럼 추가(필요)
 	$("#cart").click(function(){
 		$.ajax({
 			type : "post",

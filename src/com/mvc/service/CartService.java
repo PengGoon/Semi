@@ -76,4 +76,21 @@ public class CartService {
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().write(obj);
 	}
+
+	public void del(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] delList = request.getParameterValues("delList[]"); 
+		//리뷰삭제 DB 사용 
+		CartDAO dao = new CartDAO();
+		boolean success = false;
+		
+		if(dao.cart_del(delList) == delList.length) {
+			success = true;
+		}
+		
+		Gson json = new Gson();
+		HashMap<String, Boolean> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+	}
 }

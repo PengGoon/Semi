@@ -127,10 +127,11 @@
 					prd_id: "${dto.prd_id}",
 				},
 				success : function(data) {
-					console.log(data);
+					/* console.log(data);
 					console.log(data.dto.prd_id);
 					console.log(data.dto.sell_Id);
-					location.href = "./prd2_buy?prd_id="+data.dto.prd_id+"&&sell_id="+data.dto.sell_Id;
+					console.log(cnt); */
+					location.href = "./prd2_buy?prd_id="+data.dto.prd_id+"&sell_id="+data.dto.sell_Id+"&prd_count="+cnt;
 				},
 				error : function(err) { console.log(err) }
    	 		});

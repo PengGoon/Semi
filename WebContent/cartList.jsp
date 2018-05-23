@@ -78,15 +78,21 @@
 	<body>
         <table>
           <tr>
+          		<td></td>
                 <td>상품명</td>
                 <td>상품수량</td>
                 <td>가격</td>
           </tr>
                 <input type="hidden" id="h"/>
         </table>
-        <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>
+        <button id="continue">쇼핑 계속하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="buy">구매하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<input id="del" type="button" value="삭제" />
 	</body>
 	<script>
+		var obj = {};
+		obj.error = function(e){console.log(e)};
+		obj.type="post";
+		obj.dataType="json";
+		
 		$(document).ready(function() {
 			$.ajax({
 				type : "post",
@@ -96,9 +102,9 @@
 					user_id: "${sessionScope.loginUserId}",
 				},
 				success : function(data) {
-					console.log(data);
 					for(var i=0; i<data.list.length; i++) {
-						var str = "<tr><td><a href=./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"</a></td>";
+						var str = "<tr><td><input type='checkbox' value='"+data.list[i].cart_id+"'/></td>";
+							str += "<td><a href=./cartDetail?prd_id="+data.list[i].prd_id+"&&prd_count="+data.list[i].prd_count+">"+data.list[i].prd_name+"</a></td>";
 							str += "<td>"+data.list[i].prd_count+"</td>";
 							str += "<td>"+data.list[i].prd_price*data.list[i].prd_count+"원"+"</td></tr>";
 						$("#h").after(str);
@@ -113,6 +119,28 @@
 		$("#continue").click(function(){
    	 		location.href="index.jsp"; 
     	});
-	
+		
+		$("#del").click(function(){
+			obj.url="./cartDel";
+			var checked = [];
+			//$(elem).each() == elem.forEach()
+			$("input[type='checkbox']:checked").each(function(){
+				checked.push($(this).val());
+			});
+			console.log(checked);
+			obj.data={delList:checked};
+			obj.success = function(data){
+				if(data.success){
+					alert("삭제에 성공 했습니다.");
+				}else{
+					alert("삭제에 실패 했습니다.");
+				}
+				location.href = "a_review.jsp";
+				
+			}
+			console.log(obj);
+		    ajaxCall(obj);
+		});
+		 
 	</script>
 </html>

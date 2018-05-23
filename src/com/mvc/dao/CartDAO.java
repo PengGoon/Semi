@@ -146,6 +146,26 @@ public class CartDAO {
 		return dto;
 	}
 	
+	//장바구니 삭제
+	
+	public int cart_del(String[] delList) {
+		int delCnt = 0;
+		String sql = "DELETE FROM cart WHERE cart_id=?";
+		try {
+			for(int i=0; i<delList.length;i++) {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, delList[i]);
+				delCnt += ps.executeUpdate();
+				ps.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+		resClose();
+		}
+		return delCnt;
+	}
+	
 	// 자원 반납
 	private void resClose() {
 		try {
@@ -158,5 +178,5 @@ public class CartDAO {
 			e.printStackTrace();
 		}		
 	}
-	
+
 }
