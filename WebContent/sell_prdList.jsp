@@ -8,6 +8,13 @@
 <title>등록한 상품 목록</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
+.sPrdListTitle{
+            	margin : 10px 0px 55px 0px;
+            	text-align: center;
+            	color: black;
+            	font-size: 20;
+            }
+
 #listTable {
 	border: none;
 	border-collapse: collapse;
@@ -39,16 +46,51 @@
 
 #prdList {
 	width: 1000px;
-	margin: 0 auto;
+	margin: 0 auto 100px auto;
 }
 
-#btnWrite{
+#btnWrite {
 	float: right;
+	height: 30px;
+	width: 100px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+}
+
+#del {
+	float: left;
+	height: 30px;
+	width: 100px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+}
+.transBtn {
+	height: 30px;
+	width: 100px;
+	font-weight: 800;
+	border-style: solid;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
 	<div id="prdList">
+	
+		<div class = sPrdListTitle>
+    		<br/><br/>
+    		<h1>등록 상품 관리</h1>
+    	</div> 
 		<hr />
 		<table id="listTable">
 			<tr>
@@ -116,7 +158,7 @@
 				flag = "<td style='color:red'>품절</td>";
 			}
 			content+=flag;
-			content+="<td><input type='button' onclick='pur_st("+item.prd_Id+")' value='배송관리'/></td>";
+			content+="<td><input type='button' class=transBtn onclick='pur_st("+item.prd_Id+")' value='배송관리'/></td>";
 			content+="</tr>";
 		});
 		$("#listTable").append(content);

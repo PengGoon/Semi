@@ -4,60 +4,149 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매자 등록 요청</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
-table, td, th {
+.reqeustForm table {
+	font-weight: 600;
 	border: 1px solid black;
 	border-collapse: collapse;
 	padding: 5px 10px;
-	text-align: center;
-	margin: 100 350;
+	text-align: left;
+	border: none;
+	margin: 0 auto 70 auto;
 }
 
-input.inputTxt {
-	width: 100%;
+.reqeustForm td {
+	font-weight: 600;
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px 10px;
+	text-align: left;
+	border: none;
+}
+
+.reqeustForm th {
+	font-weight: 600;
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px 10px;
+	text-align: left;
+	border: none;
+}
+
+.reqeustForm hr {
+	border: none;
+	width: 1000px;
+	border: 1px solid limegreen;
+	color: limegreen; /* IE */
+	border-color: limegreen; /* 사파리 */
+	background-color: limegreen; /* 크롬, 모질라 등, 기타 브라우저 */
+}
+
+.reqeustTitle {
+	margin: 60px 0px 55px 0px;
+	text-align: center;
+	color: black;
+	font-size: 20;
+}
+
+.reqeustFormTable {
+	position: absolute;
+	left: 20%;
+	margin: 0 0 120px 0;
+}
+
+.reqeustForm select {
+	font-weight: 600;
+	border-style: solid;
+	height: 41px;
+	width: 130px;
+}
+
+.inp {
+	height: 41px;
+}
+
+#request_start {
+	font-weight: 600;
+	border-style: solid;
+	height: 41px;
+	width: 220px;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+}
+
+#request_end {
+	font-weight: 600;
+	border-style: solid;
+	height: 41px;
+	width: 130px;
+	border-color: limegreen;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
-
+	<jsp:include page="navi.jsp"></jsp:include>
+	<jsp:include page="myPage_menu.jsp"></jsp:include>
 	<!-- 기본 정보 뷰 -->
-	<table id="before" style="width: 600">
-		<h2>판매자 등록 요청</h2>
-		<tr>
-			<td>회원 이름</td>
-			<td><input class="inputTxt" type="text" name="userName"
-				id="beforeName" disabled="true" /></td>
-		</tr>
-		<tr>
-			<td>회원 주소</td>
-			<td><input type="text" id="beforeAddr" disabled="true"
-				style="width: 100%" /></td>
-		</tr>
-		<tr>
-			<td>회원 EMAIL</td>
-			<td><input type="text" id="beforeEmail" disabled="true"
-				style="width: 100%" /></td>
-		</tr>
-		<tr>
-			<td>회원 휴대폰 번호</td>
-			<td><input class="inputTxt" type="text" name="phone"
-				id="beforePhone" disabled="true" /></td>
-		</tr>
-		<tr>
-			<td>사업자 등록증</td>
-			<td><img width="300" id="after_filename" /></td>
-		</tr>
-		<tr>
-			<td colspan="2" style="text-align: left;">
-				<button id="request_start">판매자 등록 요청하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button id="update_end2">취소</button>&nbsp;&nbsp;
-			</td>
-		</tr>
-	</table>
+	<div class=reqeustForm>
+		<div class=reqeustTitle>
+			<br />
+			<br />
+			<h1>회원(판매자) 등록 요청</h1>
+		</div>
+		<br />
+		<table class=reqeustFormTable>
+			<br />
+			<tr>
+				<td colspan="3"><hr /></td>
+			</tr>
+
+			<tr>
+				<td>회원 이름</td>
+				<td><input class="inp" type="text" name="userName"
+					id="beforeName" disabled="true" /></td>
+			</tr>
+			<tr>
+				<td>회원 주소</td>
+				<td><input class="inp" type="text" id="beforeAddr"
+					disabled="true" style="width: 70%" /></td>
+			</tr>
+			<tr>
+				<td>회원 EMAIL</td>
+				<td><input class="inp" type="text" id="beforeEmail"
+					disabled="true" /></td>
+			</tr>
+			<tr>
+				<td>회원 휴대폰 번호</td>
+				<td><input class="inp" type="text" name="phone"
+					id="beforePhone" disabled="true" /></td>
+			</tr>
+			<tr>
+				<td>사업자 등록증</td>
+				<td><img width="300" id="after_filename" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="3"><hr /></td>
+			</tr>
+
+			<tr>
+				<td colspan="2" style="text-align: right">
+					<button id="request_start">판매자 등록 요청하기</button>
+					<button id="request_end">취소</button>
+				</td>
+			</tr>
+		</table>
+	</div>
 </body>
 <script>
 	var obj = {};//초기화   
@@ -90,24 +179,23 @@ input.inputTxt {
 		ajaxCall(obj);
 	});
 
-
 	$("#update_end2").click(function() {
-		location.href = "main.jsp";
+		location.href = "myPage.jsp";
 	});
-	
-	 $("#request_start").click(function(){
+
+	$("#request_start").click(function() {
 		obj.url = "./sell_request";
 		obj.success = function(data) {
 			console.log(data.result);
 			if (data.result == 1) {
 				alert("판매자 등록 요청을 완료했습니다.");
 				location.href = "main.jsp";
-			} else if(data.result == 0){
+			} else if (data.result == 0) {
 				alert("이미 등록요청을 하였거나 등록된 사용자 입니다..");
 			}
 		}
 		ajaxCall(obj);
-	}); 
+	});
 	function ajaxCall(param) {
 		//console.log(param);
 		$.ajax(param);

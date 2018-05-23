@@ -11,7 +11,7 @@
 	<style>
 		#wrapper {
 			width: 1000px;
-		    margin: 0 auto;
+		    margin: 10 auto 10 auto;
 		}
 		#mainImg{
 			z-index: 1;

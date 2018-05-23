@@ -50,7 +50,7 @@
 				<th>비밀번호 확인 :</th> 
 				<td><input type="password" class=inp name="updatePwChk" placeholder="비밀번호 확인 요청" /></td>
 			</tr>
-			<tr><td colspan="3"><hr/></td></tr>
+			<tr><td colspan="3" ><hr/></td></tr>
 			<tr><td><button id="upPw">확인</button></td></tr>
 		</table>
 </body>
