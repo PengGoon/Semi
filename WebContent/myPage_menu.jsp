@@ -42,7 +42,7 @@
 		<table id="myPage">
 			<c:if test="${sessionScope.loginUserId ne null}">
 				<tr>
-					<td><a href="u_Order.jsp">주문내역</a></td>
+					<td><a href="myPage.jsp">주문내역</a></td>
 					<td><a href="review_mypage.jsp">작성한후기</a></td>
 					<td><a href="u_updateform.jsp">개인정보수정</a></td>
 				</tr>

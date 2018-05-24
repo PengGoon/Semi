@@ -152,7 +152,7 @@
     					<option>naver.com</option>
     					<option>daum.net</option>
     					<option>hanmail.net</option>
-    					<option>google.com</option>
+    					<option>gmail.com</option>
     					<option>nate.com</option>
     				</select>
     				</td>

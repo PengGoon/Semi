@@ -189,7 +189,7 @@
 			console.log(data.result);
 			if (data.result == 1) {
 				alert("판매자 등록 요청을 완료했습니다.");
-				location.href = "main.jsp";
+				location.href = "myPage.jsp";
 			} else if (data.result == 0) {
 				alert("이미 등록요청을 하였거나 등록된 사용자 입니다..");
 			}

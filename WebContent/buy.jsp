@@ -106,6 +106,7 @@
 	var prd_id = "${param.prd_id}";
 	var sell_id = "${param.sell_id}";
 	var prd_count = "${param.prd_count}";
+	var cart_id = "${param.cart_id}";
 	 $(document).ready(function(){
 		if(id == "") {
 			alert("로그인이 필요한 서비스입니다.");
@@ -144,12 +145,14 @@
 					user_id: "${sessionScope.loginUserId}", 
 					prd_id: prd_id,
 					sell_id: sell_id,
+					cart_id: cart_id,
 					// 주문상태 부분(미수정)
 					pur_count: prd_count,
 					pur_state: "주문중"
 				},
 				success : function(data) {
 					alert(data.msg);
+					prd_id = null;
 					location.href = "index.jsp";
 				},
 				error : function(err) { console.log(err) }

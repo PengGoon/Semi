@@ -91,6 +91,7 @@
 					dataType : "json",
 					data : {
 						prd_id : "${dto.prd_id}",
+						cart_id : "${cart_id}"
 					},
 					success : function(data) {
 						/* console.log(data);
@@ -99,7 +100,7 @@
 						console.log(cnt); */
 						location.href = "./prd2_buy?prd_id=" + data.dto.prd_id
 								+ "&sell_id=" + data.dto.sell_Id
-								+ "&prd_count=" + cnt;
+								+ "&prd_count=" + cnt+"&cart_id="+data.dto.cart_id;
 					},
 					error : function(err) {
 						console.log(err)

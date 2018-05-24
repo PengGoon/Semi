@@ -206,16 +206,20 @@
 		console.log(list);
 		var content = "<input type='button' onclick=location.href='myPage.jsp' value='돌아가기'/>";
 		content+="";
-		content+="<table id='listTable'><tr><th>주문날짜</th><th>이름</th><th>주소</th>"
-			+"<th>전화번호</th><th>주문수량</th><th>상태</th><th>운송장번호</th></tr>";
+		content+="<table id='listTable'><tr><th style='width: 100px;'>주문날짜</th><th style='width: 100px;'>이름</th>"
+			+"<th style='width: 300px;'>주소</th>"
+			+"<th style='width: 100px;'>전화번호</th>"
+			+"<th style='width: 100px;'>주문수량</th>"
+			+"<th style='width: 100px;'>상태</th>"
+			+"<th style='width: 100px;'>운송장번호</th></tr>";
 		list.forEach(function(item, pur_id){
 			content+="<tr>";
 			content+="<td>"+item.pur_date+"</td>";
 			content+="<td>"+item.user_Name+"</td>";
-			content+="<td>"+item.user_Addr+"</td>";
+			content+="<td style='display: inline-block; width: 200px;'>"+item.user_Addr+"</td>";
 			content+="<td>"+item.user_Phone+"</td>";
 			content+="<td>"+item.pur_count+"</td>";
-			content+="<td>"+item.pur_state+"</td>";
+			content+="<td id='st_"+item.pur_id+"'>"+item.pur_state+"</td>";
 			content+="<td id='delie_"+item.pur_id+"'>"+item.pur_delievery+"</td>";
 			content+="<td><input type='button' onclick='delievery("+item.pur_id+")' value='배송등록'/></td>";
 			content+="</tr>";
@@ -229,7 +233,9 @@
 		obj.success=function(data){
 			if(data.list.length > 0){
 				alert("배송등록 되었습니다.");
+				console.log(data.list);
 				$("#delie_"+pur_id).html(data.list[0].pur_delievery);
+				$("#st_"+pur_id).html(data.list[0].pur_state);
 			}else{
 				alert("배송등록에 실패했습니다.");
 			}

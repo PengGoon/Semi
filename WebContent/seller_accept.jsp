@@ -54,11 +54,12 @@ table, td, th {
 		}
 		ajaxCall(obj);
 	});
-
+	var bigP = "";
 	function listPrint(list) {
 		console.log(list);
 		var i = 1;
 		var content = "";
+		
 		list
 				.forEach(function(item, idx) {
 					if (item.sell_yn == 1) {
@@ -68,10 +69,11 @@ table, td, th {
 						content += "<td>" + item.name + "(" + item.id + ")"
 								+ "</td>";
 						content += "<td>" + date_split[0] + "</td>";
-						content += "<td><img width='200' src="+item.filename+"></td>";
+						content += "<td><img width='200' src="+item.filename+" onclick='bigPic()'></td>";
+						bigP=item.filename;
 						content += "<td>" + "<button class='no' onclick="
 								+ "location.href='acptok?sell_id=" + item.id
-								+ "'>" + "승인" + "</button>"
+								+ "'>" + "승인" + "</button>&nbsp&nbsp&nbsp&nbsp"
 								+ "<button onclick='accept_no("+i+")'" + ">" + "거절"
 								+ "</button>";
 						content += "<form id="+i+" method='post' action='acptno.jsp' target='childForm'>";
@@ -108,6 +110,15 @@ table, td, th {
 	function ajaxCall(param) {
 		//console.log(param);
 		$.ajax(param);
+	}
+	
+	function bigPic(){
+		// window.name = "부모창 이름"; 
+		window.name = "parentForm";
+		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
+		openWin = window.open("bigPic.jsp", "childForm",
+				"width=620, height=720, resizable = no, scrollbars = no");
+		document.getElementById(idx).submit();
 	}
 </script>
 </html>

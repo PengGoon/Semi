@@ -308,7 +308,7 @@ div#category ul {
 			<ul>
 				<a id="myPage2"><li id="myPage1"></li></a>
 				<a id="loginst2"><li style="border-left: none" id="loginst1">로그인</li></a>
-				<a href="userJoinSelect.jsp"><li id="join">회원가입</li></a>
+				<a href="userJoinSelect.jsp"><li id="navi_join"></li></a>
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
 			<br/>
@@ -391,11 +391,11 @@ div#category ul {
 		if (loginUserId == "" && loginSellerId == "") {
 			$("#loginst1").html("로그인");
 			$("#loginst2").attr("href", "userLogin.jsp");
-			$("#join").html("회원가입");
+			$("#navi_join").html("회원가입");
 		}else{
 			$("#loginst1").html("로그아웃");
 			$("#loginst2").attr("href", "logout");
-			$("#join").html("");
+			$("#navi_join").html("");
 			$("#myPage1").html("마이페이지");
 			$("#myPage2").attr("href", "myPage.jsp");
 			if(loginUserId != ""){

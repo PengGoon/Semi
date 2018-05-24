@@ -70,7 +70,10 @@ body {
 					</tr>
 					<tr>
 						<th style="width: 100px">판매자</th>
-						<th style="width: 400px">${sessionScope.loginId}</th>
+						<th style="width: 400px">
+							<input type="hidden" name="sell_id" value="${sessionScope.loginId}"/>
+							${sessionScope.loginId}
+						</th>
 					</tr>
 					<tr>
 						<th>판매가(100g)</th>

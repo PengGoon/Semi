@@ -31,24 +31,41 @@ public class PurchaseService {
 		dto.setPur_state(pur_state);
 
 		PurchaseDAO dao = new PurchaseDAO();
-		int success = dao.purch(dto);
-
-		String msg = "상품 결제에 성공했습니다.";
-
-		if (success == 0) {
-			msg = "상품 결제에 실패했습니다.";
+		int success = 0;
+		dao = new PurchaseDAO();
+		int cnt = dao.countprint(prd_id);
+		int cart_id = 0;
+		String msg = "";
+		System.out.println("카트아이디 test : " + request.getParameter("cart_id"));
+		msg = countdown(pur_count, prd_id, cnt);
+		if(msg.equals("상품 구매에 성공하였습니다.")) {
+			success = dao.purch(dto);
+		}
+		if (cart_id != 0) {
+			cart_id = Integer.parseInt(request.getParameter("cart_id"));
+			cartDel(cart_id);
 		}
 
+		// msg = "상품 결제에 성공했습니다.";
 		System.out.println(msg);
-
 		Gson gson = new Gson();
 		HashMap<String, String> map = new HashMap<>();
 		map.put("msg", msg);
-
 		String obj = gson.toJson(map);
-
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().write(obj);
+	}
+
+	private void cartDel(int cart_id) {
+		PurchaseDAO dao = new PurchaseDAO();
+		dao.cartDel(cart_id);
+	}
+
+	private String countdown(int pur_count, int prd_id, int cnt) {
+		PurchaseDAO dao = new PurchaseDAO();
+		String msg = dao.countdown(pur_count, prd_id, cnt);
+
+		return msg;
 	}
 
 	// 주문내역
@@ -70,7 +87,7 @@ public class PurchaseService {
 		System.out.println(delList.length);
 		PurchaseDAO dao = new PurchaseDAO();
 		boolean success = false;
-		
+
 		if (dao.delete(delList) == delList.length) {
 			success = true;
 		}

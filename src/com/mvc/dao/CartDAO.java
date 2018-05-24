@@ -127,7 +127,7 @@ public class CartDAO {
 		return list;
 	}
 	
-	public CartDTO cartbuy(String prd_id) {
+	public CartDTO cartbuy(String prd_id, String cart_id) {
 		String sql = "SELECT sell_id, prd_id FROM Product WHERE prd_id=?";
 		CartDTO dto = new CartDTO();
 		try {
@@ -138,6 +138,7 @@ public class CartDAO {
 			while(rs.next()) {
 				dto.setPrd_id(rs.getInt("prd_id"));
 				dto.setSell_Id(rs.getString("sell_id"));
+				dto.setCart_id(Integer.parseInt(cart_id));
 			}
 			
 		} catch (SQLException e) {

@@ -125,10 +125,6 @@ body {
 						<button class=myButton id="pay" onclick = "location.href ='prd2_buy?prd_id=${info.prd_Id}&sell_id=${info.sell_Id}&prd_count='+cnt">바로결제</button>
 						<button class=myButton id="cart">장바구니 추가</button>
 						<%-- <button onclick = "location.href = 'prd2_cart?prd_id=${info.prd_Id}'">장바구니 추가</button> --%>
-						<button class=myButton  id="restock" sytle=("border-style : solid" ,"border-color: limegreen"
-		background-color : limegreen
-		color: white
-		cursor: pointer")>재입고 알림</button>
 					</th>
 				</tr>
 				<tr>

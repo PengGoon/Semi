@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvc.dao.CartDAO;
+import com.mvc.dao.PurchaseDAO;
 import com.mvc.dto.CartDTO;
 
 public class CartService {
@@ -39,11 +40,14 @@ public class CartService {
 	// 장바구니 상세보기 요청
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int prd_id = Integer.parseInt(request.getParameter("prd_id"));
+		int cart_id = Integer.parseInt(request.getParameter("cart_id"));
+		System.out.println("카트디테일"+request.getParameter("cart_id"));
 		
 		CartDAO dao = new CartDAO();
 		CartDTO dto = dao.detail(prd_id);
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("cart_id", cart_id);
 		RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
 		dis.forward(request, response);
 	}
@@ -65,9 +69,11 @@ public class CartService {
 	
 	public void buy(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String prd_id = request.getParameter("prd_id");
+		String cart_id = request.getParameter("cart_id");
 		CartDAO dao = new CartDAO();
-		CartDTO dto = dao.cartbuy(prd_id);
+		CartDTO dto = dao.cartbuy(prd_id,cart_id);
 		
+		System.out.println("test : "+dto.getCart_id());
 		Gson gson = new Gson();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("dto", dto);

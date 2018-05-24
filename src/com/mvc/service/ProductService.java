@@ -52,8 +52,6 @@ public class ProductService {
 		String page = "prd_writeForm.jsp";
 		//결과에 따라 페이지 이동
 		if(pk > 0) {
-			//성공(상세보기) = 글쓰기 한 후 idx 반환
-			//page = "detail?id="+pk;
 			page = "index.jsp";
 		}
 		response.sendRedirect(page);

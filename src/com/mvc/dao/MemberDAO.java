@@ -254,7 +254,7 @@ public class MemberDAO {
             dto.setAddr(rs.getString("sell_addr"));
             dto.setEmail(rs.getString("sell_email"));
             dto.setPhone(rs.getString("sell_phone"));
-            dto.setFilename(rs.getString("sell_img"));
+            dto.setFilename(rs.getString("newfilename"));
             dto.setSell_yn(rs.getInt("sell_yn"));
          }
       } catch (SQLException e) {
@@ -269,7 +269,7 @@ public class MemberDAO {
          String sell_phone, String sell_img) {
 
       int success = 0;
-      String sql = "UPDATE seller SET sell_pw=?, sell_name=?, sell_addr=?, sell_email=?, sell_phone=?, sell_img=? WHERE sell_id=?";
+      String sql = "UPDATE seller SET sell_pw=?, sell_name=?, sell_addr=?, sell_email=?, sell_phone=?, newfilename=? WHERE sell_id=?";
       try {
          ps = conn.prepareStatement(sql);
          ps.setString(1, sell_pw);

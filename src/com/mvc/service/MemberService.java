@@ -206,6 +206,7 @@ public class MemberService {
       if (loginId != null) {// 로그인 일 경우만 정보를 가져 온다.
          MemberDAO dao = new MemberDAO();
          MemberDTO dto = dao.detailView(loginId);
+         dao = new MemberDAO();
          int result = dao.request(loginId);
          if (dto.getSell_yn() != 0) {
             result = 0;

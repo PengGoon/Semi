@@ -9,7 +9,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
-.sellerJoin table, td, th {
+.sellerJoin table {
 	font-weight: 600;
 	border: 1px solid black;
 	border-collapse: collapse;
@@ -179,7 +179,7 @@
 						<option>naver.com</option>
 						<option>daum.net</option>
 						<option>hanmail.net</option>
-						<option>google.com</option>
+						<option>gmail.com</option>
 						<option>nate.com</option>
 				</select></td>
 			</tr>

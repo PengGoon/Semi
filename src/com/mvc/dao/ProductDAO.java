@@ -379,21 +379,23 @@ public class ProductDAO {
 
 	public ArrayList<PurchaseDTO> delievery(int pur_id) {
 		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
-		String sql = "UPDATE purchase SET pur_delievery=? WHERE pur_id=?";
+		String sql = "UPDATE purchase SET pur_delievery=?,pur_state=? WHERE pur_id=?";
 		Random random = new Random();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, random.nextInt(100000000));
-			ps.setInt(2, pur_id);
+			ps.setString(2, "배송중");
+			ps.setInt(3, pur_id);
 			ps.executeUpdate();
 			
-			sql = "SELECT pur_delievery FROM purchase WHERE pur_id=?";
+			sql = "SELECT * FROM purchase WHERE pur_id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, pur_id);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				PurchaseDTO dto = new PurchaseDTO();
 				dto.setPur_delievery(rs.getInt("pur_delievery"));
+				dto.setPur_state(rs.getString("pur_state"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {

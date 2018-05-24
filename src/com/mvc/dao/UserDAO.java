@@ -268,7 +268,6 @@ public class UserDAO {
 	         ps.setString(1, find_name);
 	         ps.setString(2, find_email);
 	         rs = ps.executeQuery();
-	         System.out.println(rs.getString("find_id"));
 	         if (rs.next()) {
 	        	 find_id = rs.getString("user_id");
 	         }
@@ -284,7 +283,7 @@ public class UserDAO {
 	public boolean findPW(String search_id, String search_name, String search_email) {
 		String search_pw = "";
 	      boolean success = false;
-	      String sql = "SELECT sell_pw from seller WHERE sell_id=? AND sell_name=? AND sell_email=?";
+	      String sql = "SELECT user_pw from userDB WHERE user_id=? AND user_name=? AND user_email=?";
 	      try {
 	         ps = conn.prepareStatement(sql);
 	         ps.setString(1, search_id);
@@ -293,7 +292,7 @@ public class UserDAO {
 	         rs = ps.executeQuery();
 	         // System.out.println(rs.getString("sell_id"));
 	         if (rs.next()) {
-	            search_pw = rs.getString("sell_pw");
+	            search_pw = rs.getString("user_pw");
 
 	            System.out.println(search_pw);
 

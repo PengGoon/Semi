@@ -22,6 +22,7 @@ public class ProductService2 {
 		request.setAttribute("info", dto2);
 		dto2 = dao2.list(request.getParameter("prd_id"));
 		request.setAttribute("list", dto2);
+		request.setAttribute("cart_id", request.getParameter("cart_id"));
 		RequestDispatcher dis = request.getRequestDispatcher("buy.jsp");
 		dis.forward(request, response);
 		
