@@ -39,6 +39,7 @@ public class PurchaseService {
 		System.out.println("카트아이디 test : " + request.getParameter("cart_id"));
 		msg = countdown(pur_count, prd_id, cnt);
 		if(msg.equals("상품 구매에 성공하였습니다.")) {
+			dao = new PurchaseDAO();
 			success = dao.purch(dto);
 		}
 		if (cart_id != 0) {

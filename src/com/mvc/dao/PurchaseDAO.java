@@ -121,6 +121,7 @@ public class PurchaseDAO {
 				dao.resClose();
 				list.add(dto);
 				System.out.println(rs.getInt("prd_id"));
+				System.out.println(fileName[0]);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,7 +158,7 @@ public class PurchaseDAO {
 		try {
 			String sql = "UPDATE Product SET prd_count=? WHERE prd_id=?";
 			ps = conn.prepareStatement(sql);
-			if (cnt - pur_count >0) {
+			if (cnt - pur_count >= 0) {
 				ps.setInt(1, cnt - pur_count);
 				ps.setLong(2, prd_id);
 				ps.executeUpdate();

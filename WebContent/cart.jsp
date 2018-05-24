@@ -29,7 +29,7 @@
 			<td>배송비</td>
 		</tr>
 		<tr>
-			<td class="ta"><img width="100" src="./upload/${dto.newFileName}" /></td>
+			<td class="ta"><img width="100" src="${dto.newFileName}" /></td>
 			<td>${dto.prd_name}</td>
 			<td>${param.prd_count }개</td>
 			<td>${dto.prd_price}원</td>

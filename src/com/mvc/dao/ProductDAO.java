@@ -83,9 +83,9 @@ public class ProductDAO {
 				sql = "INSERT INTO ProductImage (prd_id,newFileName1,newFileName2,newFileName3) VALUES(?,?,?,?)";
 				ps = conn.prepareStatement(sql);
 				ps.setLong(1, fk);
-				ps.setString(2, fileName1);
-				ps.setString(3, fileName2);
-				ps.setString(4, fileName3);
+				ps.setString(2, "upload/"+fileName1);
+				ps.setString(3, "upload/"+fileName2);
+				ps.setString(4, "upload/"+fileName3);
 				ps.executeUpdate();
 			}			
 		} catch (SQLException e) {
@@ -309,6 +309,8 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			resClose();
 		}
 		return list;
 	}
@@ -343,6 +345,8 @@ public class ProductDAO {
 			System.out.println("dao테스트2");
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			resClose();
 		}
 		return list;
 	}

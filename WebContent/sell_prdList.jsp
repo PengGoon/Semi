@@ -180,7 +180,7 @@
 			}else{
 				alert("삭제 실패");
 			}
-			location.href="sell_prdList.jsp";
+			location.href="myPage.jsp";
 		}
 		console.log(obj);
 		ajaxCall(obj);

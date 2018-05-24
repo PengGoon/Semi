@@ -42,7 +42,7 @@
 					<td>
 					<a href="prd_detail?prd_id=${bbs.prd_Id}">
 						<c:if test="${bbs.newFileName1 ne null}">
-							<img src="./upload/${bbs.newFileName1}"/>
+							<img src="${bbs.newFileName1}"/>
 						</c:if>
 					</a>
 					</td>

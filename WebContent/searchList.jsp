@@ -55,7 +55,7 @@
 			</tr>
 		<c:forEach items="${list}" var="bbs">
 			<tr>
-				<td><a href="prd_detail?prd_id=${bbs.prd_Id}"><img src="./upload/${bbs.newFileName1}"/></a></td>
+				<td><a href="prd_detail?prd_id=${bbs.prd_Id}"><img src="${bbs.newFileName1}"/></a></td>
 				<td><a href="prd_detail?prd_id=${bbs.prd_Id}">${bbs.prd_Name}</a></td>
 				<td>${bbs.prd_Price}</td>
 				<td>${bbs.prd_Count}</td>
@@ -128,7 +128,7 @@
 			content+="<tr><th colspan='2'>상품명</th><th>가격</th><th>남은수량</th><th>조회수</th><th></th></tr>"
 			list.forEach(function(item, prd_id){
 				content+="<tr>";
-				content+="<td><a href='prd_detail?prd_id="+item.prd_Id+"'><img src='./upload/"+item.newFileName1+"'/></a></td>";
+				content+="<td><a href='prd_detail?prd_id="+item.prd_Id+"'><img src='"+item.newFileName1+"'/></a></td>";
 				content+="<td><a href='prd_detail?prd_id="+item.prd_Id+"'>"+item.prd_Name+"</a></td>";
 				content+="<td>"+item.prd_Price+"</td>";
 				content+="<td>"+item.prd_Count+"</td>";

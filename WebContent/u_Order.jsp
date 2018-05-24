@@ -60,8 +60,6 @@
 </style>
 </head>
 <body>
-<jsp:include page="navi.jsp"></jsp:include>
-<jsp:include page="myPage_menu.jsp"></jsp:include>
 <div class= uOder>
 <br/><br/>
 	<table id="listTable">
@@ -116,7 +114,7 @@
 			content += "<td class='tb'><input class='checkcheck' type='checkbox' value='"+item.pur_id+"'/></td>";
 			//content +="<td class='td'><a href='./list?prd_Id="+list.prd_Id+"'>"+list.prd_id+"</a></td>";
 			content += "<td class='td'>" + item.prd_id + "</td>";
-			content += "<td class='ta'><img width='100' src='./upload/"+list.newFileName1+"'/></td>";//상품이름
+			content += "<td class='ta'><img width='100' src='"+item.newFileName1+"'/></td>";//상품이름
 			content += "<td class='tc'>" + item.prd_name + "</td>";//상품이름
 			content += "<td class='te'>가격:" + item.prd_price*item.pur_count + "원</td>"; //가격
 			content += "<td>" + item.pur_count + "</td>";//수량

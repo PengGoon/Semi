@@ -181,15 +181,10 @@ public class ProductService {
 
 	public void mainList(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//DB 이용 해서 데이터 가져오기
-		System.out.println("aaa");
 		ProductDAO dao = new ProductDAO();
-		System.out.println("111");
 		ArrayList<ProductDTO> list1 = dao.mainList("bHit");
-		System.out.println("2");
+		dao = new ProductDAO();
 		ArrayList<ProductDTO> list2 = dao.mainList("date");
-		System.out.println("3");
-		dao.resClose();
-		System.out.println("bbb");
 
 		//response 반환
 		Gson json = new Gson();

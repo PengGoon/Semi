@@ -122,7 +122,7 @@ public class ReviewDAO {
 				+"VALUES(review_seq.NEXTVAL, ?, ?, ?, ?,SYSDATE)";
 		try {
 			ps = conn.prepareStatement(sql, new String[] {"review_id"});
-			ps.setString(1, review_prd);
+			ps.setInt(1, Integer.parseInt(review_prd));
 			ps.setString(2, user_Id);
 			ps.setString(3, review_title);
 			ps.setString(4, review_content);

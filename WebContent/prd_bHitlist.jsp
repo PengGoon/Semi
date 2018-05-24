@@ -66,7 +66,7 @@
 			list.forEach(function(item, prd_id){
 				content+="<table>";
 				content+="<tr>";
-				content+="<td><a href='./prd_detail?prd_id="+item.prd_Id+"'><img src='./upload/"+item.newFileName1+"'/></a></td>";
+				content+="<td><a href='./prd_detail?prd_id="+item.prd_Id+"'><img src='"+item.newFileName1+"'/></a></td>";
 				content+="</tr>";
 				content+="<tr>";
 				content+="<th>"+item.prd_Name+"<br/>";

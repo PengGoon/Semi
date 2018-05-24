@@ -69,7 +69,6 @@ body {
 					<option value="닭고기">닭고기</option>
 					<option value="달걀">달걀</option>
 				</select>
-				<input type="button" value="보기" onclick="showVal()"/>
 				<table>
 					<tr>
 						<th id="pic" colspan="2" rowspan="6">

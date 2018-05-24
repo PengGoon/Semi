@@ -71,7 +71,7 @@ body {
 				<tr>
 					<th id="pic" colspan="2" rowspan="7">
 						<c:if test="${list.newFileName1 ne null}">
-							<img width="500" src="./upload/${list.newFileName1}"/>
+							<img width="500" src="${list.newFileName1}"/>
 						</c:if>
 						<input type="file" name="photo1" style="display:none"/>
 					</th>
@@ -113,12 +113,12 @@ body {
 				</tr>
 				<tr>
 					<th colspan="4" width="1000px" height="300px">
-						<c:if test="${list.newFileName2 ne null}">
-							<img width="500" src="./upload/${list.newFileName2}"/>
+						<c:if test="${list.newFileName2 ne 'upload/null'}">
+							<img width="500" src="${list.newFileName2}"/>
 						</c:if>
 						<input type="file" name="photo2" style="display:none"/>
-						<c:if test="${list.newFileName3 ne null}">
-							<img width="500" src="./upload/${list.newFileName3}"/>
+						<c:if test="${list.newFileName3 ne 'upload/null'}">
+							<img width="500" src="${list.newFileName3}"/>
 						</c:if>
 						<input type="file" name="photo3" style="display:none"/>
 					</th>
