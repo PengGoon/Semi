@@ -17,7 +17,19 @@ body {
 	margin: 0 auto;
 }
 
-#writeTable table, tr, th {
+#writeTable table{
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+#writeTable tr{
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+#writeTable th {
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;

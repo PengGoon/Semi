@@ -3,56 +3,165 @@
 <html> 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title>개인 회원 정보 수정</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<style>
-			table, td, th {
-			border: 1px solid black;
-			border-collapse: collapse;
-			padding: 5px 10px;
-			text-align: center;
-			margin: 0 auto;
-		}
+			.uUpdateForm table {
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            	margin:  0 auto 70 auto;
+            }   
+            
+            .uUpdateForm #after
+            {
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            	margin:  0 auto 70 auto;
+            }  
+            
+             .uUpdateForm td{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+            .uUpdateForm th{
+   		        font-weight: 600;
+            	border: 1px solid black;
+            	border-collapse: collapse;
+            	padding: 5px 10px;
+            	text-align: left;
+            	border:none;
+            }   
+            
+            .uUpdateForm hr{
+            	border:none;
+            	width:1000px;
+            	border:1px solid limegreen;
+            	color: limegreen;    /* IE */
+    			border-color: limegreen;  /* 사파리 */
+   			    background-color: limegreen;   /* 크롬, 모질라 등, 기타 브라우저 */
+            }
+            
+            .userUpdateTitle{
+            	margin : 60px 0px 55px 0px;
+            	text-align: center;
+            	color: black;
+            	font-size: 20;
+            }
+            
+            .uUpdateFormTable{
+            	position:absolute;
+            	left: 20%;
+				margin:  0 0 120px 0;
+            }
+            
+            .uUpdateForm select{
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            }
+            
+            .inp{
+            	height: 41px;
+            }
+            
+            #update_start, #update_end1, #update_end2,#update_success{
+            	float:right;
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            	margin: auto 5px auto 5px ;
+            }
+            
+            #del{
+            	float:left;
+            	font-weight: 600;
+            	border-style : solid;
+            	height : 41px;
+            	width: 130px;
+            	border-color: limegreen;
+            	background-color : limegreen;
+            	color: white;
+            	cursor: pointer;
+            }
+            
+	 #upload {
+        position: absolute;
+        height : 42px;
+        width: 130px;
+        font-weight: 800;
+        border-style : solid;
+        border-color: limegreen;
+        background-color : limegreen;
+        color: white;
+        cursor: pointer;
+     }
 		
-	/* 	input.inputTxt {
-			width: 100%;
-		} */
 	
 		</style>
 	</head>
 	<body>
 		<jsp:include page="navi.jsp"></jsp:include>
 		<jsp:include page="myPage_menu.jsp"></jsp:include>
-		<br><br>
-		<div class=uUpdateForm>
+		<!-- 바디 전체를 감싸는 uUpdateForm 클래스 -->
+	<div class=uUpdateForm>
+	
+		<div class = userUpdateTitle>
+    		<br/><br/>
+    		<h1>회원(개인) 정보 수정</h1>
+    	</div> <br/>
 	<!-- 기본 정보 뷰 -->
-	<table id="before" style="width: 600">
+	<table class=uUpdateFormTable id="before" >
+	<br/>
+	<tr><td colspan="3"><hr/></td></tr>
+	
 		<tr>
 			<td>회원 이름</td>
-			<td><input class="inputTxt" type="text" name="userName"
+			<td><input class="inp" type="text" name="userName"
 				id="beforeName"  disabled="true" /></td>
 		</tr>
 		<tr>
 			<td>회원 주소</td>
-			<td><input type="text" id="beforeAddr" disabled="true"
-				style="width: 100%" /></td>
+			<td><input class="inp" type="text" id="beforeAddr" disabled="true"
+				style="width: 70%" /></td>
 		</tr>
 		<tr>
 			<td>회원 EMAIL</td>
-			<td><input type="text" id="beforeEmail" disabled="true"
-				style="width: 100%" /></td>
+			<td><input class="inp" type="text" id="beforeEmail" disabled="true"
+				 /></td>
 		</tr>
 		<tr>
 			<td>회원 휴대폰 번호</td>
-			<td><input class="inputTxt" type="text" name="phone"
+			<td><input class="inp" type="text" name="phone"
 				id="beforePhone" disabled="true" /></td>
 		</tr>
+		
+		<tr><td colspan="3"><hr/></td></tr>
+		
 		<tr>
 			<td colspan="2" style="text-align: left;">
 				<button id="del">회원탈퇴</button>
-				<button id="update_start">정보 수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button id="update_end2">취소</button>&nbsp;&nbsp;
+				<button id="update_start">정보 수정하기</button>
+				<button id="update_end2">취소</button>
 			</td>
 		</tr>
 		</div>
@@ -94,7 +203,7 @@
 				style="width: 150" placeholder="이메일 입력란" /> @ <input type="text"
 				id="emailview" name="after_emailview" style="width: 100"
 				placeholder="이메일 선택" disabled="true" /> <select id="email">
-					<option value="0">이메일을 선택 하세요</option>
+					<option value="0">이메일 선택</option>
 					<option value="1">직접입력</option>
 					<option>naver.com</option>
 					<option>hanmail.net</option>
@@ -167,7 +276,7 @@
 					alert("본인 확인 후 수정이 가능합니다.");
 				} else {
 					alert("로그인이 필요한 서비스 입니다.");
-					location.href = "index.html";
+					location.href = "userLogin.jsp";
 				}
 				
 			}
@@ -179,7 +288,7 @@
 		});
 
 		$("#update_end2").click(function() {
-			location.href = "u_main.jsp";
+			location.href = "myPage.jsp";
 		});
 		
 		$("#email").change(function() {
