@@ -24,9 +24,19 @@ public class ProductService {
 
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//DB 에 개별 데이터 요청
+		int flag = 0;
+		String loginUserId = (String) request.getSession().getAttribute("loginUserId");
+		//유저로그인일때
+		if(loginUserId != null) {
+			flag = 1;
+		}else {
+			flag = 0;
+		}
+		
 		ProductDAO dao = new ProductDAO();
-		ProductDTO dto = dao.detail(request.getParameter("prd_id"));
+		ProductDTO dto = dao.detail(request.getParameter("prd_id"),flag);
 		request.setAttribute("info", dto);
+		dao = new ProductDAO();
 		dto = dao.list(request.getParameter("prd_id"));
 		request.setAttribute("list", dto);
 		//특정한 페이지로 이동		
@@ -92,9 +102,9 @@ public class ProductService {
 	public void sellerdetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//DB 에 개별 데이터 요청
 		ProductDAO dao = new ProductDAO();
-		System.out.println("상품번호:"+request.getParameter("prd_id"));
-		ProductDTO dto = dao.detail(request.getParameter("prd_id"));
+		ProductDTO dto = dao.sellerdetail(request.getParameter("prd_id"));
 		request.setAttribute("info", dto);
+		dao = new ProductDAO();
 		dto = dao.list(request.getParameter("prd_id"));
 		request.setAttribute("list", dto);
 		//특정한 페이지로 이동		

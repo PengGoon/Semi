@@ -70,7 +70,7 @@ body {
 			<table>
 				<tr>
 					<th id="pic" colspan="2" rowspan="7">
-						<c:if test="${list.newFileName1 ne null}">
+						<c:if test="${list.newFileName1 ne 'upload/null'}">
 							<img width="500" src="${list.newFileName1}"/>
 						</c:if>
 						<input type="file" name="photo1" style="display:none"/>

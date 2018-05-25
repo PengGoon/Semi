@@ -106,7 +106,7 @@
 		</table>
 		<br />
 		<hr />
-		<input id="del" type="button" value="삭제"/>
+		<input id="del" type="button" value="삭제" />
 		<input type="button" id="btnWrite" value="상품등록" onclick="location.href='prd_writeForm.jsp'"/>
 	</div>
 </body>
@@ -143,6 +143,7 @@
 		console.log(list);
 		var content = "";
 		var flag = "";
+		var stflag = "";
 		
 		list.forEach(function(item, prd_id){
 			content+="<tr>";
@@ -221,7 +222,12 @@
 			content+="<td>"+item.pur_count+"</td>";
 			content+="<td id='st_"+item.pur_id+"'>"+item.pur_state+"</td>";
 			content+="<td id='delie_"+item.pur_id+"'>"+item.pur_delievery+"</td>";
-			content+="<td><input type='button' onclick='delievery("+item.pur_id+")' value='배송등록'/></td>";
+			if(item.pur_delievery>0){
+				stflag = "<td></td>";
+			}else{
+				stflag = "<td><input type='button' id='btnDeli_"+item.pur_id+"'onclick='delievery("+item.pur_id+")' value='배송등록'/></td>";
+			}
+			content+=stflag;
 			content+="</tr>";
 		});
 		content+="</table>";
@@ -234,6 +240,7 @@
 			if(data.list.length > 0){
 				alert("배송등록 되었습니다.");
 				console.log(data.list);
+				$("#btnDeli_"+pur_id).attr("disabled","true");
 				$("#delie_"+pur_id).html(data.list[0].pur_delievery);
 				$("#st_"+pur_id).html(data.list[0].pur_state);
 			}else{

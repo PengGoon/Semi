@@ -70,6 +70,7 @@
 			<td>수량</td>
 			<td>구매일</td>
 			<td>배송상태</td>
+			<td>운송장번호</td>
 			<td>관리</td>
 		</tr>
 		<!-- JSON 내용을 테이블로 출력 -->
@@ -120,6 +121,7 @@
 			content += "<td>" + item.pur_count + "</td>";//수량
 			content += "<td>" + item.pur_date + "</td>"; //날짜
 			content += "<td>" + item.pur_state + "</td>";//배송
+			content += "<td>" + item.pur_delievery + "</td>";//운송장번호
 			content += "<td>"
 					+ "<input type='button' value='후기작성' onclick=location.href='reviewWriteForm.jsp?reviewPrd_Id="+item.prd_id+"&reviewPrd_Name="+ item.prd_name +"' /></td>";//ok
 			content += "</tr>";

@@ -97,7 +97,7 @@ public class ProductDAO {
 		return (int) fk;//idx 값 반환
 	}
 
-	public ProductDTO detail(String prd_id) {
+	public ProductDTO detail(String prd_id, int flag) {
 		ProductDTO dto = null;
 		String sql="SELECT * FROM product WHERE prd_id = ?";
 		try {
@@ -105,7 +105,9 @@ public class ProductDAO {
 			ps.setInt(1, Integer.parseInt(prd_id));
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				upHit(prd_id);
+				if(flag == 1) {
+					upHit(prd_id);
+				}
 				dto = new ProductDTO();
 				dto.setPrd_Id(rs.getInt("prd_id"));
 				dto.setPrd_Name(rs.getString("prd_name"));
@@ -120,6 +122,8 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			resClose();
 		}
 		return dto;
 	}
@@ -263,9 +267,9 @@ public class ProductDAO {
 			
 			sql = "UPDATE ProductImage SET newFileName1=?,newFileName2=?,newFileName3=? WHERE prd_id = ?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getNewFileName1());
-			ps.setString(2, dto.getNewFileName2());
-			ps.setString(3, dto.getNewFileName3());
+			ps.setString(1, "upload/"+dto.getNewFileName1());
+			ps.setString(2, "upload/"+dto.getNewFileName2());
+			ps.setString(3, "upload/"+dto.getNewFileName3());
 			ps.setInt(4, dto.getPrd_Id());
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -408,5 +412,33 @@ public class ProductDAO {
 			resClose();
 		}
 		return list;
+	}
+
+	public ProductDTO sellerdetail(String prd_id) {
+		ProductDTO dto = null;
+		String sql="SELECT * FROM product WHERE prd_id = ?";
+		try {
+			ps  = conn.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(prd_id));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto = new ProductDTO();
+				dto.setPrd_Id(rs.getInt("prd_id"));
+				dto.setPrd_Name(rs.getString("prd_name"));
+				dto.setSell_Id(rs.getString("sell_id"));
+				dto.setPrd_Price(rs.getInt("prd_price"));
+				dto.setPrd_From(rs.getString("prd_from"));
+				dto.setPrd_bHit(rs.getInt("prd_bHit")+1);
+				dto.setPrd_Content(rs.getString("prd_content"));
+				dto.setCateFirst_Id(rs.getString("cateF_id"));
+				dto.setCateSecond_Id(rs.getString("cateS_id"));
+				dto.setPrd_Count(rs.getInt("prd_count"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return dto;
 	}
 }

@@ -127,7 +127,7 @@ body {
 	float: right;
 	top:10px;
 	right:0px;
-	width : 700px;
+	width : 400px;
 	margin: auto;
 }
 /* 우측 상단 로그인 관리 바 ul 속성 */
@@ -312,7 +312,7 @@ div#category ul {
 				<a href="notice.jsp"><li>공지사항</li></a>
 			</ul>
 			<br/>
-			<h3 style="text-align: center;"></h3>
+			<h3 style="text-align: center; right: 10%"></h3>
 		</div>
 
 

@@ -100,7 +100,7 @@ public class PurchaseDAO {
 
 	public ArrayList<PurchaseDTO> list(String loginUserId) {
 		ArrayList<PurchaseDTO> list = new ArrayList<PurchaseDTO>();
-		String sql = "SELECT p.prd_id, p.pur_id,t.prd_name,p.pur_count,t.prd_price,p.pur_date,p.pur_state FROM Purchase P,Product t WHERE p.prd_id=t.prd_id AND user_id=?";
+		String sql = "SELECT p.prd_id, p.pur_id,t.prd_name,p.pur_count,t.prd_price,p.pur_date,p.pur_state,p.pur_delievery FROM Purchase P,Product t WHERE p.prd_id=t.prd_id AND user_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, loginUserId);
@@ -109,13 +109,14 @@ public class PurchaseDAO {
 			while (rs.next()) {
 				PurchaseDTO dto = new PurchaseDTO();
 				ProductDAO dao = new ProductDAO();
-				dto.setPur_id(rs.getInt("pur_id"));// 상품고유번호 됨 됨
-				dto.setPrd_id(rs.getInt("prd_id"));//
-				dto.setPur_count(rs.getInt("pur_count"));// 수량
-				dto.setPur_date(rs.getDate("pur_date"));// 구매일
-				dto.setPur_state(rs.getString("pur_state"));// 배송
-				dto.setPrd_name(rs.getString("prd_name")); // 안됨
+				dto.setPur_id(rs.getInt("pur_id"));
+				dto.setPrd_id(rs.getInt("prd_id"));
+				dto.setPur_count(rs.getInt("pur_count"));
+				dto.setPur_date(rs.getDate("pur_date"));
+				dto.setPur_state(rs.getString("pur_state"));
+				dto.setPrd_name(rs.getString("prd_name"));
 				dto.setPrd_price(rs.getInt("prd_price"));
+				dto.setPur_delievery(rs.getInt("pur_delievery"));
 				String[] fileName = dao.fileNameCall(rs.getInt("prd_id"));
 				dto.setNewFileName1(fileName[0]);
 				dao.resClose();
